@@ -1,0 +1,524 @@
+---
+// src/pages/index.astro
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+// Importamos los iconos necesarios
+import { ChevronLeft, ChevronRight, ChartLine, Globe, CircleCheckBig, ArrowRight, Plus, X } from '@lucide/astro';
+
+import bannerMobile from '../assets/banner_Agrovalue_Mobile.jpg';
+import bannerMobile2 from '../assets/banner_Agrovalue02_Mobile.jpg';
+import bannerTablet from '../assets/banner_Agrovalue_Tablet.jpg';
+import bannerDesktop from '../assets/banner_Agrovalue_Desktop.jpg';
+import comillasIcon from '../assets/comillas_Agrovalue.svg';
+
+// Datos de la Sección 1 (Hero Slider)
+const sliderData = [
+  {
+    subtitle: "AGROVALUE",
+    title: "Conectamos el campo con el mundo para generar valor en toda la cadena agroexportadora.",
+    description: "Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.",
+    imageMobile: bannerMobile,
+    imageTablet: bannerTablet,
+    imageDesktop: bannerDesktop
+  },
+  {
+    subtitle: "INNOVACIÓN",
+    title: "Tecnología agrícola de vanguardia para potenciar tus cultivos y maximizar rendimientos.",
+    description: "Desarrollamos soluciones integrales adaptadas a las necesidades específicas de cada mercado internacional.",
+    imageMobile: bannerMobile,
+    imageTablet: bannerTablet,
+    imageDesktop: bannerDesktop
+  },
+  {
+    subtitle: "SOSTENIBILIDAD",
+    title: "Crecimiento sostenible y confiable para el futuro del ecosistema agroexportador.",
+    description: "Acompañamos a productores en su transición hacia practices más rentables y amigables con el medio ambiente.",
+    imageMobile: bannerMobile,
+    imageTablet: bannerTablet,
+    imageDesktop: bannerDesktop
+  }
+];
+
+// Datos de la Sección 2 (Por qué Agrovalue)
+const featuresData = [
+  {
+    icon: ChartLine,
+    title: "Tecnología propia de trazabilidad",
+    description: "Monitoreamos cada embarque en tiempo real, con información para decidir mejor en cada etapa."
+  },
+  {
+    icon: Globe,
+    title: "Experiencia global comprobada",
+    description: "Un equipo que escaló operaciones líderes en arándanos, uvas, paltas y mangos a nivel mundial."
+  },
+  {
+    icon: CircleCheckBig,
+    title: "Red de mercados y capital",
+    description: "Conectamos productores, compradores e inversionistas con financiamiento y acceso a mercados."
+  }
+];
+
+// Datos de la Sección 3 (Pasos)
+const stepsData = [
+  {
+    number: "01",
+    title: "Cuéntanos tu perfil",
+    description: "Compártenos quién eres y qué necesitas resolver en tu cadena."
+  },
+  {
+    number: "02",
+    title: "Te conectamos con un especialista",
+    description: "Derivamos tu consulta a la persona indicada del equipo, de forma ágil."
+  },
+  {
+    number: "03",
+    title: "Generamos valor juntos",
+    description: "Diseñamos y ejecutamos la estrategia contigo, con seguimiento en cada etapa."
+  }
+];
+
+// Datos de la Sección 4 (FAQ)
+const faqData = [
+  {
+    question: "¿Con quién puede trabajar AgroValue?",
+    answer: "Con productores y exportadores, importadores y distribuidores, e inversionistas del sector agroexportador. Adaptamos nuestras soluciones al perfil de cada cliente."
+  },
+  {
+    question: "¿Qué productos comercializan?",
+    answer: "Comercializamos productos agrícolas de alta demanda internacional como arándanos, uvas, paltas y mangos, asegurando los más altos estándares de calidad."
+  },
+  {
+    question: "¿Cómo aseguran la calidad y la trazabilidad?",
+    answer: "Contamos con tecnología propia que nos permite monitorear cada etapa del proceso en tiempo real, desde el campo hasta su destino final."
+  },
+  {
+    question: "¿En qué mercados operan?",
+    answer: "Operamos en los principales mercados globales, conectando la oferta local con la demanda de Norteamérica, Europa y Asia de manera eficiente."
+  },
+  {
+    question: "¿Cómo empiezo a trabajar con ustedes?",
+    answer: "El proceso es simple: contáctanos para contarnos tu perfil, te conectaremos con un especialista y diseñaremos juntos una estrategia a tu medida."
+  }
+];
+---
+
+<Layout title="Agrovalue - Inicio">
+  
+  <!-- ==================== SECCIÓN 1: HERO SLIDER ==================== -->
+  <section id="section1" class="hero">
+    
+    <div class="hero__slides-container">
+      {sliderData.map((slide, index) => (
+        <div class={`hero__slide ${index === 0 ? 'is-active' : ''}`} data-index={index}>
+          
+          <div class="hero__background">
+            <Image 
+              src={slide.imageMobile} 
+              alt={`Slide ${index + 1}`} 
+              class="hero__image hero__image--mobile"
+              loading={index === 0 ? "eager" : "lazy"} 
+            />
+            <Image 
+              src={slide.imageTablet} 
+              alt={`Slide ${index + 1}`} 
+              class="hero__image hero__image--tablet"
+              loading={index === 0 ? "eager" : "lazy"} 
+            />
+            <Image 
+              src={slide.imageDesktop} 
+              alt={`Slide ${index + 1}`} 
+              class="hero__image hero__image--desktop"
+              loading={index === 0 ? "eager" : "lazy"} 
+            />
+            
+            <div class="hero__overlay"></div>
+            <div class="hero__overlay2"></div>
+          </div>
+
+          <div class="hero__content">
+            <span class="hero__subtitle text-reveal">{slide.subtitle}</span>
+            
+            <h1 class="hero__title">
+              {slide.title.split(' ').map((word) => (
+                <span class="word-wrap"><span class="word">{word}</span>&nbsp;</span>
+              ))}
+            </h1>
+            
+            <p class="hero__description text-reveal">{slide.description}</p>
+            
+            <div class="hero__actions text-reveal">
+              <a href="/servicios" class="btn btn--primary">Conoce nuestros servicios</a>
+              <a href="/contacto" class="btn btn--outline">Contáctanos</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="hero__ui">
+      <div class="hero__controls">
+        <div class="slider-arrows">
+          <button class="arrow-btn arrow-btn--outline" id="prev-slide" aria-label="Diapositiva anterior">
+            <ChevronLeft size={20} />
+          </button>
+          <button class="arrow-btn arrow-btn--solid" id="next-slide" aria-label="Siguiente diapositiva">
+            <ChevronRight size={20} />
+          </button>
+        </div>
+        
+        <div class="slider-pagination">
+          {sliderData.map((_, index) => (
+            <span class={`dot ${index === 0 ? 'dot--active' : ''}`} data-index={index}></span>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__progress">
+      <div class="hero__progress-bar" id="progress-bar"></div>
+    </div>
+  </section>
+
+  <!-- ==================== SECCIÓN 2: CARACTERÍSTICAS ==================== -->
+  <section id="section2" class="features">
+    <div class="features__container">
+      <div class="features__header">
+        <span class="features__subtitle">POR QUÉ AGROVALUE</span>
+        <h2 class="features__title">Un solo aliado para toda la cadena.</h2>
+      </div>
+      <div class="features__grid">
+        {featuresData.map((feature) => {
+          const Icon = feature.icon;
+          return (
+            <div class="feature-card">
+              <div class="feature-card__icon">
+                <Icon size={24} />
+              </div>
+              <h3 class="feature-card__title">{feature.title}</h3>
+              <p class="feature-card__description">{feature.description}</p>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SECCIÓN 3: PASOS (COMIENZA HOY) ==================== -->
+  <section id="section3" class="steps">
+    <div class="steps__background">
+      <Image src={bannerMobile2} alt="Fondo pasos mobile" class="steps__image steps__image--mobile" />
+      <Image src={bannerTablet} alt="Fondo pasos tablet" class="steps__image steps__image--tablet" />
+      <Image src={bannerDesktop} alt="Fondo pasos desktop" class="steps__image steps__image--desktop" />
+      <div class="steps__overlay"></div>
+    </div>
+    
+    <div class="steps__container">
+      <div class="steps__header">
+        <span class="steps__subtitle">COMIENZA HOY</span>
+        <h2 class="steps__title">Trabajar con nosotros es simple.</h2>
+      </div>
+
+      <div class="steps__grid">
+        {stepsData.map((step) => (
+          <div class="step-card">
+            <span class="step-card__number">{step.number}</span>
+            <h3 class="step-card__title">{step.title}</h3>
+            <p class="step-card__description">{step.description}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="steps__action">
+        <a href="/contacto" class="btn btn--primary">
+          Contáctanos <ArrowRight size={18} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SECCIÓN 4: PREGUNTAS FRECUENTES ==================== -->
+  <section id="section4" class="faq">
+    <div class="faq__container">
+      <div class="faq__header">
+        <span class="faq__subtitle">PREGUNTAS FRECUENTES</span>
+        <h2 class="faq__title">Todo lo que necesitas saber.</h2>
+      </div>
+
+      <div class="faq__list">
+        {faqData.map((faq, index) => (
+          <div class={`faq-item ${index === 0 ? 'is-active' : ''}`}>
+            <button class="faq-item__header" aria-expanded={index === 0 ? 'true' : 'false'}>
+              <h3 class="faq-item__title">{faq.question}</h3>
+              <div class="faq-item__icon">
+                <Plus class="icon-plus" size={15} />
+                <X class="icon-close" size={15} />
+              </div>
+            </button>
+            <div class="faq-item__content">
+              <div class="faq-item__inner">
+                <p>{faq.answer}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SECCIÓN 5: PROPÓSITO (QUOTE) ==================== -->
+  <section id="section5" class="quote">
+    <div class="quote__container">
+      <div class="quote__icon">
+        <Image src={comillasIcon} alt="Comillas" />
+      </div>
+      <p class="quote__text">
+        Ayudamos al productor a obtener más valor por su trabajo, al comprador a asegurar su abastecimiento y al inversionista a generar retorno con propósito.
+      </p>
+      <span class="quote__author">— EL PROPÓSITO DE AGROVALUE</span>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  // Registramos el plugin
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    
+    // ================= LÓGICA DEL SLIDER HERO (SECCIÓN 1) =================
+    const slides = document.querySelectorAll('.hero__slide');
+    const dots = document.querySelectorAll('.dot');
+    const progressBar = document.getElementById('progress-bar') as HTMLElement;
+    const btnNext = document.getElementById('next-slide');
+    const btnPrev = document.getElementById('prev-slide');
+    
+    let currentIndex = 0;
+    let isAnimating = false;
+    const totalSlides = slides.length;
+    const slideDuration = 10; 
+    
+    let timerTimeline: gsap.core.Tween | null = null;
+
+    if (slides.length > 0) {
+        gsap.set(slides, { autoAlpha: 0, zIndex: 1 });
+        gsap.set(slides[0], { autoAlpha: 1, zIndex: 2 });
+        
+        const firstWords = slides[0].querySelectorAll('.word');
+        const firstReveal = slides[0].querySelectorAll('.text-reveal');
+        gsap.set([firstWords, firstReveal], { y: 0, autoAlpha: 1 });
+
+        initTimer();
+    }
+
+    function initTimer() {
+      if (!progressBar) return;
+      if (timerTimeline) timerTimeline.kill();
+      timerTimeline = gsap.fromTo(progressBar, 
+        { scaleX: 0 }, 
+        { 
+          scaleX: 1, 
+          duration: slideDuration, 
+          ease: "none", 
+          transformOrigin: "left center",
+          onComplete: () => goToSlide(currentIndex + 1)
+        }
+      );
+    }
+
+    function goToSlide(index: number) {
+      if (isAnimating) return;
+      
+      let nextIndex = index;
+      if (nextIndex >= totalSlides) nextIndex = 0;
+      if (nextIndex < 0) nextIndex = totalSlides - 1;
+      if (nextIndex === currentIndex) return;
+
+      isAnimating = true;
+
+      const currentSlide = slides[currentIndex];
+      const nextSlide = slides[nextIndex];
+      const nextWords = nextSlide.querySelectorAll('.word');
+      const nextReveal = nextSlide.querySelectorAll('.text-reveal');
+
+      gsap.set(nextSlide, { autoAlpha: 0, zIndex: 2 });
+      gsap.set(currentSlide, { zIndex: 1 }); 
+      gsap.set(nextWords, { y: "100%" }); 
+      gsap.set(nextReveal, { y: 20, autoAlpha: 0 }); 
+
+      const tl = gsap.timeline({ 
+        onComplete: () => {
+          gsap.set(currentSlide, { autoAlpha: 0 }); 
+          currentIndex = nextIndex;
+          isAnimating = false;
+          initTimer();
+        }
+      });
+
+      tl.to(nextSlide, { autoAlpha: 1, duration: 1, ease: "power2.inOut" }) 
+        .to(nextReveal[0], { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" }, "-=0.3") 
+        .to(nextWords, { y: "0%", duration: 0.6, stagger: 0.03, ease: "power3.out" }, "-=0.4") 
+        .to(nextReveal[1], { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" }, "-=0.4") 
+        .to(nextReveal[2], { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" }, "-=0.4"); 
+
+      dots.forEach(dot => dot.classList.remove('dot--active'));
+      dots[nextIndex].classList.add('dot--active');
+    }
+
+    btnNext?.addEventListener('click', () => {
+      if(timerTimeline) timerTimeline.kill(); 
+      goToSlide(currentIndex + 1);
+    });
+    
+    btnPrev?.addEventListener('click', () => {
+      if(timerTimeline) timerTimeline.kill();
+      goToSlide(currentIndex - 1);
+    });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        if(timerTimeline) timerTimeline.kill();
+        goToSlide(index);
+      });
+    });
+
+
+    // ================= ANIMACIONES AL HACER SCROLL (SCROLLTRIGGER) =================
+
+    // --- Sección 2: Por qué Agrovalue ---
+    const featuresSection = document.querySelector('.features');
+    if (featuresSection) {
+      const tlFeatures = gsap.timeline({
+        scrollTrigger: {
+          trigger: featuresSection,
+          start: "top 80%", // La animación inicia cuando la sección entra al 80% del viewport
+        }
+      });
+
+      tlFeatures.from('.features__header > *', { 
+                  y: 30, autoAlpha: 0, duration: 0.6, stagger: 0.2, ease: "power3.out" 
+                })
+                .from('.feature-card', { 
+                  y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.15, ease: "power3.out" 
+                }, "-=0.3");
+    }
+
+    // --- Sección 3: Pasos ---
+    const stepsSection = document.querySelector('.steps');
+    if (stepsSection) {
+      const tlSteps = gsap.timeline({
+        scrollTrigger: {
+          trigger: stepsSection,
+          start: "top 80%",
+        }
+      });
+
+      tlSteps.from('.steps__header > *', { 
+                y: 30, autoAlpha: 0, duration: 0.6, stagger: 0.2, ease: "power3.out" 
+             })
+             .from('.step-card', { 
+                y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: "power3.out" 
+             }, "-=0.3")
+             .from('.steps__action', { 
+                y: 20, autoAlpha: 0, duration: 0.6, ease: "power3.out" 
+             }, "-=0.3");
+    }
+
+    // --- Sección 4: FAQ (Cabecera y Acordeones) ---
+    const faqSection = document.querySelector('.faq');
+    if (faqSection) {
+      const tlFaq = gsap.timeline({
+        scrollTrigger: {
+          trigger: faqSection,
+          start: "top 80%",
+        }
+      });
+
+      tlFaq.from('.faq__header > *', { 
+              y: 30, autoAlpha: 0, duration: 0.6, stagger: 0.2, ease: "power3.out" 
+           })
+           // Animamos la entrada de los acordeones uno por uno de lado
+           .from('.faq-item', { 
+              x: -30, autoAlpha: 0, duration: 0.6, stagger: 0.1, ease: "power3.out" 
+           }, "-=0.3");
+    }
+
+    // --- Sección 5: Quote ---
+    const quoteSection = document.querySelector('.quote');
+    if (quoteSection) {
+      const tlQuote = gsap.timeline({
+        scrollTrigger: {
+          trigger: quoteSection,
+          start: "top 85%", // Inicia un poco más abajo para que se vea bien la entrada
+        }
+      });
+
+      tlQuote.from('.quote__icon', { 
+                scale: 0, autoAlpha: 0, duration: 0.7, ease: "back.out(1.7)" 
+             })
+             .from('.quote__text', { 
+                y: 20, autoAlpha: 0, duration: 0.8, ease: "power3.out" 
+             }, "-=0.4")
+             .from('.quote__author', { 
+                y: 10, autoAlpha: 0, duration: 0.6, ease: "power3.out" 
+             }, "-=0.5");
+    }
+
+
+    // ================= LÓGICA DEL ACORDEÓN (FAQ) =================
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    if(faqItems.length > 0) {
+      const firstContent = faqItems[0].querySelector('.faq-item__content');
+      gsap.set(firstContent, { height: 'auto', autoAlpha: 1 });
+    }
+
+    faqItems.forEach(item => {
+      const header = item.querySelector('.faq-item__header');
+      const content = item.querySelector('.faq-item__content');
+
+      if (!header || !content) return;
+
+      header.addEventListener('click', () => {
+        const isActive = item.classList.contains('is-active');
+
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('is-active')) {
+            otherItem.classList.remove('is-active');
+            otherItem.querySelector('.faq-item__header')?.setAttribute('aria-expanded', 'false');
+            gsap.to(otherItem.querySelector('.faq-item__content'), { 
+              height: 0, 
+              autoAlpha: 0, 
+              duration: 0.4, 
+              ease: "power2.inOut" 
+            });
+          }
+        });
+
+        if (!isActive) {
+          item.classList.add('is-active');
+          header.setAttribute('aria-expanded', 'true');
+          gsap.to(content, { 
+            height: 'auto', 
+            autoAlpha: 1, 
+            duration: 0.4, 
+            ease: "power2.inOut" 
+          });
+        } else {
+          item.classList.remove('is-active');
+          header.setAttribute('aria-expanded', 'false');
+          gsap.to(content, { 
+            height: 0, 
+            autoAlpha: 0, 
+            duration: 0.4, 
+            ease: "power2.inOut" 
+          });
+        }
+      });
+    });
+
+  });
+</script>

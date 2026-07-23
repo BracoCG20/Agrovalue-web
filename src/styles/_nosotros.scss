@@ -1,0 +1,1218 @@
+// src/styles/_nosotros.scss
+@use "variables" as *;
+@use "breakpoints" as *;
+
+// ==================== SECTION 1: HERO ====================
+.hero-nosotros {
+	position: relative;
+	height: 100dvh;
+	display: flex;
+	flex-direction: column;
+	padding: 8rem 1.5rem 3rem;
+	overflow: hidden;
+
+	@include tablet {
+		padding: 9rem 3rem 4rem;
+	}
+	@include desktop {
+		height: 80dvh;
+		padding: 10rem 6rem 4rem;
+	}
+
+	&__background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+	}
+
+	&__image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+
+		&--mobile {
+			display: block;
+			@include tablet {
+				display: none;
+			}
+		}
+
+		&--tablet {
+			display: none;
+			@include tablet {
+				display: block;
+			}
+			@include desktop {
+				display: none;
+			}
+		}
+
+		&--desktop {
+			display: none;
+			@include desktop {
+				display: block;
+			}
+		}
+	}
+
+	&__overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(
+			to bottom,
+			rgba(24, 76, 47, 0.8) 33%,
+			rgba(24, 76, 47, 0.89) 93%
+		);
+		@include tablet {
+			background: linear-gradient(
+				to bottom,
+				rgba(24, 76, 47, 0.6) 33%,
+				rgba(24, 76, 47, 0.79) 93%
+			);
+		}
+		@include desktop {
+			background: linear-gradient(
+				to bottom,
+				rgba(24, 76, 47, 0.4) 33%,
+				rgba(24, 76, 47, 0.55) 93%
+			);
+		}
+	}
+
+	&__content {
+		position: relative;
+		z-index: 2;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		flex-grow: 1;
+		max-width: 1200px;
+		margin: 0 auto;
+		width: 100%;
+
+		@include tablet {
+			padding-top: 50px;
+		}
+		@include desktop {
+			padding-top: 0;
+		}
+	}
+
+	&__subtitle {
+		color: #f8f8f3;
+		font-size: 13px;
+		font-weight: 600;
+		letter-spacing: 2.4px;
+		font-family: $font-DMsans;
+		text-transform: uppercase;
+		margin-bottom: 10px;
+	}
+
+	&__title {
+		color: #ffffff;
+		font-size: 50px;
+		line-height: 55px;
+		letter-spacing: -2px;
+		font-weight: 700;
+		font-family: $font-SpaceGrotesk;
+		margin: 0;
+		margin-bottom: 25px;
+		max-width: 300px;
+		word-break: keep-all;
+		overflow-wrap: break-word;
+
+		@include tablet {
+			font-size: 47px;
+			line-height: 47.9px;
+			max-width: 600px;
+		}
+		@include desktop {
+			font-size: 68px;
+			line-height: 1.1;
+			max-width: 760px;
+		}
+
+		.word-wrap {
+			display: inline-flex;
+			overflow: hidden;
+			vertical-align: top;
+		}
+
+		.word {
+			display: inline-block;
+			will-change: transform;
+		}
+	}
+
+	&__description {
+		color: rgba(#fff, 82%);
+		font-size: 16px;
+		font-family: $font-DMsans;
+		font-weight: 400;
+		line-height: 26.4px;
+		margin: 0;
+		max-width: 320px;
+
+		@include tablet {
+			font-size: 16px;
+			max-width: 580px;
+		}
+		@include desktop {
+			font-size: 20px;
+			line-height: 32px;
+			max-width: 650px;
+		}
+	}
+}
+
+// ==================== SECTION 2: PROPÓSITO ====================
+.proposito {
+	position: relative;
+	width: 100%;
+	background-color: #ffffff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 6rem 3rem;
+
+	@include tablet {
+		padding: 8rem 3rem;
+	}
+	@include desktop {
+		padding: 10rem 6rem;
+	}
+
+	&__container {
+		max-width: 800px;
+		width: 100%;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 1.5rem;
+	}
+
+	&__subtitle {
+		color: #569c33;
+		font-size: 13px;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		font-family: $font-DMsans;
+	}
+
+	&__text {
+		color: #184c2f;
+		font-size: 24px;
+		line-height: 30.7px;
+		font-weight: 500;
+		letter-spacing: -0.8px;
+		font-family: $font-SpaceGrotesk;
+		margin: 0;
+
+		@include tablet {
+			font-size: 25px;
+			line-height: 34.6px;
+		}
+		@include desktop {
+			font-size: 38px;
+			line-height: 1.4;
+		}
+	}
+
+	&__dynamic {
+		color: #569c33;
+		margin: 0 5px;
+
+		.dynamic-word {
+			display: none;
+			position: relative;
+			&:first-child {
+				display: inline;
+			}
+		}
+	}
+}
+
+// ==================== SECTION 3: MISIÓN Y VISIÓN ====================
+.mision-vision {
+	position: relative;
+	width: 100%;
+	background-color: #f6f8f3; // Fondo gris verdoso muy claro
+	padding: 6rem 2.5rem;
+
+	@include tablet {
+		padding: 8rem 3rem;
+	}
+	@include desktop {
+		padding: 10rem 6rem;
+	}
+
+	&__container {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 2.5rem;
+	}
+
+	&__header {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5rem;
+		align-items: flex-start;
+
+		@include tablet {
+			flex-direction: row;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
+
+	&__title {
+		color: #184c2f;
+		font-size: 28px;
+		font-weight: 700;
+		letter-spacing: -1px;
+		font-family: $font-SpaceGrotesk;
+		margin: 0;
+	}
+
+	&__tabs {
+		display: flex;
+		background-color: #e6eee2; // Fondo claro para las pastillas
+		border-radius: 3rem;
+		padding: 0.35rem;
+
+		.tab-btn {
+			background: transparent;
+			border: none;
+			padding: 0.65rem 1.5rem;
+			border-radius: 3rem;
+			font-family: $font-DMsans;
+			font-weight: 600;
+			font-size: 14.5px;
+			color: #184c2f; // Color texto inactivo
+			cursor: pointer;
+			transition: all 0.3s ease;
+
+			&.is-active {
+				background-color: #569c33; // Botón verde activo
+				color: #ffffff;
+				box-shadow: 0 4px 15px rgba(86, 156, 51, 0.3);
+			}
+		}
+	}
+
+	// Contenedor que agrupa ambas tarjetas en la misma posición (Grid Stack)
+	&__content {
+		position: relative;
+		display: grid;
+		width: 100%;
+	}
+
+	.mv-card {
+		grid-area: 1 / 1; // Pone ambas tarjetas en la misma celda de la grilla (una sobre otra)
+		background-color: #1a422a; // Verde muy oscuro de la tarjeta
+		border-radius: 20px;
+		overflow: hidden;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		// Estilos iniciales (GSAP se encarga de controlarlo)
+		opacity: 0;
+		visibility: hidden;
+
+		@include tablet {
+			flex-direction: row; // En tablet la imagen va a la derecha
+			border-radius: 24px;
+		}
+
+		&__text {
+			padding: 3rem 2rem 2rem;
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+
+			@include tablet {
+				padding: 3rem;
+				flex: 0.9;
+				justify-content: center;
+			}
+		}
+
+		&__number {
+			color: rgba(#569c33, 0.7); // Número verde claro
+			font-size: 64px;
+			font-weight: 700;
+			font-family: $font-SpaceGrotesk;
+			line-height: 64px;
+			margin-bottom: -15px; // Acerca el número al título
+		}
+
+		&__title {
+			color: #ffffff;
+			font-size: 24px;
+			font-weight: 700;
+			font-family: $font-SpaceGrotesk;
+			margin: 0;
+			margin-bottom: 0.5rem;
+		}
+
+		&__description {
+			color: rgba(#ffffff, 0.85);
+			font-size: 16px;
+			line-height: 27.2px;
+			font-family: $font-DMsans;
+			margin: 0;
+		}
+
+		&__image-container {
+			position: relative;
+			width: 100%;
+			height: 350px;
+
+			@include tablet {
+				height: auto;
+				flex: 1;
+				min-height: 450px;
+			}
+		}
+
+		&__image {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: bottom;
+		}
+
+		&__overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			// Gradiente que difumina la imagen con la tarjeta (De arriba hacia abajo en móvil)
+			background: linear-gradient(
+				to bottom,
+				#1a422a 0%,
+				rgba(26, 66, 42, 0) 50%
+			);
+
+			@include tablet {
+				// En tablet difumina de izquierda a derecha
+				background: linear-gradient(
+					to right,
+					#1a422a 0%,
+					rgba(26, 66, 42, 0) 60%
+				);
+			}
+		}
+	}
+}
+// ==================== SECTION 4: VALORES ====================
+.valores {
+	position: relative;
+	width: 100%;
+	background-color: #ffffff;
+	padding: 6rem 2.5rem;
+
+	@include tablet {
+		padding: 8rem 3rem;
+	}
+	@include desktop {
+		padding: 10rem 6rem;
+	}
+
+	&__container {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
+	// --- Cabecera de la sección ---
+	&__header {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		text-align: left;
+	}
+
+	&__subtitle {
+		color: #569c33;
+		font-size: 13px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		font-family: $font-DMsans;
+		@include tablet {
+			font-weight: 600;
+		}
+	}
+
+	&__title {
+		color: #184c2f;
+		font-size: 28px;
+		font-weight: 700;
+		letter-spacing: -1px;
+		font-family: $font-SpaceGrotesk;
+		margin: 0;
+		max-width: 500px;
+
+		@include tablet {
+			font-size: 28px;
+			letter-spacing: -1.1px;
+			line-height: 29.4px;
+		}
+	}
+
+	&__instruction {
+		color: #7e9285;
+		font-size: 14px;
+		font-family: $font-DMsans;
+		margin: 0;
+		margin-top: 0.5rem;
+	}
+
+	// --- Contenedor de las tarjetas ---
+	&__grid {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem; // Separación entre tarjetas solicitada
+
+		@include tablet {
+			flex-direction: row; // En tablet se alinean lado a lado
+			height: 480px; // Altura base fija para que el acordeón horizontal funcione
+		}
+		@include desktop {
+			height: 550px;
+		}
+	}
+
+	// --- Tarjeta Individual (Acordeón) ---
+	.valor-card {
+		position: relative;
+		border-radius: 20px;
+		overflow: hidden;
+		cursor: pointer;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+
+		// --- MAGIA RESPONSIVE: MÓVIL ---
+		// En móvil, establecemos una altura pequeña y la expandimos al estar activa
+		height: 120px;
+		transition:
+			height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+			flex 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+
+		&.is-active {
+			height: 480px; // Se expande enormemente para lucir la imagen
+		}
+
+		// --- MAGIA RESPONSIVE: TABLET / DESKTOP ---
+		@include tablet {
+			height: 100%;
+			flex: 1;
+			min-width: 0;
+
+			&.is-active {
+				flex: 3; // La tarjeta abierta ocupa 3 veces más ancho
+			}
+		}
+
+		// Imagen de Fondo
+		&__bg {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			z-index: 1;
+		}
+
+		// Overlay: Gradiente para proteger la lectura del texto
+		&__overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 2;
+			background: linear-gradient(
+				to top,
+				rgba(24, 76, 47, 0.95) 0%,
+				rgba(24, 76, 47, 0.3) 40%,
+				rgba(24, 76, 47, 0.1) 100%
+			);
+			transition: background 0.4s ease;
+		}
+
+		// Si la tarjeta está INACTIVA, la oscurecemos más para destacar la activa
+		&:not(.is-active) &__overlay {
+			background: linear-gradient(
+				to top,
+				rgba(24, 76, 47, 0.85) 0%,
+				rgba(24, 76, 47, 0.65) 100%
+			);
+		}
+
+		// Contenedor del texto
+		&__content {
+			position: relative;
+			z-index: 3;
+			padding: 1.5rem;
+			width: 100%;
+			box-sizing: border-box;
+		}
+
+		&__title {
+			color: #ffffff;
+			font-size: 20px;
+			font-weight: 600;
+			font-family: $font-SpaceGrotesk;
+			margin: 0;
+			white-space: normal;
+			overflow-wrap: normal;
+			word-wrap: normal;
+			hyphens: auto;
+			line-height: 1.15;
+
+			@include desktop {
+				font-size: 28px;
+			}
+		}
+
+		// El texto interno (Párrafo) que GSAP animará
+		&__body {
+			overflow: hidden;
+			height: 0;
+
+			p {
+				color: rgba(255, 255, 255, 0.9);
+				font-size: 14.5px;
+				font-family: $font-DMsans;
+				line-height: 24px;
+				margin: 0;
+				padding-top: 0.8rem;
+			}
+		}
+	}
+}
+// ==================== SECTION 5: EQUIPO ====================
+.equipo {
+	position: relative;
+	width: 100%;
+	background-color: #f6f8f3;
+	padding: 6rem 1.5rem;
+	overflow: hidden;
+
+	@include tablet {
+		padding: 8rem 3rem;
+	}
+	@include desktop {
+		padding: 10rem 0 10rem 6rem;
+	}
+
+	&__container {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
+	// --- Cabecera ---
+	&__header {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+	}
+
+	&__subtitle {
+		color: #569c33;
+		font-size: 13px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		font-family: $font-DMsans;
+	}
+
+	&__title {
+		color: #184c2f;
+		font-size: 28px;
+		font-weight: 700;
+		letter-spacing: -1px;
+		font-family: $font-SpaceGrotesk;
+		margin: 0;
+
+		@include tablet {
+			font-size: 36px;
+		}
+	}
+
+	&__instruction {
+		color: #7e9285;
+		font-size: 14px;
+		font-family: $font-DMsans;
+		margin: 0;
+		margin-top: 0.5rem;
+	}
+
+	// --- Wrapper del Slider ---
+	&__slider-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+
+		@include desktop {
+			flex-direction: row;
+			align-items: center;
+			gap: 5rem;
+		}
+	}
+
+	// --- Info y Controles (Columna Izquierda) ---
+	&__info {
+		display: flex;
+		flex-direction: row;
+		gap: 1.5rem;
+		position: relative;
+
+		@include desktop {
+			width: 45%;
+			flex-shrink: 0;
+		}
+	}
+
+	// Paginación (Puntitos verticales SIN LÍNEA)
+	&__pagination {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1rem;
+		padding-top: 3.5rem;
+		position: relative;
+
+		.equipo-dot {
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background-color: #d1d9d2;
+			z-index: 2;
+			cursor: pointer;
+			transition: all 0.3s ease;
+
+			&.is-active {
+				width: 12px;
+				height: 12px;
+				background-color: #569c33;
+			}
+		}
+	}
+
+	// Contenedor que apila los textos y evita saltos de altura
+	&__details-container {
+		display: grid;
+		flex: 1;
+		position: relative;
+		min-height: 280px; // Altura mínima definida para evitar que salte
+
+		@include tablet {
+			min-height: 260px;
+		}
+		@include desktop {
+			min-height: 290px;
+		}
+	}
+
+	.equipo-detail {
+		grid-area: 1 / 1;
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+
+		&__counter {
+			color: #569c33;
+			font-size: 14px;
+			font-weight: 700;
+			letter-spacing: 2px;
+			font-family: $font-DMsans;
+		}
+
+		&__name {
+			color: #184c2f;
+			font-size: 26px;
+			font-weight: 700;
+			font-family: $font-SpaceGrotesk;
+			margin: 0;
+			margin-top: 0.5rem;
+
+			@include tablet {
+				font-size: 32px;
+			}
+		}
+
+		&__role {
+			color: #569c33;
+			font-size: 15px;
+			font-weight: 600;
+			font-family: $font-DMsans;
+		}
+
+		&__description {
+			color: #5a6b5f;
+			font-size: 15.5px;
+			line-height: 26px;
+			font-family: $font-DMsans;
+			margin: 0;
+			margin-bottom: 1rem;
+		}
+
+		&__tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.6rem;
+
+			.tag {
+				background-color: #e6eee2;
+				color: #569c33;
+				padding: 0.4rem 1rem;
+				border-radius: 2rem;
+				font-size: 13px;
+				font-weight: 600;
+				font-family: $font-DMsans;
+			}
+		}
+	}
+
+	// Botones de Navegación (Prev / Next)
+	&__controls {
+		position: absolute;
+		bottom: -4rem;
+		left: 2rem;
+		display: flex;
+		gap: 1rem;
+
+		@include desktop {
+			bottom: -5rem;
+		}
+
+		.equipo-btn {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 44px;
+			height: 44px;
+			border-radius: 50%;
+			border: none;
+			cursor: pointer;
+			transition: all 0.3s ease;
+
+			&--prev {
+				background-color: #ffffff;
+				color: #184c2f;
+				box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+				&:hover {
+					background-color: #f0f0f0;
+				}
+			}
+
+			&--next {
+				background-color: #569c33;
+				color: #ffffff;
+				box-shadow: 0 4px 15px rgba(86, 156, 51, 0.3);
+
+				&:hover {
+					background-color: #478729;
+				}
+			}
+		}
+	}
+
+	// --- Pista de Imágenes (Columna Derecha) ---
+	&__images {
+		margin-top: 4rem;
+		width: 100%;
+
+		@include desktop {
+			margin-top: 0;
+			width: 55%;
+			overflow: visible;
+		}
+	}
+
+	&__images-track {
+		display: flex;
+		gap: 1.5rem;
+	}
+
+	.equipo-card {
+		position: relative;
+		min-width: 85%;
+		height: 400px;
+		border-radius: 20px;
+		overflow: hidden;
+
+		// EFECTO NIEBLA/BLUR para inactivos
+		opacity: 0.4;
+		filter: blur(5px);
+		transition:
+			opacity 0.6s ease,
+			filter 0.6s ease;
+
+		&.is-active {
+			opacity: 1;
+			filter: blur(0);
+		}
+
+		@include tablet {
+			min-width: 320px;
+			height: 450px;
+		}
+		@include desktop {
+			min-width: 380px;
+			height: 500px;
+		}
+
+		&__img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: center top;
+			z-index: 1;
+		}
+
+		&__overlay {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			height: 50%;
+			background: linear-gradient(
+				to top,
+				rgba(#0b2b1a, 0.95) 0%,
+				rgba(#0b2b1a, 0) 100%
+			);
+			z-index: 2;
+		}
+
+		&__info {
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			width: 100%;
+			padding: 2rem;
+			z-index: 3;
+			display: flex;
+			flex-direction: column;
+			gap: 0.3rem;
+
+			h4 {
+				color: #ffffff;
+				font-size: 20px;
+				font-weight: 700;
+				font-family: $font-SpaceGrotesk;
+				margin: 0;
+			}
+
+			span {
+				color: #86c46a;
+				font-size: 14px;
+				font-weight: 600;
+				font-family: $font-DMsans;
+			}
+		}
+	}
+}
+
+// ... (Tus estilos anteriores) ...
+
+// ==================== SECTION 6: CÓMO TRABAJAMOS (ETAPAS) ====================
+.etapas {
+	position: relative;
+	width: 100%;
+	background-color: #1a422a;
+	padding: 6rem 1.5rem;
+
+	@include tablet {
+		padding: 8rem 3rem;
+	}
+	@include desktop {
+		padding: 10rem 6rem;
+	}
+
+	&__container {
+		max-width: 1200px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 4rem;
+
+		@include tablet {
+			gap: 5rem;
+		}
+	}
+
+	&__header {
+		display: flex;
+		flex-direction: column;
+		gap: 0.5rem;
+		text-align: left;
+	}
+
+	&__subtitle {
+		color: #86c46a;
+		font-size: 13px;
+		font-weight: 700;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		font-family: $font-DMsans;
+	}
+
+	&__title {
+		color: #ffffff;
+		font-size: 32px;
+		line-height: 1.2;
+		letter-spacing: -1px;
+		font-weight: 700;
+		font-family: $font-SpaceGrotesk;
+		margin: 0;
+		max-width: 500px;
+
+		@include tablet {
+			font-size: 42px;
+		}
+		@include desktop {
+			font-size: 48px;
+			max-width: 600px;
+		}
+	}
+
+	&__grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 4rem;
+
+		@include tablet {
+			grid-template-columns: repeat(3, 1fr);
+			gap: 1.5rem;
+			row-gap: 4rem;
+		}
+		@include desktop {
+			grid-template-columns: repeat(4, 1fr);
+			gap: 2rem;
+		}
+	}
+
+	.etapa-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		gap: 1.2rem;
+
+		@include tablet {
+			&:nth-child(4) {
+				grid-column: 2;
+			}
+		}
+		@include desktop {
+			&:nth-child(4) {
+				grid-column: auto;
+			}
+		}
+
+		&__icon-wrapper {
+			position: relative;
+			display: inline-block;
+			margin-bottom: 0.5rem;
+
+			.icon-circle {
+				width: 90px;
+				height: 90px;
+				background-color: #569c33;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				box-shadow: 0 0 15px rgba(86, 156, 51, 0.2);
+			}
+
+			// --- LÍNEAS CONECTORAS ---
+			@include tablet {
+				&::after {
+					content: "";
+					position: absolute;
+					top: 50%;
+					left: calc(100% + 20px);
+					width: 40px;
+					height: 2px;
+					background-color: rgba(134, 196, 106, 0.4);
+					transform: translateY(-50%);
+				}
+			}
+			@include desktop {
+				&::after {
+					left: calc(100% + 30px);
+					width: 50px;
+				}
+			}
+		}
+
+		// --- OCULTAR LÍNEAS CONECTORAS SEGÚN BREAKPOINT ---
+
+		// El último elemento NUNCA tiene línea
+		&:last-child &__icon-wrapper::after {
+			display: none !important; // Añadido !important para evitar conflictos
+		}
+
+		// En Tablet (3 columnas), el 3er elemento no debe tener línea porque está al final de la fila
+		@include tablet {
+			&:nth-child(3) &__icon-wrapper::after {
+				display: none;
+			}
+		}
+
+		// En Desktop (4 columnas), devolvemos la línea al 3er elemento
+		@include desktop {
+			&:nth-child(3) &__icon-wrapper::after {
+				display: block;
+			}
+		}
+
+		&__number {
+			position: absolute;
+			top: -5px;
+			right: -10px;
+			background-color: #133c23;
+			color: #86c46a;
+			font-size: 12px;
+			font-weight: 700;
+			font-family: $font-SpaceGrotesk;
+			padding: 4px 8px;
+			border-radius: 12px;
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+		}
+
+		&__title {
+			color: #ffffff;
+			font-size: 22px;
+			font-weight: 700;
+			font-family: $font-SpaceGrotesk;
+			margin: 0;
+		}
+
+		&__description {
+			color: rgba(#ffffff, 0.8);
+			font-size: 15px;
+			line-height: 24px;
+			font-family: $font-DMsans;
+			margin: 0;
+			max-width: 250px;
+		}
+	}
+}
+
+// ==================== SECTION 7: CTA FINAL ====================
+.cta-section {
+	position: relative;
+	width: 100%;
+	background-color: #ffffff;
+	padding: 6rem 1.5rem;
+	display: flex;
+	justify-content: center;
+
+	@include tablet {
+		padding: 8rem 3rem;
+	}
+
+	&__container {
+		width: 100%;
+		max-width: 1100px;
+	}
+
+	.cta-card {
+		background-color: #f6f8f3;
+		border: 1px solid rgba(#184c2f, 0.05);
+		border-radius: 24px;
+		padding: 3rem 2rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		text-align: left;
+		gap: 1.5rem;
+
+		@include tablet {
+			padding: 4rem 3rem;
+		}
+		@include desktop {
+			flex-direction: row;
+			justify-content: space-between;
+			align-items: center;
+			gap: 400px;
+		}
+		&-contain {
+			display: flex;
+			flex-direction: column;
+			gap: 10px;
+			&__title {
+				color: #184c2f;
+				font-size: 26px;
+				line-height: 1.2;
+				font-weight: 700;
+				font-family: $font-SpaceGrotesk;
+				letter-spacing: -0.5px;
+				margin: 0;
+
+				@include tablet {
+					font-size: 26px;
+					line-height: 29.1px;
+					letter-spacing: -1px;
+				}
+			}
+
+			&__description {
+				color: #5a6b5f;
+				font-size: 16px;
+				line-height: 26px;
+				font-family: $font-DMsans;
+				margin: 0;
+			}
+		}
+
+		.btn-glow {
+			display: inline-block;
+			background-color: #569c33;
+			color: #ffffff;
+			text-decoration: none;
+			padding: 12px 28px;
+			border-radius: 2rem;
+			font-family: $font-DMsans;
+			font-weight: 600;
+			font-size: 15px;
+			box-shadow: 0 4px 20px rgba(86, 156, 51, 0.4);
+			transition: all 0.3s ease-in-out;
+			margin-top: 0.5rem;
+
+			&:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 6px 25px rgba(86, 156, 51, 0.6);
+				background-color: #478729;
+			}
+		}
+	}
+}

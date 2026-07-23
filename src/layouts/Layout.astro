@@ -1,0 +1,33 @@
+---
+import '../styles/main.scss';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+// import Footer from '../components/Footer.astro'; // Lo dejaremos comentado hasta que lo armemos
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/Logo_Agrovalue.svg" />
+    <title>{title}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div class="app-container">
+      <Header />
+      
+      <main class="main-content">
+        <slot />
+      </main>
+
+      <Footer />
+    </div>
+  </body>
+</html>

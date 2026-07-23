@@ -1,0 +1,43 @@
+@use "variables" as *;
+
+// 1. RESET GLOBAL
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+// 2. Comportamiento base (Restauramos el Scroll normal)
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	min-height: 100vh;
+	background-color: #ffffff; // Fondo base blanco
+	font-family: $font-DMsans;
+	overflow-x: hidden; // Evita el scroll horizontal
+}
+
+// 3. Contenedor Principal (Flexbox en lugar de Grid)
+.app-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-height: 100vh;
+	overflow-x: hidden;
+}
+
+// 4. Contenedor del contenido
+.main-content {
+	flex-grow: 1;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+// 5. Secciones (Flujo normal, ocupan todo el ancho)
+.main-content > section {
+	position: relative; // Flujo normal de bloque (antes era absolute)
+	width: 100%;
+}
