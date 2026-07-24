@@ -3,7 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import { Check, ArrowRight } from '@lucide/astro';
 
-// Assets
 import bannerDesktop from '../assets/banner_Service_Desktop.jpg';
 import bannerTablet from '../assets/banner_Service_Desktop.jpg'; 
 import bannerMobile from '../assets/banner_Service_Mobile.jpg'; 
@@ -11,7 +10,6 @@ import serviceImg1 from '../assets/banner_Service2_Mobile.jpg';
 
 const titleText = "Soluciones especializadas para cada actor de la cadena.";
 
-// Datos de Servicios
 const perfilesData = [
   {
     id: '01',
@@ -62,7 +60,7 @@ const perfilesData = [
 
 <Layout title="Agrovalue - Servicios">
   
-  <!-- ==================== HERO SERVICIOS ==================== -->
+  <!-- HERO -->
   <section class="hero-servicios">
     <div class="hero-servicios__background">
       <Image src={bannerMobile} alt="Fondo Servicios Mobile" class="hero-servicios__image hero-servicios__image--mobile" loading="eager" />
@@ -84,13 +82,12 @@ const perfilesData = [
     </div>
   </section>
 
-  <!-- ==================== PERFILES ==================== -->
+  <!-- PERFILES -->
   <section id="perfiles" class="perfiles">
     <div class="perfiles__container">
       
-      <!-- VISTA MÓVIL (SLIDER) -->
+      <!-- VISTA MÓVIL (SLIDER INFINITO) -->
       <div class="perfiles__mobile-view trigger-reveal-perfiles">
-        
         <div class="perfiles__header-nav">
           <span class="perfiles__subtitle">ELIGE TU PERFIL</span>
           <div class="perfiles__pagination" id="perfiles-pagination">
@@ -104,7 +101,6 @@ const perfilesData = [
           <div class="perfiles__track" id="perfiles-track">
             {perfilesData.map((perfil) => (
               <div class="perfil-slide">
-                
                 <div class="perfil-slide__header">
                   <span class="perfil-slide__header-num">{perfil.id}</span>
                   <div class="perfil-slide__header-text">
@@ -124,7 +120,6 @@ const perfilesData = [
 
                   <div class="perfil-card__body">
                     <p class="perfil-card__desc">{perfil.description}</p>
-                    
                     <h4 class="perfil-card__list-title">QUÉ INCLUYE</h4>
                     <ul class="perfil-card__list">
                       {perfil.includes.map(item => (
@@ -134,7 +129,6 @@ const perfilesData = [
                         </li>
                       ))}
                     </ul>
-
                     <a href="/contacto" class="perfil-card__btn">
                       {perfil.btnText} <ArrowRight size={18} stroke-width={2.5} />
                     </a>
@@ -146,9 +140,8 @@ const perfilesData = [
         </div>
       </div>
 
-      <!-- VISTA TABLET / DESKTOP (TABS) -->
+      <!-- VISTA TABLET Y DESKTOP (TABS) -->
       <div class="perfiles__desktop-view trigger-reveal-perfiles">
-        
         <div class="perfiles__tabs-sidebar">
           <span class="perfiles__subtitle">ELIGE TU PERFIL</span>
           <div class="perfiles__tabs-list">
@@ -177,7 +170,6 @@ const perfilesData = [
 
               <div class="perfil-card__body">
                 <p class="perfil-card__desc">{perfil.description}</p>
-                
                 <h4 class="perfil-card__list-title">QUÉ INCLUYE</h4>
                 <ul class="perfil-card__list perfil-card__list--grid">
                   {perfil.includes.map(item => (
@@ -187,7 +179,6 @@ const perfilesData = [
                     </li>
                   ))}
                 </ul>
-
                 <a href="/contacto" class="perfil-card__btn">
                   {perfil.btnText} <ArrowRight size={18} stroke-width={2.5} />
                 </a>
@@ -195,9 +186,8 @@ const perfilesData = [
             </div>
           ))}
         </div>
-
       </div>
-
+      
     </div>
   </section>
 </Layout>
@@ -210,9 +200,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
   document.addEventListener("DOMContentLoaded", () => {
     
-    // --- 1. Animación Hero Servicios ---
+    /**
+     * 1. Animación del Hero
+     */
     const tlHero = gsap.timeline();
-    
     gsap.set('.hero-servicios__subtitle', { autoAlpha: 0, y: 20 });
     gsap.set('.hero-servicios .word', { y: "100%" });
     gsap.set('.hero-servicios__description', { autoAlpha: 0, y: 20 });
@@ -221,7 +212,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
           .to('.hero-servicios .word', { y: "0%", duration: 0.6, stagger: 0.05, ease: "power3.out" }, "-=0.4")
           .to('.hero-servicios__description', { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.4");
 
-    // --- 2. Lógica Base del Componente de Perfiles ---
+    /**
+     * 2. Funcionalidad de Perfiles
+     */
     const perfilesSection = document.querySelector('.perfiles') as HTMLElement;
     const track = document.getElementById('perfiles-track') as HTMLElement | null;
     const dots = document.querySelectorAll('.perfiles-dot');
@@ -234,7 +227,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
         y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: "power3.out"
       });
 
-      // --- A. Lógica Móvil ---
+      // A. Lógica Móvil (Slider de Desplazamiento Infinito)
       let slideCount = 0;
       
       function getSlideStep(): number {
@@ -315,7 +308,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
         window.addEventListener('resize', initScroll);
       }
 
-      // --- B. Lógica Desktop ---
+      // B. Lógica Desktop (Intercambio de Pestañas)
       gsap.set('.perfil-card--desktop.is-active', { autoAlpha: 1, zIndex: 2 });
       gsap.set('.perfil-card--desktop:not(.is-active)', { autoAlpha: 0, zIndex: 1 });
 
@@ -342,11 +335,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
         });
       });
 
-      // --- 3. Lógica de Navegación por Hash (Desde el Header) ---
+      /**
+       * 3. Navegación por Hash (Recepción desde el Header)
+       */
       const handleHashNavigation = () => {
         const hash = window.location.hash;
-        
-        // Mapeamos los hashes de la URL con los IDs de tus servicios
         const hashMapping: Record<string, string> = {
           '#productores': '01',
           '#importadores': '02',
@@ -356,21 +349,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
         const targetId = hashMapping[hash];
 
         if (targetId) {
-          // Hacemos scroll suave hacia la sección de perfiles
           setTimeout(() => {
-            const yOffset = -100; // Compensación para el header fijo
+            const yOffset = -100;
             const y = perfilesSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
             window.scrollTo({ top: y, behavior: 'smooth' });
           }, 150);
 
           if (window.innerWidth >= 768) {
-            // Activar tab en Desktop
             const targetBtn = Array.from(tabBtns).find(btn => btn.getAttribute('data-target') === targetId) as HTMLElement;
-            if (targetBtn && !targetBtn.classList.contains('is-active')) {
-              targetBtn.click();
-            }
+            if (targetBtn && !targetBtn.classList.contains('is-active')) targetBtn.click();
           } else {
-            // Activar slider en Móvil
             const targetIndex = parseInt(targetId) - 1;
             const targetDot = dots[targetIndex] as HTMLElement;
             if (targetDot && !targetDot.classList.contains('is-active') && track) {
@@ -381,10 +369,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
         }
       };
 
-      // Ejecutar al cargar la página si el usuario viene de otra URL
       setTimeout(handleHashNavigation, 300);
-
-      // Ejecutar si el usuario hace clic en el dropdown estando ya en la página de servicios
       window.addEventListener('hashchange', handleHashNavigation);
     }
   });
