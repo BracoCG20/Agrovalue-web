@@ -1,17 +1,22 @@
+import type { APIRoute } from 'astro';
 import nodemailer from 'nodemailer';
 
+/**
+ * Indicamos a Astro que este archivo es un endpoint de servidor (SSR)
+ * y no debe ser pre-renderizado estáticamente durante el build.
+ */
 export const prerender = false;
 
-export const POST = async ({ request }) => {
+export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
     const { nombre, email, perfil, mensaje } = body;
 
-    // Extraemos dinámicamente el dominio de tu web (ej. http://localhost:4321 o https://agrovalue.com)
+    // Detectamos si estamos en localhost o en Vercel para generar la URL absoluta del logo
     const origin = new URL(request.url).origin;
-    // Asegúrate de tener el logo en formato PNG en tu carpeta public
     const logoUrl = `${origin}/Logo_Agrovalue.png`;
 
+    // Configuración del servicio de correo saliente
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 465,
@@ -22,10 +27,10 @@ export const POST = async ({ request }) => {
       },
     });
 
+    // Plantilla HTML del correo a enviar (Diseño limpio / Shadcn UI)
     const htmlTemplate = `
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 20px auto; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; color: #0f172a; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);">
         
-        <!-- Cabecera con Logo Dinámico -->
         <div style="padding: 32px 32px 24px 32px; border-bottom: 1px solid #e2e8f0; text-align: center;">
           <img src="${logoUrl}" alt="Agrovalue Logo" style="height: 48px; margin-bottom: 16px; object-fit: contain;" />
           
@@ -33,7 +38,6 @@ export const POST = async ({ request }) => {
           <p style="margin: 8px 0 0 0; font-size: 14px; color: #64748b;">Tienes un nuevo mensaje desde el formulario web.</p>
         </div>
 
-        <!-- Cuerpo y Tabla de datos -->
         <div style="padding: 32px;">
           <table style="width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;">
             <tr>
@@ -57,7 +61,6 @@ export const POST = async ({ request }) => {
           </table>
         </div>
 
-        <!-- Pie del correo (Footer) -->
         <div style="padding: 16px 32px; background-color: #f8fafc; border-top: 1px solid #e2e8f0; text-align: center;">
           <p style="margin: 0; font-size: 12px; color: #64748b;">
             Este es un correo automático generado por el sistema de Agrovalue.
@@ -67,6 +70,7 @@ export const POST = async ({ request }) => {
       </div>
     `;
 
+    // Ejecución del envío
     const info = await transporter.sendMail({
       from: `"Agrovalue Web" <${import.meta.env.SMTP_USER}>`,
       to: import.meta.env.SMTP_TO,
@@ -80,8 +84,14 @@ export const POST = async ({ request }) => {
       { status: 200 },
     );
   } catch (error) {
-    console.error('Error en Nodemailer:', error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    // Verificación de tipo para el objeto error capturado
+    const errorMessage =
+      error instanceof Error
+        ? error.message
+        : 'Error desconocido al enviar el correo';
+    console.error('Error en Nodemailer:', errorMessage);
+
+    return new Response(JSON.stringify({ error: errorMessage }), {
       status: 500,
     });
   }
