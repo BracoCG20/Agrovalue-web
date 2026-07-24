@@ -379,32 +379,64 @@ const etapasData = [
       setInterval(changeWord, 3500);
     }
 
-    // --- 4. Animación Misión y Visión ---
+   // --- 4. Animación Misión y Visión ---
     const misionVisionSection = document.querySelector('.mision-vision');
     if (misionVisionSection) {
       gsap.from('.trigger-reveal-mv', {
         scrollTrigger: { trigger: misionVisionSection, start: "top 80%" },
         y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: "power3.out"
       });
+      
       const tabBtns = document.querySelectorAll('.tab-btn');
-      const mvCards = document.querySelectorAll('.mv-card');
+      
       gsap.set('.mv-card.is-active', { autoAlpha: 1, zIndex: 2 });
       gsap.set('.mv-card:not(.is-active)', { autoAlpha: 0, zIndex: 1 });
+      
       tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           if(btn.classList.contains('is-active')) return;
+          
+          // Cambiar clase activa en los botones
           tabBtns.forEach(b => b.classList.remove('is-active'));
           btn.classList.add('is-active');
           const targetId = btn.getAttribute('data-target');
-          mvCards.forEach(card => {
-            if(card.id === `card-${targetId}`) {
-              card.classList.add('is-active');
-              gsap.to(card, { autoAlpha: 1, duration: 0.5, zIndex: 2, ease: "power2.inOut" });
-            } else {
-              card.classList.remove('is-active');
-              gsap.to(card, { autoAlpha: 0, duration: 0.5, zIndex: 1, ease: "power2.inOut" });
-            }
-          });
+          
+          // Seleccionar la tarjeta actual y la nueva
+          const currentCard = document.querySelector('.mv-card.is-active');
+          const newCard = document.getElementById(`card-${targetId}`);
+          
+          if (currentCard && newCard) {
+            currentCard.classList.remove('is-active');
+            newCard.classList.add('is-active');
+
+            const textEl = newCard.querySelector('.mv-card__text');
+            const imgEl = newCard.querySelector('.mv-card__image-container');
+            const isVision = targetId === 'vision';
+
+            // Usamos un Timeline para sincronizar y eliminar el destello
+            const tl = gsap.timeline();
+            
+            // 1. Ocultar la tarjeta actual suavemente
+            tl.to(currentCard, { autoAlpha: 0, duration: 0.4, zIndex: 1, ease: "power2.inOut" }, 0);
+            
+            // 2. Mostrar la nueva tarjeta como base
+            tl.set(newCard, { zIndex: 2 }, 0);
+            tl.to(newCard, { autoAlpha: 1, duration: 0.4, ease: "power2.inOut" }, 0);
+
+            // 3. El texto SIEMPRE aparece de izquierda a derecha
+            tl.fromTo(textEl, 
+              { x: -50, opacity: 0 }, 
+              { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 
+              0.1 // Retraso mínimo para que la tarjeta base ya esté visible
+            );
+
+            // 4. La imagen aparece desde el lado correspondiente cruzándose
+            tl.fromTo(imgEl, 
+              { x: isVision ? -50 : 50, opacity: 0 }, 
+              { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 
+              0.1
+            );
+          }
         });
       });
     }

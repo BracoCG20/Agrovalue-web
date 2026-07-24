@@ -1,0 +1,367 @@
+---
+// src/pages/servicios.astro
+import Layout from '../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { Check, ArrowRight } from '@lucide/astro'; // Íconos nuevos para la lista y el botón
+
+// Importamos la imagen del banner (asumiendo que está en la carpeta assets)
+import bannerDesktop from '../assets/banner_Service_Desktop.jpg';
+// Si tienes las versiones mobile y tablet, cámbialas aquí:
+import bannerTablet from '../assets/banner_Service_Desktop.jpg'; 
+import bannerMobile from '../assets/banner_Service_Mobile.jpg'; 
+
+// Imagen para las tarjetas de la sección Perfiles
+import serviceImg1 from '../assets/banner_service2_mobile.jpg';
+
+const titleText = "Soluciones especializadas para cada actor de la cadena.";
+
+// --- Datos de la Sección 2 (Perfiles) ---
+const perfilesData = [
+  {
+    id: '01',
+    title: 'Productores y exportadores',
+    subtitle: 'Comercialización y acceso a mercados',
+    image: serviceImg1,
+    description: 'Fortalecemos la competitividad de productores y exportadores conectándolos con oportunidades comerciales, financiamiento, información y mercados internacionales.',
+    includes: [
+      'Comercialización de fruta fresca',
+      'Acceso a mercados internacionales',
+      'Acceso a alternativas de financiamiento',
+      'Gestión y aseguramiento de la calidad',
+      'Inteligencia comercial y de mercado',
+      'Trazabilidad con tecnología propia'
+    ],
+    btnText: 'Quiero exportar'
+  },
+  {
+    id: '02',
+    title: 'Importadores y distribuidores',
+    subtitle: 'Abastecimiento confiable y trazable',
+    image: serviceImg1, // Usando la misma imagen base como indicaste
+    description: 'Garantizamos un suministro constante de productos agrícolas de alta calidad, cumpliendo con los estándares internacionales más exigentes para tu mercado.',
+    includes: [
+      'Abastecimiento continuo y seguro',
+      'Control de calidad en origen',
+      'Logística internacional integral',
+      'Trazabilidad en tiempo real'
+    ],
+    btnText: 'Quiero importar'
+  },
+  {
+    id: '03',
+    title: 'Proyectos especiales',
+    subtitle: 'Inversión y estructuración de proyectos',
+    image: serviceImg1, // Usando la misma imagen base
+    description: 'Estructuramos y gestionamos proyectos de inversión agrícola con alto potencial de retorno y un impacto positivo en el desarrollo integral del agro.',
+    includes: [
+      'Estructuración y análisis financiero',
+      'Desarrollo de proyectos llave en mano',
+      'Asesoría estratégica de inversión',
+      'Gestión integral de riesgos'
+    ],
+    btnText: 'Quiero invertir'
+  }
+];
+---
+
+<Layout title="Agrovalue - Servicios">
+  
+  <!-- ==================== SECCIÓN 1: HERO SERVICIOS ==================== -->
+  <section class="hero-servicios">
+    <div class="hero-servicios__background">
+      <Image src={bannerMobile} alt="Fondo Servicios Mobile" class="hero-servicios__image hero-servicios__image--mobile" loading="eager" />
+      <Image src={bannerTablet} alt="Fondo Servicios Tablet" class="hero-servicios__image hero-servicios__image--tablet" loading="eager" />
+      <Image src={bannerDesktop} alt="Fondo Servicios Desktop" class="hero-servicios__image hero-servicios__image--desktop" loading="eager" />
+      <div class="hero-servicios__overlay"></div>
+    </div>
+
+    <div class="hero-servicios__content">
+      <span class="hero-servicios__subtitle text-reveal">SERVICIOS</span>
+      <h1 class="hero-servicios__title">
+        {titleText.split(' ').map((word) => (
+          <span class="word-wrap"><span class="word">{word}</span>&nbsp;</span>
+        ))}
+      </h1>
+      <p class="hero-servicios__description text-reveal">
+        Selecciona el perfil que mejor te describe y descubre cómo trabajamos contigo.
+      </p>
+    </div>
+  </section>
+
+  
+<!-- ==================== SECCIÓN 2: PERFILES (SERVICIOS) ==================== -->
+  <section id="perfiles" class="perfiles">
+    <div class="perfiles__container">
+      
+      <!-- ==================== VISTA MÓVIL (SLIDER) ==================== -->
+      <div class="perfiles__mobile-view trigger-reveal-perfiles">
+        <!-- Contenedor superior para Título y Dots -->
+        <div class="perfiles__header-nav">
+          <span class="perfiles__subtitle">ELIGE TU PERFIL</span>
+          
+          <!-- Puntos de Paginación -->
+          <div class="perfiles__pagination" id="perfiles-pagination">
+            {perfilesData.map((_, i) => (
+              <span class={`perfiles-dot ${i === 0 ? 'is-active' : ''}`} data-index={i}></span>
+            ))}
+          </div>
+        </div>
+
+        <div class="perfiles__slider-wrapper">
+          <div class="perfiles__track" id="perfiles-track">
+            {perfilesData.map((perfil) => (
+              <div class="perfil-slide">
+                <!-- Cabecera estilo Tab -->
+                <div class="perfil-slide__header">
+                  <span class="perfil-slide__header-num">{perfil.id}</span>
+                  <div class="perfil-slide__header-text">
+                    <h3>{perfil.title}</h3>
+                    <p>{perfil.subtitle}</p>
+                  </div>
+                </div>
+
+                <!-- Tarjeta de contenido -->
+                <div class="perfil-card">
+                  <div class="perfil-card__image-box">
+                    <Image src={perfil.image} alt={perfil.title} class="perfil-card__img" />
+                    <div class="perfil-card__overlay">
+                      <span class="perfil-card__img-sub">{perfil.id} - {perfil.subtitle}</span>
+                      <h3 class="perfil-card__img-title">{perfil.title}</h3>
+                    </div>
+                  </div>
+
+                  <div class="perfil-card__body">
+                    <p class="perfil-card__desc">{perfil.description}</p>
+                    
+                    <h4 class="perfil-card__list-title">QUÉ INCLUYE</h4>
+                    <ul class="perfil-card__list">
+                      {perfil.includes.map(item => (
+                        <li>
+                          <div class="icon-check"><Check size={14} stroke-width={3.5} /></div>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <a href="/contacto" class="perfil-card__btn">
+                      {perfil.btnText} <ArrowRight size={18} stroke-width={2.5} />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== VISTA TABLET / DESKTOP (TABS) ==================== -->
+      <div class="perfiles__desktop-view trigger-reveal-perfiles">
+        
+        <!-- Columna Izquierda: Botones (Tabs) -->
+        <div class="perfiles__tabs-sidebar">
+          <span class="perfiles__subtitle">ELIGE TU PERFIL</span>
+          
+          <div class="perfiles__tabs-list">
+            {perfilesData.map((perfil, index) => (
+              <button class={`perfil-tab-btn ${index === 0 ? 'is-active' : ''}`} data-target={perfil.id}>
+                <span class="perfil-tab-btn__num">{perfil.id}</span>
+                <div class="perfil-tab-btn__text">
+                  <h3>{perfil.title}</h3>
+                  <p>{perfil.subtitle}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Tarjetas de Contenido superpuestas -->
+        <div class="perfiles__desktop-content">
+          {perfilesData.map((perfil, index) => (
+            <div class={`perfil-card perfil-card--desktop ${index === 0 ? 'is-active' : ''}`} id={`card-${perfil.id}`}>
+              <div class="perfil-card__image-box">
+                <Image src={perfil.image} alt={perfil.title} class="perfil-card__img" />
+                <div class="perfil-card__overlay">
+                  <span class="perfil-card__img-sub">{perfil.id} · {perfil.subtitle}</span>
+                  <h3 class="perfil-card__img-title">{perfil.title}</h3>
+                </div>
+              </div>
+
+              <div class="perfil-card__body">
+                <p class="perfil-card__desc">{perfil.description}</p>
+                
+                <h4 class="perfil-card__list-title">QUÉ INCLUYE</h4>
+                <ul class="perfil-card__list perfil-card__list--grid">
+                  {perfil.includes.map(item => (
+                    <li>
+                      <div class="icon-check"><Check size={14} stroke-width={3.5} /></div>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <a href="/contacto" class="perfil-card__btn">
+                  {perfil.btnText} <ArrowRight size={18} stroke-width={2.5} />
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- 1. Animación Hero Servicios ---
+    const tlHero = gsap.timeline();
+    
+    gsap.set('.hero-servicios__subtitle', { autoAlpha: 0, y: 20 });
+    gsap.set('.hero-servicios .word', { y: "100%" });
+    gsap.set('.hero-servicios__description', { autoAlpha: 0, y: 20 });
+
+    tlHero.to('.hero-servicios__subtitle', { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out", delay: 0.3 })
+          .to('.hero-servicios .word', { y: "0%", duration: 0.6, stagger: 0.05, ease: "power3.out" }, "-=0.4")
+          .to('.hero-servicios__description', { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.4");
+
+    // --- 2. Lógica y Animación de Sección Perfiles ---
+    const perfilesSection = document.querySelector('.perfiles');
+    if (perfilesSection) {
+      
+      gsap.from('.trigger-reveal-perfiles', {
+        scrollTrigger: { trigger: perfilesSection, start: "top 80%" },
+        y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: "power3.out"
+      });
+
+      // --- A) Lógica Móvil (Slider Infinito) ---
+      const track = document.getElementById('perfiles-track');
+      const dots = document.querySelectorAll('.perfiles-dot');
+
+      if (track && dots.length > 0) {
+        const originalSlides = Array.from(track.querySelectorAll('.perfil-slide'));
+        const slideCount = originalSlides.length;
+
+        originalSlides.forEach(slide => {
+          const clone = slide.cloneNode(true);
+          clone.classList.add('is-clone');
+          track.appendChild(clone);
+        });
+        
+        const prependFragment = document.createDocumentFragment();
+        originalSlides.forEach(slide => {
+          const clone = slide.cloneNode(true);
+          clone.classList.add('is-clone');
+          prependFragment.appendChild(clone);
+        });
+        track.insertBefore(prependFragment, track.firstChild);
+
+        function getSlideStep() {
+          const slide = track.querySelector('.perfil-slide');
+          const gap = parseInt(window.getComputedStyle(track).gap) || 24;
+          return slide.offsetWidth + gap;
+        }
+
+        let isJumping = false;
+
+        function initScroll() {
+          if (window.innerWidth >= 768) return; // Se desactiva desde Tablet
+          const step = getSlideStep();
+          track.style.scrollSnapType = 'none';
+          track.scrollLeft = step * slideCount; 
+          setTimeout(() => { track.style.scrollSnapType = 'x mandatory'; }, 50);
+        }
+
+        setTimeout(initScroll, 100);
+
+        track.addEventListener('scroll', () => {
+          if (window.innerWidth >= 768 || isJumping) return;
+
+          const step = getSlideStep();
+          const scrollLeft = track.scrollLeft;
+          
+          const minLimit = step * 0.5; 
+          const maxLimit = step * (slideCount * 2.5); 
+
+          if (scrollLeft <= minLimit) {
+            isJumping = true;
+            track.style.scrollSnapType = 'none';
+            track.scrollLeft = scrollLeft + (step * slideCount);
+            setTimeout(() => { track.style.scrollSnapType = 'x mandatory'; isJumping = false; }, 50);
+          } 
+          else if (scrollLeft >= maxLimit) {
+            isJumping = true;
+            track.style.scrollSnapType = 'none';
+            track.scrollLeft = scrollLeft - (step * slideCount);
+            setTimeout(() => { track.style.scrollSnapType = 'x mandatory'; isJumping = false; }, 50);
+          }
+
+          const activeIndex = Math.round(track.scrollLeft / step) % slideCount;
+          dots.forEach((dot, idx) => {
+            if (idx === activeIndex) dot.classList.add('is-active');
+            else dot.classList.remove('is-active');
+          });
+        });
+
+        dots.forEach((dot, idx) => {
+          dot.addEventListener('click', () => {
+            if (window.innerWidth >= 768) return;
+            const step = getSlideStep();
+            track.scrollTo({ left: step * (slideCount + idx), behavior: 'smooth' });
+          });
+        });
+
+        window.addEventListener('resize', initScroll);
+      }
+
+      // --- B) Lógica Tablet/Desktop (Tabs) ---
+      const tabBtns = document.querySelectorAll('.perfil-tab-btn');
+      const desktopCards = document.querySelectorAll('.perfil-card--desktop');
+
+      // Set inicial
+      gsap.set('.perfil-card--desktop.is-active', { autoAlpha: 1, zIndex: 2 });
+      gsap.set('.perfil-card--desktop:not(.is-active)', { autoAlpha: 0, zIndex: 1 });
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          if(btn.classList.contains('is-active') || window.innerWidth < 768) return;
+          
+          tabBtns.forEach(b => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+          const targetId = btn.getAttribute('data-target');
+          
+          const currentCard = document.querySelector('.perfil-card--desktop.is-active');
+          const newCard = document.getElementById(`card-${targetId}`);
+          
+          if (currentCard && newCard) {
+            currentCard.classList.remove('is-active');
+            newCard.classList.add('is-active');
+
+            const tl = gsap.timeline();
+            
+            // Oculta la actual
+            tl.to(currentCard, { autoAlpha: 0, duration: 0.3, zIndex: 1, ease: "power2.inOut" }, 0);
+            
+            // Muestra la nueva con un ligero slide desde abajo
+            tl.set(newCard, { zIndex: 2 }, 0);
+            tl.fromTo(newCard, 
+              { autoAlpha: 0, y: 20 }, 
+              { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out" }, 
+              0.1
+            );
+          }
+        });
+      });
+
+    }
+
+  });
+</script>

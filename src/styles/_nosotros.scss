@@ -15,8 +15,8 @@
 		padding: 9rem 3rem 4rem;
 	}
 	@include desktop {
-		height: 80dvh;
-		padding: 10rem 6rem 4rem;
+		height: 90dvh;
+		padding: 4rem 6rem 4rem;
 	}
 
 	&__background {
@@ -80,8 +80,8 @@
 		@include desktop {
 			background: linear-gradient(
 				to bottom,
-				rgba(24, 76, 47, 0.4) 33%,
-				rgba(24, 76, 47, 0.55) 93%
+				rgba(24, 76, 47, 0.64) 33%,
+				rgba(24, 76, 47, 0.75) 93%
 			);
 		}
 	}
@@ -93,7 +93,7 @@
 		flex-direction: column;
 		justify-content: center;
 		flex-grow: 1;
-		max-width: 1200px;
+		max-width: 1800px;
 		margin: 0 auto;
 		width: 100%;
 
@@ -134,9 +134,9 @@
 			max-width: 600px;
 		}
 		@include desktop {
-			font-size: 68px;
-			line-height: 1.1;
-			max-width: 760px;
+			font-size: 65px;
+			line-height: 70px;
+			max-width: 800px;
 		}
 
 		.word-wrap {
@@ -190,7 +190,7 @@
 	}
 
 	&__container {
-		max-width: 800px;
+		max-width: 980px;
 		width: 100%;
 		margin: 0 auto;
 		display: flex;
@@ -223,14 +223,14 @@
 			line-height: 34.6px;
 		}
 		@include desktop {
-			font-size: 38px;
-			line-height: 1.4;
+			font-size: 44px;
+			line-height: 56.4px;
 		}
 	}
 
 	&__dynamic {
 		color: #569c33;
-		margin: 0 5px;
+		margin: 0 8px;
 
 		.dynamic-word {
 			display: none;
@@ -284,6 +284,9 @@
 		letter-spacing: -1px;
 		font-family: $font-SpaceGrotesk;
 		margin: 0;
+		@include desktop {
+			font-size: 44px;
+		}
 	}
 
 	&__tabs {
@@ -320,7 +323,7 @@
 	}
 
 	.mv-card {
-		grid-area: 1 / 1; // Pone ambas tarjetas en la misma celda de la grilla (una sobre otra)
+		grid-area: 1 / 1; // Pone ambas tarjetas en la misma celda de la grilla
 		background-color: #1a422a; // Verde muy oscuro de la tarjeta
 		border-radius: 20px;
 		overflow: hidden;
@@ -333,8 +336,26 @@
 		visibility: hidden;
 
 		@include tablet {
-			flex-direction: row; // En tablet la imagen va a la derecha
+			flex-direction: row; // En tablet la imagen va a la derecha por defecto
 			border-radius: 24px;
+		}
+
+		// --- INVERSIÓN AUTOMÁTICA PARA LA TARJETA "VISIÓN" ---
+		&#card-vision {
+			@include tablet {
+				flex-direction: row-reverse; // Imagen a la izquierda, texto a la derecha
+			}
+
+			.mv-card__overlay {
+				@include tablet {
+					// Invertimos el difuminado para que coincida
+					background: linear-gradient(
+						to left,
+						#1a422a 0%,
+						rgba(26, 66, 42, 0) 60%
+					);
+				}
+			}
 		}
 
 		&__text {
@@ -409,7 +430,7 @@
 			);
 
 			@include tablet {
-				// En tablet difumina de izquierda a derecha
+				// En tablet difumina de izquierda a derecha (Misión)
 				background: linear-gradient(
 					to right,
 					#1a422a 0%,
