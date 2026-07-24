@@ -1,9 +1,8 @@
 ---
-//src/pages/contacto.astro
 /**
  * Página: Contacto
  * Descripción: Contiene la información de contacto de la empresa y el formulario
- * interactivo conectado con la API de envío de correos (Nodemailer).
+ * interactivo. Incluye medidas Anti-Spam (Honeypot y validación de tiempo).
  */
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
@@ -19,7 +18,6 @@ import imgContacto from '../assets/banner_Nosotros03_Mobile.jpg';
       <span class="hero-contacto__subtitle text-reveal">CONTACTO</span>
       <h1 class="hero-contacto__title text-reveal">
         <span class="word-wrap">Conversemos sobre tu</span>
-        <br />
         <span class="word-wrap">próximo desafío.</span>
       </h1>
       <p class="hero-contacto__description text-reveal">
@@ -39,29 +37,33 @@ import imgContacto from '../assets/banner_Nosotros03_Mobile.jpg';
           
           <ul class="contact-list">
             <li>
-              <div class="contact-list__icon"><Mail size={20} stroke-width={2} /></div>
+              <a href="mailto:contacto@agrovalue.com" class="contact-list__icon" aria-label="Enviar correo">
+                <Mail size={20} stroke-width={2} />
+              </a>
               <div class="contact-list__text">
                 <span class="label">CORREO</span>
                 <a href="mailto:contacto@agrovalue.com" class="value">contacto@agrovalue.com</a>
               </div>
             </li>
             <li>
-              <div class="contact-list__icon">
+              <a href="https://linkedin.com/company/agrovalue" target="_blank" rel="noopener noreferrer" class="contact-list__icon" aria-label="Visitar perfil de LinkedIn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
                   <path d="M0 0h24v24H0z" fill="none" />
                   <path fill="currentColor" d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z" />
                 </svg>
-              </div>
+              </a>
               <div class="contact-list__text">
                 <span class="label">LINKEDIN</span>
-                <a href="https://linkedin.com/company/agrovalue" target="_blank" class="value">/company/agrovalue</a>
+                <a href="https://linkedin.com/company/agrovalue" target="_blank" rel="noopener noreferrer" class="value">/company/agrovalue</a>
               </div>
             </li>
             <li>
-              <div class="contact-list__icon"><MapPin size={20} stroke-width={2} /></div>
+              <a href="https://www.google.com/maps/search/?api=1&query=Agrovalue" target="_blank" rel="noopener noreferrer" class="contact-list__icon" aria-label="Ver ubicación en el mapa">
+                <MapPin size={20} stroke-width={2} />
+              </a>
               <div class="contact-list__text">
                 <span class="label">COBERTURA</span>
-                <span class="value">Latinoamérica · EE. UU. · Asia</span>
+                <a href="https://www.google.com/maps/search/?api=1&query=Agrovalue" target="_blank" rel="noopener noreferrer" class="value">Latinoamérica · EE. UU. · Asia</a>
               </div>
             </li>
           </ul>
@@ -80,6 +82,13 @@ import imgContacto from '../assets/banner_Nosotros03_Mobile.jpg';
         <div class="contact-card contact-card--form">
           <form id="agrovalue-contact-form" class="contact-form">
             
+            <!-- Honeypot (Trampa para bots) - Oculto para humanos -->
+            <div style="display:none; position:absolute; left:-9999px;" aria-hidden="true">
+              <label for="bot_field">No llenes esto si eres humano</label>
+              <input type="text" id="bot_field" name="bot_field" tabindex="-1" autocomplete="off" />
+              <input type="hidden" id="form_time" name="form_time" value="" />
+            </div>
+
             <div class="form-group">
               <span class="form-label">Soy:</span>
               <div class="radio-pill-group">
@@ -104,17 +113,17 @@ import imgContacto from '../assets/banner_Nosotros03_Mobile.jpg';
 
             <div class="form-group">
               <label for="nombre" class="form-label">Nombre</label>
-              <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Tu nombre" required>
+              <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Tu nombre" required maxlength="100">
             </div>
 
             <div class="form-group">
               <label for="email" class="form-label">Email</label>
-              <input type="email" id="email" name="email" class="form-input" placeholder="tu@correo.com" required>
+              <input type="email" id="email" name="email" class="form-input" placeholder="tu@correo.com" required maxlength="150">
             </div>
 
             <div class="form-group">
               <label for="mensaje" class="form-label">Mensaje</label>
-              <textarea id="mensaje" name="mensaje" class="form-textarea" placeholder="Cuéntanos brevemente tu necesidad..." required></textarea>
+              <textarea id="mensaje" name="mensaje" class="form-textarea" placeholder="Cuéntanos brevemente tu necesidad..." required maxlength="1500"></textarea>
             </div>
 
             <button type="submit" class="btn-submit">Enviar consulta</button>
@@ -152,8 +161,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
     const contactForm = document.getElementById('agrovalue-contact-form') as HTMLFormElement;
     const submitBtn = contactForm?.querySelector('.btn-submit') as HTMLButtonElement;
+    const timeField = document.getElementById('form_time') as HTMLInputElement;
 
-    if (contactForm) {
+    if (contactForm && timeField) {
+      // Registramos el momento exacto en el que el formulario es cargado
+      timeField.value = Date.now().toString();
+
       contactForm.addEventListener('submit', async function(event) {
         event.preventDefault();
         
@@ -166,7 +179,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
           perfil: formData.get('perfil'),
           nombre: formData.get('nombre'),
           email: formData.get('email'),
-          mensaje: formData.get('mensaje')
+          mensaje: formData.get('mensaje'),
+          bot_field: formData.get('bot_field'),
+          form_time: formData.get('form_time')
         };
 
         try {
@@ -180,8 +195,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
             submitBtn.innerText = "¡Mensaje Enviado!";
             submitBtn.style.backgroundColor = "#1a422a";
             contactForm.reset();
+            // Reseteamos el contador para evitar bloqueos si envía un segundo mensaje
+            timeField.value = Date.now().toString(); 
           } else {
-            throw new Error('Fallo en el servidor');
+            throw new Error('Fallo en el servidor o detectado como bot');
           }
         } catch (error) {
           console.error('Error:', error);

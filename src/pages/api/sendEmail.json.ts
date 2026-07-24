@@ -1,11 +1,7 @@
-//src/pages/api/sendEmail.json.ts
 /**
  * API Endpoint: /api/sendEmail.json
  * Descripción: Maneja las solicitudes POST del formulario de contacto.
- * Extrae los datos, construye una plantilla HTML dinámica con el logo de la web,
- * y despacha el correo electrónico utilizando Nodemailer.
- *
- * Nota: SSR debe estar habilitado (prerender = false).
+ * Incluye protección Anti-Spam nativa (Honeypot, Timing y Validaciones de longitud).
  */
 import type { APIRoute } from 'astro';
 import nodemailer from 'nodemailer';
@@ -15,7 +11,51 @@ export const prerender = false;
 export const POST: APIRoute = async ({ request }) => {
   try {
     const body = await request.json();
-    const { nombre, email, perfil, mensaje } = body;
+    const { nombre, email, perfil, mensaje, bot_field, form_time } = body;
+
+    // --- PROTECCIÓN ANTI-SPAM ---
+
+    // 1. Verificación Honeypot: Si el campo trampa tiene texto, es un bot.
+    if (bot_field) {
+      return new Response(JSON.stringify({ error: 'Spam detectado' }), {
+        status: 400,
+      });
+    }
+
+    // 2. Verificación de Velocidad: Si se llenó en menos de 3 segundos, es un script automatizado.
+    if (form_time) {
+      const timeElapsed = Date.now() - parseInt(form_time, 10);
+      if (timeElapsed < 3000) {
+        return new Response(
+          JSON.stringify({ error: 'Envío demasiado rápido' }),
+          { status: 400 },
+        );
+      }
+    }
+
+    // 3. Verificación de campos y protección contra inyección masiva (Payload)
+    if (!nombre || !email || !mensaje) {
+      return new Response(
+        JSON.stringify({ error: 'Faltan campos requeridos' }),
+        { status: 400 },
+      );
+    }
+
+    if (nombre.length > 100 || email.length > 150 || mensaje.length > 1500) {
+      return new Response(
+        JSON.stringify({ error: 'Límite de caracteres excedido' }),
+        { status: 400 },
+      );
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return new Response(JSON.stringify({ error: 'Email inválido' }), {
+        status: 400,
+      });
+    }
+
+    // --- FIN PROTECCIÓN ANTI-SPAM ---
 
     const origin = new URL(request.url).origin;
     const logoUrl = `${origin}/Logo_Agrovalue.png`;

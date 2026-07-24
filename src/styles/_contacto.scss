@@ -22,8 +22,10 @@ $greenHeader-900: #133c23;
     padding: 8rem 3rem 5rem;
   }
   @include desktop {
+    height: 50dvh;
+  }
+  @include maxDesktop {
     height: 60dvh;
-    padding: 10rem 6rem 5rem;
   }
 
   &__container {
@@ -37,14 +39,17 @@ $greenHeader-900: #133c23;
   &__subtitle {
     color: #86c46a;
     font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 2px;
+    font-weight: 600;
+    letter-spacing: 2.4px;
     text-transform: uppercase;
     font-family: $font-DMsans;
     margin-bottom: 1rem;
   }
 
   &__title {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     color: #ffffff;
     font-size: 36px;
     line-height: 1.1;
@@ -57,7 +62,14 @@ $greenHeader-900: #133c23;
       font-size: 48px;
     }
     @include desktop {
-      font-size: 56px;
+      flex-direction: row;
+      font-size: 40px;
+      line-height: 39.5px;
+      letter-spacing: -1.8px;
+    }
+    @include maxDesktop {
+      font-size: 58px;
+      line-height: 60.3px;
     }
   }
 
@@ -72,6 +84,13 @@ $greenHeader-900: #133c23;
     @include tablet {
       font-size: 18px;
       max-width: 550px;
+    }
+    @include desktop {
+      font-size: 16px;
+      max-width: 600px;
+    }
+    @include maxDesktop {
+      font-size: 20px;
     }
   }
 }
@@ -124,15 +143,15 @@ $greenHeader-900: #133c23;
 
   &--info {
     .contact-card__title {
-      color: #1a422a;
-      font-size: 24px;
+      color: #184c2f;
+      font-size: 22px;
       font-weight: 700;
       font-family: $font-SpaceGrotesk;
       margin: 0 0 0.5rem 0;
     }
 
     .contact-card__desc {
-      color: #7e9285;
+      color: #5a6b5f;
       font-size: 14.5px;
       font-family: $font-DMsans;
       margin: 0 0 2rem 0;
@@ -163,6 +182,13 @@ $greenHeader-900: #133c23;
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background-color: #569c33;
+          color: #ffffff;
+          box-shadow: 0 4px 12px rgba(86, 156, 51, 0.2);
+        }
       }
 
       &__text {
@@ -170,21 +196,21 @@ $greenHeader-900: #133c23;
         flex-direction: column;
 
         .label {
-          font-size: 11px;
-          font-weight: 700;
-          color: #7e9285;
+          font-size: 12.5px;
+          font-weight: 400;
+          color: #5a6b5f;
           font-family: $font-DMsans;
-          letter-spacing: 1px;
+          letter-spacing: 0.5px;
           margin-bottom: 2px;
         }
 
         .value {
-          font-size: 15px;
-          font-weight: 700;
-          color: #1a422a;
+          font-size: 15.5px;
+          font-weight: 600;
+          color: #184c2f;
           font-family: $font-DMsans;
           text-decoration: none;
-          transition: color 0.3s ease;
+          transition: color 0.3s ease-in-out;
 
           &:hover {
             color: #569c33;
@@ -248,8 +274,8 @@ $greenHeader-900: #133c23;
 
     .form-label {
       font-size: 13px;
-      font-weight: 700;
-      color: #1a422a;
+      font-weight: 600;
+      color: #184c2f;
       font-family: $font-DMsans;
     }
 
@@ -270,13 +296,13 @@ $greenHeader-900: #133c23;
       .pill-text {
         display: inline-block;
         padding: 10px 20px;
-        border: 1px solid #e1e8e3;
+        border: 1px solid rgba(#184c2f, 16%);
         border-radius: 3rem;
         font-size: 14px;
         font-weight: 600;
         font-family: $font-DMsans;
         color: #5a6b5f;
-        transition: all 0.3s ease;
+        transition: all 0.3s ease-in-out;
       }
 
       input[type='radio']:checked + .pill-text {
