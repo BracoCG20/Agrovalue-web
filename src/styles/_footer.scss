@@ -1,177 +1,184 @@
+//src/styles/_footer.scss
 /**
- * Estilos del Componente Footer
+ * Componente: Footer
+ * Dependencias: _variables.scss, _breakpoints.scss
  */
-@use "variables" as *;
-@use "breakpoints" as *;
+@use 'variables' as *;
+@use 'breakpoints' as *;
+
+$green-900: #184c2f;
+$white: #fff;
+$black: #020202;
+$green-500: #569c33;
+$green-400: #86c46a;
+$slate-300: #cdd9ce;
+$slate-500: #7e9285;
 
 .footer {
-	background-color: #184c2f; // Fondo verde oscuro
-	color: #ffffff;
-	width: 100%;
-	padding: 4rem 1.5rem 0; // Padding general para móvil
+  background-color: $green-900;
+  color: $white;
+  width: 100%;
+  padding: 4rem 1.5rem 0;
 
-	@include tablet {
-		padding: 5rem 3rem 0; // Padding general para tablet/desktop
-	}
+  @include tablet {
+    padding: 5rem 3rem 0;
+  }
 
-	&__container {
-		max-width: 1200px;
-		width: 100%;
-		margin: 0 auto;
-		display: flex;
-		flex-direction: column;
-		gap: 3rem;
+  &__container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
 
-		@include tablet {
-			flex-direction: row; // En tablet pasa a dos columnas
-			justify-content: space-between;
-			align-items: flex-start;
-			gap: 4rem;
-		}
-	}
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 4rem;
+    }
+  }
 
-	// --- BRAND (Logo y descripción) ---
-	&__brand {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-		max-width: 100%;
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 100%;
 
-		@include tablet {
-			max-width: 400px; // Limita el ancho de la descripción en tablet/desktop
-		}
-	}
+    @include tablet {
+      max-width: 400px;
+    }
+  }
 
-	&__logo {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-		text-decoration: none;
-		color: #ffffff;
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: $white;
 
-		&-icon {
-			background-color: #569c33; // Color del logo
-			width: 34px;
-			height: 34px;
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding: 6px;
-		}
+    &-icon {
+      background-color: $green-500;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px;
+    }
 
-		&-text {
-			font-size: 22px;
-			font-weight: 700;
-			letter-spacing: -0.44px;
-			font-family: $font-SpaceGrotesk;
-		}
-	}
+    &-text {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.44px;
+      font-family: $font-SpaceGrotesk;
+    }
+  }
 
-	&__description {
-		color: rgba(#fff, 82%);
-		font-size: 17px;
-		line-height: 29.7px;
-		font-family: $font-DMsans;
-		margin: 0;
-	}
+  &__description {
+    color: rgba($white, 82%);
+    font-size: 17px;
+    line-height: 29.7px;
+    font-family: $font-DMsans;
+    margin: 0;
+  }
 
-	// --- LINKS WRAPPER (Navegación y Síguenos) ---
-	&__links-wrapper {
-		display: flex;
-		flex-direction: row; // Siempre en fila para que queden lado a lado
-		gap: 4rem;
+  &__links-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
 
-		@include tablet {
-			gap: 6rem; // Más separación en tablet
-		}
-		@include desktop {
-			gap: 8rem; // Aún más en desktop
-		}
-	}
+    @include tablet {
+      gap: 6rem;
+    }
+    @include desktop {
+      gap: 8rem;
+    }
+  }
 
-	&__nav,
-	&__social {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-	}
+  &__nav,
+  &__social {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 
-	&__title {
-		color: #86c46a; // Verde claro
-		font-size: 13px;
-		font-weight: 600;
-		letter-spacing: 1.56px;
-		text-transform: uppercase;
-		font-family: $font-DMsans;
-		margin: 0;
-	}
+  &__title {
+    color: $green-400;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.56px;
+    text-transform: uppercase;
+    font-family: $font-DMsans;
+    margin: 0;
+  }
 
-	&__list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 1.2rem;
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
 
-		li a {
-			color: #cdd9ce;
-			text-decoration: none;
-			font-size: 15.5px;
-			font-family: $font-DMsans;
-			transition: color 0.3s ease;
+    li a {
+      color: $slate-300;
+      text-decoration: none;
+      font-size: 15.5px;
+      font-family: $font-DMsans;
+      transition: color 0.3s ease;
 
-			&:hover {
-				color: #86c46a;
-			}
-		}
+      &:hover {
+        color: $green-400;
+      }
+    }
 
-		.social-link {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
 
-			svg {
-				color: rgba(255, 255, 255, 0.8);
-				transition: color 0.3s ease;
-			}
+      svg {
+        color: rgba($white, 0.8);
+        transition: color 0.3s ease;
+      }
 
-			&:hover svg {
-				color: #86c46a;
-			}
-		}
-	}
+      &:hover svg {
+        color: $green-400;
+      }
+    }
+  }
 
-	// --- BOTTOM (Copyright) ---
-	&__bottom {
-		max-width: 1200px;
-		width: 100%;
-		margin: 4rem auto 0; // Margen superior para separarlo del contenido
-		padding: 2rem 0; // Padding interior
-		border-top: 1px solid rgba(255, 255, 255, 0.1); // Línea divisoria alineada al contenido
+  &__bottom {
+    max-width: 1200px;
+    width: 100%;
+    margin: 4rem auto 0;
+    padding: 2rem 0;
+    border-top: 1px solid rgba($black, 0.1);
 
-		@include tablet {
-			margin-top: 5rem;
-		}
+    @include tablet {
+      margin-top: 5rem;
+    }
 
-		&-container {
-			display: flex;
-			flex-direction: column;
-			gap: 1rem;
+    &-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
 
-			@include tablet {
-				flex-direction: row;
-				justify-content: space-between;
-				align-items: center;
-			}
-		}
+      @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
 
-		p {
-			color: #7e9285; // Texto grisáceo
-			font-size: 13.5px;
-			font-family: $font-DMsans;
-			margin: 0;
-		}
-	}
+    p {
+      color: $slate-500;
+      font-size: 13.5px;
+      font-family: $font-DMsans;
+      margin: 0;
+    }
+  }
 }

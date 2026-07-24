@@ -1,8 +1,17 @@
 ---
-import '../styles/main.scss';
-import Header from '../components/Header.astro';
+//src/layouts/Layout.astro
+/**
+ * Componente: Layout Principal
+ * Descripción: Define la estructura base del documento HTML, metadatos, 
+ * precarga de fuentes web y la disposición de componentes globales (Header, Footer).
+ */
 import Footer from '../components/Footer.astro';
-// import Footer from '../components/Footer.astro'; // Lo dejaremos comentado hasta que lo armemos
+import Header from '../components/Header.astro';
+import '../styles/main.scss';
+
+export interface Props {
+  title: string;
+}
 
 const { title } = Astro.props;
 ---

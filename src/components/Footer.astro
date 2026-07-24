@@ -1,32 +1,31 @@
 ---
+//src/components/Footer.astro
 /**
- * Componente Footer
- * Información de la marca, enlaces de navegación y redes sociales.
+ * Componente: Footer
+ * Descripción: Contiene la identidad de marca, navegación principal y enlaces a redes sociales.
+ * Animaciones: GSAP ScrollTrigger activado al entrar en el viewport.
  */
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="footer">
+<footer class="footer" id="main-footer">
   <div class="footer__container">
     
-    <!-- Bloque de Marca y Descripción -->
     <div class="footer__brand">
-      <a href="/" class="footer__logo">
+      <a href="/" class="footer__logo gs-reveal">
         <div class="footer__logo-icon">
           <img src="/Logo_Agrovalue.svg" alt="Logo Agrovalue" />
         </div>
         <span class="footer__logo-text">Agrovalue</span>
       </a>
-      <p class="footer__description">
+      <p class="footer__description gs-reveal">
         Creamos soluciones tecnológicas y sostenibles para hacer crecer el campo, poniendo siempre en el centro a quienes lo trabajan día a día.
       </p>
     </div>
 
-    <!-- Bloque de Enlaces -->
     <div class="footer__links-wrapper">
       
-      <!-- Navegación -->
-      <div class="footer__nav">
+      <div class="footer__nav gs-reveal">
         <h4 class="footer__title">NAVEGACIÓN</h4>
         <ul class="footer__list">
           <li><a href="/">Inicio</a></li>
@@ -36,8 +35,7 @@ const currentYear = new Date().getFullYear();
         </ul>
       </div>
 
-      <!-- Redes Sociales -->
-      <div class="footer__social">
+      <div class="footer__social gs-reveal">
         <h4 class="footer__title">SÍGUENOS</h4>
         <ul class="footer__list">
           <li>
@@ -55,11 +53,40 @@ const currentYear = new Date().getFullYear();
     </div>
   </div>
 
-  <!-- Línea divisoria y Copyright -->
-  <div class="footer__bottom">
+  <div class="footer__bottom gs-reveal-bottom">
     <div class="footer__bottom-container">
       <p>&copy; {currentYear} Agrovalue. Todos los derechos reservados.</p>
       <p>Industria agropecuaria & agroindustrial</p>
     </div>
   </div>
 </footer>
+
+<script>
+  import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const footer = document.getElementById('main-footer');
+    
+    if (footer) {
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: footer,
+          start: "top 90%", 
+        }
+      });
+
+      tl.fromTo('.gs-reveal', 
+        { y: 30, autoAlpha: 0 }, 
+        { y: 0, autoAlpha: 1, duration: 0.6, stagger: 0.15, ease: "power3.out" }
+      )
+      .fromTo('.gs-reveal-bottom',
+        { y: 20, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
+        "-=0.3"
+      );
+    }
+  });
+</script>

@@ -1,10 +1,15 @@
+//src/pages/api/sendEmail.json.ts
+/**
+ * API Endpoint: /api/sendEmail.json
+ * Descripción: Maneja las solicitudes POST del formulario de contacto.
+ * Extrae los datos, construye una plantilla HTML dinámica con el logo de la web,
+ * y despacha el correo electrónico utilizando Nodemailer.
+ *
+ * Nota: SSR debe estar habilitado (prerender = false).
+ */
 import type { APIRoute } from 'astro';
 import nodemailer from 'nodemailer';
 
-/**
- * Indicamos a Astro que este archivo es un endpoint de servidor (SSR)
- * y no debe ser pre-renderizado estáticamente durante el build.
- */
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
@@ -12,11 +17,9 @@ export const POST: APIRoute = async ({ request }) => {
     const body = await request.json();
     const { nombre, email, perfil, mensaje } = body;
 
-    // Detectamos si estamos en localhost o en Vercel para generar la URL absoluta del logo
     const origin = new URL(request.url).origin;
     const logoUrl = `${origin}/Logo_Agrovalue.png`;
 
-    // Configuración del servicio de correo saliente
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
       port: 465,
@@ -27,13 +30,11 @@ export const POST: APIRoute = async ({ request }) => {
       },
     });
 
-    // Plantilla HTML del correo a enviar (Diseño limpio / Shadcn UI)
     const htmlTemplate = `
       <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 20px auto; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; color: #0f172a; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);">
         
         <div style="padding: 32px 32px 24px 32px; border-bottom: 1px solid #e2e8f0; text-align: center;">
           <img src="${logoUrl}" alt="Agrovalue Logo" style="height: 48px; margin-bottom: 16px; object-fit: contain;" />
-          
           <h1 style="margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.5px;">Nuevo contacto recibido</h1>
           <p style="margin: 8px 0 0 0; font-size: 14px; color: #64748b;">Tienes un nuevo mensaje desde el formulario web.</p>
         </div>
@@ -70,7 +71,6 @@ export const POST: APIRoute = async ({ request }) => {
       </div>
     `;
 
-    // Ejecución del envío
     const info = await transporter.sendMail({
       from: `"Agrovalue Web" <${import.meta.env.SMTP_USER}>`,
       to: import.meta.env.SMTP_TO,
@@ -84,7 +84,6 @@ export const POST: APIRoute = async ({ request }) => {
       { status: 200 },
     );
   } catch (error) {
-    // Verificación de tipo para el objeto error capturado
     const errorMessage =
       error instanceof Error
         ? error.message

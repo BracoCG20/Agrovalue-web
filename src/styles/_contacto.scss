@@ -1,15 +1,18 @@
+//src/styles/_contacto.scss
+/**
+ * Estilos de la Página de Contacto
+ */
 @use 'variables' as *;
 @use 'breakpoints' as *;
 
-// ==================== SECTION 1: HERO CONTACTO ====================
+$greenHeader-900: #133c23;
+
 .hero-contacto {
   position: relative;
   width: 100%;
-  // Toma entre el 60% y 70% de la pantalla
   height: 50dvh;
   min-height: 450px;
-  // Gradiente verde oscuro
-  background: linear-gradient(135deg, #133c23 0%, #1a422a 100%);
+  background: linear-gradient(135deg, $greenHeader-900 0%, #1a422a 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -73,9 +76,8 @@
   }
 }
 
-// ==================== SECTION 2: CONTENIDO CONTACTO ====================
 .contacto-content {
-  background-color: #f6f8f3; // Fondo gris verdoso claro
+  background-color: #f6f8f3;
   padding: 4rem 1.5rem;
 
   @include tablet {
@@ -93,7 +95,7 @@
     gap: 2rem;
 
     @include desktop {
-      grid-template-columns: 400px 1fr; // Columna izq más estrecha, formulario más ancho
+      grid-template-columns: 400px 1fr;
       gap: 3rem;
       align-items: start;
     }
@@ -110,7 +112,6 @@
   }
 }
 
-// --- TARJETAS COMPARTIDAS ---
 .contact-card {
   background: #ffffff;
   border-radius: 24px;
@@ -121,7 +122,6 @@
     padding: 2.5rem;
   }
 
-  // --- Tarjeta de Info ---
   &--info {
     .contact-card__title {
       color: #1a422a;
@@ -194,9 +194,8 @@
     }
   }
 
-  // --- Tarjeta de Imagen ---
   &--image {
-    padding: 0; // Quitamos padding para que la imagen llegue a los bordes
+    padding: 0;
     position: relative;
     height: 220px;
     overflow: hidden;
@@ -234,7 +233,6 @@
     }
   }
 
-  // --- Tarjeta de Formulario ---
   &--form {
     .contact-form {
       display: flex;
@@ -255,7 +253,6 @@
       font-family: $font-DMsans;
     }
 
-    // Diseño de los Radio Buttons (Pills)
     .radio-pill-group {
       display: flex;
       flex-wrap: wrap;
@@ -266,7 +263,6 @@
     .radio-pill {
       cursor: pointer;
 
-      // Ocultamos el input de radio original
       input[type='radio'] {
         display: none;
       }
@@ -283,7 +279,6 @@
         transition: all 0.3s ease;
       }
 
-      // Estilos cuando el radio está seleccionado
       input[type='radio']:checked + .pill-text {
         background-color: #569c33;
         border-color: #569c33;
@@ -296,7 +291,6 @@
       }
     }
 
-    // Inputs de Texto
     .form-input,
     .form-textarea {
       width: 100%;
@@ -326,7 +320,6 @@
       min-height: 120px;
     }
 
-    // Botón Enviar
     .btn-submit {
       margin-top: 1rem;
       background-color: #569c33;

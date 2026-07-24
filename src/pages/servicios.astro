@@ -336,10 +336,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       });
 
       /**
-       * 3. Navegación por Hash (Recepción desde el Header)
+       * 3. Navegación por Hash y Limpieza de URL
        */
       const handleHashNavigation = () => {
         const hash = window.location.hash;
+        if (!hash) return;
+
         const hashMapping: Record<string, string> = {
           '#productores': '01',
           '#importadores': '02',
@@ -349,6 +351,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
         const targetId = hashMapping[hash];
 
         if (targetId) {
+          // 1. Navegación y animación
           setTimeout(() => {
             const yOffset = -100;
             const y = perfilesSection.getBoundingClientRect().top + window.pageYOffset + yOffset;
@@ -366,6 +369,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
               track.scrollTo({ left: step * (slideCount + targetIndex), behavior: 'smooth' });
             }
           }
+
+          // 2. Limpiar la URL sin recargar la página
+          setTimeout(() => {
+             history.replaceState(null, '', window.location.pathname);
+          }, 500); 
         }
       };
 
