@@ -419,6 +419,7 @@
 		}
 	}
 }
+
 // ==================== SECTION 4: VALORES ====================
 .valores {
 	position: relative;
@@ -441,7 +442,6 @@
 		gap: 3rem;
 	}
 
-	// --- Cabecera de la sección ---
 	&__header {
 		display: flex;
 		flex-direction: column;
@@ -485,22 +485,21 @@
 		margin-top: 0.5rem;
 	}
 
-	// --- Contenedor de las tarjetas ---
 	&__grid {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem; // Separación entre tarjetas solicitada
+		gap: 1rem;
 
 		@include tablet {
-			flex-direction: row; // En tablet se alinean lado a lado
-			height: 480px; // Altura base fija para que el acordeón horizontal funcione
+			flex-direction: row;
+			align-items: stretch; // Hace que todas tengan el mismo alto
+			height: 450px;
 		}
 		@include desktop {
 			height: 550px;
 		}
 	}
 
-	// --- Tarjeta Individual (Acordeón) ---
 	.valor-card {
 		position: relative;
 		border-radius: 20px;
@@ -510,29 +509,30 @@
 		flex-direction: column;
 		justify-content: flex-end;
 
-		// --- MAGIA RESPONSIVE: MÓVIL ---
-		// En móvil, establecemos una altura pequeña y la expandimos al estar activa
-		height: 120px;
+		// --- MÓVIL ---
+		height: 120px; // Altura colapsada en móvil
 		transition:
-			height 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-			flex 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+			height 0.5s ease-in-out,
+			flex 0.5s ease-in-out;
 
 		&.is-active {
-			height: 480px; // Se expande enormemente para lucir la imagen
+			height: 450px;
+			@include desktop {
+				height: 550px;
+			}
 		}
 
-		// --- MAGIA RESPONSIVE: TABLET / DESKTOP ---
+		// --- TABLET / DESKTOP ---
 		@include tablet {
 			height: 100%;
 			flex: 1;
 			min-width: 0;
 
 			&.is-active {
-				flex: 3; // La tarjeta abierta ocupa 3 veces más ancho
+				flex: 3;
 			}
 		}
 
-		// Imagen de Fondo
 		&__bg {
 			position: absolute;
 			top: 0;
@@ -543,7 +543,6 @@
 			z-index: 1;
 		}
 
-		// Overlay: Gradiente para proteger la lectura del texto
 		&__overlay {
 			position: absolute;
 			top: 0;
@@ -560,7 +559,6 @@
 			transition: background 0.4s ease;
 		}
 
-		// Si la tarjeta está INACTIVA, la oscurecemos más para destacar la activa
 		&:not(.is-active) &__overlay {
 			background: linear-gradient(
 				to top,
@@ -569,13 +567,32 @@
 			);
 		}
 
-		// Contenedor del texto
 		&__content {
 			position: relative;
 			z-index: 3;
 			padding: 1.5rem;
 			width: 100%;
 			box-sizing: border-box;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+
+			@include tablet {
+				padding: 1.5rem 1.5rem;
+				transition: padding 0.5s ease;
+			}
+		}
+
+		&.is-active &__content {
+			@include tablet {
+				padding: 2.5rem;
+			}
+		}
+
+		&__title-wrapper {
+			position: relative;
+			display: flex;
+			align-items: flex-end;
 		}
 
 		&__title {
@@ -584,21 +601,30 @@
 			font-weight: 600;
 			font-family: $font-SpaceGrotesk;
 			margin: 0;
-			white-space: normal;
-			overflow-wrap: normal;
-			word-wrap: normal;
-			hyphens: auto;
 			line-height: 1.15;
+			transition: font-size 0.5s ease;
 
+			@include tablet {
+				font-size: 16px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
 			@include desktop {
 				font-size: 28px;
 			}
 		}
 
-		// El texto interno (Párrafo) que GSAP animará
+		&.is-active &__title {
+			@include tablet {
+				font-size: 28px;
+				white-space: normal;
+				overflow: visible;
+			}
+		}
+
 		&__body {
 			overflow: hidden;
-			height: 0;
+			height: 0; // Se controla vía GSAP
 
 			p {
 				color: rgba(255, 255, 255, 0.9);
@@ -607,10 +633,17 @@
 				line-height: 24px;
 				margin: 0;
 				padding-top: 0.8rem;
+
+				@include tablet {
+					font-size: 16px;
+					line-height: 26px;
+					max-width: 350px;
+				}
 			}
 		}
 	}
 }
+
 // ==================== SECTION 5: EQUIPO ====================
 .equipo {
 	position: relative;
@@ -728,7 +761,7 @@
 		display: grid;
 		flex: 1;
 		position: relative;
-		min-height: 280px; // Altura mínima definida para evitar que salte
+		min-height: 280px;
 
 		@include tablet {
 			min-height: 260px;
@@ -843,36 +876,37 @@
 		}
 	}
 
-	// --- Pista de Imágenes (Columna Derecha) ---
+	// --- Pista de Imágenes (Columna Derecha - AHORA ABSOLUTA) ---
 	&__images {
 		margin-top: 4rem;
 		width: 100%;
 
 		@include desktop {
 			margin-top: 0;
-			width: 55%;
+			width: 35%;
 			overflow: visible;
 		}
 	}
 
 	&__images-track {
-		display: flex;
-		gap: 1.5rem;
+		position: relative; // Fundamental para que las cartas absolutas se guíen por esto
+		width: 100%;
+		height: 400px;
 	}
 
 	.equipo-card {
-		position: relative;
-		min-width: 85%;
+		position: absolute; // Transformado en absoluto para bucle infinito sin salto
+		top: 0;
+		left: 0;
+		width: 85%;
 		height: 400px;
 		border-radius: 20px;
 		overflow: hidden;
 
-		// EFECTO NIEBLA/BLUR para inactivos
-		opacity: 0.4;
+		// El control visual lo asume completamente GSAP con JS.
+		// Solo declaramos el estado inicial para la vista.
+		opacity: 0;
 		filter: blur(5px);
-		transition:
-			opacity 0.6s ease,
-			filter 0.6s ease;
 
 		&.is-active {
 			opacity: 1;
@@ -880,12 +914,12 @@
 		}
 
 		@include tablet {
-			min-width: 320px;
+			width: 320px;
 			height: 450px;
 		}
 		@include desktop {
-			min-width: 380px;
-			height: 500px;
+			width: 300px;
+			height: 400px;
 		}
 
 		&__img {
@@ -938,8 +972,6 @@
 		}
 	}
 }
-
-// ... (Tus estilos anteriores) ...
 
 // ==================== SECTION 6: CÓMO TRABAJAMOS (ETAPAS) ====================
 .etapas {
@@ -1027,7 +1059,7 @@
 
 		@include tablet {
 			&:nth-child(4) {
-				grid-column: 2;
+				grid-column: 2; // Centramos la tarjeta 4 abajo
 			}
 		}
 		@include desktop {
@@ -1052,44 +1084,37 @@
 				box-shadow: 0 0 15px rgba(86, 156, 51, 0.2);
 			}
 
-			// --- LÍNEAS CONECTORAS ---
-			@include tablet {
-				&::after {
-					content: "";
+			// --- LÍNEAS CONECTORAS (NUEVO DIV) ---
+			.etapa-line {
+				display: none; // Oculto en móvil
+
+				@include tablet {
+					display: block;
 					position: absolute;
 					top: 50%;
-					left: calc(100% + 20px);
+					left: calc(100% + 50px);
 					width: 40px;
 					height: 2px;
 					background-color: rgba(134, 196, 106, 0.4);
 					transform: translateY(-50%);
 				}
-			}
-			@include desktop {
-				&::after {
-					left: calc(100% + 30px);
+				@include desktop {
+					left: calc(100% + 70px);
 					width: 50px;
 				}
 			}
 		}
 
-		// --- OCULTAR LÍNEAS CONECTORAS SEGÚN BREAKPOINT ---
-
-		// El último elemento NUNCA tiene línea
-		&:last-child &__icon-wrapper::after {
-			display: none !important; // Añadido !important para evitar conflictos
-		}
-
-		// En Tablet (3 columnas), el 3er elemento no debe tener línea porque está al final de la fila
+		// Ocultar línea del 3er elemento SOLO en Tablet porque salta de fila
 		@include tablet {
-			&:nth-child(3) &__icon-wrapper::after {
+			&:nth-child(3) .etapa-line {
 				display: none;
 			}
 		}
 
-		// En Desktop (4 columnas), devolvemos la línea al 3er elemento
+		// Mostrar línea del 3er elemento de nuevo en Desktop
 		@include desktop {
-			&:nth-child(3) &__icon-wrapper::after {
+			&:nth-child(3) .etapa-line {
 				display: block;
 			}
 		}

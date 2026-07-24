@@ -2,9 +2,7 @@
 // src/pages/nosotros.astro
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-
 import { Leaf, ShieldCheck, Truck, Globe } from '@lucide/astro';
-
 
 import bannerMobile from '../assets/banner_Nosotros01_Mobile.jpg';
 import bannerTablet from '../assets/banner_Nosotros01_Tablet.jpg';
@@ -24,37 +22,8 @@ import equipo04 from '../assets/banner_Nosotros07_Mobile.jpg'
 import equipo05 from '../assets/banner_Nosotros06_Mobile.jpg'
 import equipo06 from '../assets/banner_Nosotros07_Mobile.jpg'
 
-
-const etapasData = [
-  {
-    number: "01",
-    title: "Origen",
-    description: "Abastecimiento y control de calidad de la fruta desde el campo.",
-    icon: Leaf
-  },
-  {
-    number: "02",
-    title: "Calidad",
-    description: "Inspección e inocuidad según estándares internacionales.",
-    icon: ShieldCheck
-  },
-  {
-    number: "03",
-    title: "Logística",
-    description: "Trazabilidad y monitoreo de cada embarque en tiempo real.",
-    icon: Truck
-  },
-  {
-    number: "04",
-    title: "Mercado",
-    description: "Comercialización y acceso a compradores globales.",
-    icon: Globe
-  }
-];
-
 const titleText = "Impulsando el agro hacia el mercado global.";
 
-// --- Datos de la Sección 4 (Valores) ---
 const valoresData = [
   {
     title: "Integridad",
@@ -73,7 +42,6 @@ const valoresData = [
   }
 ];
 
-// --- Datos de la Sección 5 (Equipo) ---
 const equipoData = [
   {
     name: "José Antonio Gómez",
@@ -116,6 +84,33 @@ const equipoData = [
     description: "Experto en apertura de nuevos mercados en Asia y Europa. Conecta a los productores locales con las demandas más exigentes a nivel global mediante relaciones a largo plazo.",
     tags: ["Ventas", "Expansión", "Mercados"],
     image: equipo06 
+  }
+];
+
+const etapasData = [
+  {
+    number: "01",
+    title: "Origen",
+    description: "Abastecimiento y control de calidad de la fruta desde el campo.",
+    icon: Leaf
+  },
+  {
+    number: "02",
+    title: "Calidad",
+    description: "Inspección e inocuidad según estándares internacionales.",
+    icon: ShieldCheck
+  },
+  {
+    number: "03",
+    title: "Logística",
+    description: "Trazabilidad y monitoreo de cada embarque en tiempo real.",
+    icon: Truck
+  },
+  {
+    number: "04",
+    title: "Mercado",
+    description: "Comercialización y acceso a compradores globales.",
+    icon: Globe
   }
 ];
 ---
@@ -204,7 +199,7 @@ const equipoData = [
     </div>
   </section>
 
-  <!-- ==================== SECCIÓN 4: VALORES ==================== -->
+ <!-- ==================== SECCIÓN 4: VALORES ==================== -->
   <section id="valores" class="valores">
     <div class="valores__container">
       <div class="valores__header trigger-reveal-valores">
@@ -219,7 +214,9 @@ const equipoData = [
             <Image src={valor.image} alt={valor.title} class="valor-card__bg" />
             <div class="valor-card__overlay"></div>
             <div class="valor-card__content">
-              <h3 class="valor-card__title">{valor.title}</h3>
+              <div class="valor-card__title-wrapper">
+                <h3 class="valor-card__title">{valor.title}</h3>
+              </div>
               <div class="valor-card__body">
                 <p>{valor.description}</p>
               </div>
@@ -230,31 +227,23 @@ const equipoData = [
     </div>
   </section>
 
-  <!-- ==================== SECCIÓN 5: EQUIPO (Slider) ==================== -->
+  <!-- ==================== SECCIÓN 5: EQUIPO ==================== -->
   <section id="equipo" class="equipo">
     <div class="equipo__container">
-      
-      <!-- Cabecera -->
       <div class="equipo__header trigger-reveal-equipo">
         <span class="equipo__subtitle">NUESTRO EQUIPO</span>
         <h2 class="equipo__title">Quienes lideran AgroValue.</h2>
         <p class="equipo__instruction">Desliza para conocer al equipo.</p>
       </div>
 
-      <!-- Wrapper Principal del Slider -->
       <div class="equipo__slider-wrapper trigger-reveal-equipo">
-        
-        <!-- Columna Izquierda: Información y Controles -->
         <div class="equipo__info">
-          
-          <!-- Puntos de Paginación Verticales -->
           <div class="equipo__pagination">
             {equipoData.map((_, i) => (
               <span class={`equipo-dot ${i === 0 ? 'is-active' : ''}`} data-index={i}></span>
             ))}
           </div>
 
-          <!-- Contenedor que apila todos los textos (CSS Grid) -->
           <div class="equipo__details-container">
             {equipoData.map((miembro, i) => (
               <div class={`equipo-detail ${i === 0 ? 'is-active' : ''}`}>
@@ -274,7 +263,6 @@ const equipoData = [
             ))}
           </div>
 
-          <!-- Botones de Navegación -->
           <div class="equipo__controls">
             <button class="equipo-btn equipo-btn--prev" id="team-prev" aria-label="Anterior">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
@@ -283,10 +271,8 @@ const equipoData = [
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </button>
           </div>
-
         </div>
 
-        <!-- Columna Derecha: Imágenes del Carrusel -->
         <div class="equipo__images">
           <div class="equipo__images-track" id="team-track">
             {equipoData.map((miembro) => (
@@ -301,7 +287,6 @@ const equipoData = [
             ))}
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -309,33 +294,29 @@ const equipoData = [
   <!-- ==================== SECCIÓN 6: CÓMO TRABAJAMOS (ETAPAS) ==================== -->
   <section id="como-trabajamos" class="etapas">
     <div class="etapas__container">
-      
       <div class="etapas__header trigger-reveal-etapas">
         <span class="etapas__subtitle">CÓMO TRABAJAMOS</span>
         <h2 class="etapas__title">Del campo al mundo, en cuatro etapas.</h2>
       </div>
 
       <div class="etapas__grid">
-        {etapasData.map((etapa) => {
+        {etapasData.map((etapa, index) => {
           const Icon = etapa.icon;
           return (
             <div class="etapa-card trigger-reveal-etapas">
-              
               <div class="etapa-card__icon-wrapper">
                 <div class="icon-circle">
-                  <Icon size={32} strokeWidth={1.5} color="#ffffff" />
+                  <Icon size={32} stroke-width={1.5} color="#ffffff" />
                 </div>
                 <div class="etapa-card__number">{etapa.number}</div>
+                {index < 3 && <div class="etapa-line"></div>}
               </div>
-
               <h3 class="etapa-card__title">{etapa.title}</h3>
               <p class="etapa-card__description">{etapa.description}</p>
-              
             </div>
           )
         })}
       </div>
-
     </div>
   </section>
 
@@ -428,48 +409,68 @@ const equipoData = [
       });
     }
 
-// --- 5. Animación Valores ---
-const valoresSection = document.querySelector('.valores');
-if (valoresSection) {
-  gsap.from('.trigger-reveal-valores', {
-    scrollTrigger: { trigger: valoresSection, start: "top 80%" },
-    y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: "power3.out"
-  });
+    // --- 5. Animación Valores ---
+    const valoresSection = document.querySelector('.valores');
+    if (valoresSection) {
+      gsap.from('.trigger-reveal-valores', {
+        scrollTrigger: { trigger: valoresSection, start: "top 80%" },
+        y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: "power3.out"
+      });
 
-  const valorCards = document.querySelectorAll('.valor-card');
-  valorCards.forEach(card => {
-    const body = card.querySelector('.valor-card__body');
-    const p = body.querySelector('p');
+      const valorCards = document.querySelectorAll('.valor-card');
 
-    if (card.classList.contains('is-active')) {
-      gsap.set(body, { height: 'auto' });
-      gsap.set(p, { autoAlpha: 1, y: 0 });
-    } else {
-      gsap.set(body, { height: 0 });
-      gsap.set(p, { autoAlpha: 0, y: 14 }); // listo para "subir" cuando se abra
-    }
+      function openCard(card) {
+        if (card.classList.contains('is-active')) return;
 
-    card.addEventListener('click', () => {
-      if (card.classList.contains('is-active')) return;
+        const activeCard = document.querySelector('.valor-card.is-active');
+        if (activeCard) {
+          activeCard.classList.remove('is-active');
+          const activeBody = activeCard.querySelector('.valor-card__body');
+          const activeP = activeCard.querySelector('.valor-card__body p');
+          // El texto anterior baja y desaparece
+          gsap.to(activeP, { autoAlpha: 0, y: 20, duration: 0.25, ease: "power2.in" });
+          gsap.to(activeBody, { height: 0, duration: 0.45, ease: "power2.inOut", delay: 0.05 });
+        }
 
-      const activeCard = document.querySelector('.valor-card.is-active');
-      if (activeCard) {
-        const activeBody = activeCard.querySelector('.valor-card__body');
-        const activeP = activeBody.querySelector('p');
-        activeCard.classList.remove('is-active');
-        gsap.to(activeP, { autoAlpha: 0, y: 14, duration: 0.25, ease: "power2.in" });
-        gsap.to(activeBody, { height: 0, duration: 0.45, ease: "power2.inOut", delay: 0.05 });
+        card.classList.add('is-active');
+        const body = card.querySelector('.valor-card__body');
+        const p = card.querySelector('.valor-card__body p');
+        
+        gsap.to(body, { height: 'auto', duration: 0.5, ease: "power2.inOut" });
+        // Magia aquí: El nuevo texto entra desde ABAJO (y: 20 a y: 0)
+        gsap.fromTo(p,
+          { autoAlpha: 0, y: 20 },
+          { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out", delay: 0.2 }
+        );
       }
 
-      card.classList.add('is-active');
-      gsap.to(body, { height: 'auto', duration: 0.5, ease: "power2.inOut" });
-      gsap.fromTo(p,
-        { autoAlpha: 0, y: 14 },
-        { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out", delay: 0.15 }
-      );
-    });
-  });
-}
+      valorCards.forEach((card, index) => {
+        const body = card.querySelector('.valor-card__body');
+        const p = card.querySelector('.valor-card__body p');
+
+        // Estado inicial de la tarjeta en JS
+        if (card.classList.contains('is-active')) {
+          gsap.set(body, { height: 'auto' });
+          gsap.set(p, { autoAlpha: 1, y: 0 });
+        } else {
+          gsap.set(body, { height: 0 });
+          gsap.set(p, { autoAlpha: 0, y: 20 }); 
+        }
+
+        // Clic para todos los dispositivos
+        card.addEventListener('click', () => {
+          openCard(card);
+        });
+
+        // Hover sólo para Desktop
+        card.addEventListener('mouseenter', () => {
+           if (window.innerWidth >= 1024) { 
+             openCard(card);
+           }
+        });
+      });
+    }
+
     // --- 6. ANIMACIÓN SLIDER EQUIPO ---
     const equipoSection = document.querySelector('.equipo');
     if (equipoSection) {
@@ -489,58 +490,114 @@ if (valoresSection) {
       let isAnimatingTeam = false;
       const totalTeam = cards.length;
 
-      // Configuración inicial de las tarjetas y textos
-      gsap.set(details, { autoAlpha: 0, x: 30 }); // Textos desplazados a la derecha por defecto
-      gsap.set(details[0], { autoAlpha: 1, x: 0 }); // El primero visible
-      cards[0].classList.add('is-active'); // La primera imagen enfocada
+      gsap.set(details, { autoAlpha: 0, x: 30 }); 
+      gsap.set(details[0], { autoAlpha: 1, x: 0 }); 
 
-      function goToTeamMember(index, direction) {
-        if (isAnimatingTeam || index === currentTeamIndex) return;
+      function getLogicalPos(index: number, currentIndex: number) {
+          let pos = index - currentIndex;
+          if (pos < -1) pos += totalTeam;
+          if (pos > totalTeam - 2) pos -= totalTeam;
+          return pos;
+      }
+
+      function initCards() {
+          if(!track) return;
+          const cardWidth = (cards[0] as HTMLElement).offsetWidth;
+          const gap = 20; 
+          const step = cardWidth + gap;
+
+          cards.forEach((card, i) => {
+              const pos = getLogicalPos(i, currentTeamIndex);
+              let opacity = 0;
+              let blur = 8;
+              let zIndex = 1;
+              
+              if (pos === 0) { opacity = 1; blur = 0; zIndex = 3; }
+              else if (pos === 1) { opacity = 0.6; blur = 5; zIndex = 2; }
+              
+              gsap.set(card, {
+                  x: pos * step,
+                  opacity: opacity,
+                  filter: `blur(${blur}px)`,
+                  zIndex: zIndex
+              });
+          });
+      }
+      
+      setTimeout(initCards, 50);
+
+      function goToTeamMember(newIndex: number, direction: 'next' | 'prev') {
+        if (!track || isAnimatingTeam || newIndex === currentTeamIndex) return;
         isAnimatingTeam = true;
 
         const currentDetail = details[currentTeamIndex];
-        const nextDetail = details[index];
+        const nextDetail = details[newIndex];
 
-        // Definimos la animación horizontal (x) en lugar de vertical (y)
-        const xOut = direction === 'next' ? -40 : 40; // Sale hacia la izquierda si es next, derecha si es prev
-        const xIn = direction === 'next' ? 40 : -40;  // Entra desde la derecha si es next, izquierda si es prev
+        const xOut = direction === 'next' ? -40 : 40; 
+        const xIn = direction === 'next' ? 40 : -40;  
 
-        const tl = gsap.timeline({ onComplete: () => isAnimatingTeam = false });
+        const tl = gsap.timeline({ onComplete: () => { isAnimatingTeam = false; } });
 
-        // 1. Actualizamos Puntos y Tarjetas
         dots[currentTeamIndex].classList.remove('is-active');
-        dots[index].classList.add('is-active');
+        dots[newIndex].classList.add('is-active');
 
         cards[currentTeamIndex].classList.remove('is-active');
-        cards[index].classList.add('is-active');
+        cards[newIndex].classList.add('is-active');
 
-        // 2. Animamos los textos (Horizontal Crossfade)
         tl.to(currentDetail, { autoAlpha: 0, x: xOut, duration: 0.4, ease: "power2.in" }, 0)
           .set(currentDetail, { zIndex: 1 })
           .set(nextDetail, { zIndex: 2, x: xIn, autoAlpha: 0 })
           .to(nextDetail, { autoAlpha: 1, x: 0, duration: 0.4, ease: "power2.out" }, 0.4);
 
-        // 3. Desplazamos la pista de imágenes
         const cardWidth = (cards[0] as HTMLElement).offsetWidth;
-        const gap = parseInt(window.getComputedStyle(track).gap) || 24; 
-        const moveX = (cardWidth + gap) * index;
+        const gap = 24; 
+        const step = cardWidth + gap;
 
-        tl.to(track, { x: -moveX, duration: 0.7, ease: "power3.inOut" }, 0.1);
+        cards.forEach((card, i) => {
+            const oldPos = getLogicalPos(i, currentTeamIndex);
+            const newPos = getLogicalPos(i, newIndex);
 
-        currentTeamIndex = index;
+            let opacity = 0;
+            let blur = 5;
+            let zIndex = 1;
+            
+            if (newPos === 0) { opacity = 1; blur = 0; zIndex = 3; }
+            else if (newPos === 1) { opacity = 0.4; blur = 5; zIndex = 2; }
+            
+            if (oldPos > 1 && newPos < 0) {
+                gsap.set(card, { x: newPos * step });
+            } else if (oldPos < 0 && newPos > 1) {
+                gsap.set(card, { x: newPos * step });
+            }
+
+            tl.to(card, {
+                x: newPos * step,
+                opacity: opacity,
+                filter: `blur(${blur}px)`,
+                zIndex: zIndex,
+                duration: 0.7,
+                ease: "power3.inOut"
+            }, 0.1);
+        });
+
+        currentTeamIndex = newIndex;
       }
 
-      btnNext.addEventListener('click', () => {
-        if (currentTeamIndex < totalTeam - 1) {
-          goToTeamMember(currentTeamIndex + 1, 'next');
-        }
-      });
+      if (btnNext) {
+        btnNext.addEventListener('click', () => {
+          let nextIdx = currentTeamIndex + 1;
+          if (nextIdx >= totalTeam) nextIdx = 0; 
+          goToTeamMember(nextIdx, 'next');
+        });
+      }
 
-      btnPrev.addEventListener('click', () => {
-        if (currentTeamIndex > 0) {
-          goToTeamMember(currentTeamIndex - 1, 'prev');
-        }
-      });
+      if (btnPrev) {
+        btnPrev.addEventListener('click', () => {
+          let prevIdx = currentTeamIndex - 1;
+          if (prevIdx < 0) prevIdx = totalTeam - 1; 
+          goToTeamMember(prevIdx, 'prev');
+        });
+      }
 
       dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
@@ -549,62 +606,49 @@ if (valoresSection) {
         });
       });
 
-      window.addEventListener('resize', () => {
-        if (!isAnimatingTeam && track) {
-          const cardWidth = (cards[0] as HTMLElement).offsetWidth;
-          const gap = parseInt(window.getComputedStyle(track).gap) || 24;
-          gsap.set(track, { x: -(cardWidth + gap) * currentTeamIndex });
-        }
-      });
+      window.addEventListener('resize', initCards);
     }
 
-    
-// --- 7. Animación Scroll: Sección Cómo Trabajamos ---
+    // --- 7. Animación Scroll: Sección Cómo Trabajamos ---
     const etapasSection = document.querySelector('.etapas');
     if (etapasSection) {
       
-      // Animación de entrada inicial de la sección
       gsap.from('.trigger-reveal-etapas', {
         scrollTrigger: { trigger: etapasSection, start: "top 80%" },
         y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: "power3.out"
       });
 
-      // --- ANIMACIÓN CÍCLICA DE GLOW (LATIDO) EN LOS ÍCONOS ---
-      const icons = gsap.utils.toArray('.icon-circle'); // Usamos gsap.utils.toArray para mayor compatibilidad
-      
+      const icons = gsap.utils.toArray('.icon-circle');
       if (icons.length > 0) {
-        const glowTl = gsap.timeline({ repeat: -1 }); // Bucle infinito
+        const glowTl = gsap.timeline({ repeat: -1, delay: 1 }); 
         
-        // 1. Efecto secuencial (latido uno por uno)
         icons.forEach((icon, i) => {
-          glowTl.to(icon, {
-            backgroundColor: "#86c46a", // Verde más claro
-            boxShadow: "0 0 45px rgba(134, 196, 106, 0.9)", // Resplandor fuerte
+          glowTl.to(icon as Element, {
+            backgroundColor: "#86c46a",
+            boxShadow: "0 0 45px rgba(134, 196, 106, 0.9)",
             scale: 1.05, 
             duration: 1, 
             ease: "power2.out"
-          }, i * 1.5) // Stagger manual: inicia cada 1.5 segundos
-          .to(icon, {
-            backgroundColor: "#569c33", // Vuelve a la normalidad
+          }, i * 1.5)
+          .to(icon as Element, {
+            backgroundColor: "#569c33",
             boxShadow: "0 0 15px rgba(86, 156, 51, 0.2)",
             scale: 1, 
             duration: 1, 
             ease: "power2.inOut"
-          }, (i * 1.5) + 1); // Se apaga 1 segundo después de encenderse
+          }, (i * 1.5) + 1);
         });
 
-        // Calculamos cuándo termina la secuencia individual
         const totalSeqTime = icons.length * 1.5;
 
-        // 2. Efecto final conjunto (latido todos a la vez)
-        glowTl.to(icons, {
+        glowTl.to(icons as Element[], {
           backgroundColor: "#86c46a",
           boxShadow: "0 0 50px rgba(134, 196, 106, 0.9)",
           scale: 1.05,
           duration: 1.5,
           ease: "power2.out"
-        }, totalSeqTime + 0.5) // Pausa de 0.5s antes del latido final
-        .to(icons, {
+        }, totalSeqTime + 0.5) 
+        .to(icons as Element[], {
           backgroundColor: "#569c33",
           boxShadow: "0 0 15px rgba(86, 156, 51, 0.2)",
           scale: 1,
