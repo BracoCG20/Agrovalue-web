@@ -1,637 +1,637 @@
-@use "variables" as *;
-@use "breakpoints" as *;
+@use 'variables' as *;
+@use 'breakpoints' as *;
 
 // ==================== SECTION 1: HERO SERVICIOS ====================
 .hero-servicios {
-	position: relative;
-	height: 100dvh;
-	display: flex;
-	flex-direction: column;
-	padding: 8rem 1.5rem 3rem;
-	overflow: hidden;
+  position: relative;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: 8rem 1.5rem 3rem;
+  overflow: hidden;
 
-	@include tablet {
-		padding: 9rem 3rem 4rem;
-	}
-	@include desktop {
-		height: 80dvh;
-		padding: 10rem 6rem 4rem;
-	}
+  @include tablet {
+    padding: 9rem 3rem 4rem;
+  }
+  @include desktop {
+    height: 80dvh;
+    padding: 10rem 6rem 4rem;
+  }
 
-	&__background {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 1;
-	}
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
 
-	&__image {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: center;
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
 
-		&--mobile {
-			display: block;
-			@include tablet {
-				display: none;
-			}
-		}
+    &--mobile {
+      display: block;
+      @include tablet {
+        display: none;
+      }
+    }
 
-		&--tablet {
-			display: none;
-			@include tablet {
-				display: block;
-			}
-			@include desktop {
-				display: none;
-			}
-		}
+    &--tablet {
+      display: none;
+      @include tablet {
+        display: block;
+      }
+      @include desktop {
+        display: none;
+      }
+    }
 
-		&--desktop {
-			display: none;
-			@include desktop {
-				display: block;
-			}
-		}
-	}
+    &--desktop {
+      display: none;
+      @include desktop {
+        display: block;
+      }
+    }
+  }
 
-	&__overlay {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 2;
-		background: linear-gradient(
-			to bottom,
-			rgba(26, 66, 42, 0.5) 0%,
-			rgba(26, 66, 42, 0.85) 60%,
-			rgba(26, 66, 42, 1) 100%
-		);
-	}
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(
+      to bottom,
+      rgba(26, 66, 42, 0.65) 0%,
+      rgba(26, 66, 42, 0.85) 60%,
+      rgba(26, 66, 42, 1) 100%
+    );
+  }
 
-	&__content {
-		position: relative;
-		z-index: 3;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-end;
-		flex-grow: 1;
-		max-width: 1200px;
-		margin: 0 auto;
-		width: 100%;
-		padding-bottom: 2rem;
+  &__content {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-grow: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding-bottom: 2rem;
 
-		@include tablet {
-			padding-bottom: 50px;
-		}
-		@include maxDesktop {
-			max-width: 1650px;
-		}
-	}
+    @include tablet {
+      padding-bottom: 50px;
+    }
+    @include maxDesktop {
+      max-width: 1650px;
+    }
+  }
 
-	&__subtitle {
-		color: #86c46a;
-		font-size: 13px;
-		font-weight: 700;
-		letter-spacing: 2.4px;
-		font-family: $font-DMsans;
-		text-transform: uppercase;
-		margin-bottom: 15px;
-	}
+  &__subtitle {
+    color: #86c46a;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2.4px;
+    font-family: $font-DMsans;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+  }
 
-	&__title {
-		color: #ffffff;
-		font-size: 34px;
-		line-height: 35.4px;
-		letter-spacing: -1.8px;
-		font-weight: 700;
-		font-family: $font-SpaceGrotesk;
-		margin: 0;
-		margin-bottom: 20px;
-		max-width: 650px;
-		word-break: keep-all;
-		overflow-wrap: break-word;
+  &__title {
+    color: #ffffff;
+    font-size: 34px;
+    line-height: 35.4px;
+    letter-spacing: -1.8px;
+    font-weight: 700;
+    font-family: $font-SpaceGrotesk;
+    margin: 0;
+    margin-bottom: 20px;
+    max-width: 650px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 
-		@include desktop {
-			font-size: 36px;
-			line-height: 41.6px;
-			max-width: 700px;
-		}
+    @include desktop {
+      font-size: 36px;
+      line-height: 41.6px;
+      max-width: 700px;
+    }
 
-		@include maxDesktop {
-			font-size: 60px;
-			line-height: 62.4px;
-			max-width: 900px;
-		}
+    @include maxDesktop {
+      font-size: 60px;
+      line-height: 62.4px;
+      max-width: 900px;
+    }
 
-		.word-wrap {
-			display: inline-flex;
-			overflow: hidden;
-			vertical-align: top;
-		}
+    .word-wrap {
+      display: inline-flex;
+      overflow: hidden;
+      vertical-align: top;
+    }
 
-		.word {
-			display: inline-block;
-			will-change: transform;
-		}
-	}
+    .word {
+      display: inline-block;
+      will-change: transform;
+    }
+  }
 
-	&__description {
-		color: rgba(#ffffff, 0.85);
-		font-size: 16px;
-		font-family: $font-DMsans;
-		font-weight: 400;
-		line-height: 26.4px;
-		margin: 0;
-		max-width: 300px;
+  &__description {
+    color: rgba(#ffffff, 0.85);
+    font-size: 16px;
+    font-family: $font-DMsans;
+    font-weight: 400;
+    line-height: 26.4px;
+    margin: 0;
+    max-width: 300px;
 
-		@include tablet {
-			font-size: 16px;
-			max-width: 600px;
-		}
-		@include desktop {
-			font-size: 20px;
-			line-height: 32px;
-			max-width: 650px;
-		}
-	}
+    @include tablet {
+      font-size: 16px;
+      max-width: 600px;
+    }
+    @include desktop {
+      font-size: 20px;
+      line-height: 32px;
+      max-width: 650px;
+    }
+  }
 }
 
 // ==================== SECTION 2: PERFILES (SERVICIOS) ====================
 .perfiles {
-	background-color: #f6f8f3;
-	padding: 5rem 1.5rem;
+  background-color: #f6f8f3;
+  padding: 5rem 1.5rem;
 
-	@include tablet {
-		padding: 6rem 3rem;
-	}
-	@include desktop {
-		padding: 8rem 6rem;
-	}
+  @include tablet {
+    padding: 6rem 3rem;
+  }
+  @include desktop {
+    padding: 8rem 6rem;
+  }
 
-	&__container {
-		max-width: 1200px;
-		margin: 0 auto;
-	}
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-	&__subtitle {
-		display: block;
-		color: #569c33;
-		font-size: 13px;
-		font-weight: 700;
-		letter-spacing: 2px;
-		text-transform: uppercase;
-		font-family: $font-DMsans;
-		margin-bottom: 2rem;
-	}
+  &__subtitle {
+    display: block;
+    color: #569c33;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: $font-DMsans;
+    margin-bottom: 2rem;
+  }
 
-	// ----------------------------------------------------
-	// VISTA MÓVIL
-	// ----------------------------------------------------
-	&__mobile-view {
-		display: block;
+  // ----------------------------------------------------
+  // VISTA MÓVIL
+  // ----------------------------------------------------
+  &__mobile-view {
+    display: block;
 
-		@include tablet {
-			display: none; // Ocultamos en Tablet y superior
-		}
-	}
+    @include tablet {
+      display: none; // Ocultamos en Tablet y superior
+    }
+  }
 
-	&__header-nav {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		margin-bottom: 2rem;
-	}
+  &__header-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
 
-	&__pagination {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 8px;
-		margin-top: 1.5rem;
+  &__pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1.5rem;
 
-		.perfiles-dot {
-			width: 8px;
-			height: 8px;
-			border-radius: 50%;
-			background-color: #d1d9d2;
-			cursor: pointer;
-			transition: all 0.3s ease;
+    .perfiles-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #d1d9d2;
+      cursor: pointer;
+      transition: all 0.3s ease;
 
-			&.is-active {
-				width: 24px;
-				border-radius: 4px;
-				background-color: #569c33;
-			}
-		}
-	}
+      &.is-active {
+        width: 24px;
+        border-radius: 4px;
+        background-color: #569c33;
+      }
+    }
+  }
 
-	&__slider-wrapper {
-		position: relative;
-		width: 100%;
-	}
+  &__slider-wrapper {
+    position: relative;
+    width: 100%;
+  }
 
-	&__track {
-		display: flex;
-		gap: 1.5rem;
-		overflow-x: auto;
-		scroll-snap-type: x mandatory;
-		scrollbar-width: none;
-		-ms-overflow-style: none;
-		&::-webkit-scrollbar {
-			display: none;
-		}
-		padding-bottom: 1rem;
-	}
+  &__track {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    padding-bottom: 1rem;
+  }
 
-	.perfil-slide {
-		flex: 0 0 100%;
-		scroll-snap-align: center;
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
+  .perfil-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 
-		&__header {
-			background-color: #1a422a;
-			border-radius: 20px;
-			padding: 1.5rem;
-			display: flex;
-			align-items: center;
-			gap: 1rem;
-			box-shadow: 0 10px 20px rgba(26, 66, 42, 0.15);
+    &__header {
+      background-color: #1a422a;
+      border-radius: 20px;
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 0 10px 20px rgba(26, 66, 42, 0.15);
 
-			&-num {
-				color: #86c46a;
-				font-size: 28px;
-				font-weight: 700;
-				font-family: $font-SpaceGrotesk;
-			}
+      &-num {
+        color: #86c46a;
+        font-size: 28px;
+        font-weight: 700;
+        font-family: $font-SpaceGrotesk;
+      }
 
-			&-text {
-				display: flex;
-				flex-direction: column;
-				gap: 0.2rem;
+      &-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
 
-				h3 {
-					color: #ffffff;
-					font-size: 18px;
-					font-weight: 700;
-					margin: 0;
-					line-height: 1.2;
-					font-family: $font-SpaceGrotesk;
-				}
+        h3 {
+          color: #ffffff;
+          font-size: 18px;
+          font-weight: 700;
+          margin: 0;
+          line-height: 1.2;
+          font-family: $font-SpaceGrotesk;
+        }
 
-				p {
-					color: rgba(#ffffff, 0.7);
-					font-size: 13px;
-					margin: 0;
-					font-family: $font-DMsans;
-				}
-			}
-		}
-	}
+        p {
+          color: rgba(#ffffff, 0.7);
+          font-size: 13px;
+          margin: 0;
+          font-family: $font-DMsans;
+        }
+      }
+    }
+  }
 
-	// ----------------------------------------------------
-	// VISTA TABLET / DESKTOP
-	// ----------------------------------------------------
-	&__desktop-view {
-		display: none; // Oculto en móvil
+  // ----------------------------------------------------
+  // VISTA TABLET / DESKTOP
+  // ----------------------------------------------------
+  &__desktop-view {
+    display: none; // Oculto en móvil
 
-		@include tablet {
-			display: flex;
-			flex-direction: column; // En tablet se apilan verticalmente
-			gap: 2.5rem;
-		}
+    @include tablet {
+      display: flex;
+      flex-direction: column; // En tablet se apilan verticalmente
+      gap: 2.5rem;
+    }
 
-		@include maxDesktop {
-			display: grid;
-			grid-template-columns: 400px 1fr; // En desktop vuelven a estar uno al lado del otro
-			gap: 5rem;
-			align-items: stretch;
-		}
-	}
+    @include maxDesktop {
+      display: grid;
+      grid-template-columns: 400px 1fr; // En desktop vuelven a estar uno al lado del otro
+      gap: 5rem;
+      align-items: stretch;
+    }
+  }
 
-	&__tabs-sidebar {
-		display: flex;
-		flex-direction: column;
-		width: 100%;
+  &__tabs-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 
-		@include maxDesktop {
-			// El prefijo -webkit- asegura compatibilidad con Safari
-			position: -webkit-sticky;
-			position: sticky;
-			top: 120px; // Distancia desde el techo (ajusta si tu menú superior es más alto)
+    @include maxDesktop {
+      // El prefijo -webkit- asegura compatibilidad con Safari
+      position: -webkit-sticky;
+      position: sticky;
+      top: 120px; // Distancia desde el techo (ajusta si tu menú superior es más alto)
 
-			// Estas dos líneas son la MAGIA para que funcione en Grid:
-			align-self: start;
-			height: max-content;
+      // Estas dos líneas son la MAGIA para que funcione en Grid:
+      align-self: start;
+      height: max-content;
 
-			z-index: 10;
-		}
-	}
+      z-index: 10;
+    }
+  }
 
-	&__tabs-list {
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap; // Permite que los botones salten de línea en tablet
-		justify-content: center; // Centra el tercer botón abajo en tablet
-		gap: 1rem;
+  &__tabs-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; // Permite que los botones salten de línea en tablet
+    justify-content: center; // Centra el tercer botón abajo en tablet
+    gap: 1rem;
 
-		@include maxDesktop {
-			flex-direction: column;
-			justify-content: flex-start;
-		}
-	}
+    @include maxDesktop {
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+  }
 
-	.perfil-tab-btn {
-		background-color: #ffffff;
-		border: 2px solid transparent;
-		border-radius: 20px;
-		padding: 1.5rem;
-		display: flex;
-		align-items: center;
-		gap: 1rem;
-		cursor: pointer;
-		text-align: left;
-		transition: all 0.3s ease;
-		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+  .perfil-tab-btn {
+    background-color: #ffffff;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
 
-		@include tablet {
-			flex: 1 1 calc(50% - 1rem); // Ocupan el 50% menos el espacio del gap
-			max-width: 360px; // Límite para que no se estiren demasiado y el 3ro se centre bien
-		}
+    @include tablet {
+      flex: 1 1 calc(50% - 1rem); // Ocupan el 50% menos el espacio del gap
+      max-width: 360px; // Límite para que no se estiren demasiado y el 3ro se centre bien
+    }
 
-		@include desktop {
-			flex: none;
-			max-width: 100%;
-		}
+    @include desktop {
+      flex: none;
+      max-width: 100%;
+    }
 
-		&-num {
-			color: #569c33;
-			font-size: 28px;
-			font-weight: 700;
-			font-family: $font-SpaceGrotesk;
-			transition: color 0.3s ease;
-		}
+    &-num {
+      color: #569c33;
+      font-size: 28px;
+      font-weight: 700;
+      font-family: $font-SpaceGrotesk;
+      transition: color 0.3s ease;
+    }
 
-		&-text {
-			display: flex;
-			flex-direction: column;
-			gap: 0.2rem;
+    &-text {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
 
-			h3 {
-				color: #1a422a;
-				font-size: 18px;
-				font-weight: 700;
-				margin: 0;
-				line-height: 1.2;
-				font-family: $font-SpaceGrotesk;
-				transition: color 0.3s ease;
-			}
+      h3 {
+        color: #1a422a;
+        font-size: 18px;
+        font-weight: 700;
+        margin: 0;
+        line-height: 1.2;
+        font-family: $font-SpaceGrotesk;
+        transition: color 0.3s ease;
+      }
 
-			p {
-				color: #7e9285;
-				font-size: 13px;
-				margin: 0;
-				font-family: $font-DMsans;
-				transition: color 0.3s ease;
-			}
-		}
+      p {
+        color: #7e9285;
+        font-size: 13px;
+        margin: 0;
+        font-family: $font-DMsans;
+        transition: color 0.3s ease;
+      }
+    }
 
-		&:hover {
-			box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-			transform: translateY(-2px);
-		}
+    &:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
+    }
 
-		&.is-active {
-			background-color: #1a422a;
-			box-shadow: 0 10px 25px rgba(26, 66, 42, 0.2);
+    &.is-active {
+      background-color: #1a422a;
+      box-shadow: 0 10px 25px rgba(26, 66, 42, 0.2);
 
-			.perfil-tab-btn__num {
-				color: #86c46a;
-			}
-			.perfil-tab-btn__text h3 {
-				color: #ffffff;
-			}
-			.perfil-tab-btn__text p {
-				color: rgba(255, 255, 255, 0.7);
-			}
-		}
-	}
+      .perfil-tab-btn__num {
+        color: #86c46a;
+      }
+      .perfil-tab-btn__text h3 {
+        color: #ffffff;
+      }
+      .perfil-tab-btn__text p {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
 
-	&__desktop-content {
-		position: relative;
-		width: 100%;
-		display: grid; // Usamos grid stack para superponer las tarjetas
-	}
+  &__desktop-content {
+    position: relative;
+    width: 100%;
+    display: grid; // Usamos grid stack para superponer las tarjetas
+  }
 
-	// ----------------------------------------------------
-	// ESTILOS COMPARTIDOS DE LA TARJETA BLANCA
-	// ----------------------------------------------------
-	.perfil-card {
-		background: #ffffff;
-		border-radius: 24px;
-		overflow: hidden;
-		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
-		display: flex;
-		flex-direction: column;
-		flex-grow: 1;
+  // ----------------------------------------------------
+  // ESTILOS COMPARTIDOS DE LA TARJETA BLANCA
+  // ----------------------------------------------------
+  .perfil-card {
+    background: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 
-		// Comportamiento de apilamiento solo para la versión Desktop/Tablet
-		&--desktop {
-			grid-area: 1 / 1;
-			opacity: 0;
-			visibility: hidden;
-		}
+    // Comportamiento de apilamiento solo para la versión Desktop/Tablet
+    &--desktop {
+      grid-area: 1 / 1;
+      opacity: 0;
+      visibility: hidden;
+    }
 
-		&__image-box {
-			position: relative;
-			height: 220px;
-			width: 100%;
+    &__image-box {
+      position: relative;
+      height: 220px;
+      width: 100%;
 
-			@include tablet {
-				height: 320px;
-			} // Altura panorámica para tablet y desktop
-			@include desktop {
-				height: 320px;
-			}
-		}
+      @include tablet {
+        height: 320px;
+      } // Altura panorámica para tablet y desktop
+      @include desktop {
+        height: 320px;
+      }
+    }
 
-		&__img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
+    &__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-		&__overlay {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: linear-gradient(
-				to top,
-				rgba(26, 66, 42, 0.95) 0%,
-				rgba(26, 66, 42, 0.2) 60%,
-				rgba(26, 66, 42, 0) 100%
-			);
-			display: flex;
-			flex-direction: column;
-			justify-content: flex-end;
-			padding: 1.5rem;
+    &__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to top,
+        rgba(26, 66, 42, 0.95) 0%,
+        rgba(26, 66, 42, 0.2) 60%,
+        rgba(26, 66, 42, 0) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
 
-			@include tablet {
-				padding: 2.5rem;
-			}
-		}
+      @include tablet {
+        padding: 2.5rem;
+      }
+    }
 
-		&__img-sub {
-			color: #86c46a;
-			font-size: 13px;
-			font-weight: 600;
-			font-family: $font-DMsans;
-			margin-bottom: 0.3rem;
+    &__img-sub {
+      color: #86c46a;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: $font-DMsans;
+      margin-bottom: 0.3rem;
 
-			@include tablet {
-				font-size: 14px;
-			}
-		}
+      @include tablet {
+        font-size: 14px;
+      }
+    }
 
-		&__img-title {
-			color: #ffffff;
-			font-size: 22px;
-			font-weight: 700;
-			margin: 0;
-			font-family: $font-SpaceGrotesk;
-			line-height: 1.2;
+    &__img-title {
+      color: #ffffff;
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0;
+      font-family: $font-SpaceGrotesk;
+      line-height: 1.2;
 
-			@include tablet {
-				font-size: 32px;
-			}
-			@include desktop {
-				font-size: 38px;
-			}
-		}
+      @include tablet {
+        font-size: 32px;
+      }
+      @include desktop {
+        font-size: 38px;
+      }
+    }
 
-		&__body {
-			padding: 2rem 1.5rem;
-			display: flex;
-			flex-direction: column;
-			flex-grow: 1;
+    &__body {
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
 
-			@include tablet {
-				padding: 2.5rem;
-			}
-		}
+      @include tablet {
+        padding: 2.5rem;
+      }
+    }
 
-		&__desc {
-			color: #5a6b5f;
-			font-size: 15px;
-			line-height: 24px;
-			font-family: $font-DMsans;
-			margin: 0 0 2rem 0;
+    &__desc {
+      color: #5a6b5f;
+      font-size: 15px;
+      line-height: 24px;
+      font-family: $font-DMsans;
+      margin: 0 0 2rem 0;
 
-			@include tablet {
-				font-size: 16px;
-				line-height: 26px;
-			}
-		}
+      @include tablet {
+        font-size: 16px;
+        line-height: 26px;
+      }
+    }
 
-		&__list-title {
-			color: #569c33;
-			font-size: 12px;
-			font-weight: 700;
-			letter-spacing: 1px;
-			text-transform: uppercase;
-			font-family: $font-DMsans;
-			margin: 0 0 1rem 0;
-		}
+    &__list-title {
+      color: #569c33;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-family: $font-DMsans;
+      margin: 0 0 1rem 0;
+    }
 
-		&__list {
-			list-style: none;
-			padding: 0;
-			margin: 0 0 2.5rem 0;
-			display: flex;
-			flex-direction: column;
-			gap: 1.2rem;
-			flex-grow: 1;
+    &__list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 2.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      flex-grow: 1;
 
-			// En Tablet/Desktop dividimos la lista en 2 columnas
-			&--grid {
-				@include tablet {
-					display: grid;
-					grid-template-columns: repeat(2, 1fr);
-					column-gap: 2rem;
-					row-gap: 1.2rem;
-				}
-			}
+      // En Tablet/Desktop dividimos la lista en 2 columnas
+      &--grid {
+        @include tablet {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          column-gap: 2rem;
+          row-gap: 1.2rem;
+        }
+      }
 
-			li {
-				display: flex;
-				align-items: flex-start;
-				gap: 0.8rem;
-				font-size: 14.5px;
-				color: #1a422a;
-				font-weight: 500;
-				font-family: $font-DMsans;
-				line-height: 1.4;
-				padding-bottom: 12px;
-				border-bottom: 1px solid rgba(26, 66, 42, 0.05);
+      li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.8rem;
+        font-size: 14.5px;
+        color: #1a422a;
+        font-weight: 500;
+        font-family: $font-DMsans;
+        line-height: 1.4;
+        padding-bottom: 12px;
+        border-bottom: 1px solid rgba(26, 66, 42, 0.05);
 
-				@include tablet {
-					font-size: 15px;
-				}
+        @include tablet {
+          font-size: 15px;
+        }
 
-				&:last-child {
-					border-bottom: none;
-					padding-bottom: 0;
-				}
+        &:last-child {
+          border-bottom: none;
+          padding-bottom: 0;
+        }
 
-				.icon-check {
-					flex-shrink: 0;
-					width: 20px;
-					height: 20px;
-					border-radius: 50%;
-					background-color: #e6eee2;
-					color: #569c33;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					margin-top: 2px;
-				}
-			}
-		}
+        .icon-check {
+          flex-shrink: 0;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background-color: #e6eee2;
+          color: #569c33;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-top: 2px;
+        }
+      }
+    }
 
-		&__btn {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			gap: 0.5rem;
-			background-color: #569c33;
-			color: #ffffff;
-			text-decoration: none;
-			padding: 14px 28px;
-			border-radius: 3rem;
-			font-family: $font-DMsans;
-			font-weight: 600;
-			font-size: 15px;
-			align-self: stretch;
-			transition: all 0.3s ease;
-			box-shadow: 0 4px 15px rgba(86, 156, 51, 0.2);
+    &__btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background-color: #569c33;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 3rem;
+      font-family: $font-DMsans;
+      font-weight: 600;
+      font-size: 15px;
+      align-self: stretch;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(86, 156, 51, 0.2);
 
-			@include tablet {
-				align-self: flex-start; // En tablet se ajusta a su contenido
-			}
+      @include tablet {
+        align-self: flex-start; // En tablet se ajusta a su contenido
+      }
 
-			&:hover {
-				background-color: #478729;
-				transform: translateY(-2px);
-				box-shadow: 0 6px 20px rgba(86, 156, 51, 0.4);
-			}
-		}
-	}
+      &:hover {
+        background-color: #478729;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(86, 156, 51, 0.4);
+      }
+    }
+  }
 }
