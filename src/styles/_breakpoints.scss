@@ -1,9 +1,9 @@
-// Breakpoints (Puntos de ruptura)
+// Breakpoints
 $bp-tablet: 768px;
 $bp-desktop: 1024px;
 $bp-maxDesktop: 1440px;
 
-// Mixins para Media Queries (Herramientas útiles)
+// Mixins para Media Queries
 @mixin tablet {
 	@media (min-width: #{$bp-tablet}) {
 		@content;
