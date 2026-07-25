@@ -4,43 +4,44 @@
  * Descripción: Reset de caja, comportamiento del cuerpo del documento 
  * y estructura principal mediante Flexbox.
  */
-@use 'variables' as *;
+@use "variables" as *;
 
 $white: #fff;
 
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 html,
 body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100vh;
-  background-color: $white;
-  font-family: $font-DMsans;
-  overflow-x: clip;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	min-height: 100vh;
+	background-color: $white;
+	font-family: $font-DMsans;
+	overflow-x: clip;
+	scrollbar-width: none;
 }
 
 .app-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  min-height: 100vh;
-  overflow-x: clip;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-height: 100vh;
+	overflow-x: clip;
 }
 
 .main-content {
-  flex-grow: 1;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
+	flex-grow: 1;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 
-  > section {
-    position: relative;
-    width: 100%;
-  }
+	> section {
+		position: relative;
+		width: 100%;
+	}
 }
