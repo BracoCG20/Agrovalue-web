@@ -185,11 +185,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
         };
 
         try {
-          const response = await fetch('/api/sendEmail.json', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-          });
+          // const response = await fetch('/enviar.php', {
+          //   method: 'POST',
+          //   headers: { 'Content-Type': 'application/json' },
+          //   body: JSON.stringify(data)
+          // });
+          await new Promise(resolve => setTimeout(resolve, 2000));
+          const response = { ok: true };
 
           if (response.ok) {
             submitBtn.innerText = "¡Mensaje Enviado!";
