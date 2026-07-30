@@ -9,7 +9,7 @@
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  padding: 8rem 1.5rem 3rem;
+  padding: 2rem 1.5rem;
   overflow: hidden;
 
   @include tablet {
@@ -93,6 +93,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    gap: 14px;
     flex-grow: 1;
     max-width: 1800px;
     margin: 0 auto;
@@ -107,13 +108,13 @@
   }
 
   &__subtitle {
-    color: #f8f8f3;
+    color: #f6f8f3;
     font-size: 13px;
     font-weight: 600;
     letter-spacing: 2.4px;
     font-family: $font-DMsans;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
   }
 
   &__title {
@@ -123,8 +124,8 @@
     letter-spacing: -2px;
     font-weight: 700;
     font-family: $font-SpaceGrotesk;
-    margin: 0 0 25px 0;
-    max-width: 300px;
+    margin: 0;
+    padding-right: 65px;
     word-break: keep-all;
     overflow-wrap: break-word;
 
@@ -152,13 +153,13 @@
   }
 
   &__description {
-    color: rgba(255, 255, 255, 0.82);
+    color: rgba($white, 0.82);
     font-size: 16px;
     font-family: $font-DMsans;
     font-weight: 400;
     line-height: 26.4px;
     margin: 0;
-    max-width: 320px;
+    padding-right: 20px;
 
     @include tablet {
       font-size: 16px;
@@ -170,16 +171,62 @@
       max-width: 650px;
     }
   }
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    @include tablet {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 1.5rem;
+      border-radius: 2rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease-in-out;
+      font-size: 1rem;
+      font-family: $font-DMsans;
+
+      &--primary {
+        background-color: #579c34;
+        color: #ffffff;
+        width: 269px;
+        box-shadow: 0px 12px 30px -10px rgba(86, 156, 51, 0.85);
+
+        &:hover {
+          background-color: #478729;
+        }
+      }
+
+      &--outline {
+        background-color: transparent;
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        width: 166px;
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+          border-color: #ffffff;
+        }
+      }
+    }
+  }
 }
 
 .proposito {
   position: relative;
   width: 100%;
-  background-color: #ffffff;
+  background-color: $white;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6rem 3rem;
+  padding: 75px 24px;
 
   @include tablet {
     padding: 8rem 3rem;
@@ -215,6 +262,7 @@
     font-weight: 500;
     letter-spacing: -0.8px;
     font-family: $font-SpaceGrotesk;
+    padding: 0 50px;
     margin: 0;
 
     @include tablet {
@@ -228,8 +276,12 @@
   }
 
   &__dynamic {
+    display: block;
     color: #569c33;
     margin: 0 8px;
+    @include tablet {
+      display: inline;
+    }
 
     .dynamic-word {
       display: none;
@@ -245,7 +297,7 @@
   position: relative;
   width: 100%;
   background-color: #f6f8f3;
-  padding: 6rem 2.5rem;
+  padding: 64px 24px;
 
   @include tablet {
     padding: 8rem 3rem;
@@ -259,7 +311,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 28px;
   }
 
   &__header {
@@ -303,12 +355,11 @@
       font-size: 14.5px;
       color: #184c2f;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.3s ease-in-out;
 
       &.is-active {
         background-color: #569c33;
-        color: #ffffff;
-        box-shadow: 0 4px 15px rgba(86, 156, 51, 0.3);
+        color: $white;
       }
     }
   }
@@ -352,7 +403,7 @@
     }
 
     &__text {
-      padding: 3rem 2rem 2rem;
+      padding: 36px;
       display: flex;
       flex-direction: column;
       gap: 1rem;
@@ -365,24 +416,23 @@
     }
 
     &__number {
-      color: rgba(86, 156, 51, 0.7);
+      color: rgba(134, 196, 106, 0.5);
       font-size: 64px;
       font-weight: 700;
       font-family: $font-SpaceGrotesk;
       line-height: 64px;
-      margin-bottom: -15px;
     }
 
     &__title {
-      color: #ffffff;
+      color: $white;
       font-size: 24px;
       font-weight: 700;
       font-family: $font-SpaceGrotesk;
-      margin: 0 0 0.5rem 0;
+      margin: 0;
     }
 
     &__description {
-      color: rgba(255, 255, 255, 0.85);
+      color: rgba($white, 0.85);
       font-size: 16px;
       line-height: 27.2px;
       font-family: $font-DMsans;
@@ -434,8 +484,8 @@
 .valores {
   position: relative;
   width: 100%;
-  background-color: #ffffff;
-  padding: 6rem 2.5rem;
+  background-color: $white;
+  padding: 64px 24px;
 
   @include tablet {
     padding: 8rem 3rem;
@@ -449,36 +499,33 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    gap: 3rem;
+    gap: 32px;
   }
 
   &__header {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    text-align: left;
+    gap: 13px;
   }
 
   &__subtitle {
     color: #569c33;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
     font-family: $font-DMsans;
-    @include tablet {
-      font-weight: 600;
-    }
   }
 
   &__title {
     color: #184c2f;
     font-size: 28px;
     font-weight: 700;
-    letter-spacing: -1px;
+    letter-spacing: -1.1px;
+    line-height: 29.4px;
     font-family: $font-SpaceGrotesk;
     margin: 0;
-    max-width: 500px;
+    padding-right: 30px;
 
     @include tablet {
       font-size: 28px;
@@ -491,7 +538,7 @@
     color: #7e9285;
     font-size: 14px;
     font-family: $font-DMsans;
-    margin: 0.5rem 0 0 0;
+    margin: 0;
   }
 
   &__grid {

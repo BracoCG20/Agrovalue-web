@@ -139,6 +139,10 @@ const etapasData = [
       <p class="hero-nosotros__description text-reveal">
         Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.
       </p>
+      <div class="hero-nosotros__actions">
+        <a href="/servicios" class="btn btn--primary">Conoce nuestros servicios</a>
+        <a href="/contacto" class="btn btn--outline">Contáctanos</a>
+      </div>
     </div>
   </section>
 
@@ -146,13 +150,14 @@ const etapasData = [
     <div class="proposito__container">
       <span class="proposito__subtitle trigger-reveal">NUESTRO PROPÓSITO</span>
       <h2 class="proposito__text trigger-reveal">
-        Existimos para que el trabajo del campo genere 
+        Conectamos el campo con el mundo<br>
         <span class="proposito__dynamic">
-          <span class="dynamic-word">más valor en cada eslabón</span>
-          <span class="dynamic-word">mayor rentabilidad global</span>
-          <span class="dynamic-word">un impacto real y positivo</span>
+          <span class="dynamic-word">para generar valor</span>
+          <span class="dynamic-word">para sembrar metas</span>
+          <span class="dynamic-word">para lograr frutos</span>
+          <span class="dynamic-word">para sumar mejoras</span>
         </span>
-        — conectando a quienes producen, compran e invierten en una sola cadena confiable.
+        en toda la cadena agroexplotadora.
       </h2>
     </div>
   </section>
@@ -362,7 +367,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
     if (propositoSection) {
       gsap.from('.trigger-reveal', {
         scrollTrigger: { trigger: propositoSection, start: "top 80%" },
-        y: 30, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: "power3.out"
+        y: 30, autoAlpha: 0, duration: 1.5, stagger: 0.2, ease: "power3.out"
       });
     }
 
