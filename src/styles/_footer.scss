@@ -3,174 +3,171 @@
  * Componente: Footer
  * Dependencias: _variables.scss, _breakpoints.scss
  */
-@use "variables" as *;
-@use "breakpoints" as *;
+@use 'variables' as *;
+@use 'breakpoints' as *;
 
 .footer {
-	background-color: $green-900;
-	color: $white;
-	width: 100%;
-	padding: 4rem 1.5rem 0;
+  background-color: $green-900;
+  color: $white;
+  width: 100%;
+  padding: 4.5rem 2.5rem 0;
 
-	@include tablet {
-		padding: 5rem 3rem 0;
-	}
+  @include tablet {
+    padding: 5rem 3rem 0;
+  }
 
-	&__container {
-		max-width: 1200px;
-		width: 100%;
-		margin: 0 auto;
-		display: flex;
-		flex-direction: column;
-		gap: 3rem;
+  &__container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
 
-		@include tablet {
-			flex-direction: row;
-			justify-content: space-between;
-			align-items: flex-start;
-			gap: 4rem;
-		}
-	}
+    @include tablet {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 4rem;
+    }
+  }
 
-	&__brand {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-		max-width: 100%;
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 100%;
 
-		@include tablet {
-			max-width: 400px;
-		}
-	}
+    @include tablet {
+      max-width: 400px;
+    }
+  }
 
-	&__logo {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-		text-decoration: none;
-		color: $white;
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: $white;
 
-		&-icon {
-			background-color: $green-500;
-			width: 34px;
-			height: 34px;
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			padding: 6px;
-		}
+    &-icon {
+      background-color: $green-500;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+    }
 
-		&-text {
-			font-size: 22px;
-			font-weight: 700;
-			letter-spacing: -0.44px;
-			font-family: $font-SpaceGrotesk;
-		}
-	}
+    &-text {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.44px;
+      font-family: $font-SpaceGrotesk;
+    }
+  }
 
-	&__description {
-		color: rgba($white, 82%);
-		font-size: 17px;
-		line-height: 29.7px;
-		font-family: $font-DMsans;
-		margin: 0;
-	}
+  &__description {
+    color: rgba($white, 0.62);
+    font-family: $font-DMsans;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 29.7px;
+    margin: 0;
+  }
 
-	&__links-wrapper {
-		display: flex;
-		flex-direction: row;
-		gap: 4rem;
+  &__links-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
 
-		@include tablet {
-			gap: 6rem;
-		}
-		@include desktop {
-			gap: 8rem;
-		}
-	}
+    @include tablet {
+      gap: 6rem;
+    }
+    @include desktop {
+      gap: 8rem;
+    }
+  }
 
-	&__nav,
-	&__social {
-		display: flex;
-		flex-direction: column;
-		gap: 1.5rem;
-	}
+  &__nav,
+  &__social {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
 
-	&__title {
-		color: $green-400;
-		font-size: 13px;
-		font-weight: 600;
-		letter-spacing: 1.56px;
-		text-transform: uppercase;
-		font-family: $font-DMsans;
-		margin: 0;
-	}
+  &__title {
+    color: $green-400;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.56px;
+    text-transform: uppercase;
+    font-family: $font-DMsans;
+    margin: 0;
+  }
 
-	&__list {
-		list-style: none;
-		padding: 0;
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 1.2rem;
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
 
-		li a {
-			color: $slate-300;
-			text-decoration: none;
-			font-size: 15.5px;
-			font-family: $font-DMsans;
-			transition: color 0.3s ease;
+    li a {
+      color: $slate-300;
+      text-decoration: none;
+      font-size: 15.5px;
+      font-family: $font-DMsans;
+      transition: color 0.3s ease;
 
-			&:hover {
-				color: $green-400;
-			}
-		}
+      &:hover {
+        color: $green-400;
+      }
+    }
 
-		.social-link {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
 
-			svg {
-				color: rgba($white, 0.8);
-				transition: color 0.3s ease;
-			}
+      svg {
+        color: rgba($white, 0.8);
+        transition: color 0.3s ease;
+      }
 
-			&:hover svg {
-				color: $green-400;
-			}
-		}
-	}
+      &:hover svg {
+        color: $green-400;
+      }
+    }
+  }
 
-	&__bottom {
-		max-width: 1200px;
-		width: 100%;
-		margin: 4rem auto 0;
-		padding: 2rem 0;
-		border-top: 1px solid rgba($white, 0.1);
+  &__bottom {
+    max-width: 1200px;
+    width: 100%;
+    margin: 4rem auto 0;
+    padding: 2rem 0;
+    border-top: 1px solid rgba($white, 0.1);
 
-		@include tablet {
-			margin-top: 5rem;
-		}
+    @include tablet {
+      margin-top: 5rem;
+    }
 
-		&-container {
-			display: flex;
-			flex-direction: column;
-			gap: 1rem;
+    &-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
 
-			@include tablet {
-				flex-direction: row;
-				justify-content: space-between;
-				align-items: center;
-			}
-		}
+      @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
+    }
 
-		p {
-			color: $slate-500;
-			font-size: 13.5px;
-			font-family: $font-DMsans;
-			margin: 0;
-		}
-	}
+    p {
+      color: $slate-500;
+      font-size: 13.5px;
+      font-family: $font-DMsans;
+      margin: 0;
+    }
+  }
 }
