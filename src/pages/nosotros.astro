@@ -457,7 +457,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
       const valorCards = document.querySelectorAll('.valor-card');
 
-      function openCard(card) {
+      function openCard(card: Element) {
         if (card.classList.contains('is-active')) return;
 
         // Quitar la clase a la tarjeta activa

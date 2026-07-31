@@ -8,8 +8,8 @@
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="footer" id="main-footer">
-  <div class="footer__container">
+<footer class="footer">
+  <div class="footer__container" id="contain-footer">
     
     <div class="footer__brand">
       <a href="/" class="footer__logo gs-reveal">
@@ -68,13 +68,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener("DOMContentLoaded", () => {
-    const footer = document.getElementById('main-footer');
+    const footer = document.getElementById('contain-footer');
     
     if (footer) {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: footer,
-          start: "top 90%", 
+          start: "top 150%", 
         }
       });
 
