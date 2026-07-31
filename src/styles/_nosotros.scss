@@ -289,10 +289,6 @@
   background-color: #f6f8f3;
   padding: 4.5rem 1.5rem;
 
-  @include desktop {
-    padding: 6rem 0;
-  }
-
   &__container {
     max-width: 1200px;
     margin: 0 auto;
@@ -483,10 +479,6 @@
   background-color: $white;
   padding: 4.5rem 1.5rem;
 
-  @include desktop {
-    padding: 6rem 0;
-  }
-
   &__container {
     max-width: 1200px;
     margin: 0 auto;
@@ -667,7 +659,8 @@
 
     &__body {
       overflow: hidden;
-      height: 0;
+      max-height: 0; /* Usamos max-height en lugar de height o grid */
+      transition: max-height 0.5s ease-in-out;
 
       p {
         color: rgba(255, 255, 255, 0.9);
@@ -677,10 +670,36 @@
         margin: 0;
         padding-top: 12px;
 
+        /* Estado inicial del texto (Oculto y abajo) */
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 0.25s ease-in,
+          transform 0.25s ease-in;
+
         @include tablet {
           font-size: 16px;
           line-height: 26px;
           padding-right: 10rem;
+        }
+      }
+    }
+
+    /* Estructura segura para SASS */
+    &.is-active {
+      .valor-card__body {
+        /* Un valor suficientemente grande para el texto. 
+           Permitirá que crezca suavemente y muestre el contenido */
+        max-height: 300px;
+
+        p {
+          /* Estado final del texto (Visible y en su lugar) */
+          opacity: 1;
+          transform: translateY(0);
+          /* Retraso de 0.2s para que suba después de que la tarjeta se expanda */
+          transition:
+            opacity 0.4s ease-out 0.2s,
+            transform 0.4s ease-out 0.2s;
         }
       }
     }
@@ -693,10 +712,6 @@
   background-color: #f6f8f3;
   padding: 4.5rem 1.5rem;
   overflow: hidden;
-
-  @include desktop {
-    padding: 6rem 0 8rem;
-  }
 
   &__container {
     max-width: 1200px;

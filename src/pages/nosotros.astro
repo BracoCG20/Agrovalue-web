@@ -220,14 +220,14 @@ const etapasData = [
           <div class={`valor-card trigger-reveal-valores ${index === 0 ? 'is-active' : ''}`} data-index={index}>
             <Image src={valor.image} alt={valor.title} class="valor-card__bg" />
             <div class="valor-card__overlay"></div>
-            <div class="valor-card__content">
-              <div class="valor-card__title-wrapper">
-                <h3 class="valor-card__title">{valor.title}</h3>
+              <div class="valor-card__content">
+                <div class="valor-card__title-wrapper">
+                  <h3 class="valor-card__title">{valor.title}</h3>
+                </div>
+                <div class="valor-card__body">
+                  <p>{valor.description}</p>
+                </div>
               </div>
-              <div class="valor-card__body">
-                <p>{valor.description}</p>
-              </div>
-            </div>
           </div>
         ))}
       </div>
@@ -445,7 +445,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       });
     }
 
-    /**
+        /**
      * Componente Valores (Acordeón Horizontal)
      */
     const valoresSection = document.querySelector('.valores');
@@ -457,42 +457,20 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
       const valorCards = document.querySelectorAll('.valor-card');
 
-      function openCard(card: Element) {
+      function openCard(card) {
         if (card.classList.contains('is-active')) return;
 
+        // Quitar la clase a la tarjeta activa
         const activeCard = document.querySelector('.valor-card.is-active');
         if (activeCard) {
           activeCard.classList.remove('is-active');
-          const activeBody = activeCard.querySelector('.valor-card__body');
-          const activeP = activeCard.querySelector('.valor-card__body p');
-          
-          gsap.to(activeP, { autoAlpha: 0, y: 20, duration: 0.25, ease: "power2.in" });
-          gsap.to(activeBody, { height: 0, duration: 0.45, ease: "power2.inOut", delay: 0.05 });
         }
 
+        // Añadir la clase a la nueva tarjeta
         card.classList.add('is-active');
-        const body = card.querySelector('.valor-card__body');
-        const p = card.querySelector('.valor-card__body p');
-        
-        gsap.to(body, { height: 'auto', duration: 0.5, ease: "power2.inOut" });
-        gsap.fromTo(p,
-          { autoAlpha: 0, y: 20 },
-          { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out", delay: 0.2 }
-        );
       }
 
       valorCards.forEach((card) => {
-        const body = card.querySelector('.valor-card__body');
-        const p = card.querySelector('.valor-card__body p');
-
-        if (card.classList.contains('is-active')) {
-          gsap.set(body, { height: 'auto' });
-          gsap.set(p, { autoAlpha: 1, y: 0 });
-        } else {
-          gsap.set(body, { height: 0 });
-          gsap.set(p, { autoAlpha: 0, y: 20 }); 
-        }
-
         card.addEventListener('click', () => openCard(card));
         card.addEventListener('mouseenter', () => {
            if (window.innerWidth >= 1024) openCard(card);
