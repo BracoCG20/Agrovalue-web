@@ -25,339 +25,502 @@ import equipo04 from '../assets/banner_Nosotros07_Mobile.jpg';
 import equipo05 from '../assets/banner_Nosotros06_Mobile.jpg';
 import equipo06 from '../assets/banner_Nosotros07_Mobile.jpg';
 
-const titleText = "Impulsando el agro hacia el mercado global.";
+const titleText = 'Impulsando el agro hacia el mercado global.';
 
 const valoresData = [
   {
-    title: "Integridad",
-    description: "Actuamos con ética y transparencia para construir relaciones de confianza, sólidas y duraderas, con clientes, proveedores y colaboradores.",
-    image: valor1Img
+    title: 'Integridad',
+    description:
+      'Actuamos con ética y transparencia para construir relaciones de confianza, sólidas y duraderas, con clientes, proveedores y colaboradores.',
+    image: valor1Img,
   },
   {
-    title: "Compromiso",
-    description: "Nos involucramos al máximo en cada proyecto, asumiendo la responsabilidad de entregar resultados excepcionales y cumplir nuestras promesas.",
-    image: valor2Img
+    title: 'Compromiso',
+    description:
+      'Nos involucramos al máximo en cada proyecto, asumiendo la responsabilidad de entregar resultados excepcionales y cumplir nuestras promesas.',
+    image: valor2Img,
   },
   {
-    title: "Innovación",
-    description: "Buscamos continuamente nuevas tecnologías y métodos para optimizar la cadena agroexportadora y adaptarnos a un mercado en constante cambio.",
-    image: valor3Img
-  }
+    title: 'Innovación',
+    description:
+      'Buscamos continuamente nuevas tecnologías y métodos para optimizar la cadena agroexportadora y adaptarnos a un mercado en constante cambio.',
+    image: valor3Img,
+  },
 ];
 
 const equipoData = [
   {
-    name: "José Antonio Gómez",
-    role: "Fundador",
-    description: "Más de 25 años liderando estrategia y ejecución agroindustrial global. Lideró el crecimiento de Camposol hasta posicionarla como líder mundial en arándanos, con operaciones en Perú, Colombia y China.",
-    tags: ["Estrategia", "Inversión", "Escalamiento"],
-    image: equipo01 
+    name: 'José Antonio Gómez',
+    role: 'Fundador',
+    description:
+      'Más de 25 años liderando estrategia y ejecución agroindustrial global. Lideró el crecimiento de Camposol hasta posicionarla como líder mundial en arándanos, con operaciones en Perú, Colombia y China.',
+    tags: ['Estrategia', 'Inversión', 'Escalamiento'],
+    image: equipo01,
   },
   {
-    name: "María Pérez",
-    role: "Directora de Operaciones",
-    description: "Especialista en optimización de cadenas de suministro y logística internacional. Garantiza que cada exportación cumpla con los más altos estándares de calidad y eficiencia.",
-    tags: ["Logística", "Operaciones", "Calidad"],
-    image: equipo02
+    name: 'María Pérez',
+    role: 'Directora de Operaciones',
+    description:
+      'Especialista en optimización de cadenas de suministro y logística internacional. Garantiza que cada exportación cumpla con los más altos estándares de calidad y eficiencia.',
+    tags: ['Logística', 'Operaciones', 'Calidad'],
+    image: equipo02,
   },
   {
-    name: "Carlos Rodríguez",
-    role: "Gerente Comercial",
-    description: "Experto en apertura de nuevos mercados en Asia y Europa. Conecta a los productores locales con las demandas más exigentes a nivel global mediante relaciones a largo plazo.",
-    tags: ["Ventas", "Expansión", "Mercados"],
-    image: equipo03 
+    name: 'Carlos Rodríguez',
+    role: 'Gerente Comercial',
+    description:
+      'Experto en apertura de nuevos mercados en Asia y Europa. Conecta a los productores locales con las demandas más exigentes a nivel global mediante relaciones a largo plazo.',
+    tags: ['Ventas', 'Expansión', 'Mercados'],
+    image: equipo03,
   },
   {
-    name: "José Antonio Gómez",
-    role: "Fundador",
-    description: "Más de 25 años liderando estrategia y ejecución agroindustrial global. Lideró el crecimiento de Camposol hasta posicionarla como líder mundial en arándanos, con operaciones en Perú, Colombia y China.",
-    tags: ["Estrategia", "Inversión", "Escalamiento"],
-    image: equipo04
+    name: 'José Antonio Gómez',
+    role: 'Fundador',
+    description:
+      'Más de 25 años liderando estrategia y ejecución agroindustrial global. Lideró el crecimiento de Camposol hasta posicionarla como líder mundial en arándanos, con operaciones en Perú, Colombia y China.',
+    tags: ['Estrategia', 'Inversión', 'Escalamiento'],
+    image: equipo04,
   },
   {
-    name: "María Pérez",
-    role: "Directora de Operaciones",
-    description: "Especialista en optimización de cadenas de suministro y logística internacional. Garantiza que cada exportación cumpla con los más altos estándares de calidad y eficiencia.",
-    tags: ["Logística", "Operaciones", "Calidad"],
-    image: equipo05
+    name: 'María Pérez',
+    role: 'Directora de Operaciones',
+    description:
+      'Especialista en optimización de cadenas de suministro y logística internacional. Garantiza que cada exportación cumpla con los más altos estándares de calidad y eficiencia.',
+    tags: ['Logística', 'Operaciones', 'Calidad'],
+    image: equipo05,
   },
   {
-    name: "Carlos Rodríguez",
-    role: "Gerente Comercial",
-    description: "Experto en apertura de nuevos mercados en Asia y Europa. Conecta a los productores locales con las demandas más exigentes a nivel global mediante relaciones a largo plazo.",
-    tags: ["Ventas", "Expansión", "Mercados"],
-    image: equipo06 
-  }
+    name: 'Carlos Rodríguez',
+    role: 'Gerente Comercial',
+    description:
+      'Experto en apertura de nuevos mercados en Asia y Europa. Conecta a los productores locales con las demandas más exigentes a nivel global mediante relaciones a largo plazo.',
+    tags: ['Ventas', 'Expansión', 'Mercados'],
+    image: equipo06,
+  },
 ];
 
 const etapasData = [
   {
-    number: "01",
-    title: "Origen",
-    description: "Abastecimiento y control de calidad de la fruta desde el campo.",
-    icon: Leaf
+    number: '01',
+    title: 'Origen',
+    description:
+      'Abastecimiento y control de calidad de la fruta desde el campo.',
+    icon: Leaf,
   },
   {
-    number: "02",
-    title: "Calidad",
-    description: "Inspección e inocuidad según estándares internacionales.",
-    icon: ShieldCheck
+    number: '02',
+    title: 'Calidad',
+    description: 'Inspección e inocuidad según estándares internacionales.',
+    icon: ShieldCheck,
   },
   {
-    number: "03",
-    title: "Logística",
-    description: "Trazabilidad y monitoreo de cada embarque en tiempo real.",
-    icon: Truck
+    number: '03',
+    title: 'Logística',
+    description: 'Trazabilidad y monitoreo de cada embarque en tiempo real.',
+    icon: Truck,
   },
   {
-    number: "04",
-    title: "Mercado",
-    description: "Comercialización y acceso a compradores globales.",
-    icon: Globe
-  }
+    number: '04',
+    title: 'Mercado',
+    description: 'Comercialización y acceso a compradores globales.',
+    icon: Globe,
+  },
 ];
 ---
 
-<Layout title="Agrovalue - Nosotros">
-  
-  <section class="hero-nosotros">
-    <div class="hero-nosotros__background">
-      <Image src={bannerMobile} alt="Fondo Nosotros" class="hero-nosotros__image hero-nosotros__image--mobile" loading="eager" />
-      <Image src={bannerTablet} alt="Fondo Nosotros Tablet" class="hero-nosotros__image hero-nosotros__image--tablet" loading="eager" />
-      <Image src={bannerDesktop} alt="Fondo Nosotros Desktop" class="hero-nosotros__image hero-nosotros__image--desktop" loading="eager" />
-      <div class="hero-nosotros__overlay"></div>
-      <div class="hero-nosotros__overlay2"></div>
+<Layout title='Agrovalue - Nosotros'>
+  <section class='hero-nosotros'>
+    <div class='hero-nosotros__background'>
+      <Image
+        src={bannerMobile}
+        alt='Fondo Nosotros'
+        class='hero-nosotros__image hero-nosotros__image--mobile'
+        loading='eager'
+      />
+      <Image
+        src={bannerTablet}
+        alt='Fondo Nosotros Tablet'
+        class='hero-nosotros__image hero-nosotros__image--tablet'
+        loading='eager'
+      />
+      <Image
+        src={bannerDesktop}
+        alt='Fondo Nosotros Desktop'
+        class='hero-nosotros__image hero-nosotros__image--desktop'
+        loading='eager'
+      />
+      <div class='hero-nosotros__overlay'></div>
+      <div class='hero-nosotros__overlay2'></div>
     </div>
 
-    <div class="hero-nosotros__content">
-      <span class="hero-nosotros__subtitle text-reveal">NOSOTROS</span>
-      <h1 class="hero-nosotros__title">
-        {titleText.split(' ').map((word) => (
-          <span class="word-wrap"><span class="word">{word}</span>&nbsp;</span>
-        ))}
+    <div class='hero-nosotros__content'>
+      <span class='hero-nosotros__subtitle text-reveal'>NOSOTROS</span>
+      <h1 class='hero-nosotros__title'>
+        {
+          titleText.split(' ').map((word) => (
+            <span class='word-wrap'>
+              <span class='word'>{word}</span>&nbsp;
+            </span>
+          ))
+        }
       </h1>
-      <p class="hero-nosotros__description text-reveal">
-        Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.
+      <p class='hero-nosotros__description text-reveal'>
+        Integramos mercados, capital y tecnología para que productores,
+        compradores e inversionistas crezcan con confianza.
       </p>
-      <div class="hero-nosotros__actions">
-        <a href="/servicios" class="btn btn--primary">Conoce nuestros servicios</a>
-        <a href="/contacto" class="btn btn--outline">Contáctanos</a>
+      <div class='hero-nosotros__actions'>
+        <a
+          href='/servicios'
+          class='btn btn--primary'
+          >Conoce nuestros servicios</a
+        >
+        <a
+          href='/contacto'
+          class='btn btn--outline'
+          >Contáctanos</a
+        >
       </div>
     </div>
   </section>
 
-  <section id="proposito" class="proposito">
-    <div class="proposito__container">
-      <span class="proposito__subtitle trigger-reveal">NUESTRO PROPÓSITO</span>
-      <h2 class="proposito__text trigger-reveal">
-        Conectamos el campo con el mundo<br>
-        <span class="proposito__dynamic">
-          <span class="dynamic-word">para generar valor</span>
-          <span class="dynamic-word">para sembrar metas</span>
-          <span class="dynamic-word">para lograr frutos</span>
+  <section
+    id='proposito'
+    class='proposito'
+  >
+    <div class='proposito__container'>
+      <span class='proposito__subtitle trigger-reveal'>NUESTRO PROPÓSITO</span>
+      <h2 class='proposito__text trigger-reveal'>
+        Conectamos el campo con el mundo<br />
+        <span class='proposito__dynamic'>
+          <span class='dynamic-word'>para generar valor</span>
+          <span class='dynamic-word'>para sembrar metas</span>
+          <span class='dynamic-word'>para lograr frutos</span>
         </span>
         en toda la cadena agroexplotadora.
       </h2>
     </div>
   </section>
 
-  <section id="mision-vision" class="mision-vision">
-    <div class="mision-vision__container">
-      <div class="mision-vision__header trigger-reveal-mv">
-        <h2 class="mision-vision__title">Misión y Visión</h2>
-        <div class="mision-vision__tabs">
-          <button class="tab-btn is-active" data-target="mision">Misión</button>
-          <button class="tab-btn" data-target="vision">Visión</button>
+  <section
+    id='mision-vision'
+    class='mision-vision'
+  >
+    <div class='mision-vision__container'>
+      <div class='mision-vision__header trigger-reveal-mv'>
+        <h2 class='mision-vision__title'>Misión y Visión</h2>
+        <div class='mision-vision__tabs'>
+          <button
+            class='tab-btn is-active'
+            data-target='mision'
+            >Misión</button
+          >
+          <button
+            class='tab-btn'
+            data-target='vision'
+            >Visión</button
+          >
         </div>
       </div>
 
-      <div class="mision-vision__content trigger-reveal-mv">
-        <div class="mv-card is-active" id="card-mision">
-          <div class="mv-card__text">
-            <span class="mv-card__number">01</span>
-            <h3 class="mv-card__title">Misión</h3>
-            <p class="mv-card__description">
-              Integramos mercados, capital y tecnología en una sola
-              cadena para que el productor capture el valor de su
-              trabajo; el comprador reciba un abastecimiento confiable
-              en volumen, calidad y tiempo; y el inversionista obtenga 
-              etorno con propósito
+      <div class='mision-vision__content trigger-reveal-mv'>
+        <div
+          class='mv-card is-active'
+          id='card-mision'
+        >
+          <div class='mv-card__text'>
+            <span class='mv-card__number'>01</span>
+            <h3 class='mv-card__title'>Misión</h3>
+            <p class='mv-card__description'>
+              Integramos mercados, capital y tecnología en una sola cadena para
+              que el productor capture el valor de su trabajo; el comprador
+              reciba un abastecimiento confiable en volumen, calidad y tiempo; y
+              el inversionista obtenga etorno con propósito
             </p>
           </div>
-          <div class="mv-card__image-container">
-            <div class="mv-card__overlay"></div>
-            <Image src={bannerVisionMobile} alt="Misión Agrovalue" class="mv-card__image" />
+          <div class='mv-card__image-container'>
+            <div class='mv-card__overlay'></div>
+            <Image
+              src={bannerVisionMobile}
+              alt='Misión Agrovalue'
+              class='mv-card__image'
+            />
           </div>
         </div>
 
-        <div class="mv-card" id="card-vision">
-          <div class="mv-card__text">
-            <span class="mv-card__number">02</span>
-            <h3 class="mv-card__title">Visión</h3>
-            <p class="mv-card__description">
-              Ser el ecosistema agroexportador líder a nivel global, reconocido por impulsar la sostenibilidad del campo, democratizar el acceso a los mercados internacionales y establecer un estándar de confianza y eficiencia en toda la cadena de valor agrícola.
+        <div
+          class='mv-card'
+          id='card-vision'
+        >
+          <div class='mv-card__text'>
+            <span class='mv-card__number'>02</span>
+            <h3 class='mv-card__title'>Visión</h3>
+            <p class='mv-card__description'>
+              Ser el ecosistema agroexportador líder a nivel global, reconocido
+              por impulsar la sostenibilidad del campo, democratizar el acceso a
+              los mercados internacionales y establecer un estándar de confianza
+              y eficiencia en toda la cadena de valor agrícola.
             </p>
           </div>
-          <div class="mv-card__image-container">
-            <div class="mv-card__overlay"></div>
-            <Image src={bannerDesktop} alt="Visión Agrovalue" class="mv-card__image" />
+          <div class='mv-card__image-container'>
+            <div class='mv-card__overlay'></div>
+            <Image
+              src={bannerDesktop}
+              alt='Visión Agrovalue'
+              class='mv-card__image'
+            />
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="valores" class="valores">
-    <div class="valores__container">
-      <div class="valores__header trigger-reveal-valores">
-        <span class="valores__subtitle">NUESTROS VALORES</span>
-        <h2 class="valores__title">Los principios que guían cada decisión.</h2>
-        <p class="valores__instruction">Toca cada valor para conocerlo.</p>
+  <section
+    id='valores'
+    class='valores'
+  >
+    <div class='valores__container'>
+      <div class='valores__header trigger-reveal-valores'>
+        <span class='valores__subtitle'>NUESTROS VALORES</span>
+        <h2 class='valores__title'>Los principios que guían cada decisión.</h2>
+        <p class='valores__instruction'>Toca cada valor para conocerlo.</p>
       </div>
 
-      <div class="valores__grid">
-        {valoresData.map((valor, index) => (
-          <div class={`valor-card trigger-reveal-valores ${index === 0 ? 'is-active' : ''}`} data-index={index}>
-            <Image src={valor.image} alt={valor.title} class="valor-card__bg" />
-            <div class="valor-card__overlay"></div>
-              <div class="valor-card__content">
-                <div class="valor-card__title-wrapper">
-                  <h3 class="valor-card__title">{valor.title}</h3>
+      <div class='valores__grid'>
+        {
+          valoresData.map((valor, index) => (
+            <div
+              class={`valor-card trigger-reveal-valores ${index === 0 ? 'is-active' : ''}`}
+              data-index={index}
+            >
+              <Image
+                src={valor.image}
+                alt={valor.title}
+                class='valor-card__bg'
+              />
+              <div class='valor-card__overlay' />
+              <div class='valor-card__content'>
+                <div class='valor-card__title-wrapper'>
+                  <h3 class='valor-card__title'>{valor.title}</h3>
                 </div>
-                <div class="valor-card__body">
+                <div class='valor-card__body'>
                   <p>{valor.description}</p>
                 </div>
               </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <section id="equipo" class="equipo">
-    <div class="equipo__container">
-      <div class="equipo__header trigger-reveal-equipo">
-        <span class="equipo__subtitle">NUESTRO EQUIPO</span>
-        <h2 class="equipo__title">Quienes lideran AgroValue.</h2>
-        <p class="equipo__instruction">Desliza para conocer al equipo.</p>
-      </div>
-
-      <div class="equipo__slider-wrapper trigger-reveal-equipo">
-        <div class="equipo__info">
-          <div class="equipo__pagination">
-            {equipoData.map((_, i) => (
-              <span class={`equipo-dot ${i === 0 ? 'is-active' : ''}`} data-index={i}></span>
-            ))}
-          </div>
-
-          <div class="equipo__details-container">
-            {equipoData.map((miembro, i) => (
-              <div class={`equipo-detail ${i === 0 ? 'is-active' : ''}`}>
-                <span class="equipo-detail__counter">
-                  {String(i + 1).padStart(2, '0')} / {equipoData.length}
-                </span>
-                <h3 class="equipo-detail__name">{miembro.name}</h3>
-                <span class="equipo-detail__role">{miembro.role}</span>
-                <p class="equipo-detail__description">{miembro.description}</p>
-                
-                <div class="equipo-detail__tags">
-                  {miembro.tags.map(tag => (
-                    <span class="tag">{tag}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div class="equipo__controls">
-            <button class="equipo-btn equipo-btn--prev" id="team-prev" aria-label="Anterior">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-            </button>
-            <button class="equipo-btn equipo-btn--next" id="team-next" aria-label="Siguiente">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-            </button>
-          </div>
-        </div>
-
-        <div class="equipo__images">
-          <div class="equipo__images-track" id="team-track">
-            {equipoData.map((miembro) => (
-              <div class="equipo-card">
-                <Image src={miembro.image} alt={miembro.name} class="equipo-card__img" />
-                <div class="equipo-card__overlay"></div>
-                <div class="equipo-card__info">
-                  <h4>{miembro.name}</h4>
-                  <span>{miembro.role}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="como-trabajamos" class="etapas">
-    <div class="etapas__container">
-      <div class="etapas__header trigger-reveal-etapas">
-        <span class="etapas__subtitle">CÓMO TRABAJAMOS</span>
-        <h2 class="etapas__title">Del campo al mundo, en cuatro etapas.</h2>
-      </div>
-
-      <div class="etapas__grid">
-        {etapasData.map((etapa, index) => {
-          const Icon = etapa.icon;
-          return (
-            <div class="etapa-card trigger-reveal-etapas">
-              <div class="etapa-card__icon-wrapper">
-                <div class="icon-circle">
-                  <Icon size={38} stroke-width={1.4} color="#ffffff" />
-                </div>
-                <div class="etapa-card__number">{etapa.number}</div>
-                {index < 3 && <div class="etapa-line"></div>}
-              </div>
-              <h3 class="etapa-card__title">{etapa.title}</h3>
-              <p class="etapa-card__description">{etapa.description}</p>
             </div>
-          )
-        })}
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <section id="cta-nosotros" class="cta-section">
-    <div class="cta-section__container trigger-reveal-cta">
-      <div class="cta-card">
-        <div class="cta-card-contain">
-          <h2 class="cta-card-contain__title">¿Conversamos sobre tu próximo desafío?</h2>
-          <p class="cta-card-contain__description">Derivamos tu consulta al especialista indicado del equipo.</p>
+  <section
+    id='equipo'
+    class='equipo'
+  >
+    <div class='equipo__container'>
+      <div class='equipo__header trigger-reveal-equipo'>
+        <span class='equipo__subtitle'>NUESTRO EQUIPO</span>
+        <h2 class='equipo__title'>Quienes lideran AgroValue.</h2>
+        <p class='equipo__instruction'>Desliza para conocer al equipo.</p>
+      </div>
+
+      <div class='equipo__slider-wrapper trigger-reveal-equipo'>
+        <div class='equipo__info'>
+          <div class='equipo__pagination'>
+            {
+              equipoData.map((_, i) => (
+                <span
+                  class={`equipo-dot ${i === 0 ? 'is-active' : ''}`}
+                  data-index={i}
+                />
+              ))
+            }
+          </div>
+
+          <div class='equipo__details-container'>
+            {
+              equipoData.map((miembro, i) => (
+                <div class={`equipo-detail ${i === 0 ? 'is-active' : ''}`}>
+                  <span class='equipo-detail__counter'>
+                    {String(i + 1).padStart(2, '0')} / {equipoData.length}
+                  </span>
+                  <h3 class='equipo-detail__name'>{miembro.name}</h3>
+                  <span class='equipo-detail__role'>{miembro.role}</span>
+                  <p class='equipo-detail__description'>
+                    {miembro.description}
+                  </p>
+
+                  <div class='equipo-detail__tags'>
+                    {miembro.tags.map((tag) => (
+                      <span class='tag'>{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+
+          <div class='equipo__controls'>
+            <button
+              class='equipo-btn equipo-btn--prev'
+              id='team-prev'
+              aria-label='Anterior'
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='20'
+                height='20'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                ><path d='m15 18-6-6 6-6'></path></svg
+              >
+            </button>
+            <button
+              class='equipo-btn equipo-btn--next'
+              id='team-next'
+              aria-label='Siguiente'
+            >
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                width='20'
+                height='20'
+                viewBox='0 0 24 24'
+                fill='none'
+                stroke='currentColor'
+                stroke-width='2'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                ><path d='m9 18 6-6-6-6'></path></svg
+              >
+            </button>
+          </div>
         </div>
-        <a href="/contacto" class="btn-glow">Contáctanos</a>
+
+        <div class='equipo__images'>
+          <div
+            class='equipo__images-track'
+            id='team-track'
+          >
+            {
+              equipoData.map((miembro) => (
+                <div class='equipo-card'>
+                  <Image
+                    src={miembro.image}
+                    alt={miembro.name}
+                    class='equipo-card__img'
+                  />
+                  <div class='equipo-card__overlay' />
+                  <div class='equipo-card__info'>
+                    <h4>{miembro.name}</h4>
+                    <span>{miembro.role}</span>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
+  <section
+    id='como-trabajamos'
+    class='etapas'
+  >
+    <div class='etapas__container'>
+      <div class='etapas__header trigger-reveal-etapas'>
+        <span class='etapas__subtitle'>CÓMO TRABAJAMOS</span>
+        <h2 class='etapas__title'>Del campo al mundo, en cuatro etapas.</h2>
+      </div>
+
+      <div class='etapas__grid'>
+        {
+          etapasData.map((etapa, index) => {
+            const Icon = etapa.icon;
+            return (
+              <div class='etapa-card trigger-reveal-etapas'>
+                <div class='etapa-card__icon-wrapper'>
+                  <div class='icon-circle'>
+                    <Icon
+                      size={38}
+                      stroke-width={1.4}
+                      color='#ffffff'
+                    />
+                  </div>
+                  <div class='etapa-card__number'>{etapa.number}</div>
+                  {index < 3 && <div class='etapa-line' />}
+                </div>
+                <h3 class='etapa-card__title'>{etapa.title}</h3>
+                <p class='etapa-card__description'>{etapa.description}</p>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    id='cta-nosotros'
+    class='cta-section'
+  >
+    <div class='cta-section__container trigger-reveal-cta'>
+      <div class='cta-card'>
+        <div class='cta-card-contain'>
+          <h2 class='cta-card-contain__title'>
+            ¿Conversamos sobre tu próximo desafío?
+          </h2>
+          <p class='cta-card-contain__description'>
+            Derivamos tu consulta al especialista indicado del equipo.
+          </p>
+        </div>
+        <a
+          href='/contacto'
+          class='btn-glow'
+          >Contáctanos</a
+        >
+      </div>
+    </div>
+  </section>
 </Layout>
 
 <script>
-  import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
   gsap.registerPlugin(ScrollTrigger);
 
-  document.addEventListener("DOMContentLoaded", () => {
-    
+  document.addEventListener('DOMContentLoaded', () => {
     /**
      * Animación Hero
      */
     const tlHero = gsap.timeline();
     gsap.set('.hero-nosotros__subtitle', { autoAlpha: 0, y: 20 });
-    gsap.set('.hero-nosotros .word', { y: "100%" });
+    gsap.set('.hero-nosotros .word', { y: '100%' });
     gsap.set('.hero-nosotros__description', { autoAlpha: 0, y: 20 });
-    
-    tlHero.to('.hero-nosotros__subtitle', { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out", delay: 0.3 })
-          .to('.hero-nosotros .word', { y: "0%", duration: 0.6, stagger: 0.05, ease: "power3.out" }, "-=0.4")
-          .to('.hero-nosotros__description', { autoAlpha: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.4");
+
+    tlHero
+      .to('.hero-nosotros__subtitle', {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power3.out',
+        delay: 0.3,
+      })
+      .to(
+        '.hero-nosotros .word',
+        { y: '0%', duration: 0.6, stagger: 0.05, ease: 'power3.out' },
+        '-=0.4',
+      )
+      .to(
+        '.hero-nosotros__description',
+        { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' },
+        '-=0.4',
+      );
 
     /**
      * Animación Propósito (ScrollTrigger)
@@ -365,8 +528,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
     const propositoSection = document.querySelector('.proposito');
     if (propositoSection) {
       gsap.from('.trigger-reveal', {
-        scrollTrigger: { trigger: propositoSection, start: "top 80%" },
-        y: 30, autoAlpha: 0, duration: 1.5, stagger: 0.2, ease: "power3.out"
+        scrollTrigger: { trigger: propositoSection, start: 'top 80%' },
+        y: 30,
+        autoAlpha: 0,
+        duration: 1.5,
+        stagger: 0.2,
+        ease: 'power3.out',
       });
     }
 
@@ -380,13 +547,23 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
         const currentWord = words[currentWordIndex];
         const nextWordIndex = (currentWordIndex + 1) % words.length;
         const nextWord = words[nextWordIndex];
-        
+
         const tl = gsap.timeline();
-        tl.to(currentWord, { top: 15, opacity: 0, duration: 0.3, ease: "power2.in" })
-          .set(currentWord, { display: "none" })
-          .set(nextWord, { display: "inline", top: -15, opacity: 0 })
-          .to(nextWord, { top: 0, opacity: 1, duration: 0.3, ease: "power2.out" });
-          
+        tl.to(currentWord, {
+          top: 15,
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power2.in',
+        })
+          .set(currentWord, { display: 'none' })
+          .set(nextWord, { display: 'inline', top: -15, opacity: 0 })
+          .to(nextWord, {
+            top: 0,
+            opacity: 1,
+            duration: 0.3,
+            ease: 'power2.out',
+          });
+
         currentWordIndex = nextWordIndex;
       }
       setInterval(changeWord, 3500);
@@ -398,26 +575,30 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
     const misionVisionSection = document.querySelector('.mision-vision');
     if (misionVisionSection) {
       gsap.from('.trigger-reveal-mv', {
-        scrollTrigger: { trigger: misionVisionSection, start: "top 80%" },
-        y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: "power3.out"
+        scrollTrigger: { trigger: misionVisionSection, start: 'top 80%' },
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out',
       });
-      
+
       const tabBtns = document.querySelectorAll('.tab-btn');
-      
+
       gsap.set('.mv-card.is-active', { autoAlpha: 1, zIndex: 2 });
       gsap.set('.mv-card:not(.is-active)', { autoAlpha: 0, zIndex: 1 });
-      
-      tabBtns.forEach(btn => {
+
+      tabBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
-          if(btn.classList.contains('is-active')) return;
-          
-          tabBtns.forEach(b => b.classList.remove('is-active'));
+          if (btn.classList.contains('is-active')) return;
+
+          tabBtns.forEach((b) => b.classList.remove('is-active'));
           btn.classList.add('is-active');
-          
+
           const targetId = btn.getAttribute('data-target');
           const currentCard = document.querySelector('.mv-card.is-active');
           const newCard = document.getElementById(`card-${targetId}`);
-          
+
           if (currentCard && newCard) {
             currentCard.classList.remove('is-active');
             newCard.classList.add('is-active');
@@ -427,32 +608,46 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
             const isVision = targetId === 'vision';
 
             const tl = gsap.timeline();
-            tl.to(currentCard, { autoAlpha: 0, duration: 0.4, zIndex: 1, ease: "power2.inOut" }, 0);
-            tl.set(newCard, { zIndex: 2 }, 0);
-            tl.to(newCard, { autoAlpha: 1, duration: 0.4, ease: "power2.inOut" }, 0);
-            tl.fromTo(textEl, 
-              { x: -50, opacity: 0 }, 
-              { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 
-              0.1
+            tl.to(
+              currentCard,
+              { autoAlpha: 0, duration: 0.4, zIndex: 1, ease: 'power2.inOut' },
+              0,
             );
-            tl.fromTo(imgEl, 
-              { x: isVision ? -50 : 50, opacity: 0 }, 
-              { x: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 
-              0.1
+            tl.set(newCard, { zIndex: 2 }, 0);
+            tl.to(
+              newCard,
+              { autoAlpha: 1, duration: 0.4, ease: 'power2.inOut' },
+              0,
+            );
+            tl.fromTo(
+              textEl,
+              { x: -50, opacity: 0 },
+              { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
+              0.1,
+            );
+            tl.fromTo(
+              imgEl,
+              { x: isVision ? -50 : 50, opacity: 0 },
+              { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
+              0.1,
             );
           }
         });
       });
     }
 
-        /**
+    /**
      * Componente Valores (Acordeón Horizontal)
      */
     const valoresSection = document.querySelector('.valores');
     if (valoresSection) {
       gsap.from('.trigger-reveal-valores', {
-        scrollTrigger: { trigger: valoresSection, start: "top 80%" },
-        y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: "power3.out"
+        scrollTrigger: { trigger: valoresSection, start: 'top 80%' },
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out',
       });
 
       const valorCards = document.querySelectorAll('.valor-card');
@@ -473,7 +668,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       valorCards.forEach((card) => {
         card.addEventListener('click', () => openCard(card));
         card.addEventListener('mouseenter', () => {
-           if (window.innerWidth >= 1024) openCard(card);
+          if (window.innerWidth >= 1024) openCard(card);
         });
       });
     }
@@ -484,8 +679,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
     const equipoSection = document.querySelector('.equipo');
     if (equipoSection) {
       gsap.from('.trigger-reveal-equipo', {
-        scrollTrigger: { trigger: equipoSection, start: "top 80%" },
-        y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: "power3.out"
+        scrollTrigger: { trigger: equipoSection, start: 'top 80%' },
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out',
       });
 
       const track = document.getElementById('team-track');
@@ -494,45 +693,52 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       const details = document.querySelectorAll('.equipo-detail');
       const btnPrev = document.getElementById('team-prev');
       const btnNext = document.getElementById('team-next');
-      
+
       let currentTeamIndex = 0;
       let isAnimatingTeam = false;
       const totalTeam = cards.length;
 
-      gsap.set(details, { autoAlpha: 0, x: 30 }); 
-      gsap.set(details[0], { autoAlpha: 1, x: 0 }); 
+      gsap.set(details, { autoAlpha: 0, x: 30 });
+      gsap.set(details[0], { autoAlpha: 1, x: 0 });
 
       function getLogicalPos(index: number, currentIndex: number) {
-          let pos = index - currentIndex;
-          if (pos < -1) pos += totalTeam;
-          if (pos > totalTeam - 2) pos -= totalTeam;
-          return pos;
+        let pos = index - currentIndex;
+        if (pos < -1) pos += totalTeam;
+        if (pos > totalTeam - 2) pos -= totalTeam;
+        return pos;
       }
 
       function initCards() {
-          if(!track) return;
-          const cardWidth = (cards[0] as HTMLElement).offsetWidth;
-          const gap = 20; 
-          const step = cardWidth + gap;
+        if (!track) return;
+        const cardWidth = (cards[0] as HTMLElement).offsetWidth;
+        const gap = 20;
+        const step = cardWidth + gap;
 
-          cards.forEach((card, i) => {
-              const pos = getLogicalPos(i, currentTeamIndex);
-              let opacity = 0;
-              let blur = 8;
-              let zIndex = 1;
-              
-              if (pos === 0) { opacity = 1; blur = 0; zIndex = 3; }
-              else if (pos === 1) { opacity = 0.6; blur = 5; zIndex = 2; }
-              
-              gsap.set(card, {
-                  x: pos * step,
-                  opacity: opacity,
-                  filter: `blur(${blur}px)`,
-                  zIndex: zIndex
-              });
+        cards.forEach((card, i) => {
+          const pos = getLogicalPos(i, currentTeamIndex);
+          let opacity = 0;
+          let blur = 8;
+          let zIndex = 1;
+
+          if (pos === 0) {
+            opacity = 1;
+            blur = 0;
+            zIndex = 3;
+          } else if (pos === 1) {
+            opacity = 0.6;
+            blur = 5;
+            zIndex = 2;
+          }
+
+          gsap.set(card, {
+            x: pos * step,
+            opacity: opacity,
+            filter: `blur(${blur}px)`,
+            zIndex: zIndex,
           });
+        });
       }
-      
+
       setTimeout(initCards, 50);
 
       function goToTeamMember(newIndex: number, direction: 'next' | 'prev') {
@@ -542,50 +748,73 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
         const currentDetail = details[currentTeamIndex];
         const nextDetail = details[newIndex];
 
-        const xOut = direction === 'next' ? -40 : 40; 
-        const xIn = direction === 'next' ? 40 : -40;  
+        const xOut = direction === 'next' ? -40 : 40;
+        const xIn = direction === 'next' ? 40 : -40;
 
-        const tl = gsap.timeline({ onComplete: () => { isAnimatingTeam = false; } });
+        const tl = gsap.timeline({
+          onComplete: () => {
+            isAnimatingTeam = false;
+          },
+        });
 
         dots[currentTeamIndex].classList.remove('is-active');
         dots[newIndex].classList.add('is-active');
         cards[currentTeamIndex].classList.remove('is-active');
         cards[newIndex].classList.add('is-active');
 
-        tl.to(currentDetail, { autoAlpha: 0, x: xOut, duration: 0.4, ease: "power2.in" }, 0)
+        tl.to(
+          currentDetail,
+          { autoAlpha: 0, x: xOut, duration: 0.4, ease: 'power2.in' },
+          0,
+        )
           .set(currentDetail, { zIndex: 1 })
           .set(nextDetail, { zIndex: 2, x: xIn, autoAlpha: 0 })
-          .to(nextDetail, { autoAlpha: 1, x: 0, duration: 0.4, ease: "power2.out" }, 0.4);
+          .to(
+            nextDetail,
+            { autoAlpha: 1, x: 0, duration: 0.4, ease: 'power2.out' },
+            0.4,
+          );
 
         const cardWidth = (cards[0] as HTMLElement).offsetWidth;
-        const gap = 24; 
+        const gap = 24;
         const step = cardWidth + gap;
 
         cards.forEach((card, i) => {
-            const oldPos = getLogicalPos(i, currentTeamIndex);
-            const newPos = getLogicalPos(i, newIndex);
+          const oldPos = getLogicalPos(i, currentTeamIndex);
+          const newPos = getLogicalPos(i, newIndex);
 
-            let opacity = 0;
-            let blur = 5;
-            let zIndex = 1;
-            
-            if (newPos === 0) { opacity = 1; blur = 0; zIndex = 3; }
-            else if (newPos === 1) { opacity = 0.4; blur = 5; zIndex = 2; }
-            
-            if (oldPos > 1 && newPos < 0) {
-                gsap.set(card, { x: newPos * step });
-            } else if (oldPos < 0 && newPos > 1) {
-                gsap.set(card, { x: newPos * step });
-            }
+          let opacity = 0;
+          let blur = 5;
+          let zIndex = 1;
 
-            tl.to(card, {
-                x: newPos * step,
-                opacity: opacity,
-                filter: `blur(${blur}px)`,
-                zIndex: zIndex,
-                duration: 0.7,
-                ease: "power3.inOut"
-            }, 0.1);
+          if (newPos === 0) {
+            opacity = 1;
+            blur = 0;
+            zIndex = 3;
+          } else if (newPos === 1) {
+            opacity = 0.4;
+            blur = 5;
+            zIndex = 2;
+          }
+
+          if (oldPos > 1 && newPos < 0) {
+            gsap.set(card, { x: newPos * step });
+          } else if (oldPos < 0 && newPos > 1) {
+            gsap.set(card, { x: newPos * step });
+          }
+
+          tl.to(
+            card,
+            {
+              x: newPos * step,
+              opacity: opacity,
+              filter: `blur(${blur}px)`,
+              zIndex: zIndex,
+              duration: 0.7,
+              ease: 'power3.inOut',
+            },
+            0.1,
+          );
         });
 
         currentTeamIndex = newIndex;
@@ -594,7 +823,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       if (btnNext) {
         btnNext.addEventListener('click', () => {
           let nextIdx = currentTeamIndex + 1;
-          if (nextIdx >= totalTeam) nextIdx = 0; 
+          if (nextIdx >= totalTeam) nextIdx = 0;
           goToTeamMember(nextIdx, 'next');
         });
       }
@@ -602,7 +831,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
       if (btnPrev) {
         btnPrev.addEventListener('click', () => {
           let prevIdx = currentTeamIndex - 1;
-          if (prevIdx < 0) prevIdx = totalTeam - 1; 
+          if (prevIdx < 0) prevIdx = totalTeam - 1;
           goToTeamMember(prevIdx, 'prev');
         });
       }
@@ -623,47 +852,69 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
     const etapasSection = document.querySelector('.etapas');
     if (etapasSection) {
       gsap.from('.trigger-reveal-etapas', {
-        scrollTrigger: { trigger: etapasSection, start: "top 80%" },
-        y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: "power3.out"
+        scrollTrigger: { trigger: etapasSection, start: 'top 80%' },
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out',
       });
 
       const icons = gsap.utils.toArray('.icon-circle');
       if (icons.length > 0) {
-        const glowTl = gsap.timeline({ repeat: -1, delay: 1 }); 
-        
+        const glowTl = gsap.timeline({ repeat: -1, delay: 1 });
+
         icons.forEach((icon, i) => {
-          glowTl.to(icon as Element, {
-            backgroundColor: "#86c46a",
-            boxShadow: "0 0 45px rgba(134, 196, 106, 0.9)",
-            scale: 1.05, 
-            duration: 1, 
-            ease: "power2.out"
-          }, i * 1.5)
-          .to(icon as Element, {
-            backgroundColor: "#569c33",
-            boxShadow: "0 0 15px rgba(86, 156, 51, 0.2)",
-            scale: 1, 
-            duration: 1, 
-            ease: "power2.inOut"
-          }, (i * 1.5) + 1);
+          glowTl
+            .to(
+              icon as Element,
+              {
+                backgroundColor: '#86c46a',
+                boxShadow: '0 0 45px rgba(134, 196, 106, 0.9)',
+                scale: 1.05,
+                duration: 1,
+                ease: 'power2.out',
+              },
+              i * 1.5,
+            )
+            .to(
+              icon as Element,
+              {
+                backgroundColor: '#569c33',
+                boxShadow: '0 0 15px rgba(86, 156, 51, 0.2)',
+                scale: 1,
+                duration: 1,
+                ease: 'power2.inOut',
+              },
+              i * 1.5 + 1,
+            );
         });
 
         const totalSeqTime = icons.length * 1.5;
 
-        glowTl.to(icons as Element[], {
-          backgroundColor: "#86c46a",
-          boxShadow: "0 0 50px rgba(134, 196, 106, 0.9)",
-          scale: 1.05,
-          duration: 1.5,
-          ease: "power2.out"
-        }, totalSeqTime + 0.5) 
-        .to(icons as Element[], {
-          backgroundColor: "#569c33",
-          boxShadow: "0 0 15px rgba(86, 156, 51, 0.2)",
-          scale: 1,
-          duration: 1.5,
-          ease: "power2.inOut"
-        }, totalSeqTime + 2); 
+        glowTl
+          .to(
+            icons as Element[],
+            {
+              backgroundColor: '#86c46a',
+              boxShadow: '0 0 50px rgba(134, 196, 106, 0.9)',
+              scale: 1.05,
+              duration: 1.5,
+              ease: 'power2.out',
+            },
+            totalSeqTime + 0.5,
+          )
+          .to(
+            icons as Element[],
+            {
+              backgroundColor: '#569c33',
+              boxShadow: '0 0 15px rgba(86, 156, 51, 0.2)',
+              scale: 1,
+              duration: 1.5,
+              ease: 'power2.inOut',
+            },
+            totalSeqTime + 2,
+          );
       }
     }
 
@@ -673,10 +924,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
     const ctaSection = document.querySelector('.cta-section');
     if (ctaSection) {
       gsap.from('.trigger-reveal-cta', {
-        scrollTrigger: { trigger: ctaSection, start: "top 85%" },
-        y: 30, scale: 0.95, autoAlpha: 0, duration: 0.8, ease: "power3.out"
+        scrollTrigger: { trigger: ctaSection, start: 'top 85%' },
+        y: 30,
+        scale: 0.95,
+        autoAlpha: 0,
+        duration: 0.8,
+        ease: 'power3.out',
       });
     }
-
   });
 </script>

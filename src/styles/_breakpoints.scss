@@ -5,19 +5,19 @@ $bp-maxDesktop: 1440px;
 
 // Mixins para Media Queries
 @mixin tablet {
-	@media (min-width: #{$bp-tablet}) {
-		@content;
-	}
+  @media (min-width: #{$bp-tablet}) {
+    @content;
+  }
 }
 
 @mixin desktop {
-	@media (min-width: #{$bp-desktop}) {
-		@content;
-	}
+  @media (min-width: #{$bp-desktop}) {
+    @content;
+  }
 }
 
 @mixin maxDesktop {
-	@media (min-width: #{$bp-maxDesktop}) {
-		@content;
-	}
+  @media (min-width: #{$bp-maxDesktop}) {
+    @content;
+  }
 }

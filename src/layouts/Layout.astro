@@ -1,7 +1,7 @@
 ---
 /**
  * Componente: Layout Principal
- * Descripción: Define la estructura base del documento HTML, metadatos SEO, 
+ * Descripción: Define la estructura base del documento HTML, metadatos SEO,
  * precarga de fuentes web y la disposición de componentes globales (Header, Footer).
  */
 import Footer from '../components/Footer.astro';
@@ -15,80 +15,152 @@ export interface Props {
   keywords?: string;
 }
 
-const { 
-  title, 
-  description = "Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.",
-  image = "/Logo_Agrovalue.png",
-  keywords = "agroexportación, agricultura, comercialización agrícola, inversión agrícola, trazabilidad, fruta fresca, logística internacional, Agrovalue"
+const {
+  title,
+  description = 'Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.',
+  image = '/Logo_Agrovalue.png',
+  keywords = 'agroexportación, agricultura, comercialización agrícola, inversión agrícola, trazabilidad, fruta fresca, logística internacional, Agrovalue',
 } = Astro.props;
 
 // Construimos la URL canónica absoluta (Asegúrate de configurar 'site' en astro.config.mjs, o usa el fallback)
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://agrovalue.es');
+const canonicalURL = new URL(
+  Astro.url.pathname,
+  Astro.site || 'https://agrovalue.es',
+);
 const imageUrl = new URL(image, canonicalURL);
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang='es'>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/Logo_Agrovalue.svg" />
-    <meta name="generator" content={Astro.generator} />
-    
+    <meta charset='UTF-8' />
+    <meta
+      name='viewport'
+      content='width=device-width, initial-scale=1.0'
+    />
+    <link
+      rel='icon'
+      type='image/svg+xml'
+      href='/Logo_Agrovalue.svg'
+    />
+    <meta
+      name='generator'
+      content={Astro.generator}
+    />
+
     <!-- SEO Básico -->
     <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="author" content="Cristian Braco" />
-    <meta name="keywords" content={keywords} />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href={canonicalURL} />
+    <meta
+      name='description'
+      content={description}
+    />
+    <meta
+      name='author'
+      content='Cristian Braco'
+    />
+    <meta
+      name='keywords'
+      content={keywords}
+    />
+    <meta
+      name='robots'
+      content='index, follow'
+    />
+    <link
+      rel='canonical'
+      href={canonicalURL}
+    />
 
     <!-- Open Graph / Facebook / LinkedIn -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalURL} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:image" content={imageUrl} />
-    <meta property="og:site_name" content="Agrovalue" />
-    <meta property="og:locale" content="es_ES" />
+    <meta
+      property='og:type'
+      content='website'
+    />
+    <meta
+      property='og:url'
+      content={canonicalURL}
+    />
+    <meta
+      property='og:title'
+      content={title}
+    />
+    <meta
+      property='og:description'
+      content={description}
+    />
+    <meta
+      property='og:image'
+      content={imageUrl}
+    />
+    <meta
+      property='og:site_name'
+      content='Agrovalue'
+    />
+    <meta
+      property='og:locale'
+      content='es_ES'
+    />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={imageUrl} />
+    <meta
+      property='twitter:card'
+      content='summary_large_image'
+    />
+    <meta
+      property='twitter:url'
+      content={canonicalURL}
+    />
+    <meta
+      property='twitter:title'
+      content={title}
+    />
+    <meta
+      property='twitter:description'
+      content={description}
+    />
+    <meta
+      property='twitter:image'
+      content={imageUrl}
+    />
 
     <!-- Fuentes Google -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link
+      rel='preconnect'
+      href='https://fonts.googleapis.com'
+    />
+    <link
+      rel='preconnect'
+      href='https://fonts.gstatic.com'
+      crossorigin
+    />
+    <link
+      href='https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap'
+      rel='stylesheet'
+    />
 
-      <script type="application/ld+json">
-          {
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            "name": "Agrovalue",
-            "url": "https://www.agrovalue.es",
-            "logo": "https://www.agrovalue.es/Logo_Agrovalue.png",
-            "description": "Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.",
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "email": "tecnologia@mood.pe", //Cambiar esto por el correo a usar
-              "contactType": "customer support",
-              "availableLanguage": "es"
-            },
-            "sameAs": [
-              "https://www.linkedin.com/",
-            ]
-          }
-        </script>
+    <script type='application/ld+json'>
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Agrovalue",
+        "url": "https://www.agrovalue.es",
+        "logo": "https://www.agrovalue.es/Logo_Agrovalue.png",
+        "description": "Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "tecnologia@mood.pe", //Cambiar esto por el correo a usar
+          "contactType": "customer support",
+          "availableLanguage": "es"
+        },
+        "sameAs": ["https://www.linkedin.com/"]
+      }
+    </script>
   </head>
   <body>
-    <div class="app-container">
+    <div class='app-container'>
       <Header />
-      
-      <main class="main-content">
+
+      <main class='main-content'>
         <slot />
       </main>
 
