@@ -36,15 +36,15 @@ const titleText = 'Cada actor de la cadena tiene un reto distinto. Nosotros tene
       <div class='hero-servicios__actions text-reveal'>
         <a href='#productor-exportador' class='btn-profile'>
           <span>Productor / Exportador</span>
-          <ArrowRight size={20} stroke-width={2} />
+          <ArrowRight size={20}/>
         </a>
         <a href='#importador-distribuidor' class='btn-profile'>
           <span>Importador / Distribuidor</span>
-          <ArrowRight size={20} stroke-width={2} />
+          <ArrowRight size={20} />
         </a>
         <a href='#proyectos-especiales' class='btn-profile'>
           <span>Proyectos especiales</span>
-          <ArrowRight size={20} stroke-width={2} />
+          <ArrowRight size={20}  />
         </a>
       </div>
     </div>
@@ -61,7 +61,7 @@ const titleText = 'Cada actor de la cadena tiene un reto distinto. Nosotros tene
         <div class="pd-intro">
           <span class="pd-intro__number">01</span>
           <span class="pd-intro__subtitle">PRODUCTOR / EXPORTADOR</span>
-          <h2 class="pd-intro__title">Tu fruta puede llegar más lejos de lo que crees.</h2>
+          <h2 class="pd-intro__title">Tu fruta puede llegar a los clientes más competitivos, con la calidad que exigen.</h2>
           <p class="pd-intro__text">Te conectamos con mercados, financiamiento y tecnología para que cada campaña capture su verdadero valor.</p>
         </div>
 
@@ -96,43 +96,43 @@ const titleText = 'Cada actor de la cadena tiene un reto distinto. Nosotros tene
             <li class="pd-list__item">
               <span class="pd-list__num">01</span>
               <div class="pd-list__content">
-                <h4>Compradores que sí van a pagar lo que vale tu fruta.</h4>
-                <p>Te conectamos con compradores confiables en los principales mercados internacionales, desarrollando programas comerciales sostenibles y relaciones de largo plazo.</p>
+                <h4>Compradores que buscan maximizar el valor de tu fruta.</h4>
+                <p>Te conectamos con compradores confiables en los principales mercados internacionales, desarrollando programas comerciales sostenibles y relaciones de largo plazo, en lugar de ventas puntuales.</p>
               </div>
             </li>
             <li class="pd-list__item">
               <span class="pd-list__num">02</span>
               <div class="pd-list__content">
                 <h4>El capital que necesitas, cuando lo necesitas.</h4>
-                <p>Facilitamos soluciones de financiamiento que fortalecen tu capital de trabajo y te permiten desarrollar tus programas de exportación con mayor solidez.</p>
+                <p>Facilitamos soluciones de financiamiento que fortalecen tu capital de trabajo y te permiten desarrollar tus programas de exportación con mayor solidez y flexibilidad.</p>
               </div>
             </li>
             <li class="pd-list__item">
               <span class="pd-list__num">03</span>
               <div class="pd-list__content">
-                <h4>Tu fruta, respaldada desde el campo hasta el destino.</h4>
-                <p>Gestión de calidad de principio a fin: verificamos las especificaciones del cliente, la normativa vigente y los estándares internacionales de inocuidad.</p>
+                <h4>Tu campaña, preparada desde el primer día.</h4>
+                <p>Iniciamos la preparación meses antes del arranque de campaña, verificando que el campo y la empresa cumplan con la documentación y certificaciones requeridas por cada mercado. Ejecutamos preauditorías que confirman el cumplimiento normativo y la condición de la fruta previa a la cosecha.</p>
               </div>
             </li>
             <li class="pd-list__item">
               <span class="pd-list__num">04</span>
               <div class="pd-list__content">
                 <h4>Control de calidad que anticipa.</h4>
-                <p>Inspecciones independientes en línea de producción y en destino, monitoreando las certificaciones que exige cada mercado.</p>
+                <p>Realizamos inspecciones independientes de calidad en línea de producción y en destino, monitoreando las certificaciones de inocuidad y sostenibilidad que exige cada mercado.</p>
               </div>
             </li>
             <li class="pd-list__item">
               <span class="pd-list__num">05</span>
               <div class="pd-list__content">
                 <h4>Un aliado que también piensa en tu próxima campaña.</h4>
-                <p>Te asesoramos en tecnologías y procesos que mejoran tu productividad, calidad y competitividad campaña tras campaña.</p>
+                <p>Te asesoramos en la implementación de tecnologías y procesos que mejoran tu productividad, calidad y competitividad: no solo te ayudamos a exportar tu fruta, ayudamos a que la próxima campaña sea mejor.</p>
               </div>
             </li>
             <li class="pd-list__item">
               <span class="pd-list__num">06</span>
               <div class="pd-list__content">
                 <h4>Tecnología detrás de cada buena decisión.</h4>
-                <p>Centralizamos cada programa de exportación en un solo lugar, con trazabilidad y visibilidad en tiempo real desde el campo hasta el destino.</p>
+                <p>Con tecnología propia integramos la información comercial, operativa y de calidad de toda la cadena. Centralizamos cada programa de exportación en un solo lugar, brindando trazabilidad y visibilidad en tiempo real desde la cosecha hasta la liquidación final.</p>
               </div>
             </li>
           </ul>
@@ -146,7 +146,7 @@ const titleText = 'Cada actor de la cadena tiene un reto distinto. Nosotros tene
               <div class="pd-process-list__circle">1</div>
               <div class="pd-process-list__content">
                 <h4>Conocemos tu campo.</h4>
-                <p>Evaluamos tu producción, variedad, volumen y capacidad exportable.</p>
+                <p>Evaluamos tu producción, variedad, volumen y capacidad exportable, junto con las certificaciones internacionales y la documentación requerida por cada mercado.</p>
               </div>
             </li>
             <li class="pd-process-list__item">
@@ -175,8 +175,10 @@ const titleText = 'Cada actor de la cadena tiene un reto distinto. Nosotros tene
 
         <!-- 6. CTA -->
         <div class="pd-cta">
-          <h3 class="pd-cta__title">Lleva tu próxima campaña más lejos.</h3>
-          <p class="pd-cta__text">Cuéntanos qué produces, cuánto y cuándo, y te mostramos las oportunidades comerciales y de financiamiento disponibles para ti.</p>
+          <div class="pd-cta-container">
+            <h3 class="pd-cta-container__title">Lleva tu próxima campaña más lejos.</h3>
+            <p class="pd-cta-container__text">Cuéntanos qué produces, cuánto y cuándo, y te mostramos las oportunidades comerciales y de financiamiento disponibles para ti.</p>
+          </div>
           <a href="/contacto" class="pd-cta__btn">Contáctanos <ArrowRight size={18} stroke-width={2.5}/></a>
         </div>
 
