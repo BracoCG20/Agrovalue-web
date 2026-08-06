@@ -1,529 +1,219 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import { Check, ArrowRight } from '@lucide/astro';
+import { ArrowRight } from '@lucide/astro';
 
+// Imágenes del Hero
 import bannerDesktop from '../assets/banner_Service_Desktop.jpg';
 import bannerTablet from '../assets/banner_Service_Desktop.jpg';
 import bannerMobile from '../assets/banner_Service_Mobile.jpg';
-import serviceImg1 from '../assets/banner_Service2_Mobile.jpg';
 
-const titleText = 'Soluciones especializadas para cada actor de la cadena.';
+// Imágenes de la nueva sección (Asegúrate de tenerlas en la carpeta assets)
+import imgServicios1 from '../assets/banner_Agrovalue_servicios.jpg';
+import logoBlanco from '../assets/Logo_Agrovalue_blanco.svg';
 
-const perfilesData = [
-  {
-    id: '01',
-    title: 'Productores y exportadores',
-    subtitle: 'Comercialización y acceso a mercados',
-    image: serviceImg1,
-    description:
-      'Fortalecemos la competitividad de productores y exportadores conectándolos con oportunidades comerciales, financiamiento, información y mercados internacionales.',
-    includes: [
-      'Comercialización de fruta fresca',
-      'Acceso a mercados internacionales',
-      'Acceso a alternativas de financiamiento',
-      'Gestión y aseguramiento de la calidad',
-      'Inteligencia comercial y de mercado',
-      'Trazabilidad con tecnología propia',
-    ],
-    btnText: 'Quiero exportar',
-  },
-  {
-    id: '02',
-    title: 'Importadores y distribuidores',
-    subtitle: 'Abastecimiento confiable y trazable',
-    image: serviceImg1,
-    description:
-      'Garantizamos un suministro constante de productos agrícolas de alta calidad, cumpliendo con los estándares internacionales más exigentes para tu mercado.',
-    includes: [
-      'Abastecimiento continuo y seguro',
-      'Control de calidad en origen',
-      'Logística internacional integral',
-      'Trazabilidad en tiempo real',
-    ],
-    btnText: 'Quiero importar',
-  },
-  {
-    id: '03',
-    title: 'Proyectos especiales',
-    subtitle: 'Inversión y estructuración de proyectos',
-    image: serviceImg1,
-    description:
-      'Estructuramos y gestionamos proyectos de inversión agrícola con alto potencial de retorno y un impacto positivo en el desarrollo integral del agro.',
-    includes: [
-      'Estructuración y análisis financiero',
-      'Desarrollo de proyectos llave en mano',
-      'Asesoría estratégica de inversión',
-      'Gestión integral de riesgos',
-    ],
-    btnText: 'Quiero invertir',
-  },
-];
+const titleText = 'Cada actor de la cadena tiene un reto distinto. Nosotros tenemos una respuesta para cada uno.';
 ---
 
 <Layout title='Agrovalue - Servicios'>
   <!-- HERO -->
   <section class='hero-servicios'>
     <div class='hero-servicios__background'>
-      <Image
-        src={bannerMobile}
-        alt='Fondo Servicios Mobile'
-        class='hero-servicios__image hero-servicios__image--mobile'
-        loading='eager'
-      />
-      <Image
-        src={bannerTablet}
-        alt='Fondo Servicios Tablet'
-        class='hero-servicios__image hero-servicios__image--tablet'
-        loading='eager'
-      />
-      <Image
-        src={bannerDesktop}
-        alt='Fondo Servicios Desktop'
-        class='hero-servicios__image hero-servicios__image--desktop'
-        loading='eager'
-      />
+      <Image src={bannerMobile} alt='Fondo Servicios Mobile' class='hero-servicios__image hero-servicios__image--mobile' loading='eager' />
+      <Image src={bannerTablet} alt='Fondo Servicios Tablet' class='hero-servicios__image hero-servicios__image--tablet' loading='eager' />
+      <Image src={bannerDesktop} alt='Fondo Servicios Desktop' class='hero-servicios__image hero-servicios__image--desktop' loading='eager' />
       <div class='hero-servicios__overlay'></div>
     </div>
 
     <div class='hero-servicios__content'>
       <span class='hero-servicios__subtitle text-reveal'>SERVICIOS</span>
       <h1 class='hero-servicios__title'>
-        {
-          titleText.split(' ').map((word) => (
-            <span class='word-wrap'>
-              <span class='word'>{word}</span>&nbsp;
-            </span>
-          ))
-        }
+        {titleText.split(' ').map((word) => (
+          <span class='word-wrap'><span class='word'>{word}</span>&nbsp;</span>
+        ))}
       </h1>
-      <p class='hero-servicios__description text-reveal'>
-        Selecciona el perfil que mejor te describe y descubre cómo trabajamos
-        contigo.
-      </p>
+
+      <div class='hero-servicios__actions text-reveal'>
+        <a href='#productor-exportador' class='btn-profile'>
+          <span>Productor / Exportador</span>
+          <ArrowRight size={20} stroke-width={2} />
+        </a>
+        <a href='#importador-distribuidor' class='btn-profile'>
+          <span>Importador / Distribuidor</span>
+          <ArrowRight size={20} stroke-width={2} />
+        </a>
+        <a href='#proyectos-especiales' class='btn-profile'>
+          <span>Proyectos especiales</span>
+          <ArrowRight size={20} stroke-width={2} />
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- PERFILES -->
-  <section
-    id='perfiles'
-    class='perfiles'
-  >
-    <div class='perfiles__container'>
-      <!-- VISTA MÓVIL (SLIDER INFINITO) -->
-      <div class='perfiles__mobile-view trigger-reveal-perfiles'>
-        <div class='perfiles__header-nav'>
-          <span class='perfiles__subtitle'>ELIGE TU PERFIL</span>
-          <div
-            class='perfiles__pagination'
-            id='perfiles-pagination'
-          >
-            {
-              perfilesData.map((_, i) => (
-                <span
-                  class={`perfiles-dot ${i === 0 ? 'is-active' : ''}`}
-                  data-index={i}
-                />
-              ))
-            }
-          </div>
+  <!-- DETALLE PERFILES -->
+  <div class="perfiles-wrapper">
+    
+    <!-- SECCIÓN 01: PRODUCTOR / EXPORTADOR -->
+    <section class="perfil-detail" id="productor-exportador">
+      <div class="perfil-detail__container">
+        
+        <!-- 1. Intro -->
+        <div class="pd-intro">
+          <span class="pd-intro__number">01</span>
+          <span class="pd-intro__subtitle">PRODUCTOR / EXPORTADOR</span>
+          <h2 class="pd-intro__title">Tu fruta puede llegar más lejos de lo que crees.</h2>
+          <p class="pd-intro__text">Te conectamos con mercados, financiamiento y tecnología para que cada campaña capture su verdadero valor.</p>
         </div>
 
-        <div class='perfiles__slider-wrapper'>
-          <div
-            class='perfiles__track'
-            id='perfiles-track'
-          >
-            {
-              perfilesData.map((perfil) => (
-                <div class='perfil-slide'>
-                  <div class='perfil-slide__header'>
-                    <span class='perfil-slide__header-num'>{perfil.id}</span>
-                    <div class='perfil-slide__header-text'>
-                      <h3>{perfil.title}</h3>
-                      <p>{perfil.subtitle}</p>
-                    </div>
-                  </div>
-
-                  <div class='perfil-card'>
-                    <div class='perfil-card__image-box'>
-                      <Image
-                        src={perfil.image}
-                        alt={perfil.title}
-                        class='perfil-card__img'
-                      />
-                      <div class='perfil-card__overlay'>
-                        <span class='perfil-card__img-sub'>
-                          {perfil.id} - {perfil.subtitle}
-                        </span>
-                        <h3 class='perfil-card__img-title'>{perfil.title}</h3>
-                      </div>
-                    </div>
-
-                    <div class='perfil-card__body'>
-                      <p class='perfil-card__desc'>{perfil.description}</p>
-                      <h4 class='perfil-card__list-title'>QUÉ INCLUYE</h4>
-                      <ul class='perfil-card__list'>
-                        {perfil.includes.map((item) => (
-                          <li>
-                            <div class='icon-check'>
-                              <Check
-                                size={14}
-                                stroke-width={3.5}
-                              />
-                            </div>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <a
-                        href='/contacto'
-                        class='perfil-card__btn'
-                      >
-                        {perfil.btnText}{' '}
-                        <ArrowRight
-                          size={18}
-                          stroke-width={2.5}
-                        />
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              ))
-            }
+        <!-- 2. Problema / Solución -->
+        <div class="pd-comparison">
+          <div class="pd-comparison__box pd-comparison__box--dark">
+            <span class="pd-comparison__subtitle">— EL PROBLEMA</span>
+            <h3 class="pd-comparison__title">Tu fruta no debería perder valor después de salir del campo.</h3>
+            <p class="pd-comparison__text">Sin el comprador correcto, el financiamiento a tiempo o visibilidad del camino, ese valor se queda en manos de intermediarios o en oportunidades que nunca llegaron a ti.</p>
           </div>
-        </div>
-      </div>
 
-      <!-- VISTA TABLET Y DESKTOP (TABS) -->
-      <div class='perfiles__desktop-view trigger-reveal-perfiles'>
-        <div class='perfiles__tabs-sidebar'>
-          <span class='perfiles__subtitle'>ELIGE TU PERFIL</span>
-          <div class='perfiles__tabs-list'>
-            {
-              perfilesData.map((perfil, index) => (
-                <button
-                  class={`perfil-tab-btn ${index === 0 ? 'is-active' : ''}`}
-                  data-target={perfil.id}
-                >
-                  <span class='perfil-tab-btn__num'>{perfil.id}</span>
-                  <div class='perfil-tab-btn__text'>
-                    <h3>{perfil.title}</h3>
-                    <p>{perfil.subtitle}</p>
-                  </div>
-                </button>
-              ))
-            }
+          <div class="pd-comparison__box pd-comparison__box--light">
+            <span class="pd-comparison__subtitle">— POR QUÉ AGROVALUE</span>
+            <h3 class="pd-comparison__title">No necesitas manejar todo por tu cuenta. Necesitas un socio que lo resuelva todo.</h3>
+            <p class="pd-comparison__text">Integramos mercado, financiamiento y tecnología en un solo socio, para que captures más valor en cada programa de exportación, cumpliendo con la calidad, el volumen y la oportunidad que exigen los principales compradores.</p>
           </div>
+           <!-- Círculo que sobrepone ambas cajas -->
+          <div class="pd-comparison__icon">
+            <Image src={logoBlanco} alt="Logo Agrovalue" width={24} height={24} />
+            </div>
         </div>
 
-        <div class='perfiles__desktop-content'>
-          {
-            perfilesData.map((perfil, index) => (
-              <div
-                class={`perfil-card perfil-card--desktop ${index === 0 ? 'is-active' : ''}`}
-                id={`card-${perfil.id}`}
-              >
-                <div class='perfil-card__image-box'>
-                  <Image
-                    src={perfil.image}
-                    alt={perfil.title}
-                    class='perfil-card__img'
-                  />
-                  <div class='perfil-card__overlay'>
-                    <span class='perfil-card__img-sub'>
-                      {perfil.id} · {perfil.subtitle}
-                    </span>
-                    <h3 class='perfil-card__img-title'>{perfil.title}</h3>
-                  </div>
-                </div>
+        <!-- 3. Imagen -->
+        <div class="pd-image">
+          <Image src={imgServicios1} alt="Productora mostrando racimo de uvas verdes" class="pd-image__img" />
+        </div>
 
-                <div class='perfil-card__body'>
-                  <p class='perfil-card__desc'>{perfil.description}</p>
-                  <h4 class='perfil-card__list-title'>QUÉ INCLUYE</h4>
-                  <ul class='perfil-card__list perfil-card__list--grid'>
-                    {perfil.includes.map((item) => (
-                      <li>
-                        <div class='icon-check'>
-                          <Check
-                            size={14}
-                            stroke-width={3.5}
-                          />
-                        </div>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href='/contacto'
-                    class='perfil-card__btn'
-                  >
-                    {perfil.btnText}{' '}
-                    <ArrowRight
-                      size={18}
-                      stroke-width={2.5}
-                    />
-                  </a>
-                </div>
+        <!-- 4. Qué hacemos por ti -->
+        <div class="pd-services">
+          <span class="pd-section-subtitle">QUÉ HACEMOS POR TI</span>
+          <ul class="pd-list">
+            <li class="pd-list__item">
+              <span class="pd-list__num">01</span>
+              <div class="pd-list__content">
+                <h4>Compradores que sí van a pagar lo que vale tu fruta.</h4>
+                <p>Te conectamos con compradores confiables en los principales mercados internacionales, desarrollando programas comerciales sostenibles y relaciones de largo plazo.</p>
               </div>
-            ))
-          }
+            </li>
+            <li class="pd-list__item">
+              <span class="pd-list__num">02</span>
+              <div class="pd-list__content">
+                <h4>El capital que necesitas, cuando lo necesitas.</h4>
+                <p>Facilitamos soluciones de financiamiento que fortalecen tu capital de trabajo y te permiten desarrollar tus programas de exportación con mayor solidez.</p>
+              </div>
+            </li>
+            <li class="pd-list__item">
+              <span class="pd-list__num">03</span>
+              <div class="pd-list__content">
+                <h4>Tu fruta, respaldada desde el campo hasta el destino.</h4>
+                <p>Gestión de calidad de principio a fin: verificamos las especificaciones del cliente, la normativa vigente y los estándares internacionales de inocuidad.</p>
+              </div>
+            </li>
+            <li class="pd-list__item">
+              <span class="pd-list__num">04</span>
+              <div class="pd-list__content">
+                <h4>Control de calidad que anticipa.</h4>
+                <p>Inspecciones independientes en línea de producción y en destino, monitoreando las certificaciones que exige cada mercado.</p>
+              </div>
+            </li>
+            <li class="pd-list__item">
+              <span class="pd-list__num">05</span>
+              <div class="pd-list__content">
+                <h4>Un aliado que también piensa en tu próxima campaña.</h4>
+                <p>Te asesoramos en tecnologías y procesos que mejoran tu productividad, calidad y competitividad campaña tras campaña.</p>
+              </div>
+            </li>
+            <li class="pd-list__item">
+              <span class="pd-list__num">06</span>
+              <div class="pd-list__content">
+                <h4>Tecnología detrás de cada buena decisión.</h4>
+                <p>Centralizamos cada programa de exportación en un solo lugar, con trazabilidad y visibilidad en tiempo real desde el campo hasta el destino.</p>
+              </div>
+            </li>
+          </ul>
         </div>
+
+        <!-- 5. Cómo trabajamos -->
+        <div class="pd-process">
+          <span class="pd-section-subtitle">CÓMO TRABAJAMOS</span>
+          <ul class="pd-process-list">
+            <li class="pd-process-list__item">
+              <div class="pd-process-list__circle">1</div>
+              <div class="pd-process-list__content">
+                <h4>Conocemos tu campo.</h4>
+                <p>Evaluamos tu producción, variedad, volumen y capacidad exportable.</p>
+              </div>
+            </li>
+            <li class="pd-process-list__item">
+              <div class="pd-process-list__circle">2</div>
+              <div class="pd-process-list__content">
+                <h4>Te conectamos con el mercado correcto.</h4>
+                <p>Activamos nuestra red de compradores según tu producto y ventana comercial.</p>
+              </div>
+            </li>
+            <li class="pd-process-list__item">
+              <div class="pd-process-list__circle">3</div>
+              <div class="pd-process-list__content">
+                <h4>Acompañamos cada embarque.</h4>
+                <p>Control de calidad, documentación y seguimiento en tiempo real con tecnología propia.</p>
+              </div>
+            </li>
+            <li class="pd-process-list__item">
+              <div class="pd-process-list__circle">4</div>
+              <div class="pd-process-list__content">
+                <h4>Cerramos el ciclo contigo.</h4>
+                <p>Liquidación transparente y aprendizajes para la siguiente campaña.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 6. CTA -->
+        <div class="pd-cta">
+          <h3 class="pd-cta__title">Lleva tu próxima campaña más lejos.</h3>
+          <p class="pd-cta__text">Cuéntanos qué produces, cuánto y cuándo, y te mostramos las oportunidades comerciales y de financiamiento disponibles para ti.</p>
+          <a href="/contacto" class="pd-cta__btn">Contáctanos <ArrowRight size={18} stroke-width={2.5}/></a>
+        </div>
+
       </div>
-    </div>
-  </section>
+    </section>
+
+    <!-- (Aquí en el futuro puedes duplicar el bloque de arriba para la sección 02 y 03) -->
+
+  </div>
 </Layout>
 
 <script>
   import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-  gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener('DOMContentLoaded', () => {
-    /**
-     * 1. Animación del Hero
-     */
+    // Scroll Suave para los botones del Hero
+    document.querySelectorAll('.btn-profile').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if(href && href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
     const tlHero = gsap.timeline();
     gsap.set('.hero-servicios__subtitle', { autoAlpha: 0, y: 20 });
     gsap.set('.hero-servicios .word', { y: '100%' });
-    gsap.set('.hero-servicios__description', { autoAlpha: 0, y: 20 });
+    gsap.set('.hero-servicios__actions', { autoAlpha: 0, y: 20 });
 
     tlHero
-      .to('.hero-servicios__subtitle', {
-        autoAlpha: 1,
-        y: 0,
-        duration: 0.6,
-        ease: 'power3.out',
-        delay: 0.3,
-      })
-      .to(
-        '.hero-servicios .word',
-        { y: '0%', duration: 0.6, stagger: 0.05, ease: 'power3.out' },
-        '-=0.4',
-      )
-      .to(
-        '.hero-servicios__description',
-        { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' },
-        '-=0.4',
-      );
-
-    /**
-     * 2. Funcionalidad de Perfiles
-     */
-    const perfilesSection = document.querySelector('.perfiles') as HTMLElement;
-    const track = document.getElementById(
-      'perfiles-track',
-    ) as HTMLElement | null;
-    const dots = document.querySelectorAll('.perfiles-dot');
-    const tabBtns = document.querySelectorAll('.perfil-tab-btn');
-
-    if (perfilesSection) {
-      gsap.from('.trigger-reveal-perfiles', {
-        scrollTrigger: { trigger: perfilesSection, start: 'top 80%' },
-        y: 40,
-        autoAlpha: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out',
-      });
-
-      // A. Lógica Móvil (Slider de Desplazamiento Infinito)
-      let slideCount = 0;
-
-      function getSlideStep(): number {
-        if (!track) return 0;
-        const slide = track.querySelector(
-          '.perfil-slide',
-        ) as HTMLElement | null;
-        if (!slide) return 0;
-        const gap = parseInt(window.getComputedStyle(track).gap) || 24;
-        return slide.offsetWidth + gap;
-      }
-
-      if (track && dots.length > 0) {
-        const originalSlides = Array.from(
-          track.querySelectorAll('.perfil-slide'),
-        );
-        slideCount = originalSlides.length;
-
-        originalSlides.forEach((slide) => {
-          const clone = slide.cloneNode(true) as HTMLElement;
-          clone.classList.add('is-clone');
-          track.appendChild(clone);
-        });
-
-        const prependFragment = document.createDocumentFragment();
-        originalSlides.forEach((slide) => {
-          const clone = slide.cloneNode(true) as HTMLElement;
-          clone.classList.add('is-clone');
-          prependFragment.appendChild(clone);
-        });
-        track.insertBefore(prependFragment, track.firstChild);
-
-        let isJumping = false;
-
-        function initScroll() {
-          if (window.innerWidth >= 768 || !track) return;
-          const step = getSlideStep();
-          track.style.scrollSnapType = 'none';
-          track.scrollLeft = step * slideCount;
-          setTimeout(() => {
-            track.style.scrollSnapType = 'x mandatory';
-          }, 50);
-        }
-
-        setTimeout(initScroll, 100);
-
-        track.addEventListener('scroll', () => {
-          if (window.innerWidth >= 768 || isJumping || !track) return;
-          const step = getSlideStep();
-          if (step === 0) return;
-
-          const scrollLeft = track.scrollLeft;
-          const minLimit = step * 0.5;
-          const maxLimit = step * (slideCount * 2.5);
-
-          if (scrollLeft <= minLimit) {
-            isJumping = true;
-            track.style.scrollSnapType = 'none';
-            track.scrollLeft = scrollLeft + step * slideCount;
-            setTimeout(() => {
-              track.style.scrollSnapType = 'x mandatory';
-              isJumping = false;
-            }, 50);
-          } else if (scrollLeft >= maxLimit) {
-            isJumping = true;
-            track.style.scrollSnapType = 'none';
-            track.scrollLeft = scrollLeft - step * slideCount;
-            setTimeout(() => {
-              track.style.scrollSnapType = 'x mandatory';
-              isJumping = false;
-            }, 50);
-          }
-
-          const activeIndex = Math.round(track.scrollLeft / step) % slideCount;
-          dots.forEach((dot, idx) => {
-            if (idx === activeIndex) dot.classList.add('is-active');
-            else dot.classList.remove('is-active');
-          });
-        });
-
-        dots.forEach((dot, idx) => {
-          dot.addEventListener('click', () => {
-            if (window.innerWidth >= 768 || !track) return;
-            const step = getSlideStep();
-            track.scrollTo({
-              left: step * (slideCount + idx),
-              behavior: 'smooth',
-            });
-          });
-        });
-
-        window.addEventListener('resize', initScroll);
-      }
-
-      // B. Lógica Desktop (Intercambio de Pestañas)
-      gsap.set('.perfil-card--desktop.is-active', { autoAlpha: 1, zIndex: 2 });
-      gsap.set('.perfil-card--desktop:not(.is-active)', {
-        autoAlpha: 0,
-        zIndex: 1,
-      });
-
-      tabBtns.forEach((btn) => {
-        btn.addEventListener('click', () => {
-          if (btn.classList.contains('is-active') || window.innerWidth < 768)
-            return;
-
-          tabBtns.forEach((b) => b.classList.remove('is-active'));
-          btn.classList.add('is-active');
-
-          const targetId = btn.getAttribute('data-target');
-          const currentCard = document.querySelector(
-            '.perfil-card--desktop.is-active',
-          ) as HTMLElement | null;
-          const newCard = document.getElementById(
-            `card-${targetId}`,
-          ) as HTMLElement | null;
-
-          if (currentCard && newCard) {
-            currentCard.classList.remove('is-active');
-            newCard.classList.add('is-active');
-
-            const tl = gsap.timeline();
-            tl.to(
-              currentCard,
-              { autoAlpha: 0, duration: 0.3, zIndex: 1, ease: 'power2.inOut' },
-              0,
-            );
-            tl.set(newCard, { zIndex: 2 }, 0);
-            tl.fromTo(
-              newCard,
-              { autoAlpha: 0, y: 20 },
-              { autoAlpha: 1, y: 0, duration: 0.4, ease: 'power2.out' },
-              0.1,
-            );
-          }
-        });
-      });
-
-      /**
-       * 3. Navegación por Hash y Limpieza de URL
-       */
-      const handleHashNavigation = () => {
-        const hash = window.location.hash;
-        if (!hash) return;
-
-        const hashMapping: Record<string, string> = {
-          '#productores': '01',
-          '#importadores': '02',
-          '#proyectos': '03',
-        };
-
-        const targetId = hashMapping[hash];
-
-        if (targetId) {
-          // 1. Navegación y animación
-          setTimeout(() => {
-            const yOffset = -100;
-            const y =
-              perfilesSection.getBoundingClientRect().top +
-              window.pageYOffset +
-              yOffset;
-            window.scrollTo({ top: y, behavior: 'smooth' });
-          }, 150);
-
-          if (window.innerWidth >= 768) {
-            const targetBtn = Array.from(tabBtns).find(
-              (btn) => btn.getAttribute('data-target') === targetId,
-            ) as HTMLElement;
-            if (targetBtn && !targetBtn.classList.contains('is-active'))
-              targetBtn.click();
-          } else {
-            const targetIndex = parseInt(targetId) - 1;
-            const targetDot = dots[targetIndex] as HTMLElement;
-            if (
-              targetDot &&
-              !targetDot.classList.contains('is-active') &&
-              track
-            ) {
-              const step = getSlideStep();
-              track.scrollTo({
-                left: step * (slideCount + targetIndex),
-                behavior: 'smooth',
-              });
-            }
-          }
-
-          // 2. Limpiar la URL sin recargar la página
-          setTimeout(() => {
-            history.replaceState(null, '', window.location.pathname);
-          }, 500);
-        }
-      };
-
-      setTimeout(handleHashNavigation, 300);
-      window.addEventListener('hashchange', handleHashNavigation);
-    }
+      .to('.hero-servicios__subtitle', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: 0.3 })
+      .to('.hero-servicios .word', { y: '0%', duration: 0.6, stagger: 0.03, ease: 'power3.out' }, '-=0.4')
+      .to('.hero-servicios__actions', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.2');
   });
 </script>
