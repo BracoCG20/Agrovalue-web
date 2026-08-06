@@ -4,15 +4,16 @@
  * Descripción: Define la estructura base del documento HTML, metadatos SEO,
  * precarga de fuentes web y la disposición de componentes globales (Header, Footer).
  */
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
 import '../styles/main.scss';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 
 export interface Props {
   title: string;
   description?: string;
   image?: string;
   keywords?: string;
+  hideFooter?: boolean; // ✨ Nueva propiedad para ocultar el footer
 }
 
 const {
@@ -20,6 +21,7 @@ const {
   description = 'Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.',
   image = '/Logo_Agrovalue.png',
   keywords = 'agroexportación, agricultura, comercialización agrícola, inversión agrícola, trazabilidad, fruta fresca, logística internacional, Agrovalue',
+  hideFooter = false, // ✨ Por defecto es false (se muestra el footer)
 } = Astro.props;
 
 // Construimos la URL canónica absoluta (Asegúrate de configurar 'site' en astro.config.mjs, o usa el fallback)
@@ -138,6 +140,7 @@ const imageUrl = new URL(image, canonicalURL);
       rel='stylesheet'
     />
 
+    <!-- JSON-LD SEO -->
     <script type='application/ld+json'>
       {
         "@context": "https://schema.org",
@@ -148,11 +151,11 @@ const imageUrl = new URL(image, canonicalURL);
         "description": "Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.",
         "contactPoint": {
           "@type": "ContactPoint",
-          "email": "tecnologia@mood.pe", //Cambiar esto por el correo a usar
+          "email": "contacto@agrovalue.es", 
           "contactType": "customer support",
           "availableLanguage": "es"
         },
-        "sameAs": ["https://www.linkedin.com/"]
+        "sameAs": ["https://www.linkedin.com/company/agrovalue"]
       }
     </script>
   </head>
@@ -164,7 +167,8 @@ const imageUrl = new URL(image, canonicalURL);
         <slot />
       </main>
 
-      <Footer />
+      <!-- ✨ Renderizado Condicional del Footer -->
+      {!hideFooter && <Footer />}
     </div>
   </body>
 </html>
