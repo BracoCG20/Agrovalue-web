@@ -51,37 +51,43 @@ const titleText = 'Cada actor de la cadena tiene un reto distinto. Nosotros tene
   </section>
 
   <!-- DETALLE PERFILES -->
-  <div class="perfiles-wrapper">
+  <section class="perfiles-wrapper">
     
     <!-- SECCIÓN 01: PRODUCTOR / EXPORTADOR -->
-    <section class="perfil-detail" id="productor-exportador">
-      <div class="perfil-detail__container">
-        
+    <section class="perfil-detail" id="productor-exportador">  
         <!-- 1. Intro -->
         <div class="pd-intro">
-          <span class="pd-intro__number">01</span>
-          <span class="pd-intro__subtitle">PRODUCTOR / EXPORTADOR</span>
-          <h2 class="pd-intro__title">Tu fruta puede llegar a los clientes más competitivos, con la calidad que exigen.</h2>
-          <p class="pd-intro__text">Te conectamos con mercados, financiamiento y tecnología para que cada campaña capture su verdadero valor.</p>
+          <div class="pd-intro-content">
+            <div class="pd-intro-content-container1">
+              <span class="pd-intro-content-container1__number">01</span>
+            </div>
+            <div class="pd-intro-content-container2">
+              <span class="pd-intro-content-container2__subtitle">PRODUCTOR / EXPORTADOR</span>
+              <h2 class="pd-intro-content-container2__title">Tu fruta puede llegar a los clientes más competitivos, con la calidad que exigen.</h2>
+              <p class="pd-intro-content-container2__text">Te conectamos con mercados, financiamiento y tecnología para que cada campaña capture su verdadero valor.</p>
+            </div>
+          </div>
         </div>
 
         <!-- 2. Problema / Solución -->
         <div class="pd-comparison">
-          <div class="pd-comparison__box pd-comparison__box--dark">
-            <span class="pd-comparison__subtitle">— EL PROBLEMA</span>
-            <h3 class="pd-comparison__title">Tu fruta no debería perder valor después de salir del campo.</h3>
-            <p class="pd-comparison__text">Sin el comprador correcto, el financiamiento a tiempo o visibilidad del camino, ese valor se queda en manos de intermediarios o en oportunidades que nunca llegaron a ti.</p>
-          </div>
-
-          <div class="pd-comparison__box pd-comparison__box--light">
-            <span class="pd-comparison__subtitle">— POR QUÉ AGROVALUE</span>
-            <h3 class="pd-comparison__title">No necesitas manejar todo por tu cuenta. Necesitas un socio que lo resuelva todo.</h3>
-            <p class="pd-comparison__text">Integramos mercado, financiamiento y tecnología en un solo socio, para que captures más valor en cada programa de exportación, cumpliendo con la calidad, el volumen y la oportunidad que exigen los principales compradores.</p>
-          </div>
-           <!-- Círculo que sobrepone ambas cajas -->
-          <div class="pd-comparison__icon">
-            <Image src={logoBlanco} alt="Logo Agrovalue" width={24} height={24} />
+          <div class="pd-comparison-container">
+            <div class="pd-comparison-container__box pd-comparison-container__box--dark">
+              <span class="pd-comparison-container__subtitle">— EL PROBLEMA</span>
+              <h3 class="pd-comparison-container__title">Tu fruta no debería perder valor después de salir del campo.</h3>
+              <p class="pd-comparison-container__text">Sin el comprador correcto, el financiamiento a tiempo o visibilidad del camino, ese valor se queda en manos de intermediarios o en oportunidades que nunca llegaron a ti.</p>
             </div>
+
+            <div class="pd-comparison-container__box pd-comparison-container__box--light">
+              <span class="pd-comparison-container__subtitle">— POR QUÉ AGROVALUE</span>
+              <h3 class="pd-comparison-container__title">No necesitas manejar todo por tu cuenta. Necesitas un socio que lo resuelva todo.</h3>
+              <p class="pd-comparison-container__text">Integramos mercado, financiamiento y tecnología en un solo socio, para que captures más valor en cada programa de exportación, cumpliendo con la calidad, el volumen y la oportunidad que exigen los principales compradores.</p>
+            </div>
+            <!-- Círculo que sobrepone ambas cajas -->
+            <div class="pd-comparison-container__icon">
+              <Image src={logoBlanco} alt="Logo Agrovalue" width={24} height={24} />
+            </div>
+          </div>
         </div>
 
         <!-- 3. Imagen -->
@@ -91,103 +97,119 @@ const titleText = 'Cada actor de la cadena tiene un reto distinto. Nosotros tene
 
         <!-- 4. Qué hacemos por ti -->
         <div class="pd-services">
-          <span class="pd-section-subtitle">QUÉ HACEMOS POR TI</span>
-          <ul class="pd-list">
-            <li class="pd-list__item">
-              <span class="pd-list__num">01</span>
-              <div class="pd-list__content">
-                <h4>Compradores que buscan maximizar el valor de tu fruta.</h4>
-                <p>Te conectamos con compradores confiables en los principales mercados internacionales, desarrollando programas comerciales sostenibles y relaciones de largo plazo, en lugar de ventas puntuales.</p>
+          <div class="pd-content">
+            <span class="pd-section-subtitle">QUÉ HACEMOS POR TI</span>
+            <div class="pd-list">
+              <div class="pd-list__item">
+                <span class="pd-list__num">01</span>
+                <div class="pd-list__content">
+                  <h4>Compradores que buscan maximizar el valor de tu fruta.</h4>
+                  <p>Te conectamos con compradores confiables en los principales mercados internacionales, desarrollando programas comerciales sostenibles y relaciones de largo plazo, en lugar de ventas puntuales.</p>
+                </div>
               </div>
-            </li>
-            <li class="pd-list__item">
-              <span class="pd-list__num">02</span>
-              <div class="pd-list__content">
-                <h4>El capital que necesitas, cuando lo necesitas.</h4>
-                <p>Facilitamos soluciones de financiamiento que fortalecen tu capital de trabajo y te permiten desarrollar tus programas de exportación con mayor solidez y flexibilidad.</p>
+              <div class="pd-list__item">
+                <span class="pd-list__num">02</span>
+                <div class="pd-list__content">
+                  <h4>El capital que necesitas, cuando lo necesitas.</h4>
+                  <p>Facilitamos soluciones de financiamiento que fortalecen tu capital de trabajo y te permiten desarrollar tus programas de exportación con mayor solidez y flexibilidad.</p>
+                </div>
               </div>
-            </li>
-            <li class="pd-list__item">
-              <span class="pd-list__num">03</span>
-              <div class="pd-list__content">
-                <h4>Tu campaña, preparada desde el primer día.</h4>
-                <p>Iniciamos la preparación meses antes del arranque de campaña, verificando que el campo y la empresa cumplan con la documentación y certificaciones requeridas por cada mercado. Ejecutamos preauditorías que confirman el cumplimiento normativo y la condición de la fruta previa a la cosecha.</p>
+              <div class="pd-list__item">
+                <span class="pd-list__num">03</span>
+                <div class="pd-list__content">
+                  <h4>Tu campaña, preparada desde el primer día.</h4>
+                  <p>Iniciamos la preparación meses antes del arranque de campaña, verificando que el campo y la empresa cumplan con la documentación y certificaciones requeridas por cada mercado. Ejecutamos preauditorías que confirman el cumplimiento normativo y la condición de la fruta previa a la cosecha.</p>
+                </div>
               </div>
-            </li>
-            <li class="pd-list__item">
-              <span class="pd-list__num">04</span>
-              <div class="pd-list__content">
-                <h4>Control de calidad que anticipa.</h4>
-                <p>Realizamos inspecciones independientes de calidad en línea de producción y en destino, monitoreando las certificaciones de inocuidad y sostenibilidad que exige cada mercado.</p>
+              <div class="pd-list__item">
+                <span class="pd-list__num">04</span>
+                <div class="pd-list__content">
+                  <h4>Control de calidad que anticipa.</h4>
+                  <p>Realizamos inspecciones independientes de calidad en línea de producción y en destino, monitoreando las certificaciones de inocuidad y sostenibilidad que exige cada mercado.</p>
+                </div>
               </div>
-            </li>
-            <li class="pd-list__item">
-              <span class="pd-list__num">05</span>
-              <div class="pd-list__content">
-                <h4>Un aliado que también piensa en tu próxima campaña.</h4>
-                <p>Te asesoramos en la implementación de tecnologías y procesos que mejoran tu productividad, calidad y competitividad: no solo te ayudamos a exportar tu fruta, ayudamos a que la próxima campaña sea mejor.</p>
+              <div class="pd-list__item">
+                <span class="pd-list__num">05</span>
+                <div class="pd-list__content">
+                  <h4>Un aliado que también piensa en tu próxima campaña.</h4>
+                  <p>Te asesoramos en la implementación de tecnologías y procesos que mejoran tu productividad, calidad y competitividad: no solo te ayudamos a exportar tu fruta, ayudamos a que la próxima campaña sea mejor.</p>
+                </div>
               </div>
-            </li>
-            <li class="pd-list__item">
-              <span class="pd-list__num">06</span>
-              <div class="pd-list__content">
-                <h4>Tecnología detrás de cada buena decisión.</h4>
-                <p>Con tecnología propia integramos la información comercial, operativa y de calidad de toda la cadena. Centralizamos cada programa de exportación en un solo lugar, brindando trazabilidad y visibilidad en tiempo real desde la cosecha hasta la liquidación final.</p>
+              <div class="pd-list__item">
+                <span class="pd-list__num">06</span>
+                <div class="pd-list__content">
+                  <h4>Tecnología detrás de cada buena decisión.</h4>
+                  <p>Con tecnología propia integramos la información comercial, operativa y de calidad de toda la cadena. Centralizamos cada programa de exportación en un solo lugar, brindando trazabilidad y visibilidad en tiempo real desde la cosecha hasta la liquidación final.</p>
+                </div>
               </div>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
 
         <!-- 5. Cómo trabajamos -->
         <div class="pd-process">
-          <span class="pd-section-subtitle">CÓMO TRABAJAMOS</span>
-          <ul class="pd-process-list">
-            <li class="pd-process-list__item">
-              <div class="pd-process-list__circle">1</div>
-              <div class="pd-process-list__content">
-                <h4>Conocemos tu campo.</h4>
-                <p>Evaluamos tu producción, variedad, volumen y capacidad exportable, junto con las certificaciones internacionales y la documentación requerida por cada mercado.</p>
+          <div class="pd-content">
+            <span class="pd-section-subtitle">CÓMO TRABAJAMOS</span>
+            <div class="pd-process-list">
+              <div class="pd-process-list__item">
+                <div class="pd-process-list-content1">
+                  <div class="pd-process-list-content1__circle">1</div>
+                  <div class="pd-process-list-content1__line"></div>
+                </div>
+                
+                <div class="pd-process-list-content2">
+                  <h4>Conocemos tu campo.</h4>
+                  <p>Evaluamos tu producción, variedad, volumen y capacidad exportable, junto con las certificaciones internacionales y la documentación requerida por cada mercado.</p>
+                </div>
               </div>
-            </li>
-            <li class="pd-process-list__item">
-              <div class="pd-process-list__circle">2</div>
-              <div class="pd-process-list__content">
-                <h4>Te conectamos con el mercado correcto.</h4>
-                <p>Activamos nuestra red de compradores según tu producto y ventana comercial.</p>
+              <div class="pd-process-list__item">
+                <div class="pd-process-list-content1">
+                  <div class="pd-process-list-content1__circle">2</div>
+                  <div class="pd-process-list-content1__line"></div>
+                </div>
+                <div class="pd-process-list-content2">
+                  <h4>Te conectamos con el mercado correcto.</h4>
+                  <p>Activamos nuestra red de compradores según tu producto y ventana comercial.</p>
+                </div>
               </div>
-            </li>
-            <li class="pd-process-list__item">
-              <div class="pd-process-list__circle">3</div>
-              <div class="pd-process-list__content">
-                <h4>Acompañamos cada embarque.</h4>
-                <p>Control de calidad, documentación y seguimiento en tiempo real con tecnología propia.</p>
+              <div class="pd-process-list__item">
+                <div class="pd-process-list-content1">
+                  <div class="pd-process-list-content1__circle">3</div>
+                  <div class="pd-process-list-content1__line"></div>
+                </div>
+                <div class="pd-process-list-content2">
+                  <h4>Acompañamos cada embarque.</h4>
+                  <p>Control de calidad, documentación y seguimiento en tiempo real con tecnología propia.</p>
+                </div>
               </div>
-            </li>
-            <li class="pd-process-list__item">
-              <div class="pd-process-list__circle">4</div>
-              <div class="pd-process-list__content">
-                <h4>Cerramos el ciclo contigo.</h4>
-                <p>Liquidación transparente y aprendizajes para la siguiente campaña.</p>
+              <div class="pd-process-list__item">
+                <div class="pd-process-list-content1">
+                  <div class="pd-process-list-content1__circle">4</div>
+                  <div class="pd-process-list-content1__line"></div>
+                </div>
+                <div class="pd-process-list-content2">
+                  <h4>Cerramos el ciclo contigo.</h4>
+                  <p>Liquidación transparente y aprendizajes para la siguiente campaña.</p>
+                </div>
               </div>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
 
         <!-- 6. CTA -->
         <div class="pd-cta">
-          <div class="pd-cta-container">
-            <h3 class="pd-cta-container__title">Lleva tu próxima campaña más lejos.</h3>
-            <p class="pd-cta-container__text">Cuéntanos qué produces, cuánto y cuándo, y te mostramos las oportunidades comerciales y de financiamiento disponibles para ti.</p>
+          <div class="pd-content">
+            <div class="pd-cta-container">
+              <h3 class="pd-cta-container__title">Lleva tu próxima campaña más lejos.</h3>
+              <p class="pd-cta-container__text">Cuéntanos qué produces, cuánto y cuándo, y te mostramos las oportunidades comerciales y de financiamiento disponibles para ti.</p>
+            </div>
+            <a href="/contacto" class="pd-cta__btn">Contáctanos <ArrowRight size={18} /></a>
           </div>
-          <a href="/contacto" class="pd-cta__btn">Contáctanos <ArrowRight size={18} stroke-width={2.5}/></a>
         </div>
 
-      </div>
     </section>
 
-    <!-- (Aquí en el futuro puedes duplicar el bloque de arriba para la sección 02 y 03) -->
-
-  </div>
+  </section>
 </Layout>
 
 <script>

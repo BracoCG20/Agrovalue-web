@@ -4,9 +4,10 @@
 // ==================== SECTION 1: HERO SERVICIOS ====================
 .hero-servicios {
 	position: relative;
-	height: 100dvh;
+	height: 60dvh;
 	display: flex;
 	flex-direction: column;
+	justify-content: end;
 	padding: 8rem 1.5rem 3rem;
 	overflow: hidden;
 
@@ -14,8 +15,11 @@
 		padding: 9rem 3rem 4rem;
 	}
 	@include desktop {
-		height: 100dvh; // Para que sea de pantalla completa
 		padding: 10rem 6rem 4rem;
+	}
+	@include maxDesktop {
+		display: flex;
+		align-items: center;
 	}
 
 	&__background {
@@ -80,15 +84,9 @@
 		flex-direction: column;
 		justify-content: flex-end;
 		gap: 1.5rem;
-		flex-grow: 1;
 		max-width: 1200px;
 		margin: 0;
 		width: 100%;
-		padding-bottom: 2rem;
-
-		@include tablet {
-			padding-bottom: 50px;
-		}
 	}
 
 	&__subtitle {
@@ -141,11 +139,8 @@
 		gap: 0.8rem;
 		max-width: 100%;
 
-		@include tablet {
-			max-width: 450px;
-		}
 		@include desktop {
-			max-width: 500px;
+			flex-direction: row;
 			gap: 1.2rem;
 		}
 	}
@@ -166,6 +161,12 @@
 		font-size: 14.5px;
 		transition: all 0.3s ease-in-out;
 
+		@include desktop {
+			justify-content: center;
+			padding: 0.8rem 1.2rem;
+			width: auto;
+		}
+
 		&:hover {
 			background-color: rgba(255, 255, 255, 0.08);
 			border-color: #ffffff;
@@ -173,6 +174,9 @@
 
 		svg {
 			transition: transform 0.3s ease-in-out;
+			@include desktop {
+				display: none;
+			}
 		}
 
 		&:hover svg {
@@ -187,187 +191,235 @@
 }
 
 .perfil-detail {
-	max-width: 800px;
-	margin: 0;
-
-	&__container {
-		display: flex;
-		flex-direction: column;
-	}
+	display: flex;
+	flex-direction: column;
 
 	// 1. Intro
 	.pd-intro {
-		display: flex;
-		flex-direction: column;
-		padding: 2.5rem 1.5rem 2.5rem;
+		padding: 2.5rem 2rem;
 		border-bottom: 1px solid #e2e9de;
-		gap: 11px;
 
 		@include tablet {
-			padding: 5rem 3rem;
+			padding: 4rem 3.5rem;
 		}
 		@include desktop {
-			padding: 7rem 6rem;
+			padding: 7rem 4rem;
 		}
-
-		&__number {
-			font-size: 46px;
-			font-family: $font-SpaceGrotesk;
-			font-weight: 700;
-			color: #cbdec0;
-			line-height: 36.8px;
-			letter-spacing: -2.4px;
-		}
-		&__subtitle {
-			color: #569c33;
-			font-size: 11.5px;
-			font-weight: 600;
-			letter-spacing: 2.4px;
-			text-transform: uppercase;
-			font-family: $font-DMsans;
-		}
-		&__title {
-			color: #184c2f;
-			font-size: 28px;
-			line-height: 31.4px;
-			letter-spacing: -1px;
-			font-weight: 700;
-			font-family: $font-SpaceGrotesk;
-			margin: 0;
-
+		&-content {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 11px;
 			@include tablet {
-				font-size: 42px;
+				flex-direction: row;
+				gap: 1.8rem;
 			}
-		}
-		&__text {
-			color: #5a6b5f;
-			font-size: 15.5px;
-			line-height: 25.6px;
-			font-family: $font-DMsans;
-			margin: 0;
+			&-container1 {
+				display: flex;
+				align-items: center;
+				@include tablet {
+					align-items: flex-end;
+				}
+				&__number {
+					font-size: 46px;
+					font-family: $font-SpaceGrotesk;
+					font-weight: 700;
+					color: #cbdec0;
+					line-height: 36.8px;
+					letter-spacing: -2.4px;
+					@include tablet {
+						font-size: 64px;
+						line-height: 51.2px;
+						letter-spacing: -3px;
+					}
+				}
+			}
+			&-container2 {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				@include tablet {
+					gap: 1.2rem;
+				}
+				&__subtitle {
+					color: #569c33;
+					font-size: 11.5px;
+					font-weight: 600;
+					letter-spacing: 2.4px;
+					text-transform: uppercase;
+					font-family: $font-DMsans;
+					@include tablet {
+						fzont-size: 12px;
+					}
+				}
+				&__title {
+					color: #184c2f;
+					font-size: 28px;
+					line-height: 31.4px;
+					letter-spacing: -1px;
+					font-weight: 700;
+					font-family: $font-SpaceGrotesk;
+					margin: 0;
 
-			@include tablet {
-				font-size: 18px;
+					@include tablet {
+						font-size: 34px;
+						line-height: 36.7px;
+						letter-spacing: -1.3px;
+					}
+				}
+				&__text {
+					color: #5a6b5f;
+					font-size: 15.5px;
+					line-height: 25.6px;
+					font-family: $font-DMsans;
+					margin: 0;
+
+					@include tablet {
+						font-size: 16.5px;
+						line-height: 26.4px;
+					}
+				}
 			}
 		}
 	}
 
 	// 2. Problema / Solución
 	.pd-comparison {
-		position: relative;
+		margin: 0 auto;
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
 		padding: 3rem 2rem;
 
 		@include tablet {
-			padding: 5rem 3rem;
+			padding: 3rem;
 		}
 		@include desktop {
-			padding: 7rem 6rem;
+			padding: 4rem;
 		}
 
-		&__box {
-			padding: 2rem 1.5rem;
-			display: flex;
-			flex-direction: column;
-			gap: 11px;
-			@include tablet {
-				padding: 4rem;
-			}
-			&--dark {
-				background-color: #133a24;
-				color: #ffffff;
-				position: relative;
-
-				.pd-comparison__subtitle {
-					color: #cbdec0;
+		&-container {
+			position: relative;
+			max-width: 1200px;
+			&__box {
+				padding: 2rem 1.5rem;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				height: 320px;
+				gap: 11px;
+				@include tablet {
+					padding: 2rem;
 				}
-				.pd-comparison__text {
-					opacity: 0.7;
+				&--dark {
+					background-color: #133a24;
+					color: #ffffff;
+
+					.pd-comparison-container__subtitle {
+						color: #cbdec0;
+					}
+					.pd-comparison-container__text {
+						opacity: 0.7;
+					}
+				}
+
+				&--light {
+					background-color: #ffffff;
+					color: #184c2f;
+
+					.pd-comparison-container__subtitle {
+						color: #569c33;
+					}
+					.pd-comparison-container__text {
+						color: #5a6b5f;
+					}
 				}
 			}
 
-			&--light {
-				background-color: #ffffff;
-				color: #184c2f;
+			&__subtitle {
+				display: block;
+				font-size: 11px;
+				font-weight: 600;
+				letter-spacing: 2.4px;
+				text-transform: uppercase;
+				font-family: $font-DMsans;
+			}
+			&__title {
+				font-size: 22px;
+				line-height: 26.4px;
+				letter-spacing: -0.6px;
+				font-weight: 700;
+				font-family: $font-SpaceGrotesk;
+				margin: 0;
 
-				.pd-comparison__subtitle {
-					color: #569c33;
-				}
-				.pd-comparison__text {
-					color: #5a6b5f;
+				@include tablet {
+					font-size: 26px;
+					letter-spacing: -0.8px;
+					line-height: 30.2px;
 				}
 			}
-		}
-
-		&__subtitle {
-			display: block;
-			font-size: 11px;
-			font-weight: 600;
-			letter-spacing: 2.4px;
-			text-transform: uppercase;
-			font-family: $font-DMsans;
-		}
-		&__title {
-			font-size: 22px;
-			line-height: 26.4px;
-			letter-spacing: -0.6px;
-			font-weight: 700;
-			font-family: $font-SpaceGrotesk;
-			margin: 0;
-
-			@include tablet {
-				font-size: 28px;
+			&__text {
+				font-size: 15px;
+				line-height: 25.5px;
+				font-family: $font-DMsans;
+				margin: 0;
+				@include tablet {
+					font-size: 16px;
+					line-height: 27.2px;
+				}
 			}
-		}
-		&__text {
-			font-size: 15px;
-			line-height: 25.5px;
-			font-family: $font-DMsans;
-			margin: 0;
-		}
 
-		&__icon {
-			position: absolute;
-			bottom: 50%;
-			right: 3rem;
-			width: 50px;
-			height: 50px;
-			background-color: #86c46a;
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			z-index: 10;
-
-			img {
-				width: 24px;
-				height: 24px;
-				object-fit: contain;
+			&__icon {
+				position: absolute;
+				bottom: 48%;
+				right: 1rem;
+				width: 38px;
+				height: 38px;
+				background-color: #86c46a;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				z-index: 10;
+				@include tablet {
+					right: 3rem;
+				}
+				img {
+					width: 24px;
+					height: 24px;
+					object-fit: contain;
+				}
 			}
 		}
 	}
 
 	// 3. Imagen
 	.pd-image {
+		display: flex;
+		justify-content: center;
 		width: 100%;
 		overflow: hidden;
 		padding: 0rem 1.5rem 3rem;
 
 		@include tablet {
-			padding: 0rem 3rem;
+			padding: 2rem 3rem;
 		}
 		@include desktop {
-			padding: 0rem 6rem;
+			padding: 0rem 4rem 2rem;
 		}
 
 		&__img {
 			border-radius: 15px;
-			width: 100%;
+			max-width: 1200px;
 			height: 200px;
-			display: block;
 			object-fit: cover;
+			@include desktop {
+				height: 260px;
+			}
+			@include maxDesktop {
+				height: 340px;
+			}
 		}
 	}
 
@@ -378,58 +430,70 @@
 		flex-direction: column;
 		gap: 1.5rem;
 		background-color: #fff;
-		// Títulos de subsecciones
-		.pd-section-subtitle {
-			display: block;
-			color: #569c33;
-			font-size: 12px;
-			font-weight: 700;
-			letter-spacing: 2.6px;
-			text-transform: uppercase;
-			font-family: $font-SpaceGrotesk;
+		@include desktop {
+			padding: 4rem;
 		}
-
-		// 4. Lista "Qué hacemos por ti"
-		.pd-list {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-
-			&__item {
-				display: flex;
-				gap: 1.5rem;
-				padding: 1.5rem 0;
-				border-top: 1px solid #e4eae1;
-			}
-
-			&__num {
-				color: #bad6ac;
-				font-size: 20px;
+		.pd-content {
+			max-width: 1200px;
+			margin: 0 auto;
+			.pd-section-subtitle {
+				display: block;
+				color: #569c33;
+				font-size: 12px;
 				font-weight: 700;
-				line-height: 20px;
+				letter-spacing: 2.6px;
+				text-transform: uppercase;
 				font-family: $font-SpaceGrotesk;
-				flex-shrink: 0;
 			}
 
-			&__content {
-				display: flex;
-				flex-direction: column;
-				gap: 0.5rem;
-				h4 {
-					color: #184c2f;
-					font-size: 16.5px;
-					font-weight: 700;
-					line-height: 21.5px;
-					letter-spacing: -0.3px;
-					font-family: $font-SpaceGrotesk;
-					margin: 0;
+			.pd-list {
+				display: grid;
+				grid-template-columns: 1fr;
+
+				@include tablet {
+					grid-template-columns: 1fr 1fr;
+					grid-gap: 1.5rem;
 				}
-				p {
-					color: #5a6b5f;
-					font-size: 14.5px;
-					line-height: 23.2px;
-					font-family: $font-DMsans;
-					margin: 0;
+				&__item {
+					display: flex;
+					gap: 1.5rem;
+					padding: 1.5rem 0;
+					border-top: 1px solid #e4eae1;
+				}
+
+				&__num {
+					color: #bad6ac;
+					font-size: 20px;
+					font-weight: 700;
+					line-height: 20px;
+					font-family: $font-SpaceGrotesk;
+					flex-shrink: 0;
+					@include tablet {
+						font-size: 22px;
+						line-height: 22px;
+					}
+				}
+
+				&__content {
+					display: flex;
+					flex-direction: column;
+					gap: 0.5rem;
+					h4 {
+						color: #184c2f;
+						font-size: 16.5px;
+						font-weight: 700;
+						line-height: 21.5px;
+						letter-spacing: -0.3px;
+						font-family: $font-SpaceGrotesk;
+						margin: 0;
+					}
+					p {
+						color: #5a6b5f;
+						font-size: 14.5px;
+						line-height: 23.2px;
+						font-family: $font-DMsans;
+						margin: 0;
+					}
 				}
 			}
 		}
@@ -438,72 +502,102 @@
 	// 5. Lista "Cómo trabajamos"
 	.pd-process {
 		padding: 3rem 2.4rem;
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
 
 		@include tablet {
-			padding: 6rem 3rem;
+			padding: 4rem 3rem;
 		}
 		@include desktop {
-			padding: 8rem 6rem;
-		}
-		.pd-section-subtitle {
-			display: block;
-			color: #569c33;
-			font-size: 12px;
-			font-weight: 700;
-			letter-spacing: 2.6px;
-			text-transform: uppercase;
-			font-family: $font-SpaceGrotesk;
+			padding: 5rem 4rem;
 		}
 
-		.pd-process-list {
-			list-style: none;
-			padding: 0;
-			margin: 0;
+		.pd-content {
+			max-width: 1200px;
+			margin: 0 auto;
 			display: flex;
 			flex-direction: column;
-			gap: 1.3rem;
-
-			&__item {
-				display: flex;
-				gap: 1rem;
-			}
-
-			&__circle {
-				width: 32px;
-				height: 32px;
-				background-color: #184c2f;
-				color: #ffffff;
-				border-radius: 50%;
-				display: flex;
-				align-items: center;
-				justify-content: center;
+			gap: 1rem;
+			.pd-section-subtitle {
+				display: block;
+				color: #569c33;
+				font-size: 12px;
 				font-weight: 700;
+				letter-spacing: 2.6px;
+				text-transform: uppercase;
 				font-family: $font-SpaceGrotesk;
-				font-size: 14px;
-				flex-shrink: 0;
 			}
 
-			&__content {
-				display: flex;
-				flex-direction: column;
-				gap: 0.3rem;
-				h4 {
-					color: #184c2f;
-					font-size: 16.5px;
-					font-weight: 700;
-					line-height: 21.5px;
-					font-family: $font-SpaceGrotesk;
-					margin: 0;
+			.pd-process-list {
+				padding: 0;
+				margin: 0;
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 1.3rem;
+				@include tablet {
+					grid-template-columns: 1fr 1fr;
+					gap: 2rem;
 				}
-				p {
-					color: #5a6b5f;
-					font-size: 14.5px;
-					line-height: 23.2px;
-					font-family: $font-DMsans;
-					margin: 0;
+
+				&__item {
+					display: flex;
+					gap: 1rem;
+					@include tablet {
+						flex-direction: column;
+					}
+				}
+
+				&-content1 {
+					display: flex;
+					@include tablet {
+						justify-content: center;
+						align-items: center;
+						gap: 1rem;
+					}
+					&__circle {
+						position: relative;
+						width: 32px;
+						height: 32px;
+						background-color: #184c2f;
+						color: #ffffff;
+						border-radius: 50%;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						font-weight: 700;
+						font-family: $font-SpaceGrotesk;
+						font-size: 14px;
+						flex-shrink: 0;
+					}
+					&__line {
+						display: none;
+						width: 100%;
+						height: 1px;
+						background-color: #d6e0d1;
+						margin: 0 auto;
+						@include tablet {
+							display: block;
+						}
+					}
+				}
+
+				&-content2 {
+					display: flex;
+					flex-direction: column;
+					gap: 0.3rem;
+					h4 {
+						color: #184c2f;
+						font-size: 16.5px;
+						font-weight: 700;
+						line-height: 21.5px;
+						font-family: $font-SpaceGrotesk;
+						margin: 0;
+					}
+					p {
+						color: #5a6b5f;
+						font-size: 14.5px;
+						line-height: 23.2px;
+						font-family: $font-DMsans;
+						margin: 0;
+					}
 				}
 			}
 		}
@@ -514,56 +608,75 @@
 		background-color: #184c2f;
 		padding: 3rem 2rem;
 		color: #ffffff;
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
 
 		@include tablet {
-			padding: 4rem;
+			padding: 3rem;
 		}
-
-		&-container {
+		.pd-content {
+			max-width: 1200px;
+			margin: 0 auto;
 			display: flex;
 			flex-direction: column;
 			gap: 1rem;
-			&__title {
-				font-size: 25px;
-				line-height: 29px;
-				letter-spacing: -0.8px;
-				font-weight: 700;
-				font-family: $font-SpaceGrotesk;
-				margin: 0;
+			@include tablet {
+				gap: 1.5rem;
+			}
 
+			.pd-cta-container {
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
 				@include tablet {
-					font-size: 32px;
+					gap: 1.5rem;
+				}
+				&__title {
+					font-size: 25px;
+					line-height: 29px;
+					letter-spacing: -0.8px;
+					font-weight: 700;
+					font-family: $font-SpaceGrotesk;
+					margin: 0;
+
+					@include tablet {
+						font-size: 28px;
+						line-height: 31.9px;
+						letter-spacing: -0.9px;
+					}
+				}
+				&__text {
+					font-size: 15.5px;
+					line-height: 25.6px;
+					font-family: $font-DMsans;
+					color: rgba(255, 255, 255, 0.8);
+					margin: 0;
+					@include tablet {
+						font-size: 16px;
+						line-height: 26.4px;
+					}
 				}
 			}
-			&__text {
-				font-size: 15.5px;
-				line-height: 25.6px;
+
+			.pd-cta__btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.6rem;
+				background-color: #86c46a;
+				color: #0b2b1a;
 				font-family: $font-DMsans;
-				color: rgba(255, 255, 255, 0.8);
-				margin: 0;
-			}
-		}
+				font-weight: 600;
+				font-size: 15.5px;
+				padding: 1rem 2rem;
+				border-radius: 3rem;
+				text-decoration: none;
+				transition: all 0.3s ease-in-out;
 
-		&__btn {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			gap: 0.6rem;
-			background-color: #86c46a;
-			color: #0b2b1a;
-			font-family: $font-DMsans;
-			font-weight: 600;
-			font-size: 15.5px;
-			padding: 1rem 2rem;
-			border-radius: 3rem;
-			text-decoration: none;
-			transition: all 0.3s ease-in-out;
-
-			&:hover {
-				background-color: #7ab55f;
+				&:hover {
+					background-color: #7ab55f;
+				}
+				@include tablet {
+					width: 200px;
+				}
 			}
 		}
 	}
