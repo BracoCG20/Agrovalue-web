@@ -561,6 +561,9 @@
 		@include desktop {
 			padding: 5rem 4rem;
 		}
+		@include maxDesktop {
+			padding: 6rem 0rem;
+		}
 
 		.pd-content {
 			max-width: 1200px;
@@ -652,6 +655,10 @@
 						line-height: 21.5px;
 						font-family: $font-SpaceGrotesk;
 						margin: 0;
+						@include maxDesktop {
+							font-size: 18px;
+							line-height: 23.4px;
+						}
 					}
 					p {
 						color: #5a6b5f;
@@ -659,6 +666,10 @@
 						line-height: 23.2px;
 						font-family: $font-DMsans;
 						margin: 0;
+						@include maxDesktop {
+							font-size: 15.5px;
+							line-height: 24.8px;
+						}
 					}
 				}
 			}
@@ -674,6 +685,9 @@
 		@include tablet {
 			padding: 3rem;
 		}
+		@include maxDesktop {
+			padding: 5rem 0rem;
+		}
 		.pd-content {
 			max-width: 1200px;
 			margin: 0 auto;
@@ -683,11 +697,17 @@
 			@include tablet {
 				gap: 1.5rem;
 			}
+			@include maxDesktop {
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+			}
 
 			.pd-cta-container {
 				display: flex;
 				flex-direction: column;
 				gap: 1rem;
+				max-width: 600px;
 				@include tablet {
 					gap: 1.5rem;
 				}
@@ -703,6 +723,11 @@
 						font-size: 28px;
 						line-height: 31.9px;
 						letter-spacing: -0.9px;
+					}
+					@include maxDesktop {
+						font-size: 36px;
+						line-height: 40.3px;
+						letter-spacing: -1px;
 					}
 				}
 				&__text {
