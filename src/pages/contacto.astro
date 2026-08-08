@@ -264,6 +264,23 @@ import imgContacto from '../assets/banner_Contacto_Desktop.jpg';
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener('DOMContentLoaded', () => {
+    
+    // ✨ LÓGICA PARA AUTOSELECCIONAR EL RADIO BUTTON Y LIMPIAR LA URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const perfilDesdeURL = urlParams.get('perfil'); 
+
+    if (perfilDesdeURL) {
+      // 1. Busca el radio button con ese "value" y lo marca
+      const radioButton = document.querySelector(`input[name="perfil"][value="${perfilDesdeURL}"]`) as HTMLInputElement;
+      if (radioButton) {
+        radioButton.checked = true; 
+      }
+      
+      // 2. Limpia la barra de direcciones para que solo quede "/contacto"
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    // Animaciones del Hero
     const tlHero = gsap.timeline();
     gsap.set('.text-reveal', { autoAlpha: 0, y: 20 });
     tlHero
@@ -285,6 +302,7 @@ import imgContacto from '../assets/banner_Contacto_Desktop.jpg';
         '-=0.4',
       );
 
+    // Animación de la sección de contacto
     const contactSection = document.querySelector('.contacto-content');
     if (contactSection) {
       gsap.from('.trigger-reveal-contact', {
@@ -297,6 +315,7 @@ import imgContacto from '../assets/banner_Contacto_Desktop.jpg';
       });
     }
 
+    // Lógica del Formulario
     const contactForm = document.getElementById(
       'agrovalue-contact-form',
     ) as HTMLFormElement;
@@ -306,7 +325,6 @@ import imgContacto from '../assets/banner_Contacto_Desktop.jpg';
     const timeField = document.getElementById('form_time') as HTMLInputElement;
 
     if (contactForm && timeField) {
-      // Registramos el momento exacto en el que el formulario es cargado
       timeField.value = Date.now().toString();
 
       contactForm.addEventListener('submit', async function (event) {
@@ -316,6 +334,7 @@ import imgContacto from '../assets/banner_Contacto_Desktop.jpg';
         submitBtn.innerText = 'Enviando...';
         submitBtn.disabled = true;
 
+        // Aquí captura exactamente lo que el usuario dejó marcado al final
         const formData = new FormData(contactForm);
         const data = {
           perfil: formData.get('perfil'),
@@ -327,11 +346,7 @@ import imgContacto from '../assets/banner_Contacto_Desktop.jpg';
         };
 
         try {
-          // const response = await fetch('/enviar.php', {
-          //   method: 'POST',
-          //   headers: { 'Content-Type': 'application/json' },
-          //   body: JSON.stringify(data)
-          // });
+          // const response = await fetch('/enviar.php', { ... });
           await new Promise((resolve) => setTimeout(resolve, 2000));
           const response = { ok: true };
 
@@ -339,7 +354,6 @@ import imgContacto from '../assets/banner_Contacto_Desktop.jpg';
             submitBtn.innerText = '¡Mensaje Enviado!';
             submitBtn.style.backgroundColor = '#1a422a';
             contactForm.reset();
-            // Reseteamos el contador para evitar bloqueos si envía un segundo mensaje
             timeField.value = Date.now().toString();
           } else {
             throw new Error('Fallo en el servidor o detectado como bot');
