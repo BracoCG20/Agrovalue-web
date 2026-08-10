@@ -215,7 +215,7 @@ const titleText = 'Cada actor de la cadena tiene un reto distinto. Nosotros tene
 
       const ctaSection = perfil.querySelector('.pd-cta');
       if (ctaSection) {
-        const ctaElements = ctaSection.querySelectorAll('.pd-cta-container__title, .pd-cta-container__text, .pd-cta__btn');
+        const ctaElements = ctaSection.querySelectorAll('.pd-cta-container__title, .pd-cta-container__text');
         gsap.from(ctaElements, {
           scrollTrigger: { trigger: ctaSection, start: 'top 85%' },
           y: 30, autoAlpha: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out'
