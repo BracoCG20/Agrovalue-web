@@ -2,368 +2,369 @@
 /**
  * Estilos de la Página de Contacto
  */
-@use "variables" as *;
-@use "breakpoints" as *;
+@use 'variables' as *;
+@use 'breakpoints' as *;
 
 .hero-contacto {
-	position: relative;
-	width: 100%;
-	height: 45dvh;
-	background: linear-gradient(
-		135deg,
-		$greenHeader-900 0%,
-		$greenHeader2-900 100%
-	);
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-end;
-	padding: 4rem 1.5rem;
+  position: relative;
+  width: 100%;
+  height: 45dvh;
+  background: linear-gradient(
+    135deg,
+    $greenHeader-900 0%,
+    $greenHeader2-900 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 4rem 1.5rem;
 
-	@include tablet {
-		height: 45dvh;
-	}
-	@include maxDesktop {
-		height: 60dvh;
-		padding-bottom: 8rem;
-	}
+  @include tablet {
+    height: 45dvh;
+  }
+  @include maxDesktop {
+    height: 60dvh;
+    padding-bottom: 8rem;
+  }
 
-	&__container {
-		max-width: 1200px;
-		margin: 0 auto;
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		gap: 18px;
-	}
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
 
-	&__subtitle {
-		color: $green-400;
-		font-size: 13px;
-		font-weight: 600;
-		letter-spacing: 2.4px;
-		text-transform: uppercase;
-		font-family: $font-DMsans;
-	}
+  &__subtitle {
+    color: $green-400;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    font-family: $font-DMsans;
+  }
 
-	&__title {
-		margin: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-		color: $white;
-		font-size: 34px;
-		line-height: 35.36px;
-		letter-spacing: -1px;
-		font-weight: 700;
-		font-family: $font-SpaceGrotesk;
+  &__title {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: $white;
+    font-size: 34px;
+    line-height: 35.36px;
+    letter-spacing: -1px;
+    font-weight: 700;
+    font-family: $font-SpaceGrotesk;
 
-		@include tablet {
-			font-size: 38px;
-			line-height: 39.52px;
-			letter-spacing: -1.8px;
-		}
-		@include maxDesktop {
-			font-size: 58px;
-			line-height: 60.3px;
-			padding-right: 200px;
-		}
-	}
+    @include tablet {
+      font-size: 38px;
+      line-height: 39.52px;
+      letter-spacing: -1.8px;
+    }
+    @include maxDesktop {
+      font-size: 58px;
+      line-height: 60.3px;
+      padding-right: 200px;
+    }
+  }
 
-	&__description {
-		margin: 0;
-		color: rgba($white, 0.82);
-		font-size: 16px;
-		font-family: $font-DMsans;
-		line-height: 26.4px;
+  &__description {
+    margin: 0;
+    color: rgba($white, 0.82);
+    font-size: 16px;
+    font-family: $font-DMsans;
+    line-height: 26.4px;
 
-		@include desktop {
-			font-size: 16px;
-			max-width: 600px;
-		}
-		@include maxDesktop {
-			font-size: 19px;
-			line-height: 31.35px;
-		}
-	}
+    @include desktop {
+      font-size: 16px;
+      max-width: 600px;
+    }
+    @include maxDesktop {
+      font-size: 19px;
+      line-height: 31.35px;
+    }
+  }
 }
 
 .contacto-content {
-	background-color: $green-50;
-	padding: 4rem 1.5rem;
+  background-color: $green-50;
+  padding: 4rem 1.5rem;
 
-	@include tablet {
-		padding: 6rem 3rem;
-	}
-	@include desktop {
-		padding: 8rem 6rem;
-	}
+  @include tablet {
+    padding: 6rem 3rem;
+  }
+  @include desktop {
+    padding: 8rem 6rem;
+  }
 
-	&__container {
-		max-width: 1200px;
-		margin: 0 auto;
-		display: grid;
-		grid-template-columns: 1fr;
-		gap: 2rem;
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
 
-		@include desktop {
-			grid-template-columns: 400px 1fr;
-			gap: 3rem;
-			align-items: start;
-		}
-		@include maxDesktop {
-			grid-template-columns: 550px 1fr;
-			gap: 3rem;
-		}
-	}
+    @include desktop {
+      grid-template-columns: 400px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    @include maxDesktop {
+      grid-template-columns: 550px 1fr;
+      gap: 3rem;
+    }
+  }
 
-	&__col-info {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
-	}
+  &__col-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
 
-	&__col-form {
-		width: 100%;
-	}
+  &__col-form {
+    width: 100%;
+  }
 }
 
 .contact-card {
-	background: $white;
-	border-radius: 24px;
-	padding: 2rem;
-	box-shadow: 0 10px 30px rgba($black, 0.04);
+  background: $white;
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba($black, 0.04);
 
-	@include tablet {
-		padding: 2.5rem;
-	}
+  @include tablet {
+    padding: 2.5rem;
+  }
 
-	&--info {
-		.contact-card__title {
-			color: $green-900;
-			font-size: 22px;
-			font-weight: 700;
-			font-family: $font-SpaceGrotesk;
-			margin: 0 0 0.5rem 0;
-		}
+  &--info {
+    .contact-card__title {
+      color: $green-900;
+      font-size: 22px;
+      font-weight: 700;
+      font-family: $font-SpaceGrotesk;
+      margin: 0 0 0.5rem 0;
+    }
 
-		.contact-card__desc {
-			color: $slate2-500;
-			font-size: 14.5px;
-			font-family: $font-DMsans;
-			margin: 0 0 2rem 0;
-			line-height: 1.5;
-		}
+    .contact-card__desc {
+      color: $slate2-500;
+      font-size: 14.5px;
+      font-family: $font-DMsans;
+      margin: 0 0 2rem 0;
+      line-height: 1.5;
+    }
 
-		.contact-list {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-			display: flex;
-			flex-direction: column;
-			gap: 1.5rem;
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
 
-			li {
-				display: flex;
-				align-items: center;
-				gap: 1rem;
-			}
+      li {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
 
-			&__icon {
-				width: 45px;
-				height: 45px;
-				background-color: $green-100;
-				color: $green-500;
-				border-radius: 12px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				flex-shrink: 0;
-				text-decoration: none;
-				transition: all 0.3s ease-in-out;
-				&:hover {
-					background-color: $green-500;
-					color: $white;
-					box-shadow: 0 4px 12px rgba($green-500, 0.2);
-				}
-			}
+      &__icon {
+        width: 45px;
+        height: 45px;
+        background-color: $green-100;
+        color: $green-500;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background-color: $green-500;
+          color: $white;
+          box-shadow: 0 4px 12px rgba($green-500, 0.2);
+        }
+      }
 
-			&__text {
-				display: flex;
-				flex-direction: column;
+      &__text {
+        display: flex;
+        flex-direction: column;
 
-				.label {
-					font-size: 12.5px;
-					font-weight: 400;
-					color: $slate2-500;
-					font-family: $font-DMsans;
-					letter-spacing: 0.5px;
-					margin-bottom: 2px;
-				}
+        .label {
+          font-size: 12.5px;
+          font-weight: 400;
+          color: $slate2-500;
+          font-family: $font-DMsans;
+          letter-spacing: 0.5px;
+          margin-bottom: 2px;
+        }
 
-				.value {
-					font-size: 15.5px;
-					font-weight: 600;
-					color: $green-900;
-					font-family: $font-DMsans;
-					text-decoration: none;
-					transition: color 0.3s ease-in-out;
+        .value {
+          font-size: 15.5px;
+          font-weight: 600;
+          color: $green-900;
+          font-family: $font-DMsans;
+          text-decoration: none;
+          transition: color 0.3s ease-in-out;
 
-					&:hover {
-						color: $green-500;
-					}
-				}
-			}
-		}
-	}
+          &:hover {
+            color: $green-500;
+          }
+        }
+      }
+    }
+  }
 
-	&--image {
-		padding: 0;
-		position: relative;
-		height: 220px;
-		overflow: hidden;
-		@include maxDesktop {
-			height: 180px;
-		}
+  &--image {
+    padding: 0;
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    @include maxDesktop {
+      height: 180px;
+    }
 
-		.contact-card__img {
-			width: 100%;
-			height: 100%;
-			object-fit: cover;
-		}
+    .contact-card__img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
 
-		.contact-card__overlay {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background: linear-gradient(
-				to top,
-				rgba($black, 0.4) 0%,
-				rgba($black, 0.05) 60%
-			);
-			display: flex;
-			flex-direction: column;
-			justify-content: flex-end;
-			padding: 2rem;
+    .contact-card__overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to top,
+        rgba($black, 0.4) 0%,
+        rgba($black, 0.05) 60%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
 
-			h3 {
-				color: $white;
-				font-size: 20px;
-				font-weight: 700;
-				font-family: $font-SpaceGrotesk;
-				margin: 0;
-				line-height: 1.2;
-			}
-		}
-	}
+      h3 {
+        color: $white;
+        font-size: 20px;
+        font-weight: 700;
+        font-family: $font-SpaceGrotesk;
+        margin: 0;
+        line-height: 1.2;
+      }
+    }
+  }
 
-	&--form {
-		.contact-form {
-			display: flex;
-			flex-direction: column;
-			gap: 1.5rem;
-		}
+  &--form {
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
 
-		.form-group {
-			display: flex;
-			flex-direction: column;
-			gap: 0.5rem;
-		}
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
 
-		.form-label {
-			font-size: 13px;
-			font-weight: 600;
-			color: $green-900;
-			font-family: $font-DMsans;
-		}
+    .form-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: $green-900;
+      font-family: $font-DMsans;
+    }
 
-		.radio-pill-group {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 0.8rem;
-			margin-top: 0.5rem;
-		}
+    .radio-pill-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
 
-		.radio-pill {
-			cursor: pointer;
+    .radio-pill {
+      cursor: pointer;
 
-			input[type="radio"] {
-				display: none;
-			}
+      input[type='radio'] {
+        display: none;
+      }
 
-			.pill-text {
-				display: inline-block;
-				padding: 10px 20px;
-				border: 1px solid rgba($green-900, 16%);
-				border-radius: 3rem;
-				font-size: 14px;
-				font-weight: 600;
-				font-family: $font-DMsans;
-				color: $slate2-500;
-				transition: all 0.3s ease-in-out;
-			}
+      .pill-text {
+        display: inline-block;
+        padding: 10px 20px;
+        border: 1px solid rgba($green-900, 16%);
+        border-radius: 3rem;
+        font-size: 14px;
+        font-weight: 600;
+        font-family: $font-DMsans;
+        color: $slate2-500;
+        transition: all 0.3s ease-in-out;
+      }
 
-			input[type="radio"]:checked + .pill-text {
-				background-color: $green-500;
-				border-color: $green-500;
-				color: $white;
-				box-shadow: 0 4px 12px rgba($green-500, 0.2);
-			}
+      input[type='radio']:checked + .pill-text {
+        background-color: $green-500;
+        border-color: $green-500;
+        color: $white;
+        box-shadow: 0 4px 12px rgba($green-500, 0.2);
+      }
 
-			&:hover .pill-text {
-				border-color: $green-500;
-			}
-		}
+      &:hover .pill-text {
+        border-color: $green-500;
+      }
+    }
 
-		.form-input,
-		.form-textarea {
-			width: 100%;
-			background-color: #f4f7f5;
-			border: 1px solid transparent;
-			border-radius: 12px;
-			padding: 1rem 1.2rem;
-			font-size: 15px;
-			font-family: $font-DMsans;
-			color: #1a422a;
-			transition: all 0.3s ease;
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      background-color: #f4f7f5;
+      border: 1px solid transparent;
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      font-size: 15px;
+      font-family: $font-DMsans;
+      color: #1a422a;
+      transition: all 0.3s ease;
 
-			&::placeholder {
-				color: #a0b0a6;
-			}
+      &::placeholder {
+        color: #a0b0a6;
+      }
 
-			&:focus {
-				outline: none;
-				border-color: $green-400;
-				background-color: $white;
-				box-shadow: 0 0 0 4px rgba(134, 196, 106, 0.1);
-			}
-		}
+      &:focus {
+        outline: none;
+        border-color: $green-400;
+        background-color: $white;
+        box-shadow: 0 0 0 4px rgba(134, 196, 106, 0.1);
+      }
+    }
 
-		.form-textarea {
-			resize: none;
-			min-height: 120px;
-		}
+    .form-textarea {
+      resize: none;
+      min-height: 120px;
+    }
 
-		.btn-submit {
-			margin-top: 1rem;
-			background-color: $green-500;
-			color: $white;
-			border: none;
-			padding: 1rem 2rem;
-			border-radius: 3rem;
-			font-size: 16px;
-			font-weight: 600;
-			font-family: $font-DMsans;
-			cursor: pointer;
-			transition: all 0.3s ease;
-			box-shadow: 0 4px 15px rgba(86, 156, 51, 0.2);
+    .btn-submit {
+      margin-top: 1rem;
+      background-color: $green-500;
+      color: $white;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 3rem;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: $font-DMsans;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(86, 156, 51, 0.2);
 
-			&:hover {
-				background-color: #478729;
-				transform: translateY(-2px);
-				box-shadow: 0 6px 20px rgba(86, 156, 51, 0.4);
-			}
-		}
-	}
+      &:hover {
+        background-color: #478729;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(86, 156, 51, 0.4);
+      }
+    }
+  }
 }
