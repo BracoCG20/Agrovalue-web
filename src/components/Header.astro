@@ -48,20 +48,19 @@ const isActive = (path: string) => pathname === path || pathname === path + '/';
           >
           <ul class='sub-menu-desktop'>
             <li>
-              <a href='/servicios#productor-exportador'>Productores y exportadores</a>
+              <a href='/servicios#productor-exportador'
+                >Productores y exportadores</a
+              >
             </li>
             <li>
               <a href='/servicios#importador-distribuidor'
                 >Importadores y distribuidores</a
               >
             </li>
-            <li><a href='/servicios#proyectos-especiales'>Proyectos especiales</a></li>
+            <li>
+              <a href='/servicios#proyectos-especiales'>Proyectos especiales</a>
+            </li>
           </ul>
-        </li>
-        <li
-          class={`nav-list-desktop__item ${isActive('/contacto') ? 'is-active' : ''}`}
-        >
-          <a href='/contacto'>Contacto</a>
         </li>
       </ul>
 
@@ -128,25 +127,21 @@ const isActive = (path: string) => pathname === path || pathname === path + '/';
           >
           <ul class='sub-menu'>
             <li>
-              <a href='/servicios#productor-exportador'>· Productores y exportadores</a>
+              <a href='/servicios#productor-exportador'
+                >· Productores y exportadores</a
+              >
             </li>
             <li>
               <a href='/servicios#importador-distribuidor'
                 >· Importadores y distribuidores</a
               >
             </li>
-            <li><a href='/servicios#proyectos-especiales'>· Proyectos especiales</a></li>
+            <li>
+              <a href='/servicios#proyectos-especiales'
+                >· Proyectos especiales</a
+              >
+            </li>
           </ul>
-        </li>
-        <li
-          class={`nav-list__item ${isActive('/contacto') ? 'is-active' : ''}`}
-        >
-          <a href='/contacto'
-            >Contacto <ArrowRight
-              size={18}
-              color='#86C46A'
-            /></a
-          >
         </li>
       </ul>
 
