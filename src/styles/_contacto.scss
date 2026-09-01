@@ -20,11 +20,16 @@
   padding: 4rem 1.5rem;
 
   @include tablet {
-    height: 45dvh;
+    height: 50dvh;
+    padding: 4rem 2rem;
+  }
+  @include desktop {
+    height: 55dvh;
+    padding: 4rem 6rem;
   }
   @include maxDesktop {
     height: 60dvh;
-    padding-bottom: 8rem;
+    padding-bottom: 4rem;
   }
 
   &__container {
