@@ -18,24 +18,30 @@ const currentYear = new Date().getFullYear();
 const sliderData = [
   {
     subtitle: 'AGROVALUE',
-    title: 'Conectamos el campo con el mundo para generar valor en toda la cadena agroexportadora.',
-    description: 'Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.',
+    title:
+      'Conectamos el campo con el mundo, generando valor para cada produtor.',
+    description:
+      'Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.',
     imageMobile: bannerMobile,
     imageTablet: bannerTablet,
     imageDesktop: bannerDesktop,
   },
   {
     subtitle: 'INNOVACIÓN',
-    title: 'Tecnología agrícola de vanguardia para potenciar tus cultivos y maximizar rendimientos.',
-    description: 'Desarrollamos soluciones integrales adaptadas a las necesidades específicas de cada mercado internacional.',
+    title:
+      'Tecnología agrícola de vanguardia para potenciar tus cultivos y maximizar rendimientos.',
+    description:
+      'Desarrollamos soluciones integrales adaptadas a las necesidades específicas de cada mercado internacional.',
     imageMobile: bannerMobile,
     imageTablet: bannerTablet,
     imageDesktop: bannerDesktop,
   },
   {
     subtitle: 'SOSTENIBILIDAD',
-    title: 'Crecimiento sostenible y confiable para el futuro del ecosistema agroexportador.',
-    description: 'Acompañamos a productores en su transición hacia prácticas más rentables y amigables con el medio ambiente.',
+    title:
+      'Crecimiento sostenible y confiable para el futuro del ecosistema agroexportador.',
+    description:
+      'Acompañamos a productores en su transición hacia prácticas más rentables y amigables con el medio ambiente.',
     imageMobile: bannerMobile,
     imageTablet: bannerTablet,
     imageDesktop: bannerDesktop,
@@ -43,67 +49,116 @@ const sliderData = [
 ];
 ---
 
-<Layout title="Agrovalue - Inicio" hideFooter={true}>
+<Layout
+  title='Agrovalue - Inicio'
+  hideFooter={true}
+>
   <!-- HERO SLIDER FULL SCREEN -->
-  <section id="section1" class="hero">
-    <div class="hero__slides-container">
-      {sliderData.map((slide, index) => (
-        <div class={`hero__slide ${index === 0 ? 'is-active' : ''}`} data-index={index}>
-          <div class="hero__background">
-            <Image src={slide.imageMobile} alt={`Slide ${index + 1}`} class="hero__image hero__image--mobile" loading={index === 0 ? 'eager' : 'lazy'} />
-            <Image src={slide.imageTablet} alt={`Slide ${index + 1}`} class="hero__image hero__image--tablet" loading={index === 0 ? 'eager' : 'lazy'} />
-            <Image src={slide.imageDesktop} alt={`Slide ${index + 1}`} class="hero__image hero__image--desktop" loading={index === 0 ? 'eager' : 'lazy'} />
-            <div class="hero__overlay" />
-            <div class="hero__overlay2" />
-          </div>
+  <section
+    id='section1'
+    class='hero'
+  >
+    <div class='hero__slides-container'>
+      {
+        sliderData.map((slide, index) => (
+          <div
+            class={`hero__slide ${index === 0 ? 'is-active' : ''}`}
+            data-index={index}
+          >
+            <div class='hero__background'>
+              <Image
+                src={slide.imageMobile}
+                alt={`Slide ${index + 1}`}
+                class='hero__image hero__image--mobile'
+                loading={index === 0 ? 'eager' : 'lazy'}
+              />
+              <Image
+                src={slide.imageTablet}
+                alt={`Slide ${index + 1}`}
+                class='hero__image hero__image--tablet'
+                loading={index === 0 ? 'eager' : 'lazy'}
+              />
+              <Image
+                src={slide.imageDesktop}
+                alt={`Slide ${index + 1}`}
+                class='hero__image hero__image--desktop'
+                loading={index === 0 ? 'eager' : 'lazy'}
+              />
+              <div class='hero__overlay' />
+              <div class='hero__overlay2' />
+            </div>
 
-          <div class="hero__content">
-            <span class="hero__subtitle text-reveal">{slide.subtitle}</span>
-            <h1 class="hero__title">
-              {slide.title.split(' ').map((word) => (
-                <span class="word-wrap">
-                  <span class="word">{word}</span>&nbsp;
-                </span>
-              ))}
-            </h1>
-            <p class="hero__description text-reveal">{slide.description}</p>
-            <div class="hero__actions text-reveal">
-              <a href="/servicios" class="btn btn--primary">
-                Conoce nuestros servicios
-              </a>
-              <a href="/contacto" class="btn btn--outline">
-                Contáctanos
-              </a>
+            <div class='hero__content'>
+              <span class='hero__subtitle text-reveal'>{slide.subtitle}</span>
+              <h1 class='hero__title'>
+                {slide.title.split(' ').map((word) => (
+                  <span class='word-wrap'>
+                    <span class='word'>{word}</span>&nbsp;
+                  </span>
+                ))}
+              </h1>
+              <p class='hero__description text-reveal'>{slide.description}</p>
+              <div class='hero__actions text-reveal'>
+                <a
+                  href='/servicios'
+                  class='btn btn--primary'
+                >
+                  Conoce nuestros servicios
+                </a>
+                <a
+                  href='/contacto'
+                  class='btn btn--outline'
+                >
+                  Contáctanos
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
 
-    <div class="hero__ui">
-      <div class="hero__controls">
-        <div class="slider-arrows">
-          <button class="arrow-btn arrow-btn--outline" id="prev-slide" aria-label="Diapositiva anterior">
+    <div class='hero__ui'>
+      <div class='hero__controls'>
+        <div class='slider-arrows'>
+          <button
+            class='arrow-btn arrow-btn--outline'
+            id='prev-slide'
+            aria-label='Diapositiva anterior'
+          >
             <ChevronLeft size={20} />
           </button>
-          <button class="arrow-btn arrow-btn--solid" id="next-slide" aria-label="Siguiente diapositiva">
+          <button
+            class='arrow-btn arrow-btn--solid'
+            id='next-slide'
+            aria-label='Siguiente diapositiva'
+          >
             <ChevronRight size={20} />
           </button>
         </div>
-        <div class="slider-pagination">
-          {sliderData.map((_, index) => (
-            <span class={`dot ${index === 0 ? 'dot--active' : ''}`} data-index={index} />
-          ))}
+        <div class='slider-pagination'>
+          {
+            sliderData.map((_, index) => (
+              <span
+                class={`dot ${index === 0 ? 'dot--active' : ''}`}
+                data-index={index}
+              />
+            ))
+          }
         </div>
       </div>
     </div>
 
-    <div class="hero__progress">
-      <div class="hero__progress-bar" id="progress-bar"></div>
+    <div class='hero__progress'>
+      <div
+        class='hero__progress-bar'
+        id='progress-bar'
+      >
+      </div>
     </div>
 
     <!-- MINI FOOTER PARA EL HOME -->
-    <div class="hero__minimal-footer">
+    <div class='hero__minimal-footer'>
       <p>&copy; {currentYear} Agrovalue. Todos los derechos reservados.</p>
     </div>
   </section>
@@ -185,10 +240,26 @@ const sliderData = [
       });
 
       tl.to(nextSlide, { autoAlpha: 1, duration: 1, ease: 'power2.inOut' })
-        .to(nextReveal[0], { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' }, '-=0.3')
-        .to(nextWords, { y: '0%', duration: 0.6, stagger: 0.03, ease: 'power3.out' }, '-=0.4')
-        .to(nextReveal[1], { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-        .to(nextReveal[2], { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' }, '-=0.4');
+        .to(
+          nextReveal[0],
+          { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' },
+          '-=0.3',
+        )
+        .to(
+          nextWords,
+          { y: '0%', duration: 0.6, stagger: 0.03, ease: 'power3.out' },
+          '-=0.4',
+        )
+        .to(
+          nextReveal[1],
+          { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' },
+          '-=0.4',
+        )
+        .to(
+          nextReveal[2],
+          { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' },
+          '-=0.4',
+        );
 
       dots.forEach((dot) => dot.classList.remove('dot--active'));
       dots[nextIndex].classList.add('dot--active');
