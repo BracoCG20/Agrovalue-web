@@ -192,26 +192,52 @@ export const perfilesData = [
     image: imgServicios3,
     logo: logoBlanco,
     imageAlt: 'Campo en desarrollo',
-    services: [
+    services: [],
+    serviceGroups: [
       {
-        num: '01',
-        title: 'Estructuramos tu inversión de punta a punta.',
-        text: 'Identificamos y evaluamos la oportunidad, estructuramos la operación y modelamos su retorno. Te acompañamos en el levantamiento de capital y en la gestión de la relación con tus coinversionistas, del análisis al cierre',
+        groupTitle: 'PARA INVERSIONISTAS',
+        items: [
+          {
+            num: '01',
+            title: 'Estructuramos tu inversión de punta a punta.',
+            text: 'Identificamos y evaluamos la oportunidad, estructuramos la operación y modelamos su retorno. Te acompañamos en el levantamiento de capital y en la gestión de la relación con tus coinversionistas, del análisis al cierre.',
+          },
+          {
+            num: '02',
+            title: 'Due diligence que no deja cabos sueltos.',
+            text: 'Analizamos cada oportunidad en sus cuatro dimensiones: técnica, agronómica, comercial y financiera. Evaluamos tierras, agua, variedades, capacidad de empaque, acceso logístico y realidad de mercado, y lo complementamos con estudios de factibilidad para que decidas con información y no con supuestos.',
+          },
+          {
+            num: '03',
+            title: 'Desarrollamos y ejecutamos el proyecto.',
+            text: 'No entregamos un informe y nos retiramos. Lideramos el desarrollo de nuevos proyectos agrícolas y la implementación de fundos y plantas de empaque por cuenta del inversionista, desde el diseño hasta la puesta en marcha y la optimización de la operación.',
+          },
+          {
+            num: '04',
+            title: 'Supervisamos el desempeño con visibilidad real.',
+            text: 'Con tecnología propia integramos en un solo lugar la información de productores, producción, calidad, programas de exportación, seguimiento logístico e información comercial. Sigues tu proyecto con los mismos datos con los que lo operamos, no con un reporte armado para la reunión.',
+          },
+        ],
       },
       {
-        num: '02',
-        title: 'Due diligence que no dejacabos sueltos.',
-        text: 'Analizamos cada oportunidad en sus cuatro dimensiones: técnica, agronómica, comercial y financiera. Evaluamos tierras, agua, variedades, capacidad de empaque, acceso logístico y realidad de mercado, y lo complementamos con estudios de factibilidad para que  decidas con información y no con supuestos.',
-      },
-      {
-        num: '03',
-        title: 'Desarrollamos y ejecutamos el proyecto.',
-        text: 'No entregamos un informe y nos retiramos. Lideramos el desarrollo de nuevos proyectos agrícolas y la implementación de fundos y plantas de empaque por cuenta del inversionista, desde el diseño hasta la puesta en marcha y la optimización de la operación.',
-      },
-      {
-        num: '04',
-        title: 'Supervisamos el desempeño con visibilidad real.',
-        text: 'Con tecnología propia integramos en un solo lugar la información de productores, producción, calidad,programas de exportación, seguimiento logístico e información comercial. Sigues tu proyecto con los mismos datos con los que lo operamos, no con un reporte armado para la reunión.',
+        groupTitle: 'PARA EMPRESAS AGROEXPORTADORAS',
+        items: [
+          {
+            num: '01',
+            title: 'Convertimos tu visión en un plan ejecutable.',
+            text: 'Diseñamos estrategias de crecimiento, planes de negocio y modelos comerciales adaptados a tu realidad, y te acompañamos en procesos de expansión internacional y transformación empresarial.',
+          },
+          {
+            num: '02',
+            title: 'Estructuramos el capital para tu próxima etapa.',
+            text: 'Modelamos la inversión que tu crecimiento requiere y facilitamos el acceso a capital para financiarla, de modo que la caja deje de ser la restricción que define hasta dónde puedes llegar.',
+          },
+          {
+            num: '03',
+            title: 'Fortalecemos la estructura detrás del negocio.',
+            text: 'Valorizamos empresas, acompañamos procesos de reestructuración y planeamiento financiero, fortalecemos el gobierno corporativo y te ayudamos a encontrar al socio estratégico correcto.',
+          },
+        ],
       },
     ],
     processes: [

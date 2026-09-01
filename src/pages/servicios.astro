@@ -51,7 +51,6 @@ const titleText =
       </h1>
 
       <div class='hero-servicios__actions text-reveal'>
-        <!-- ✨ Enlaces actualizados para llevar los parámetros de URL -->
         <a
           href='#productor-exportador'
           class='btn-profile'
@@ -148,21 +147,49 @@ const titleText =
             />
           </div>
 
-          {perfil.services.length > 0 && (
+          {/* RENDERIZADO CONDICIONAL: Si es una lista normal (Sección 1 y 2) */}
+          {!perfil.serviceGroups &&
+            perfil.services &&
+            perfil.services.length > 0 && (
+              <div class='pd-services'>
+                <div class='pd-content'>
+                  <span class='pd-section-subtitle'>QUÉ HACEMOS POR TI</span>
+                  <div class='pd-list'>
+                    {perfil.services.map((service) => (
+                      <div class='pd-list__item'>
+                        <span class='pd-list__num'>{service.num}</span>
+                        <div class='pd-list__content'>
+                          <h4>{service.title}</h4>
+                          <p>{service.text}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+
+          {/* RENDERIZADO CONDICIONAL: Si está dividido por grupos (Sección 3) */}
+          {perfil.serviceGroups && perfil.serviceGroups.length > 0 && (
             <div class='pd-services'>
               <div class='pd-content'>
-                <span class='pd-section-subtitle'>QUÉ HACEMOS POR TI</span>
-                <div class='pd-list'>
-                  {perfil.services.map((service) => (
-                    <div class='pd-list__item'>
-                      <span class='pd-list__num'>{service.num}</span>
-                      <div class='pd-list__content'>
-                        <h4>{service.title}</h4>
-                        <p>{service.text}</p>
-                      </div>
+                {perfil.serviceGroups.map((group) => (
+                  <div class='pd-service-group'>
+                    <span class='pd-section-subtitle'>QUÉ HACEMOS POR TI</span>
+                    <h3 class='pd-service-group__title'>{group.groupTitle}</h3>
+                    <div class='pd-list'>
+                      {group.items.map((service) => (
+                        <div class='pd-list__item'>
+                          <span class='pd-list__num'>{service.num}</span>
+                          <div class='pd-list__content'>
+                            <h4>{service.title}</h4>
+                            <p>{service.text}</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  ))}
-                </div>
+                  </div>
+                ))}
               </div>
             </div>
           )}
@@ -218,7 +245,20 @@ const titleText =
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener('DOMContentLoaded', () => {
-    // Animación del Hero
+    // Scroll Suave para los botones del Hero
+    document.querySelectorAll('.btn-profile').forEach((anchor) => {
+      anchor.addEventListener('click', (e) => {
+        const href = anchor.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) {
+            target.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
     const tlHero = gsap.timeline();
     gsap.set('.hero-servicios__subtitle', { autoAlpha: 0, y: 20 });
     gsap.set('.hero-servicios .word', { y: '100%' });
@@ -243,7 +283,6 @@ const titleText =
         '-=0.2',
       );
 
-    // ✨ Animaciones al hacer Scroll en cada perfil
     const perfiles = document.querySelectorAll('.perfil-detail');
 
     perfiles.forEach((perfil) => {
@@ -303,8 +342,9 @@ const titleText =
 
       const servicesSection = perfil.querySelector('.pd-services');
       if (servicesSection) {
+        // ✨ Agregué '.pd-service-group__title' para que el nuevo título azul también se anime
         const servicesItems = servicesSection.querySelectorAll(
-          '.pd-section-subtitle, .pd-list__item',
+          '.pd-section-subtitle, .pd-service-group__title, .pd-list__item',
         );
         gsap.from(servicesItems, {
           scrollTrigger: { trigger: servicesSection, start: 'top 85%' },
@@ -334,7 +374,7 @@ const titleText =
       const ctaSection = perfil.querySelector('.pd-cta');
       if (ctaSection) {
         const ctaElements = ctaSection.querySelectorAll(
-          '.pd-cta-container__title, .pd-cta-container__text',
+          '.pd-cta-container__title, .pd-cta-container__text, .pd-cta__btn',
         );
         gsap.from(ctaElements, {
           scrollTrigger: { trigger: ctaSection, start: 'top 85%' },
