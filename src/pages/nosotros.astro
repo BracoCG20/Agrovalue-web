@@ -37,13 +37,13 @@ const valoresData = [
   {
     title: 'Compromiso',
     description:
-      'Nos involucramos al máximo en cada proyecto, asumiendo la responsabilidad de entregar resultados excepcionales y cumplir nuestras promesas.',
+      'Asumimos cada desafío como propio, trabajando con responsabilidad, dedicación y lealtad para impulsar el éxito de nuestros clientes y generar valor en cada etapa de la cadena agroexportadora.',
     image: valor2Img,
   },
   {
     title: 'Innovación',
     description:
-      'Buscamos continuamente nuevas tecnologías y métodos para optimizar la cadena agroexportadora y adaptarnos a un mercado en constante cambio.',
+      'Transformamos experiencia, conocimiento y tecnología en soluciones simples, ágiles y eficientes que generen valor en toda la cadena agroexportadora.',
     image: valor3Img,
   },
 ];
@@ -51,50 +51,44 @@ const valoresData = [
 const equipoData = [
   {
     name: 'José Antonio Gómez',
-    role: 'Fundador',
+    role: 'Founder',
     description:
       'Más de 25 años liderando estrategia y ejecución agroindustrial global. Lideró el crecimiento de Camposol hasta posicionarla como líder mundial en arándanos, con operaciones en Perú, Colombia y China.',
-    tags: ['Estrategia', 'Inversión', 'Escalamiento'],
     image: equipo01,
   },
   {
-    name: 'María Pérez',
-    role: 'Directora de Operaciones',
+    name: 'Gerd Burmester',
+    role: 'CEO',
     description:
-      'Especialista en optimización de cadenas de suministro y logística internacional. Garantiza que cada exportación cumpla con los más altos estándares de calidad y eficiencia.',
-    tags: ['Logística', 'Operaciones', 'Calidad'],
+      'Más de 20 años de experiencia en procurement y comercialización de fruta a nivel global. Desarrolló programas globales de proveedores en Vecs y Divine Flavor, gestionando más de 1,200 contenedores de uva al año.',
     image: equipo02,
   },
   {
-    name: 'Carlos Rodríguez',
-    role: 'Gerente Comercial',
+    name: 'Rocio Enciso',
+    role: 'Bussines Manager',
     description:
-      'Experto en apertura de nuevos mercados en Asia y Europa. Conecta a los productores locales con las demandas más exigentes a nivel global mediante relaciones a largo plazo.',
-    tags: ['Ventas', 'Expansión', 'Mercados'],
+      'Más de 17 años de experiencia en calidad, inocuidad alimentaria y sistemas de gestión integrada en productos frescos. Lideró certificaciones ISO y programas de inocuidad alimentaria en operaciones globales del sector agroexportador.',
     image: equipo03,
   },
   {
-    name: 'José Antonio Gómez',
-    role: 'Fundador',
+    name: 'Rocio Ruby',
+    role: 'TBD',
     description:
-      'Más de 25 años liderando estrategia y ejecución agroindustrial global. Lideró el crecimiento de Camposol hasta posicionarla como líder mundial en arándanos, con operaciones en Perú, Colombia y China.',
-    tags: ['Estrategia', 'Inversión', 'Escalamiento'],
+      'Más de 15 años de experiencia en funciones legales, regulatorias y administrativas en el sector agrícola. Lidera el cumplimiento normativo de AgroValue en materia laboral, comercio exterior y certificaciones internacionales.',
     image: equipo04,
   },
   {
-    name: 'María Pérez',
-    role: 'Directora de Operaciones',
+    name: 'Cristhian Cisneros',
+    role: 'Commercial Director',
     description:
-      'Especialista en optimización de cadenas de suministro y logística internacional. Garantiza que cada exportación cumpla con los más altos estándares de calidad y eficiencia.',
-    tags: ['Logística', 'Operaciones', 'Calidad'],
+      'Más de 14 años de experiencia en agroindustria, control financiero y logistica en productos frescos. Lidero la estrategia comercial y el modelamiento económico para impulsar la eficiencia de costos y rentabilidad.',
     image: equipo05,
   },
   {
-    name: 'Carlos Rodríguez',
-    role: 'Gerente Comercial',
+    name: 'Gerelin Coca',
+    role: 'Export Analyst',
     description:
-      'Experto en apertura de nuevos mercados en Asia y Europa. Conecta a los productores locales con las demandas más exigentes a nivel global mediante relaciones a largo plazo.',
-    tags: ['Ventas', 'Expansión', 'Mercados'],
+      'Más de 7 años de experiencia en comercio internacional, aduanas y logística, especializada en carga perecible. Gestionó operaciones de exportación de arándanos, paltas, uvas y mangos.',
     image: equipo06,
   },
 ];
@@ -254,10 +248,9 @@ const etapasData = [
             <span class='mv-card__number'>02</span>
             <h3 class='mv-card__title'>Visión</h3>
             <p class='mv-card__description'>
-              Ser el ecosistema agroexportador líder a nivel global, reconocido
-              por impulsar la sostenibilidad del campo, democratizar el acceso a
-              los mercados internacionales y establecer un estándar de confianza
-              y eficiencia en toda la cadena de valor agrícola.
+              Ser el socio de confianza y el referente en la agroexportación
+              latinoamericana que productores, compradores e inversionistas
+              eligen para crecer juntos.
             </p>
           </div>
           <div class='mv-card__image-container'>
@@ -348,12 +341,6 @@ const etapasData = [
                   <p class='equipo-detail__description'>
                     {miembro.description}
                   </p>
-
-                  <div class='equipo-detail__tags'>
-                    {miembro.tags.map((tag) => (
-                      <span class='tag'>{tag}</span>
-                    ))}
-                  </div>
                 </div>
               ))
             }
