@@ -1,851 +1,885 @@
-@use 'variables' as *;
-@use 'breakpoints' as *;
+@use "variables" as *;
+@use "breakpoints" as *;
 
 // ==================== SECTION 1: HERO SERVICIOS ====================
 .hero-servicios {
-  position: relative;
-  height: 80dvh;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  padding: 8rem 1.5rem 3rem;
-  overflow: hidden;
+	position: relative;
+	height: 80dvh;
+	display: flex;
+	flex-direction: column;
+	justify-content: end;
+	padding: 8rem 1.5rem 3rem;
+	overflow: hidden;
 
-  @include tablet {
-    padding: 9rem 3rem 4rem;
-  }
-  @include desktop {
-    padding: 10rem 6rem 4rem;
-  }
-  @include maxDesktop {
-    display: flex;
-    align-items: center;
-  }
+	@include tablet {
+		padding: 9rem 3rem 4rem;
+	}
+	@include desktop {
+		padding: 10rem 6rem 4rem;
+	}
+	@include maxDesktop {
+		display: flex;
+		align-items: center;
+	}
 
-  &__background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
+	&__background {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+	}
 
-  &__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
+	&__image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
 
-    &--mobile {
-      display: block;
-      @include tablet {
-        display: none;
-      }
-    }
+		&--mobile {
+			display: block;
+			@include tablet {
+				display: none;
+			}
+		}
 
-    &--tablet {
-      display: none;
-      @include tablet {
-        display: block;
-      }
-      @include desktop {
-        display: none;
-      }
-    }
+		&--tablet {
+			display: none;
+			@include tablet {
+				display: block;
+			}
+			@include desktop {
+				display: none;
+			}
+		}
 
-    &--desktop {
-      display: none;
-      @include desktop {
-        display: block;
-      }
-    }
-  }
+		&--desktop {
+			display: none;
+			@include desktop {
+				display: block;
+			}
+		}
+	}
 
-  &__overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    background: linear-gradient(
-      to bottom,
-      rgba(13, 35, 17, 0.4) 0%,
-      rgba(13, 35, 17, 0.55) 50%,
-      rgba(13, 35, 17, 1) 100%
-    );
-  }
+	&__overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 2;
+		background: linear-gradient(
+			to bottom,
+			rgba(13, 35, 17, 0.4) 0%,
+			rgba(13, 35, 17, 0.55) 50%,
+			rgba(13, 35, 17, 1) 100%
+		);
+	}
 
-  &__content {
-    position: relative;
-    z-index: 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0;
-    width: 100%;
-  }
+	&__content {
+		position: relative;
+		z-index: 3;
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		gap: 1.5rem;
+		max-width: 1200px;
+		margin: 0;
+		width: 100%;
+	}
 
-  &__subtitle {
-    color: #f6f8f3;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2.4px;
-    font-family: $font-DMsans;
-    text-transform: uppercase;
-  }
+	&__subtitle {
+		color: #f6f8f3;
+		font-size: 11px;
+		font-weight: 600;
+		letter-spacing: 2.4px;
+		font-family: $font-DMsans;
+		text-transform: uppercase;
+	}
 
-  &__title {
-    color: #ffffff;
-    font-size: 31px;
-    line-height: 34.1px;
-    letter-spacing: -1.1px;
-    font-weight: 700;
-    font-family: $font-SpaceGrotesk;
-    margin: 0;
-    max-width: 650px;
-    word-break: keep-all;
-    overflow-wrap: break-word;
+	&__title {
+		color: #ffffff;
+		font-size: 31px;
+		line-height: 34.1px;
+		letter-spacing: -1.1px;
+		font-weight: 700;
+		font-family: $font-SpaceGrotesk;
+		margin: 0;
+		max-width: 650px;
+		word-break: keep-all;
+		overflow-wrap: break-word;
 
-    @include tablet {
-      font-size: 42px;
-      max-width: 700px;
-    }
-    @include desktop {
-      font-size: 54px;
-      line-height: 1.1;
-      max-width: 850px;
-      margin: 0 0 3rem 0;
-    }
+		@include tablet {
+			font-size: 42px;
+			max-width: 700px;
+		}
+		@include desktop {
+			font-size: 54px;
+			line-height: 1.1;
+			max-width: 850px;
+			margin: 0 0 3rem 0;
+		}
 
-    .word-wrap {
-      display: inline-flex;
-      overflow: hidden;
-      vertical-align: top;
-    }
+		.word-wrap {
+			display: inline-flex;
+			overflow: hidden;
+			vertical-align: top;
+		}
 
-    .word {
-      display: inline-block;
-      will-change: transform;
-    }
-  }
+		.word {
+			display: inline-block;
+			will-change: transform;
+		}
+	}
 
-  &__actions {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    max-width: 100%;
+	&__actions {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+		max-width: 100%;
 
-    @include desktop {
-      flex-direction: row;
-      gap: 1.2rem;
-    }
-  }
+		@include desktop {
+			flex-direction: row;
+			gap: 1.2rem;
+		}
+	}
 
-  .btn-profile {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1rem 1.8rem;
-    border-radius: 3rem;
-    border: 1px solid rgba(255, 255, 255, 0.34);
-    background-color: transparent;
-    color: #ffffff;
-    text-decoration: none;
-    font-family: $font-DMsans;
-    font-weight: 600;
-    font-size: 14.5px;
-    transition: all 0.3s ease-in-out;
+	.btn-profile {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding: 1rem 1.8rem;
+		border-radius: 3rem;
+		border: 1px solid rgba(255, 255, 255, 0.34);
+		background-color: transparent;
+		color: #ffffff;
+		text-decoration: none;
+		font-family: $font-DMsans;
+		font-weight: 600;
+		font-size: 14.5px;
+		transition: all 0.3s ease-in-out;
 
-    @include desktop {
-      justify-content: center;
-      padding: 0.8rem 1.2rem;
-      width: auto;
-    }
+		@include desktop {
+			justify-content: center;
+			padding: 0.8rem 1.2rem;
+			width: auto;
+		}
 
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.08);
-      border-color: #ffffff;
-    }
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.08);
+			border-color: #ffffff;
+		}
 
-    svg {
-      transition: transform 0.3s ease-in-out;
-      @include desktop {
-        display: none;
-      }
-    }
+		svg {
+			transition: transform 0.3s ease-in-out;
+			@include desktop {
+				display: none;
+			}
+		}
 
-    &:hover svg {
-      transform: translateX(5px);
-    }
-  }
+		&:hover svg {
+			transform: translateX(5px);
+		}
+	}
 }
 
 // ==================== SECTION 2: DETALLE PERFILES ====================
 .perfiles-wrapper {
-  background-color: #f6f8f3;
+	background-color: #f6f8f3;
 }
 
 .perfil-detail {
-  display: flex;
-  flex-direction: column;
-
-  // 1. Intro
-  .pd-intro {
-    padding: 2.5rem 2rem;
-    border-bottom: 1px solid #e2e9de;
-
-    @include tablet {
-      padding: 4rem 3.5rem;
-    }
-    @include desktop {
-      padding: 7rem 4rem;
-    }
-
-    &-content {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 11px;
-
-      @include tablet {
-        flex-direction: row;
-        gap: 1.8rem;
-      }
-      @include desktop {
-        gap: 3rem;
-      }
-
-      &-container1 {
-        display: flex;
-        align-items: center;
-
-        @include tablet {
-          align-items: flex-end;
-        }
-
-        &__number {
-          font-size: 46px;
-          font-family: $font-SpaceGrotesk;
-          font-weight: 700;
-          color: #cbdec0;
-          line-height: 36.8px;
-          letter-spacing: -2.4px;
-
-          @include tablet {
-            font-size: 64px;
-            line-height: 51.2px;
-            letter-spacing: -3px;
-          }
-        }
-      }
-
-      &-container2 {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-
-        @include tablet {
-          gap: 1.2rem;
-        }
-
-        &__subtitle {
-          color: #569c33;
-          font-size: 11.5px;
-          font-weight: 600;
-          letter-spacing: 2.4px;
-          text-transform: uppercase;
-          font-family: $font-DMsans;
-
-          @include tablet {
-            font-size: 12px;
-          }
-        }
-
-        &__title {
-          color: #184c2f;
-          font-size: 28px;
-          line-height: 31.4px;
-          letter-spacing: -1px;
-          font-weight: 700;
-          font-family: $font-SpaceGrotesk;
-          margin: 0;
-
-          @include tablet {
-            font-size: 30px;
-            line-height: 36.7px;
-            letter-spacing: -1.3px;
-          }
-          @include desktop {
-            font-size: 40px;
-          }
-          @include maxDesktop {
-            font-size: 50px;
-            line-height: 55.5px;
-            letter-spacing: -1.8px;
-          }
-        }
-
-        &__text {
-          color: #5a6b5f;
-          font-size: 15.5px;
-          line-height: 25.6px;
-          font-family: $font-DMsans;
-          margin: 0;
-          max-width: 550px;
-
-          @include tablet {
-            font-size: 16.5px;
-            line-height: 26.4px;
-          }
-        }
-      }
-    }
-  }
-
-  // 2. Problema / Solución
-  .pd-comparison {
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    padding: 3rem 2rem;
-
-    @include tablet {
-      padding: 3rem;
-    }
-    @include desktop {
-      padding: 4rem;
-    }
-
-    &-container {
-      position: relative;
-      max-width: 1200px;
-      display: flex;
-      flex-direction: column;
-
-      @include maxDesktop {
-        flex-direction: row;
-      }
-
-      &__box {
-        padding: 2rem 1.5rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 320px;
-        gap: 11px;
-
-        @include tablet {
-          padding: 2rem;
-        }
-        @include maxDesktop {
-          flex: 1;
-          height: 360px;
-          padding: 50px;
-          justify-content: start;
-        }
-
-        &--dark {
-          background-color: #133a24;
-          color: #ffffff;
-
-          .pd-comparison-container__subtitle {
-            color: rgba(#cbdec0, 0.7);
-            font-weight: 300;
-          }
-          .pd-comparison-container__text {
-            opacity: 0.7;
-          }
-          @include maxDesktop {
-            border-radius: 20px 0 0 20px;
-          }
-        }
-
-        &--light {
-          background-color: #ffffff;
-          color: #184c2f;
-
-          .pd-comparison-container__subtitle {
-            color: #569c33;
-          }
-          .pd-comparison-container__text {
-            color: #5a6b5f;
-          }
-          @include maxDesktop {
-            border-radius: 0 20px 20px 0;
-          }
-        }
-      }
-
-      &__subtitle {
-        display: block;
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 2.4px;
-        text-transform: uppercase;
-        font-family: $font-DMsans;
-      }
-
-      &__title {
-        font-size: 22px;
-        line-height: 26.4px;
-        letter-spacing: -0.6px;
-        font-weight: 700;
-        font-family: $font-SpaceGrotesk;
-        margin: 0;
-
-        @include tablet {
-          font-size: 26px;
-          letter-spacing: -0.8px;
-          line-height: 30.2px;
-        }
-        @include maxDesktop {
-          font-size: 31px;
-          line-height: 36px;
-          letter-spacing: -0.9px;
-        }
-      }
-
-      &__text {
-        font-size: 15px;
-        line-height: 25.5px;
-        font-family: $font-DMsans;
-        margin: 0;
-
-        @include tablet {
-          font-size: 16px;
-          line-height: 27.2px;
-        }
-      }
-
-      &__icon {
-        position: absolute;
-        bottom: 48%;
-        right: 1rem;
-        width: 38px;
-        height: 38px;
-        background-color: #86c46a;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 10;
-
-        @include tablet {
-          right: 3rem;
-        }
-        @include maxDesktop {
-          right: 48.5%;
-          bottom: 44%;
-          outline: 8px solid #f7f9f4;
-        }
-
-        img {
-          width: 24px;
-          height: 24px;
-          object-fit: contain;
-        }
-      }
-    }
-  }
-
-  // 3. Imagen
-  .pd-image {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    overflow: hidden;
-    padding: 0rem 1.5rem 3rem;
-
-    @include tablet {
-      padding: 2rem 3rem;
-    }
-    @include desktop {
-      padding: 0rem 4rem 2rem;
-    }
-
-    &__img {
-      border-radius: 15px;
-      max-width: 1200px;
-      height: 200px;
-      object-fit: cover;
-
-      @include desktop {
-        height: 260px;
-      }
-      @include maxDesktop {
-        height: 340px;
-      }
-    }
-  }
-
-  // 4. Qué hacemos por ti
-  .pd-services {
-    padding: 3rem 2.4rem;
-    background-color: #fff;
-
-    @include desktop {
-      padding: 4rem;
-    }
-
-    .pd-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 3rem;
-
-      .pd-section-subtitle {
-        display: block;
-        color: #569c33;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 2.6px;
-        text-transform: uppercase;
-        font-family: $font-SpaceGrotesk;
-
-        @include maxDesktop {
-          font-size: 14px;
-        }
-      }
-
-      .pd-service-group {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 1rem;
-
-        &__title {
-          font-family: $font-DMsans;
-          font-size: 18px;
-          font-weight: 600;
-          color: $green-900;
-          letter-spacing: 1px;
-          margin: 0;
-          padding-bottom: 0.5rem;
-
-          @include tablet {
-            font-size: 20px;
-          }
-        }
-      }
-
-      .pd-list {
-        display: grid;
-        grid-template-columns: 1fr;
-
-        @include tablet {
-          grid-template-columns: 1fr 1fr;
-          gap: 1.5rem;
-        }
-        @include maxDesktop {
-          grid-template-columns: 1fr 1fr 1fr;
-          gap: 0rem 2rem;
-        }
-
-        &__item {
-          display: flex;
-          gap: 1.5rem;
-          padding: 1.5rem 0;
-          border-top: 1px solid #e4eae1;
-        }
-
-        &__num {
-          color: #bad6ac;
-          font-size: 20px;
-          font-weight: 700;
-          line-height: 20px;
-          font-family: $font-SpaceGrotesk;
-          flex-shrink: 0;
-
-          @include tablet {
-            font-size: 22px;
-            line-height: 22px;
-          }
-          @include maxDesktop {
-            font-size: 26px;
-            line-height: 26px;
-          }
-        }
-
-        &__content {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-
-          h4 {
-            color: #184c2f;
-            font-size: 16.5px;
-            font-weight: 700;
-            line-height: 21.5px;
-            letter-spacing: -0.3px;
-            font-family: $font-SpaceGrotesk;
-            margin: 0;
-
-            @include maxDesktop {
-              font-size: 19px;
-              line-height: 24.7px;
-              letter-spacing: -0.4px;
-            }
-          }
-
-          p {
-            color: #5a6b5f;
-            font-size: 14.5px;
-            line-height: 23.2px;
-            font-family: $font-DMsans;
-            margin: 0;
-
-            @include maxDesktop {
-              font-size: 15.5px;
-              line-height: 25.6px;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  // 5. Lista "Cómo trabajamos"
-  .pd-process {
-    padding: 3rem 2.4rem;
-
-    @include tablet {
-      padding: 4rem 3rem;
-    }
-    @include desktop {
-      padding: 5rem 4rem;
-    }
-    @include maxDesktop {
-      padding: 6rem 0rem;
-    }
-
-    .pd-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-
-      @include maxDesktop {
-        gap: 3rem;
-      }
-
-      .pd-section-subtitle {
-        display: block;
-        color: #569c33;
-        font-size: 12px;
-        font-weight: 700;
-        letter-spacing: 2.6px;
-        text-transform: uppercase;
-        font-family: $font-SpaceGrotesk;
-
-        @include maxDesktop {
-          font-size: 14px;
-        }
-      }
-
-      .pd-process-list {
-        padding: 0;
-        margin: 0;
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 1.3rem;
-
-        @include tablet {
-          grid-template-columns: 1fr 1fr;
-          gap: 2rem;
-        }
-        @include maxDesktop {
-          grid-template-columns: 1fr 1fr 1fr 1fr;
-          gap: 3rem;
-        }
-
-        &__item {
-          display: flex;
-          gap: 1rem;
-
-          @include tablet {
-            flex-direction: column;
-          }
-        }
-
-        &-content1 {
-          display: flex;
-
-          @include tablet {
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-          }
-
-          &__circle {
-            position: relative;
-            width: 32px;
-            height: 32px;
-            background-color: #184c2f;
-            color: #ffffff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-family: $font-SpaceGrotesk;
-            font-size: 14px;
-            flex-shrink: 0;
-          }
-
-          &__line {
-            display: none;
-            width: 100%;
-            height: 1px;
-            background-color: #d6e0d1;
-            margin: 0 auto;
-
-            @include tablet {
-              display: block;
-            }
-          }
-        }
-
-        &-content2 {
-          display: flex;
-          flex-direction: column;
-          gap: 0.3rem;
-
-          h4 {
-            color: #184c2f;
-            font-size: 16.5px;
-            font-weight: 700;
-            line-height: 21.5px;
-            font-family: $font-SpaceGrotesk;
-            margin: 0;
-
-            @include maxDesktop {
-              font-size: 18px;
-              line-height: 23.4px;
-            }
-          }
-
-          p {
-            color: #5a6b5f;
-            font-size: 14.5px;
-            line-height: 23.2px;
-            font-family: $font-DMsans;
-            margin: 0;
-
-            @include maxDesktop {
-              font-size: 15.5px;
-              line-height: 24.8px;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  // 6. CTA Box
-  .pd-cta {
-    background-color: #184c2f;
-    padding: 3rem 2rem;
-    color: #ffffff;
-
-    @include tablet {
-      padding: 3rem;
-    }
-    @include maxDesktop {
-      padding: 5rem 0rem;
-    }
-
-    .pd-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-
-      @include tablet {
-        gap: 1.5rem;
-      }
-      @include maxDesktop {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .pd-cta-container {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-        max-width: 600px;
-
-        @include tablet {
-          gap: 1.5rem;
-        }
-
-        &__title {
-          font-size: 25px;
-          line-height: 29px;
-          letter-spacing: -0.8px;
-          font-weight: 700;
-          font-family: $font-SpaceGrotesk;
-          margin: 0;
-
-          @include tablet {
-            font-size: 28px;
-            line-height: 31.9px;
-            letter-spacing: -0.9px;
-          }
-          @include maxDesktop {
-            font-size: 36px;
-            line-height: 40.3px;
-            letter-spacing: -1px;
-          }
-        }
-
-        &__text {
-          font-size: 15.5px;
-          line-height: 25.6px;
-          font-family: $font-DMsans;
-          color: rgba(255, 255, 255, 0.8);
-          margin: 0;
-
-          @include tablet {
-            font-size: 16px;
-            line-height: 26.4px;
-          }
-        }
-      }
-
-      .pd-cta__btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.6rem;
-        background-color: #86c46a;
-        color: #0b2b1a;
-        font-family: $font-DMsans;
-        font-weight: 600;
-        font-size: 15.5px;
-        padding: 1rem 2rem;
-        border-radius: 3rem;
-        text-decoration: none;
-        transition: all 0.3s ease-in-out;
-
-        &:hover {
-          background-color: #7ab55f;
-        }
-
-        @include tablet {
-          width: 200px;
-        }
-      }
-    }
-  }
+	display: flex;
+	flex-direction: column;
+
+	// 1. Intro
+	.pd-intro {
+		padding: 2.5rem 2rem;
+		border-bottom: 1px solid #e2e9de;
+
+		@include tablet {
+			padding: 4rem 3.5rem;
+		}
+		@include desktop {
+			padding: 7rem 4rem;
+		}
+
+		&-content {
+			max-width: 1100px;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 11px;
+
+			@include tablet {
+				flex-direction: row;
+				gap: 1.8rem;
+			}
+			@include desktop {
+				gap: 3rem;
+			}
+
+			&-container1 {
+				display: flex;
+				align-items: center;
+
+				@include tablet {
+					align-items: flex-end;
+				}
+
+				&__number {
+					font-size: 46px;
+					font-family: $font-SpaceGrotesk;
+					font-weight: 700;
+					color: #cbdec0;
+					line-height: 36.8px;
+					letter-spacing: -2.4px;
+
+					@include tablet {
+						font-size: 64px;
+						line-height: 51.2px;
+						letter-spacing: -3px;
+					}
+				}
+			}
+
+			&-container2 {
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+
+				@include tablet {
+					gap: 1.2rem;
+				}
+
+				&__subtitle {
+					color: #569c33;
+					font-size: 11.5px;
+					font-weight: 600;
+					letter-spacing: 2.4px;
+					text-transform: uppercase;
+					font-family: $font-DMsans;
+
+					@include tablet {
+						font-size: 12px;
+					}
+				}
+
+				&__title {
+					color: #184c2f;
+					font-size: 28px;
+					line-height: 31.4px;
+					letter-spacing: -1px;
+					font-weight: 700;
+					font-family: $font-SpaceGrotesk;
+					margin: 0;
+
+					@include tablet {
+						font-size: 30px;
+						line-height: 36.7px;
+						letter-spacing: -1.3px;
+					}
+					@include desktop {
+						font-size: 40px;
+					}
+					@include maxDesktop {
+						font-size: 50px;
+						line-height: 55.5px;
+						letter-spacing: -1.8px;
+					}
+				}
+
+				&__text {
+					color: #5a6b5f;
+					font-size: 15.5px;
+					line-height: 25.6px;
+					font-family: $font-DMsans;
+					margin: 0;
+					max-width: 550px;
+
+					@include tablet {
+						font-size: 16.5px;
+						line-height: 26.4px;
+					}
+				}
+			}
+		}
+	}
+
+	// 2. Problema / Solución
+	.pd-comparison {
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		padding: 3rem 2rem;
+
+		@include tablet {
+			padding: 3rem;
+		}
+		@include desktop {
+			padding: 4rem;
+		}
+
+		&-container {
+			position: relative;
+			max-width: 1200px;
+			display: flex;
+			flex-direction: column;
+
+			@include maxDesktop {
+				flex-direction: row;
+			}
+
+			&__box {
+				padding: 2rem 1.5rem;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				height: 320px;
+				gap: 11px;
+
+				@include tablet {
+					padding: 2rem;
+				}
+				@include maxDesktop {
+					flex: 1;
+					height: 360px;
+					padding: 50px;
+					justify-content: start;
+				}
+
+				&--dark {
+					background-color: #133a24;
+					color: #ffffff;
+
+					.pd-comparison-container__subtitle {
+						color: rgba(#cbdec0, 0.7);
+						font-weight: 300;
+					}
+					.pd-comparison-container__text {
+						opacity: 0.7;
+					}
+					@include maxDesktop {
+						border-radius: 20px 0 0 20px;
+					}
+				}
+
+				&--light {
+					background-color: #ffffff;
+					color: #184c2f;
+
+					.pd-comparison-container__subtitle {
+						color: #569c33;
+					}
+					.pd-comparison-container__text {
+						color: #5a6b5f;
+					}
+					@include maxDesktop {
+						border-radius: 0 20px 20px 0;
+					}
+				}
+			}
+
+			&__subtitle {
+				display: block;
+				font-size: 11px;
+				font-weight: 600;
+				letter-spacing: 2.4px;
+				text-transform: uppercase;
+				font-family: $font-DMsans;
+			}
+
+			&__title {
+				font-size: 22px;
+				line-height: 26.4px;
+				letter-spacing: -0.6px;
+				font-weight: 700;
+				font-family: $font-SpaceGrotesk;
+				margin: 0;
+
+				@include tablet {
+					font-size: 26px;
+					letter-spacing: -0.8px;
+					line-height: 30.2px;
+				}
+				@include maxDesktop {
+					font-size: 31px;
+					line-height: 36px;
+					letter-spacing: -0.9px;
+				}
+			}
+
+			&__text {
+				font-size: 15px;
+				line-height: 25.5px;
+				font-family: $font-DMsans;
+				margin: 0;
+
+				@include tablet {
+					font-size: 16px;
+					line-height: 27.2px;
+				}
+			}
+
+			&__icon {
+				position: absolute;
+				bottom: 48%;
+				right: 1rem;
+				width: 38px;
+				height: 38px;
+				background-color: #86c46a;
+				border-radius: 50%;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				z-index: 10;
+
+				@include tablet {
+					right: 3rem;
+				}
+				@include maxDesktop {
+					right: 48.5%;
+					bottom: 44%;
+					outline: 8px solid #f7f9f4;
+				}
+
+				img {
+					width: 24px;
+					height: 24px;
+					object-fit: contain;
+				}
+			}
+		}
+	}
+
+	// 3. Imagen
+	.pd-image {
+		display: flex;
+		justify-content: center;
+		width: 100%;
+		overflow: hidden;
+		padding: 0rem 1.5rem 3rem;
+
+		@include tablet {
+			padding: 2rem 3rem;
+		}
+		@include desktop {
+			padding: 0rem 4rem 2rem;
+		}
+
+		&__img {
+			border-radius: 15px;
+			max-width: 1200px;
+			height: 200px;
+			object-fit: cover;
+
+			@include desktop {
+				height: 260px;
+			}
+			@include maxDesktop {
+				height: 340px;
+			}
+		}
+	}
+
+	// 4. Qué hacemos por ti
+	.pd-services {
+		padding: 3rem 2.4rem;
+		background-color: #fff;
+
+		@include desktop {
+			padding: 4rem;
+		}
+
+		.pd-content {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 3rem;
+
+			.pd-section-subtitle {
+				display: block;
+				color: #569c33;
+				font-size: 12px;
+				font-weight: 700;
+				letter-spacing: 2.6px;
+				text-transform: uppercase;
+				font-family: $font-SpaceGrotesk;
+
+				@include maxDesktop {
+					font-size: 14px;
+				}
+			}
+
+			.pd-service-group {
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+				margin-top: 1rem;
+
+				&__title {
+					font-family: $font-DMsans;
+					font-size: 18px;
+					font-weight: 600;
+					color: $green-900;
+					letter-spacing: 1px;
+					margin: 0;
+					padding-bottom: 0.5rem;
+
+					@include tablet {
+						font-size: 20px;
+					}
+				}
+			}
+
+			.pd-list {
+				display: grid;
+				grid-template-columns: 1fr;
+
+				@include tablet {
+					grid-template-columns: 1fr 1fr;
+					gap: 1.5rem;
+				}
+				@include maxDesktop {
+					grid-template-columns: 1fr 1fr 1fr;
+					gap: 0rem 2rem;
+				}
+
+				&__item {
+					display: flex;
+					gap: 1.5rem;
+					padding: 1.5rem 0;
+					border-top: 1px solid #e4eae1;
+				}
+
+				&__num {
+					color: #bad6ac;
+					font-size: 20px;
+					font-weight: 700;
+					line-height: 20px;
+					font-family: $font-SpaceGrotesk;
+					flex-shrink: 0;
+
+					@include tablet {
+						font-size: 22px;
+						line-height: 22px;
+					}
+					@include maxDesktop {
+						font-size: 26px;
+						line-height: 26px;
+					}
+				}
+
+				&__content {
+					display: flex;
+					flex-direction: column;
+					gap: 0.5rem;
+
+					h4 {
+						color: #184c2f;
+						font-size: 16.5px;
+						font-weight: 700;
+						line-height: 21.5px;
+						letter-spacing: -0.3px;
+						font-family: $font-SpaceGrotesk;
+						margin: 0;
+
+						@include maxDesktop {
+							font-size: 19px;
+							line-height: 24.7px;
+							letter-spacing: -0.4px;
+						}
+					}
+
+					p {
+						color: #5a6b5f;
+						font-size: 14.5px;
+						line-height: 23.2px;
+						font-family: $font-DMsans;
+						margin: 0;
+
+						@include maxDesktop {
+							font-size: 15.5px;
+							line-height: 25.6px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// 5. Lista "Cómo trabajamos"
+	.pd-process {
+		padding: 3rem 2.4rem;
+
+		@include tablet {
+			padding: 4rem 3rem;
+		}
+		@include desktop {
+			padding: 5rem 4rem;
+		}
+		@include maxDesktop {
+			padding: 6rem 0rem;
+		}
+
+		.pd-content {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+
+			@include maxDesktop {
+				gap: 3rem;
+			}
+
+			.pd-section-subtitle {
+				display: block;
+				color: #569c33;
+				font-size: 12px;
+				font-weight: 700;
+				letter-spacing: 2.6px;
+				text-transform: uppercase;
+				font-family: $font-SpaceGrotesk;
+
+				@include maxDesktop {
+					font-size: 14px;
+				}
+			}
+
+			.pd-process-list {
+				padding: 0;
+				margin: 0;
+				display: grid;
+				grid-template-columns: 1fr;
+				gap: 1.3rem;
+
+				@include tablet {
+					grid-template-columns: 1fr 1fr;
+					gap: 2rem;
+				}
+				@include maxDesktop {
+					grid-template-columns: 1fr 1fr 1fr 1fr;
+					gap: 3rem;
+				}
+
+				&__item {
+					display: flex;
+					gap: 1rem;
+
+					@include tablet {
+						flex-direction: column;
+					}
+				}
+
+				&-content1 {
+					display: flex;
+
+					@include tablet {
+						justify-content: center;
+						align-items: center;
+						gap: 1rem;
+					}
+
+					&__circle {
+						position: relative;
+						width: 32px;
+						height: 32px;
+						background-color: #184c2f;
+						color: #ffffff;
+						border-radius: 50%;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						font-weight: 700;
+						font-family: $font-SpaceGrotesk;
+						font-size: 14px;
+						flex-shrink: 0;
+					}
+
+					&__line {
+						display: none;
+						width: 100%;
+						height: 1px;
+						background-color: #d6e0d1;
+						margin: 0 auto;
+
+						@include tablet {
+							display: block;
+						}
+					}
+				}
+
+				&-content2 {
+					display: flex;
+					flex-direction: column;
+					gap: 0.3rem;
+
+					h4 {
+						color: #184c2f;
+						font-size: 16.5px;
+						font-weight: 700;
+						line-height: 21.5px;
+						font-family: $font-SpaceGrotesk;
+						margin: 0;
+
+						@include maxDesktop {
+							font-size: 18px;
+							line-height: 23.4px;
+						}
+					}
+
+					p {
+						color: #5a6b5f;
+						font-size: 14.5px;
+						line-height: 23.2px;
+						font-family: $font-DMsans;
+						margin: 0;
+
+						@include maxDesktop {
+							font-size: 15.5px;
+							line-height: 24.8px;
+						}
+					}
+				}
+			}
+		}
+	}
+	// 6. CTA Box
+	.pd-cta {
+		background-color: #184c2f;
+		padding: 3rem 2rem;
+		color: #ffffff;
+		position: relative; // ✨ Necesario para anclar el botón flotante
+
+		@include tablet {
+			padding: 3rem;
+		}
+		@include maxDesktop {
+			padding: 5rem 0rem;
+		}
+
+		.pd-content {
+			max-width: 1200px;
+			margin: 0 auto;
+			display: flex;
+			flex-direction: column;
+			gap: 1rem;
+
+			@include tablet {
+				gap: 1.5rem;
+			}
+			@include maxDesktop {
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+			}
+
+			.pd-cta-container {
+				display: flex;
+				flex-direction: column;
+				gap: 1rem;
+				max-width: 600px;
+
+				@include tablet {
+					gap: 1.5rem;
+				}
+
+				&__title {
+					font-size: 25px;
+					line-height: 29px;
+					letter-spacing: -0.8px;
+					font-weight: 700;
+					font-family: $font-SpaceGrotesk;
+					margin: 0;
+
+					@include tablet {
+						font-size: 28px;
+						line-height: 31.9px;
+						letter-spacing: -0.9px;
+					}
+					@include maxDesktop {
+						font-size: 36px;
+						line-height: 40.3px;
+						letter-spacing: -1px;
+					}
+				}
+
+				&__text {
+					font-size: 15.5px;
+					line-height: 25.6px;
+					font-family: $font-DMsans;
+					color: rgba(255, 255, 255, 0.8);
+					margin: 0;
+
+					@include tablet {
+						font-size: 16px;
+						line-height: 26.4px;
+					}
+				}
+			}
+
+			.pd-cta__btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.6rem;
+				background-color: #86c46a;
+				color: #0b2b1a;
+				font-family: $font-DMsans;
+				font-weight: 600;
+				font-size: 15.5px;
+				padding: 1rem 2rem;
+				border-radius: 3rem;
+				text-decoration: none;
+				transition: all 0.3s ease-in-out;
+
+				&:hover {
+					background-color: #7ab55f;
+				}
+
+				@include tablet {
+					width: 200px;
+				}
+			}
+		}
+
+		// ✨ Botón Flotante
+		.pd-scroll-top {
+			position: absolute;
+			bottom: 0;
+			left: 50%;
+			transform: translate(-50%, 50%);
+			width: 35px;
+			height: 35px;
+			background-color: #ffffff;
+			border: 1px solid #ffffff;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #569c33; // Color verde de la flecha
+			cursor: pointer;
+			z-index: 10;
+			box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+			transition: all 0.3s ease;
+
+			@include tablet {
+				width: 40px;
+				height: 40px;
+			}
+
+			&:hover {
+				background-color: #86c46a;
+				color: #ffffff;
+				border-color: #86c46a;
+				transform: translate(-50%, 50%) scale(1.05);
+				box-shadow: 0 6px 18px rgba(134, 196, 106, 0.4);
+			}
+		}
+	}
 }

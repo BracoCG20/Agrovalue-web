@@ -9,21 +9,23 @@ import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import { Leaf, ShieldCheck, Truck, Globe } from '@lucide/astro';
 
-import bannerMobile from '../assets/banner_Nosotros01_Mobile.jpg';
-import bannerTablet from '../assets/banner_Nosotros01_Tablet.jpg';
-import bannerDesktop from '../assets/banner_Nosotros01_Desktop.jpg';
-import bannerVisionMobile from '../assets/banner_Vision02_Mobile.jpg';
+import bannerMobile from '../assets/nosotros/banner_Nosotros_Mobile.webp';
+import bannerTablet from '../assets/nosotros/banner_Nosotros_Tablet.webp';
+import bannerDesktop from '../assets/nosotros/banner_Nosotros_Desktop.webp';
+import vision from '../assets/nosotros/vision.webp';
+import mision from '../assets/nosotros/vision.webp';
 
-import valor1Img from '../assets/banner_Nosotros03_Mobile.jpg';
-import valor2Img from '../assets/banner_Nosotros04_Mobile.jpg';
-import valor3Img from '../assets/banner_Nosotros05_Mobile.jpg';
 
-import equipo01 from '../assets/nosotros/Equipo01.png';
-import equipo02 from '../assets/nosotros/Equipo02.png';
-import equipo03 from '../assets/nosotros/Equipo03.png';
-import equipo04 from '../assets/nosotros/Equipo04.png';
-import equipo05 from '../assets/nosotros/Equipo05.png';
-import equipo06 from '../assets/nosotros/Equipo06.png';
+import valor1Img from '../assets/nosotros/valor_Integridad.webp';
+import valor2Img from '../assets/nosotros/valor_Compromiso.webp';
+import valor3Img from '../assets/nosotros/valor_Innovacion.webp';
+
+import equipo01 from '../assets/nosotros/Equipo01.webp';
+import equipo02 from '../assets/nosotros/Equipo02.webp';
+import equipo03 from '../assets/nosotros/Equipo03.webp';
+import equipo04 from '../assets/nosotros/Equipo04.webp';
+import equipo05 from '../assets/nosotros/Equipo05.webp';
+import equipo06 from '../assets/nosotros/Equipo06.webp';
 
 const titleText = 'Impulsando el agro hacia el mercado global.';
 
@@ -233,7 +235,7 @@ const etapasData = [
           <div class='mv-card__image-container'>
             <div class='mv-card__overlay'></div>
             <Image
-              src={bannerVisionMobile}
+              src={mision}
               alt='Misión Agrovalue'
               class='mv-card__image'
             />
@@ -256,7 +258,7 @@ const etapasData = [
           <div class='mv-card__image-container'>
             <div class='mv-card__overlay'></div>
             <Image
-              src={bannerDesktop}
+              src={vision}
               alt='Visión Agrovalue'
               class='mv-card__image'
             />

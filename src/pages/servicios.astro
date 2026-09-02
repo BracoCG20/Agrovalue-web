@@ -1,13 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import { ArrowRight } from '@lucide/astro';
+import { ArrowRight, ChevronUp } from '@lucide/astro';
 
 import { perfilesData } from '../data/serviciosData.js';
 
-import bannerDesktop from '../assets/banner_Service_Desktop.jpg';
-import bannerTablet from '../assets/banner_Service_Desktop.jpg';
-import bannerMobile from '../assets/banner_Service_Desktop.jpg';
+import bannerMobile from '../assets/servicios/banner_Service_Desktop.webp';
+import bannerTablet from '../assets/servicios/banner_Service_Desktop.webp';
+import bannerDesktop from '../assets/servicios/banner_Service_Desktop.webp';
 import logoBlanco from '../assets/Logo_Agrovalue_blanco.svg';
 
 const titleText =
@@ -231,6 +231,11 @@ const titleText =
                 {perfil.cta.btnText} <ArrowRight size={18} />
               </a>
             </div>
+            
+            <!-- ✨ Botón flotante para subir -->
+            <button class="pd-scroll-top" aria-label="Volver arriba">
+              <ChevronUp size={20} />
+            </button>
           </div>
         </section>
       ))
@@ -245,6 +250,13 @@ const titleText =
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener('DOMContentLoaded', () => {
+    // ✨ Lógica para el botón "Volver Arriba"
+    document.querySelectorAll('.pd-scroll-top').forEach(btn => {
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
     // Scroll Suave para los botones del Hero
     document.querySelectorAll('.btn-profile').forEach((anchor) => {
       anchor.addEventListener('click', (e) => {
@@ -342,7 +354,6 @@ const titleText =
 
       const servicesSection = perfil.querySelector('.pd-services');
       if (servicesSection) {
-        // ✨ Agregué '.pd-service-group__title' para que el nuevo título azul también se anime
         const servicesItems = servicesSection.querySelectorAll(
           '.pd-section-subtitle, .pd-service-group__title, .pd-list__item',
         );
@@ -374,7 +385,7 @@ const titleText =
       const ctaSection = perfil.querySelector('.pd-cta');
       if (ctaSection) {
         const ctaElements = ctaSection.querySelectorAll(
-          '.pd-cta-container__title, .pd-cta-container__text,'
+          '.pd-cta-container__title, .pd-cta-container__text',
         );
         gsap.from(ctaElements, {
           scrollTrigger: { trigger: ctaSection, start: 'top 85%' },
