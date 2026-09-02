@@ -374,7 +374,7 @@ const titleText =
       const ctaSection = perfil.querySelector('.pd-cta');
       if (ctaSection) {
         const ctaElements = ctaSection.querySelectorAll(
-          '.pd-cta-container__title, .pd-cta-container__text, .pd-cta__btn',
+          '.pd-cta-container__title, .pd-cta-container__text,'
         );
         gsap.from(ctaElements, {
           scrollTrigger: { trigger: ctaSection, start: 'top 85%' },

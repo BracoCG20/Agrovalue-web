@@ -6,7 +6,7 @@
  */
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
-import { Mail, MapPin } from '@lucide/astro';
+import { Mail } from '@lucide/astro';
 
 import imgContacto from '../assets/banner_Contacto_Desktop.jpg';
 ---
@@ -90,30 +90,6 @@ import imgContacto from '../assets/banner_Contacto_Desktop.jpg';
                 >
               </div>
             </li>
-            <!-- <li>
-              <a
-                href='https://www.google.com/maps/search/?api=1&query=Agrovalue'
-                target='_blank'
-                rel='noopener noreferrer'
-                class='contact-list__icon'
-                aria-label='Ver ubicación en el mapa'
-              >
-                <MapPin
-                  size={20}
-                  stroke-width={2}
-                />
-              </a>
-              <div class='contact-list__text'>
-                <span class='label'>COBERTURA</span>
-                <a
-                  href='https://www.google.com/maps/search/?api=1&query=Agrovalue'
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  class='value'
-                  >Latinoamérica · EE. UU. · Asia</a
-                >
-              </div>
-            </li> -->
           </ul>
         </div>
 
@@ -265,7 +241,7 @@ import imgContacto from '../assets/banner_Contacto_Desktop.jpg';
 
   document.addEventListener('DOMContentLoaded', () => {
     
-    // ✨ LÓGICA PARA AUTOSELECCIONAR EL RADIO BUTTON Y LIMPIAR LA URL
+    //LÓGICA PARA AUTOSELECCIONAR EL RADIO BUTTON Y LIMPIAR LA URL
     const urlParams = new URLSearchParams(window.location.search);
     const perfilDesdeURL = urlParams.get('perfil'); 
 

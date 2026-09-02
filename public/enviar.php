@@ -36,7 +36,7 @@ if (empty($nombre) || empty($email) || empty($mensaje) || !filter_var($email, FI
 }
 
 // --- CONFIGURACIÓN DEL CORREO ---
-$destinatario = "tucorreo@agrovalue.es"; // REEMPLAZA ESTO CON EL CORREO DEL CLIENTE
+$destinatario = "cbraco@gruposp.pe"; // REEMPLAZA ESTO CON EL CORREO DEL CLIENTE
 $asunto = "Nuevo contacto web: " . $nombre;
 $logoUrl = "https://agrovalue.es/Logo_Agrovalue.png";
 
