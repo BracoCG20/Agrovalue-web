@@ -472,6 +472,7 @@
 
 		&__img {
 			border-radius: 15px;
+			width: 100%;
 			max-width: 1200px;
 			height: 200px;
 			object-fit: cover;
@@ -480,7 +481,7 @@
 				height: 260px;
 			}
 			@include maxDesktop {
-				height: 340px;
+				height: 380px;
 			}
 		}
 	}

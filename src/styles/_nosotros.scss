@@ -118,12 +118,11 @@
 
 		@include tablet {
 			font-size: 42px;
-			line-height: 42px;
 			padding-bottom: 50px;
 		}
 		@include maxDesktop {
 			font-size: 65px;
-			line-height: 70px;
+			line-height: 75px;
 			padding-right: 400px;
 			padding-bottom: 40px;
 		}
