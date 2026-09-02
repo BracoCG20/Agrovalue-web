@@ -3,146 +3,126 @@
  * Página: Inicio (Home)
  * Descripción: Landing page principal de Agrovalue.
  * Experiencia de pantalla completa (Full-screen) con Slider interactivo
- * y un pie de página minimalista.
+ * de fondos y contenido estático sincronizado.
  */
 import Layout from '../layouts/Layout.astro';
 import { Image } from 'astro:assets';
 import { ChevronLeft, ChevronRight } from '@lucide/astro';
 
-import bannerMobile from '../assets/banner_Agrovalue_Mobile.jpg';
-import bannerTablet from '../assets/banner_Agrovalue_Tablet.jpg';
-import bannerDesktop from '../assets/banner_Agrovalue_Desktop.jpg';
+import bannerMobile1 from '../assets/banner_Agrovalue_Mobile.jpg';
+import bannerTablet1 from '../assets/banner_Agrovalue_Tablet.jpg';
+import bannerDesktop1 from '../assets/banner_Agrovalue_Desktop.jpg';
+import bannerMobile2 from '../assets/banner_Nosotros01_Mobile.jpg';
+import bannerTablet2 from '../assets/banner_Nosotros01_Tablet.jpg';
+import bannerDesktop2 from '../assets/banner_Nosotros01_Desktop.jpg';
+import bannerMobile3 from '../assets/banner_Service_Desktop.jpg';
+import bannerTablet3 from '../assets/banner_Service_Desktop.jpg';
+import bannerDesktop3 from '../assets/banner_Service_Desktop.jpg';
 
 const currentYear = new Date().getFullYear();
 
-const sliderData = [
+// 1. ARRAY EXCLUSIVO DE IMÁGENES
+const slideImages = [
   {
-    subtitle: 'AGROVALUE',
-    title:
-      'Conectamos el campo con el mundo, generando valor para cada produtor.',
-    description:
-      'Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.',
-    imageMobile: bannerMobile,
-    imageTablet: bannerTablet,
-    imageDesktop: bannerDesktop,
+    mobile: bannerMobile1,
+    tablet: bannerTablet1,
+    desktop: bannerDesktop1,
   },
   {
-    subtitle: 'INNOVACIÓN',
-    title:
-      'Tecnología agrícola de vanguardia para potenciar tus cultivos y maximizar rendimientos.',
-    description:
-      'Desarrollamos soluciones integrales adaptadas a las necesidades específicas de cada mercado internacional.',
-    imageMobile: bannerMobile,
-    imageTablet: bannerTablet,
-    imageDesktop: bannerDesktop,
+    mobile: bannerMobile2,
+    tablet: bannerTablet2,
+    desktop: bannerDesktop2,
   },
   {
-    subtitle: 'SOSTENIBILIDAD',
-    title:
-      'Crecimiento sostenible y confiable para el futuro del ecosistema agroexportador.',
-    description:
-      'Acompañamos a productores en su transición hacia prácticas más rentables y amigables con el medio ambiente.',
-    imageMobile: bannerMobile,
-    imageTablet: bannerTablet,
-    imageDesktop: bannerDesktop,
+    mobile: bannerMobile3,
+    tablet: bannerTablet3,
+    desktop: bannerDesktop3,
   },
 ];
+
+// Texto fijo para el Hero
+const heroTitle = 'Conectamos el campo con el mundo, generando valor para cada productor.';
 ---
 
 <Layout
   title='Agrovalue - Inicio'
   hideFooter={true}
 >
-  <!-- HERO SLIDER FULL SCREEN -->
-  <section
-    id='section1'
-    class='hero'
-  >
+  <section id='section1' class='hero'>
+    
+    <!-- CONTENEDOR DE FONDOS (Solo cambian las imágenes) -->
     <div class='hero__slides-container'>
       {
-        sliderData.map((slide, index) => (
+        slideImages.map((slide, index) => (
           <div
             class={`hero__slide ${index === 0 ? 'is-active' : ''}`}
             data-index={index}
           >
             <div class='hero__background'>
               <Image
-                src={slide.imageMobile}
-                alt={`Slide ${index + 1}`}
+                src={slide.mobile}
+                alt={`Fondo ${index + 1}`}
                 class='hero__image hero__image--mobile'
                 loading={index === 0 ? 'eager' : 'lazy'}
               />
               <Image
-                src={slide.imageTablet}
-                alt={`Slide ${index + 1}`}
+                src={slide.tablet}
+                alt={`Fondo ${index + 1}`}
                 class='hero__image hero__image--tablet'
                 loading={index === 0 ? 'eager' : 'lazy'}
               />
               <Image
-                src={slide.imageDesktop}
-                alt={`Slide ${index + 1}`}
+                src={slide.desktop}
+                alt={`Fondo ${index + 1}`}
                 class='hero__image hero__image--desktop'
                 loading={index === 0 ? 'eager' : 'lazy'}
               />
               <div class='hero__overlay' />
               <div class='hero__overlay2' />
             </div>
-
-            <div class='hero__content'>
-              <span class='hero__subtitle text-reveal'>{slide.subtitle}</span>
-              <h1 class='hero__title'>
-                {slide.title.split(' ').map((word) => (
-                  <span class='word-wrap'>
-                    <span class='word'>{word}</span>&nbsp;
-                  </span>
-                ))}
-              </h1>
-              <p class='hero__description text-reveal'>{slide.description}</p>
-              <div class='hero__actions text-reveal'>
-                <a
-                  href='/servicios'
-                  class='btn btn--primary'
-                >
-                  Conoce nuestros servicios
-                </a>
-                <a
-                  href='/contacto'
-                  class='btn btn--outline'
-                >
-                  Contáctanos
-                </a>
-              </div>
-            </div>
           </div>
         ))
       }
     </div>
 
+    <!-- CONTENIDO ESTÁTICO FIJO EN EL HTML -->
+    <div class='hero__content'>
+      <span class='hero__subtitle text-reveal'>AGROVALUE</span>
+      <h1 class='hero__title'>
+        {heroTitle.split(' ').map((word) => (
+          <span class='word-wrap'>
+            <span class='word'>{word}</span>&nbsp;
+          </span>
+        ))}
+      </h1>
+      <p class='hero__description text-reveal'>
+        Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.
+      </p>
+      <div class='hero__actions text-reveal'>
+        <a href='/servicios' class='btn btn--primary'>
+          Conoce nuestros servicios
+        </a>
+        <a href='/contacto' class='btn btn--outline'>
+          Contáctanos
+        </a>
+      </div>
+    </div>
+
+    <!-- CONTROLES Y NAVEGACIÓN -->
     <div class='hero__ui'>
       <div class='hero__controls'>
         <div class='slider-arrows'>
-          <button
-            class='arrow-btn arrow-btn--outline'
-            id='prev-slide'
-            aria-label='Diapositiva anterior'
-          >
+          <button class='arrow-btn arrow-btn--outline' id='prev-slide' aria-label='Diapositiva anterior'>
             <ChevronLeft size={20} />
           </button>
-          <button
-            class='arrow-btn arrow-btn--solid'
-            id='next-slide'
-            aria-label='Siguiente diapositiva'
-          >
+          <button class='arrow-btn arrow-btn--solid' id='next-slide' aria-label='Siguiente diapositiva'>
             <ChevronRight size={20} />
           </button>
         </div>
         <div class='slider-pagination'>
           {
-            sliderData.map((_, index) => (
-              <span
-                class={`dot ${index === 0 ? 'dot--active' : ''}`}
-                data-index={index}
-              />
+            slideImages.map((_, index) => (
+              <span class={`dot ${index === 0 ? 'dot--active' : ''}`} data-index={index} />
             ))
           }
         </div>
@@ -150,11 +130,7 @@ const sliderData = [
     </div>
 
     <div class='hero__progress'>
-      <div
-        class='hero__progress-bar'
-        id='progress-bar'
-      >
-      </div>
+      <div class='hero__progress-bar' id='progress-bar'></div>
     </div>
 
     <!-- MINI FOOTER PARA EL HOME -->
@@ -168,9 +144,6 @@ const sliderData = [
   import { gsap } from 'gsap';
 
   document.addEventListener('DOMContentLoaded', () => {
-    /**
-     * Lógica del Slider Automático (Hero)
-     */
     const slides = document.querySelectorAll('.hero__slide');
     const dots = document.querySelectorAll('.dot');
     const progressBar = document.getElementById('progress-bar') as HTMLElement;
@@ -184,14 +157,22 @@ const sliderData = [
     let timerTimeline: gsap.core.Tween | null = null;
 
     if (slides.length > 0) {
+      // 1. Configuramos las capas de fondo
       gsap.set(slides, { autoAlpha: 0, zIndex: 1 });
       gsap.set(slides[0], { autoAlpha: 1, zIndex: 2 });
 
-      const firstWords = slides[0].querySelectorAll('.word');
-      const firstReveal = slides[0].querySelectorAll('.text-reveal');
-      gsap.set([firstWords, firstReveal], { y: 0, autoAlpha: 1 });
+      // 2. Animación de entrada inicial del texto (Ocurre UNA vez al cargar la página)
+      const words = document.querySelectorAll('.hero__content .word');
+      const reveals = document.querySelectorAll('.hero__content .text-reveal');
+      
+      const tlInit = gsap.timeline({ onComplete: initTimer });
+      gsap.set(reveals, { autoAlpha: 0, y: 20 });
+      gsap.set(words, { y: '100%' });
 
-      initTimer();
+      tlInit.to(reveals[0], { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: 0.2 })
+            .to(words, { y: '0%', duration: 0.6, stagger: 0.03, ease: 'power3.out' }, '-=0.4')
+            .to(reveals[1], { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+            .to(reveals[2], { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4');
     }
 
     function initTimer() {
@@ -222,45 +203,41 @@ const sliderData = [
 
       const currentSlide = slides[currentIndex];
       const nextSlide = slides[nextIndex];
-      const nextWords = nextSlide.querySelectorAll('.word');
-      const nextReveal = nextSlide.querySelectorAll('.text-reveal');
 
+      // Preparamos la siguiente imagen para estar por encima y oculta
       gsap.set(nextSlide, { autoAlpha: 0, zIndex: 2 });
       gsap.set(currentSlide, { zIndex: 1 });
-      gsap.set(nextWords, { y: '100%' });
-      gsap.set(nextReveal, { y: 20, autoAlpha: 0 });
 
-      const tl = gsap.timeline({
+      // 1. Crossfade suave de la imagen de fondo (1.2 segundos)
+      gsap.to(nextSlide, {
+        autoAlpha: 1,
+        duration: 1.2, 
+        ease: 'power2.inOut',
         onComplete: () => {
-          gsap.set(currentSlide, { autoAlpha: 0 });
+          gsap.set(currentSlide, { autoAlpha: 0 }); // Ocultamos la anterior
           currentIndex = nextIndex;
           isAnimating = false;
           initTimer();
-        },
+        }
       });
 
-      tl.to(nextSlide, { autoAlpha: 1, duration: 1, ease: 'power2.inOut' })
-        .to(
-          nextReveal[0],
-          { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' },
-          '-=0.3',
-        )
-        .to(
-          nextWords,
-          { y: '0%', duration: 0.6, stagger: 0.03, ease: 'power3.out' },
-          '-=0.4',
-        )
-        .to(
-          nextReveal[1],
-          { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' },
-          '-=0.4',
-        )
-        .to(
-          nextReveal[2],
-          { y: 0, autoAlpha: 1, duration: 0.6, ease: 'power3.out' },
-          '-=0.4',
-        );
+      // 2. Animación sutil y sincronizada del texto estático
+      // El texto baja y pierde un poco de opacidad, luego vuelve a subir a su lugar
+      const tlText = gsap.timeline();
+      tlText.to('.hero__content', { 
+              y: 15, 
+              opacity: 0.6, 
+              duration: 0.5, 
+              ease: 'power2.out' 
+            })
+            .to('.hero__content', { 
+              y: 0, 
+              opacity: 1, 
+              duration: 0.7, 
+              ease: 'power2.out' 
+            });
 
+      // Actualizamos los dots de paginación
       dots.forEach((dot) => dot.classList.remove('dot--active'));
       dots[nextIndex].classList.add('dot--active');
     }
