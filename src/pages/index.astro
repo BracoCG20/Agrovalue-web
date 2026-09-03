@@ -61,19 +61,22 @@ const slideImages = [
     mobile: bannerMobile6,
     tablet: bannerTablet6,
     desktop: bannerDesktop6,
-  }
+  },
 ];
 
 // Texto fijo para el Hero
-const heroTitle = 'Conectamos el campo con el mundo, generando valor para cada productor.';
+const heroTitle =
+  'Conectamos el campo con el mundo, generando valor para cada productor.';
 ---
 
 <Layout
   title='Agrovalue - Inicio'
   hideFooter={true}
 >
-  <section id='section1' class='hero'>
-    
+  <section
+    id='section1'
+    class='hero'
+  >
     <!-- CONTENEDOR DE FONDOS (Solo cambian las imágenes) -->
     <div class='hero__slides-container'>
       {
@@ -111,22 +114,30 @@ const heroTitle = 'Conectamos el campo con el mundo, generando valor para cada p
 
     <!-- CONTENIDO ESTÁTICO FIJO EN EL HTML -->
     <div class='hero__content'>
-      <span class='hero__subtitle text-reveal'>AGROVALUE</span>
       <h1 class='hero__title'>
-        {heroTitle.split(' ').map((word) => (
-          <span class='word-wrap'>
-            <span class='word'>{word}</span>&nbsp;
-          </span>
-        ))}
+        {
+          heroTitle.split(' ').map((word) => (
+            <span class='word-wrap'>
+              <span class='word'>{word}</span>&nbsp;
+            </span>
+          ))
+        }
       </h1>
       <p class='hero__description text-reveal'>
-        Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.
+        Integramos mercados, capital y tecnología para que productores,
+        compradores e inversionistas crezcan con confianza.
       </p>
       <div class='hero__actions text-reveal'>
-        <a href='/servicios' class='btn btn--primary'>
+        <a
+          href='/servicios'
+          class='btn btn--primary'
+        >
           Conoce nuestros servicios
         </a>
-        <a href='/contacto' class='btn btn--outline'>
+        <a
+          href='/contacto'
+          class='btn btn--outline'
+        >
           Contáctanos
         </a>
       </div>
@@ -136,17 +147,28 @@ const heroTitle = 'Conectamos el campo con el mundo, generando valor para cada p
     <div class='hero__ui'>
       <div class='hero__controls'>
         <div class='slider-arrows'>
-          <button class='arrow-btn arrow-btn--outline' id='prev-slide' aria-label='Diapositiva anterior'>
+          <button
+            class='arrow-btn arrow-btn--outline'
+            id='prev-slide'
+            aria-label='Diapositiva anterior'
+          >
             <ChevronLeft size={20} />
           </button>
-          <button class='arrow-btn arrow-btn--solid' id='next-slide' aria-label='Siguiente diapositiva'>
+          <button
+            class='arrow-btn arrow-btn--solid'
+            id='next-slide'
+            aria-label='Siguiente diapositiva'
+          >
             <ChevronRight size={20} />
           </button>
         </div>
         <div class='slider-pagination'>
           {
             slideImages.map((_, index) => (
-              <span class={`dot ${index === 0 ? 'dot--active' : ''}`} data-index={index} />
+              <span
+                class={`dot ${index === 0 ? 'dot--active' : ''}`}
+                data-index={index}
+              />
             ))
           }
         </div>
@@ -154,7 +176,11 @@ const heroTitle = 'Conectamos el campo con el mundo, generando valor para cada p
     </div>
 
     <div class='hero__progress'>
-      <div class='hero__progress-bar' id='progress-bar'></div>
+      <div
+        class='hero__progress-bar'
+        id='progress-bar'
+      >
+      </div>
     </div>
 
     <!-- MINI FOOTER PARA EL HOME -->
@@ -188,15 +214,34 @@ const heroTitle = 'Conectamos el campo con el mundo, generando valor para cada p
       // 2. Animación de entrada inicial del texto (Ocurre UNA vez al cargar la página)
       const words = document.querySelectorAll('.hero__content .word');
       const reveals = document.querySelectorAll('.hero__content .text-reveal');
-      
+
       const tlInit = gsap.timeline({ onComplete: initTimer });
       gsap.set(reveals, { autoAlpha: 0, y: 20 });
       gsap.set(words, { y: '100%' });
 
-      tlInit.to(reveals[0], { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: 0.2 })
-            .to(words, { y: '0%', duration: 0.6, stagger: 0.03, ease: 'power3.out' }, '-=0.4')
-            .to(reveals[1], { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-            .to(reveals[2], { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4');
+      tlInit
+        .to(reveals[0], {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power3.out',
+          delay: 0.2,
+        })
+        .to(
+          words,
+          { y: '0%', duration: 0.6, stagger: 0.03, ease: 'power3.out' },
+          '-=0.4',
+        )
+        .to(
+          reveals[1],
+          { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' },
+          '-=0.4',
+        )
+        .to(
+          reveals[2],
+          { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' },
+          '-=0.4',
+        );
     }
 
     function initTimer() {
@@ -235,31 +280,32 @@ const heroTitle = 'Conectamos el campo con el mundo, generando valor para cada p
       // 1. Crossfade suave de la imagen de fondo (1.2 segundos)
       gsap.to(nextSlide, {
         autoAlpha: 1,
-        duration: 1.2, 
+        duration: 1.2,
         ease: 'power2.inOut',
         onComplete: () => {
           gsap.set(currentSlide, { autoAlpha: 0 }); // Ocultamos la anterior
           currentIndex = nextIndex;
           isAnimating = false;
           initTimer();
-        }
+        },
       });
 
       // 2. Animación sutil y sincronizada del texto estático
       // El texto baja y pierde un poco de opacidad, luego vuelve a subir a su lugar
       const tlText = gsap.timeline();
-      tlText.to('.hero__content', { 
-              y: 15, 
-              opacity: 0.6, 
-              duration: 0.5, 
-              ease: 'power2.out' 
-            })
-            .to('.hero__content', { 
-              y: 0, 
-              opacity: 1, 
-              duration: 0.7, 
-              ease: 'power2.out' 
-            });
+      tlText
+        .to('.hero__content', {
+          y: 15,
+          opacity: 0.6,
+          duration: 0.5,
+          ease: 'power2.out',
+        })
+        .to('.hero__content', {
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: 'power2.out',
+        });
 
       // Actualizamos los dots de paginación
       dots.forEach((dot) => dot.classList.remove('dot--active'));
