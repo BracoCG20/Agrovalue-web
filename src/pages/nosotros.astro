@@ -312,10 +312,10 @@ const etapasData = [
       <div class='equipo__header trigger-reveal-equipo'>
         <span class='equipo__subtitle'>NUESTRO EQUIPO</span>
         <h2 class='equipo__title'>Quienes lideran AgroValue.</h2>
-        <p class='equipo__instruction'>Desliza para conocer al equipo.</p>
+        <!-- <p class='equipo__instruction'>Desliza para conocer al equipo.</p> -->
       </div>
 
-      <div class='equipo__slider-wrapper trigger-reveal-equipo'>
+      <!-- <div class='equipo__slider-wrapper trigger-reveal-equipo'>
         <div class='equipo__info'>
           <div class='equipo__pagination'>
             {
@@ -407,6 +407,45 @@ const etapasData = [
               ))
             }
           </div>
+        </div>
+      </div> -->
+
+      <div class='equipo__grid-wrapper trigger-reveal-equipo'>
+        <div class='equipo__grid'>
+          {
+            equipoData.map((miembro) => (
+              <div class='equipo-clipped-card'>
+                {/* El fondo que recibirá el clip-path por JS */}
+                <div class='equipo-clipped-card__bg'>
+                  <Image
+                    src={miembro.image}
+                    alt={miembro.name}
+                    class='equipo-clipped-card__img'
+                  />
+                  <div class='equipo-clipped-card__overlay' />
+
+                  {/* Info que aparece en Hover */}
+                  <div class='equipo-clipped-card__info'>
+                    <h4>{miembro.name}</h4>
+                    <span>{miembro.role}</span>
+                    <p>{miembro.description}</p>
+                  </div>
+                </div>
+
+                {/* El botón encajado en el recorte */}
+                <button
+                  class='equipo-clipped-card__action'
+                  aria-label='Ver perfil'
+                >
+                  <img
+                    src='./Logo_Agrovalue.svg'
+                    alt=''
+                    height='30'
+                  />
+                </button>
+              </div>
+            ))
+          }
         </div>
       </div>
     </div>
@@ -605,16 +644,15 @@ const etapasData = [
 
       const valorCards = document.querySelectorAll('.valor-card');
 
-      function openCard(card: Element) {
+      function openCard(card) {
+        // <-- NOTA: Quité el tipado 'card: Element' si no usas un archivo .ts
         if (card.classList.contains('is-active')) return;
 
-        // Quitar la clase a la tarjeta activa
         const activeCard = document.querySelector('.valor-card.is-active');
         if (activeCard) {
           activeCard.classList.remove('is-active');
         }
 
-        // Añadir la clase a la nueva tarjeta
         card.classList.add('is-active');
       }
 
@@ -627,10 +665,11 @@ const etapasData = [
     }
 
     /**
-     * Slider del Equipo Directivo
+     * Componente Equipo (Grid Clip-Path)
      */
     const equipoSection = document.querySelector('.equipo');
     if (equipoSection) {
+      // Reveal inicial
       gsap.from('.trigger-reveal-equipo', {
         scrollTrigger: { trigger: equipoSection, start: 'top 80%' },
         y: 40,
@@ -640,163 +679,60 @@ const etapasData = [
         ease: 'power3.out',
       });
 
-      const track = document.getElementById('team-track');
-      const cards = document.querySelectorAll('.equipo-card');
-      const dots = document.querySelectorAll('.equipo-dot');
-      const details = document.querySelectorAll('.equipo-detail');
-      const btnPrev = document.getElementById('team-prev');
-      const btnNext = document.getElementById('team-next');
+      // --- Lógica del Clip-Path Dinámico (ResizeObserver) ---
+      const clippedBgs = document.querySelectorAll('.equipo-clipped-card__bg');
 
-      let currentTeamIndex = 0;
-      let isAnimatingTeam = false;
-      const totalTeam = cards.length;
+      const getDynamicPath = (w, h) => {
+        if (w === 0 || h === 0) return '';
+        const r = 16; // Radio principal
+        const nw = 65; // Ancho del recorte (del botón)
+        const nh = 65; // Alto del recorte (del botón)
+        const nr = 16; // Radio interno de las curvas
 
-      gsap.set(details, { autoAlpha: 0, x: 30 });
-      gsap.set(details[0], { autoAlpha: 1, x: 0 });
+        return `
+          M ${r} 0 
+          L ${w - r} 0 
+          A ${r} ${r} 0 0 1 ${w} ${r} 
+          L ${w} ${h - nh - nr} 
+          A ${nr} ${nr} 0 0 1 ${w - nr} ${h - nh} 
+          L ${w - nw + nr} ${h - nh} 
+          A ${nr} ${nr} 0 0 0 ${w - nw} ${h - nh + nr} 
+          L ${w - nw} ${h - r} 
+          A ${r} ${r} 0 0 1 ${w - nw - r} ${h} 
+          L ${r} ${h} 
+          A ${r} ${r} 0 0 1 0 ${h - r} 
+          L 0 ${r} 
+          A ${r} ${r} 0 0 1 ${r} 0 
+          Z
+        `
+          .replace(/\s+/g, ' ')
+          .trim();
+      };
 
-      function getLogicalPos(index: number, currentIndex: number) {
-        let pos = index - currentIndex;
-        if (pos < -1) pos += totalTeam;
-        if (pos > totalTeam - 2) pos -= totalTeam;
-        return pos;
-      }
-
-      function initCards() {
-        if (!track) return;
-        const cardWidth = (cards[0] as HTMLElement).offsetWidth;
-        const gap = 20;
-        const step = cardWidth + gap;
-
-        cards.forEach((card, i) => {
-          const pos = getLogicalPos(i, currentTeamIndex);
-          let opacity = 0;
-          let blur = 8;
-          let zIndex = 1;
-
-          if (pos === 0) {
-            opacity = 1;
-            blur = 0;
-            zIndex = 3;
-          } else if (pos === 1) {
-            opacity = 0.6;
-            blur = 5;
-            zIndex = 2;
-          }
-
-          gsap.set(card, {
-            x: pos * step,
-            opacity: opacity,
-            filter: `blur(${blur}px)`,
-            zIndex: zIndex,
-          });
-        });
-      }
-
-      setTimeout(initCards, 50);
-
-      function goToTeamMember(newIndex: number, direction: 'next' | 'prev') {
-        if (!track || isAnimatingTeam || newIndex === currentTeamIndex) return;
-        isAnimatingTeam = true;
-
-        const currentDetail = details[currentTeamIndex];
-        const nextDetail = details[newIndex];
-
-        const xOut = direction === 'next' ? -40 : 40;
-        const xIn = direction === 'next' ? 40 : -40;
-
-        const tl = gsap.timeline({
-          onComplete: () => {
-            isAnimatingTeam = false;
-          },
-        });
-
-        dots[currentTeamIndex].classList.remove('is-active');
-        dots[newIndex].classList.add('is-active');
-        cards[currentTeamIndex].classList.remove('is-active');
-        cards[newIndex].classList.add('is-active');
-
-        tl.to(
-          currentDetail,
-          { autoAlpha: 0, x: xOut, duration: 0.4, ease: 'power2.in' },
-          0,
-        )
-          .set(currentDetail, { zIndex: 1 })
-          .set(nextDetail, { zIndex: 2, x: xIn, autoAlpha: 0 })
-          .to(
-            nextDetail,
-            { autoAlpha: 1, x: 0, duration: 0.4, ease: 'power2.out' },
-            0.4,
-          );
-
-        const cardWidth = (cards[0] as HTMLElement).offsetWidth;
-        const gap = 24;
-        const step = cardWidth + gap;
-
-        cards.forEach((card, i) => {
-          const oldPos = getLogicalPos(i, currentTeamIndex);
-          const newPos = getLogicalPos(i, newIndex);
-
-          let opacity = 0;
-          let blur = 5;
-          let zIndex = 1;
-
-          if (newPos === 0) {
-            opacity = 1;
-            blur = 0;
-            zIndex = 3;
-          } else if (newPos === 1) {
-            opacity = 0.4;
-            blur = 5;
-            zIndex = 2;
-          }
-
-          if (oldPos > 1 && newPos < 0) {
-            gsap.set(card, { x: newPos * step });
-          } else if (oldPos < 0 && newPos > 1) {
-            gsap.set(card, { x: newPos * step });
-          }
-
-          tl.to(
-            card,
-            {
-              x: newPos * step,
-              opacity: opacity,
-              filter: `blur(${blur}px)`,
-              zIndex: zIndex,
-              duration: 0.7,
-              ease: 'power3.inOut',
-            },
-            0.1,
-          );
-        });
-
-        currentTeamIndex = newIndex;
-      }
-
-      if (btnNext) {
-        btnNext.addEventListener('click', () => {
-          let nextIdx = currentTeamIndex + 1;
-          if (nextIdx >= totalTeam) nextIdx = 0;
-          goToTeamMember(nextIdx, 'next');
-        });
-      }
-
-      if (btnPrev) {
-        btnPrev.addEventListener('click', () => {
-          let prevIdx = currentTeamIndex - 1;
-          if (prevIdx < 0) prevIdx = totalTeam - 1;
-          goToTeamMember(prevIdx, 'prev');
-        });
-      }
-
-      dots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-          const direction = index > currentTeamIndex ? 'next' : 'prev';
-          goToTeamMember(index, direction);
-        });
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          const { width, height } = entry.contentRect;
+          const dynamicClipPath = getDynamicPath(width, height);
+          entry.target.style.clipPath = `path('${dynamicClipPath}')`;
+        }
       });
 
-      window.addEventListener('resize', initCards);
+      clippedBgs.forEach((bg) => {
+        resizeObserver.observe(bg);
+      });
+
+      // --- Lógica Click para Móviles ---
+      // Permite que al tocar la card en móvil, se quede en estado "hover" revelando info
+      const cards = document.querySelectorAll('.equipo-clipped-card');
+      cards.forEach((card) => {
+        card.addEventListener('click', () => {
+          // Si tocamos una, cerramos las demás
+          cards.forEach((c) => {
+            if (c !== card) c.classList.remove('is-active');
+          });
+          card.classList.toggle('is-active');
+        });
+      });
     }
 
     /**
@@ -820,7 +756,7 @@ const etapasData = [
         icons.forEach((icon, i) => {
           glowTl
             .to(
-              icon as Element,
+              icon, // <-- Quitado as Element
               {
                 backgroundColor: '#86c46a',
                 boxShadow: '0 0 45px rgba(134, 196, 106, 0.9)',
@@ -831,7 +767,7 @@ const etapasData = [
               i * 1.5,
             )
             .to(
-              icon as Element,
+              icon, // <-- Quitado as Element
               {
                 backgroundColor: '#569c33',
                 boxShadow: '0 0 15px rgba(86, 156, 51, 0.2)',
@@ -847,7 +783,7 @@ const etapasData = [
 
         glowTl
           .to(
-            icons as Element[],
+            icons, // <-- Quitado as Element[]
             {
               backgroundColor: '#86c46a',
               boxShadow: '0 0 50px rgba(134, 196, 106, 0.9)',
@@ -858,7 +794,7 @@ const etapasData = [
             totalSeqTime + 0.5,
           )
           .to(
-            icons as Element[],
+            icons, // <-- Quitado as Element[]
             {
               backgroundColor: '#569c33',
               boxShadow: '0 0 15px rgba(86, 156, 51, 0.2)',
