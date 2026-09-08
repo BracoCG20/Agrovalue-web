@@ -188,8 +188,6 @@ const etapasData = [
         Conectamos el campo con el mundo,<br />
         <span class='proposito__dynamic'>
           <span class='dynamic-word'>generando valor para cada productor.</span>
-          <span class='dynamic-word'>sembrando metas para cada productor.</span>
-          <span class='dynamic-word'>logrando frutos para cada productor.</span>
         </span>
       </h2>
     </div>
@@ -522,38 +520,6 @@ const etapasData = [
         stagger: 0.2,
         ease: 'power3.out',
       });
-    }
-
-    /**
-     * Texto Dinámico Rotativo
-     */
-    const words = document.querySelectorAll('.dynamic-word');
-    if (words.length > 0) {
-      let currentWordIndex = 0;
-      function changeWord() {
-        const currentWord = words[currentWordIndex];
-        const nextWordIndex = (currentWordIndex + 1) % words.length;
-        const nextWord = words[nextWordIndex];
-
-        const tl = gsap.timeline();
-        tl.to(currentWord, {
-          top: 15,
-          opacity: 0,
-          duration: 0.3,
-          ease: 'power2.in',
-        })
-          .set(currentWord, { display: 'none' })
-          .set(nextWord, { display: 'inline', top: -15, opacity: 0 })
-          .to(nextWord, {
-            top: 0,
-            opacity: 1,
-            duration: 0.3,
-            ease: 'power2.out',
-          });
-
-        currentWordIndex = nextWordIndex;
-      }
-      setInterval(changeWord, 3500);
     }
 
     /**

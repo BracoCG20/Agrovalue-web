@@ -144,7 +144,7 @@ const heroTitle =
     </div>
 
     <!-- CONTROLES Y NAVEGACIÓN -->
-    <div class='hero__ui'>
+    <!-- <div class='hero__ui'>
       <div class='hero__controls'>
         <div class='slider-arrows'>
           <button
@@ -173,7 +173,7 @@ const heroTitle =
           }
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class='hero__progress'>
       <div
@@ -203,7 +203,7 @@ const heroTitle =
     let currentIndex = 0;
     let isAnimating = false;
     const totalSlides = slides.length;
-    const slideDuration = 10;
+    const slideDuration = 20;
     let timerTimeline: gsap.core.Tween | null = null;
 
     if (slides.length > 0) {
@@ -289,23 +289,6 @@ const heroTitle =
           initTimer();
         },
       });
-
-      // 2. Animación sutil y sincronizada del texto estático
-      // El texto baja y pierde un poco de opacidad, luego vuelve a subir a su lugar
-      const tlText = gsap.timeline();
-      tlText
-        .to('.hero__content', {
-          y: 15,
-          opacity: 0.6,
-          duration: 0.5,
-          ease: 'power2.out',
-        })
-        .to('.hero__content', {
-          y: 0,
-          opacity: 1,
-          duration: 0.7,
-          ease: 'power2.out',
-        });
 
       // Actualizamos los dots de paginación
       dots.forEach((dot) => dot.classList.remove('dot--active'));
