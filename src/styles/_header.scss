@@ -12,6 +12,10 @@
 	left: 0;
 	width: 100%;
 	z-index: 999;
+	transform: translateZ(0);
+	-webkit-transform: translateZ(0);
+	-webkit-backface-visibility: hidden;
+	will-change: transform;
 	padding: 1rem 1.5rem;
 	transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 	background-color: transparent;
@@ -55,10 +59,13 @@
 	&__logo {
 		display: flex;
 		align-items: center;
-		height: 70px;
+		height: 60px;
 
 		img {
-			height: 50px;
+			height: 40px;
+			@include desktop {
+				height: 50px;
+			}
 		}
 
 		&-text {
