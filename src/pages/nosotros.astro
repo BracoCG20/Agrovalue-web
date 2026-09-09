@@ -315,101 +315,6 @@ const etapasData = [
         <!-- <p class='equipo__instruction'>Desliza para conocer al equipo.</p> -->
       </div>
 
-      <!-- <div class='equipo__slider-wrapper trigger-reveal-equipo'>
-        <div class='equipo__info'>
-          <div class='equipo__pagination'>
-            {
-              equipoData.map((_, i) => (
-                <span
-                  class={`equipo-dot ${i === 0 ? 'is-active' : ''}`}
-                  data-index={i}
-                />
-              ))
-            }
-          </div>
-
-          <div class='equipo__details-container'>
-            {
-              equipoData.map((miembro, i) => (
-                <div class={`equipo-detail ${i === 0 ? 'is-active' : ''}`}>
-                  <span class='equipo-detail__counter'>
-                    {String(i + 1).padStart(2, '0')} / {equipoData.length}
-                  </span>
-                  <h3 class='equipo-detail__name'>{miembro.name}</h3>
-                  <span class='equipo-detail__role'>{miembro.role}</span>
-                  <p class='equipo-detail__description'>
-                    {miembro.description}
-                  </p>
-                </div>
-              ))
-            }
-          </div>
-
-          <div class='equipo__controls'>
-            <button
-              class='equipo-btn equipo-btn--prev'
-              id='team-prev'
-              aria-label='Anterior'
-            >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='20'
-                height='20'
-                viewBox='0 0 24 24'
-                fill='none'
-                stroke='currentColor'
-                stroke-width='2'
-                stroke-linecap='round'
-                stroke-linejoin='round'
-                ><path d='m15 18-6-6 6-6'></path></svg
-              >
-            </button>
-            <button
-              class='equipo-btn equipo-btn--next'
-              id='team-next'
-              aria-label='Siguiente'
-            >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                width='20'
-                height='20'
-                viewBox='0 0 24 24'
-                fill='none'
-                stroke='currentColor'
-                stroke-width='2'
-                stroke-linecap='round'
-                stroke-linejoin='round'
-                ><path d='m9 18 6-6-6-6'></path></svg
-              >
-            </button>
-          </div>
-        </div>
-
-        <div class='equipo__images'>
-          <div
-            class='equipo__images-track'
-            id='team-track'
-          >
-            {
-              equipoData.map((miembro) => (
-                <div class='equipo-card'>
-                  <Image
-                    src={miembro.image}
-                    alt={miembro.name}
-                    class='equipo-card__img'
-                  />
-                  <div class='equipo-card__overlay' />
-                  <div class='equipo-card__info'>
-                    <h4>{miembro.name}</h4>
-                    <span>{miembro.role}</span>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div> -->
-
       <div class='equipo__grid-wrapper trigger-reveal-equipo'>
         <div class='equipo__grid'>
           {
@@ -440,7 +345,7 @@ const etapasData = [
                   <img
                     src='./Logo_Agrovalue.svg'
                     alt=''
-                    height='30'
+                    height='40'
                   />
                 </button>
               </div>
