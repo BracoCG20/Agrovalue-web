@@ -22,7 +22,7 @@
 	}
 
 	@include desktop {
-		padding: 1.2rem 6rem;
+		padding: 1.3rem 6rem;
 	}
 
 	// Efecto de cristal esmerilado en el scroll
@@ -31,8 +31,8 @@
 		backdrop-filter: blur(20px);
 		background-color: rgba($black, 0.55);
 		border-bottom: 1px solid rgba($white, 0.05);
-		padding-top: 0.8rem;
-		padding-bottom: 0.8rem;
+		padding-top: 0.9rem;
+		padding-bottom: 0.9rem;
 		box-shadow: 0 4px 30px rgba($black, 0.15);
 
 		@include tablet {
