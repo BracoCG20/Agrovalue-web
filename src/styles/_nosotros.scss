@@ -1212,15 +1212,14 @@
 		&:hover,
 		&.is-active {
 			.equipo-clipped-card__img {
-				transform: scale(1.05);
-				filter: grayscale(40%);
+				transform: scale(1.02);
 			}
 			.equipo-clipped-card__overlay {
 				opacity: 1;
 				background: linear-gradient(
-					to top,
+					to right top,
 					rgba(11, 43, 26, 0.9) 0%,
-					rgba(11, 43, 26, 0.5) 30%,
+					rgba(11, 43, 26, 0.3) 40%,
 					rgba(11, 43, 26, 0.1) 100%
 				);
 			}
