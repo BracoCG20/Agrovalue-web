@@ -478,14 +478,14 @@
       object-fit: cover;
 
       @include tablet {
-        height: 220px;
+        height: 260px;
       }
 
       @include desktop {
-        height: 260px;
+        height: 320px;
       }
       @include maxDesktop {
-        height: 380px;
+        height: 420px;
       }
     }
   }
