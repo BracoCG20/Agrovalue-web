@@ -2,18 +2,18 @@
 /**
  * Componente: Layout Principal
  * Descripción: Define la estructura base del documento HTML, metadatos SEO,
- * precarga de fuentes web y la disposición de componentes globales (Header, Footer).
+ * precarga de fuentes web y la disposición de componentes globales.
  */
-import '../styles/main.scss';
-import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import '../styles/main.scss';
 
 export interface Props {
   title: string;
   description?: string;
   image?: string;
   keywords?: string;
-  hideFooter?: boolean; // ✨ Nueva propiedad para ocultar el footer
+  hideFooter?: boolean;
 }
 
 const {
@@ -21,10 +21,12 @@ const {
   description = 'Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.',
   image = '/Logo_Agrovalue.png',
   keywords = 'agroexportación, agricultura, comercialización agrícola, inversión agrícola, trazabilidad, fruta fresca, logística internacional, Agrovalue',
-  hideFooter = false, // ✨ Por defecto es false (se muestra el footer)
+  hideFooter = false,
 } = Astro.props;
 
-// Construimos la URL canónica absoluta (Asegúrate de configurar 'site' en astro.config.mjs, o usa el fallback)
+// ✨ Obtenemos el idioma actual automáticamente (Astro se encarga de saber si estamos en / o en /en/)
+const lang = Astro.currentLocale || 'es';
+
 const canonicalURL = new URL(
   Astro.url.pathname,
   Astro.site || 'https://agrovalue.es',
@@ -33,7 +35,8 @@ const imageUrl = new URL(image, canonicalURL);
 ---
 
 <!doctype html>
-<html lang='es'>
+<!-- ✨ Asignamos el idioma al HTML -->
+<html lang={lang}>
   <head>
     <meta charset='UTF-8' />
     <meta
@@ -98,9 +101,10 @@ const imageUrl = new URL(image, canonicalURL);
       property='og:site_name'
       content='Agrovalue'
     />
+    <!-- ✨ Adaptamos el locale para SEO -->
     <meta
       property='og:locale'
-      content='es_ES'
+      content={lang === 'es' ? 'es_ES' : 'en_US'}
     />
 
     <!-- Twitter -->
@@ -151,9 +155,9 @@ const imageUrl = new URL(image, canonicalURL);
         "description": "Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.",
         "contactPoint": {
           "@type": "ContactPoint",
-          "email": "contacto@agrovalue.es", 
+          "email": "contacto@agrovalue.es",
           "contactType": "customer support",
-          "availableLanguage": "es"
+          "availableLanguage": ["es", "en"]
         },
         "sameAs": ["https://www.linkedin.com/company/agrovalue"]
       }
@@ -162,12 +166,9 @@ const imageUrl = new URL(image, canonicalURL);
   <body>
     <div class='app-container'>
       <Header />
-
       <main class='main-content'>
         <slot />
       </main>
-
-      <!-- ✨ Renderizado Condicional del Footer -->
       {!hideFooter && <Footer />}
     </div>
   </body>

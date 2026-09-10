@@ -1,14 +1,48 @@
 ---
-/**
- * Componente: Header
- * Descripción: Navegación global del sitio. Soporta menú móvil interactivo
- * y barra de navegación transparente que aplica efecto blur al hacer scroll.
- */
 import { Menu, X, ArrowRight } from '@lucide/astro';
 
 const currentYear = new Date().getFullYear();
 const pathname = Astro.url.pathname;
-const isActive = (path: string) => pathname === path || pathname === path + '/';
+const lang = Astro.currentLocale || 'es';
+
+// ✨ 1. Función para generar la URL correcta según el idioma
+const getRoute = (path: string) => {
+  return lang === 'es' ? path : `/en${path === '/' ? '' : path}`;
+};
+
+// ✨ 2. Función para saber si un link está activo tomando en cuenta el idioma
+const isActive = (path: string) => {
+  const targetPath = getRoute(path);
+  return pathname === targetPath || pathname === targetPath + '/';
+};
+
+// ✨ 3. Lógica del Botón Switcher (ES/EN)
+const switchLangLabel = lang === 'es' ? 'EN' : 'ES';
+// Si estamos en 'es', añade /en. Si estamos en 'en', quita el /en de la URL.
+const switchUrl =
+  lang === 'es' ? `/en${pathname}` : pathname.replace(/^\/en/, '') || '/';
+
+// ✨ 4. Diccionario de traducciones para el menú
+const t = {
+  es: {
+    inicio: 'Inicio',
+    nosotros: 'Nosotros',
+    servicios: 'Servicios',
+    contacto: 'Contáctanos',
+    serv1: 'Productores y exportadores',
+    serv2: 'Importadores y distribuidores',
+    serv3: 'Proyectos especiales',
+  },
+  en: {
+    inicio: 'Home',
+    nosotros: 'About Us',
+    servicios: 'Services',
+    contacto: 'Contact Us',
+    serv1: 'Growers & Exporters ',
+    serv2: 'Importers & Distributors ',
+    serv3: 'Special Projects',
+  },
+}[lang];
 ---
 
 <header
@@ -17,7 +51,7 @@ const isActive = (path: string) => pathname === path || pathname === path + '/';
 >
   <div class='header__container'>
     <a
-      href='/'
+      href={getRoute('/')}
       class='header__logo'
     >
       <img
@@ -32,31 +66,32 @@ const isActive = (path: string) => pathname === path || pathname === path + '/';
         <li
           class={`nav-list-desktop__item ${isActive('/') ? 'is-active' : ''}`}
         >
-          <a href='/'>Inicio</a>
+          <a href={getRoute('/')}>{t.inicio}</a>
         </li>
         <li
           class={`nav-list-desktop__item ${isActive('/nosotros') ? 'is-active' : ''}`}
         >
-          <a href='/nosotros'>Nosotros</a>
+          <a href={getRoute('/nosotros')}>{t.nosotros}</a>
         </li>
         <li
           class={`nav-list-desktop__item has-sub ${isActive('/servicios') ? 'is-active' : ''}`}
         >
-          <a href='/servicios'>Servicios <span class='dropdown-icon'>▾</span></a
+          <a href={getRoute('/servicios')}
+            >{t.servicios} <span class='dropdown-icon'>▾</span></a
           >
           <ul class='sub-menu-desktop'>
             <li>
-              <a href='/servicios#productor-exportador'
-                >Productores y exportadores</a
+              <a href={getRoute('/servicios#productor-exportador')}>{t.serv1}</a
               >
             </li>
             <li>
-              <a href='/servicios#importador-distribuidor'
-                >Importadores y distribuidores</a
+              <a href={getRoute('/servicios#importador-distribuidor')}
+                >{t.serv2}</a
               >
             </li>
             <li>
-              <a href='/servicios#proyectos-especiales'>Proyectos especiales</a>
+              <a href={getRoute('/servicios#proyectos-especiales')}>{t.serv3}</a
+              >
             </li>
           </ul>
         </li>
@@ -64,15 +99,16 @@ const isActive = (path: string) => pathname === path || pathname === path + '/';
 
       <div class='header__action-desktop'>
         <a
-          href='/contacto'
+          href={getRoute('/contacto')}
           class='btn-glow'
-          >Contáctanos</a
+          >{t.contacto}</a
         >
+        <!-- ✨ Botón Switcher Idioma -->
         <a
-          href='#'
+          href={switchUrl}
           class='lang-switch'
-          aria-label='Change language to English'
-          >EN</a
+          aria-label={`Change language to ${switchLangLabel}`}
+          >{switchLangLabel}</a
         >
       </div>
     </nav>
@@ -103,8 +139,9 @@ const isActive = (path: string) => pathname === path || pathname === path + '/';
     <div class='header__nav-content'>
       <ul class='nav-list'>
         <li class={`nav-list__item ${isActive('/') ? 'is-active' : ''}`}>
-          <a href='/'
-            >Inicio <ArrowRight
+          <a href={getRoute('/')}
+            >{t.inicio}
+            <ArrowRight
               size={18}
               color='#86C46A'
             /></a
@@ -113,8 +150,9 @@ const isActive = (path: string) => pathname === path || pathname === path + '/';
         <li
           class={`nav-list__item ${isActive('/nosotros') ? 'is-active' : ''}`}
         >
-          <a href='/nosotros'
-            >Nosotros <ArrowRight
+          <a href={getRoute('/nosotros')}
+            >{t.nosotros}
+            <ArrowRight
               size={18}
               color='#86C46A'
             /></a
@@ -123,26 +161,27 @@ const isActive = (path: string) => pathname === path || pathname === path + '/';
         <li
           class={`nav-list__item has-sub ${isActive('/servicios') ? 'is-active' : ''}`}
         >
-          <a href='/servicios'
-            >Servicios <ArrowRight
+          <a href={getRoute('/servicios')}
+            >{t.servicios}
+            <ArrowRight
               size={18}
               color='#86C46A'
             /></a
           >
           <ul class='sub-menu'>
             <li>
-              <a href='/servicios#productor-exportador'
-                >· Productores y exportadores</a
+              <a href={getRoute('/servicios#productor-exportador')}
+                >· {t.serv1}</a
               >
             </li>
             <li>
-              <a href='/servicios#importador-distribuidor'
-                >· Importadores y distribuidores</a
+              <a href={getRoute('/servicios#importador-distribuidor')}
+                >· {t.serv2}</a
               >
             </li>
             <li>
-              <a href='/servicios#proyectos-especiales'
-                >· Proyectos especiales</a
+              <a href={getRoute('/servicios#proyectos-especiales')}
+                >· {t.serv3}</a
               >
             </li>
           </ul>
@@ -151,15 +190,16 @@ const isActive = (path: string) => pathname === path || pathname === path + '/';
 
       <div class='header__action'>
         <a
-          href='/contacto'
+          href={getRoute('/contacto')}
           class='btn-glow'
-          >Contáctanos</a
+          >{t.contacto}</a
         >
+        <!-- ✨ Botón Switcher Idioma Móvil -->
         <a
-          href='#'
+          href={switchUrl}
           class='lang-switch'
-          aria-label='Change language to English'
-          >EN</a
+          aria-label={`Change language to ${switchLangLabel}`}
+          >{switchLangLabel}</a
         >
       </div>
 

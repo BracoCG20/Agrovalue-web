@@ -1,0 +1,732 @@
+---
+/**
+ * Página: Nosotros (About Us) - INGLÉS
+ * Descripción: Presenta la identidad corporativa de Agrovalue.
+ * Incluye secciones de Propósito, Misión/Visión con pestañas interactivas,
+ * Valores de la empresa, Slider interactivo del equipo fundador, y flujo de trabajo.
+ */
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+import { Leaf, ShieldCheck, Truck, Globe } from '@lucide/astro';
+
+import bannerMobile from '../../assets/nosotros/banner_Nosotros_Mobile.webp';
+import bannerTablet from '../../assets/nosotros/banner_Nosotros_Tablet.webp';
+import bannerDesktop from '../../assets/nosotros/banner_Nosotros_Desktop.webp';
+import vision from '../../assets/nosotros/vision.webp';
+import mision from '../../assets/nosotros/mision.webp';
+
+import valor1Img from '../../assets/nosotros/valor_Integridad.webp';
+import valor2Img from '../../assets/nosotros/valor_Compromiso.webp';
+import valor3Img from '../../assets/nosotros/valor_Innovacion.webp';
+
+import equipo01 from '../../assets/nosotros/Equipo01.webp';
+import equipo02 from '../../assets/nosotros/Equipo02.webp';
+import equipo03 from '../../assets/nosotros/Equipo03.webp';
+import equipo04 from '../../assets/nosotros/Equipo04.webp';
+import equipo05 from '../../assets/nosotros/Equipo05.webp';
+import equipo06 from '../../assets/nosotros/Equipo06.webp';
+
+const titleText = 'Connecting agriculture to global markets. ';
+
+const valoresData = [
+  {
+    title: 'Integrity',
+    description:
+      'We act with integrity and transparency, building trusted, long-term relationships with our clients, suppliers, and team members.',
+    image: valor1Img,
+  },
+  {
+    title: 'Commitment',
+    description: `We take on every challenge as our own, working with responsibility, dedication, and loyalty to drive our clients' success and create value at every stage of the agroexport chain.`,
+    image: valor2Img,
+  },
+  {
+    title: 'Innovation',
+    description:
+      'We turn experience, knowledge, and technology into simple, agile, and efficient solutions that create value across the entire agroexport chain.',
+    image: valor3Img,
+  },
+];
+
+const equipoData = [
+  {
+    name: 'José Antonio Gómez',
+    role: 'Founder',
+    description: `More than 25 years leading global agribusiness strategy and execution. He led Camposol's growth into a world leader in blueberries, with operations in Peru, Colombia, and China.`,
+    image: equipo01,
+  },
+  {
+    name: 'Gerd Burmester',
+    role: 'CEO',
+    description:
+      'More than 20 years of experience in global fruit procurement and commercialization. He developed global supplier programs at leading agribusiness companies, managing more than 1,200 grape containers per year.',
+    image: equipo02,
+  },
+  {
+    name: 'Rocío Enciso',
+    role: 'Operations Director',
+    description:
+      'More than 17 years of experience in quality, food safety, and integrated management systems for fresh produce. She led ISO certifications and food-safety programs across global operations in the agroexport sector.',
+    image: equipo03,
+  },
+  {
+    name: 'Rocío Rudy',
+    role: 'Business Manager',
+    description:
+      'More than 15 years of experience in legal, regulatory, and administrative functions in the agribusiness sector. She led regulatory compliance in labor matters, foreign trade, and international certifications at leading companies in the agroexport sector.',
+    image: equipo04,
+  },
+  {
+    name: 'Cristhian Cisneros',
+    role: 'Commercial Director',
+    description:
+      'More than 14 years of experience in agribusiness, financial control, and logistics for fresh produce. He led commercial strategy and economic modeling to drive cost efficiency and profitability at leading companies in the agroexport sector.',
+    image: equipo05,
+  },
+  {
+    name: 'Gerelin Coca',
+    role: 'Export Analyst',
+    description:
+      'More than 7 years of experience in international trade, customs, and logistics, specializing in perishable cargo. She managed export operations for blueberries, avocados, grapes, and mangoes.',
+    image: equipo06,
+  },
+];
+
+const etapasData = [
+  {
+    number: '01',
+    title: 'Origin',
+    description: 'Fruit sourcing and quality control, starting in the field.',
+    icon: Leaf,
+  },
+  {
+    number: '02',
+    title: 'Quality',
+    description:
+      'Inspection and food safety in line with international standards.',
+    icon: ShieldCheck,
+  },
+  {
+    number: '03',
+    title: 'Logistics',
+    description: 'Traceability and real-time monitoring of every shipment.',
+    icon: Truck,
+  },
+  {
+    number: '04',
+    title: 'Market',
+    description: 'Commercialization and access to global buyers.',
+    icon: Globe,
+  },
+];
+---
+
+<Layout title='Agrovalue - About Us'>
+  <section class='hero-nosotros'>
+    <div class='hero-nosotros__background'>
+      <Image
+        src={bannerMobile}
+        alt='About Us Background'
+        class='hero-nosotros__image hero-nosotros__image--mobile'
+        loading='eager'
+      />
+      <Image
+        src={bannerTablet}
+        alt='About Us Background Tablet'
+        class='hero-nosotros__image hero-nosotros__image--tablet'
+        loading='eager'
+      />
+      <Image
+        src={bannerDesktop}
+        alt='About Us Background Desktop'
+        class='hero-nosotros__image hero-nosotros__image--desktop'
+        loading='eager'
+      />
+      <div class='hero-nosotros__overlay'></div>
+      <div class='hero-nosotros__overlay2'></div>
+    </div>
+
+    <div class='hero-nosotros__content'>
+      <span class='hero-nosotros__subtitle text-reveal'>ABOUT US</span>
+      <h1 class='hero-nosotros__title'>
+        {
+          titleText.split(' ').map((word) => (
+            <span class='word-wrap'>
+              <span class='word'>{word}</span>&nbsp;
+            </span>
+          ))
+        }
+      </h1>
+      <p class='hero-nosotros__description text-reveal'>
+        We connect growers, buyers, and investors across the agricultural supply
+        chain, combining market access, capital, and technology to create
+        sustainable opportunities for growth.
+      </p>
+      <div class='hero-nosotros__actions'>
+        <a
+          href='/en/servicios'
+          class='btn btn--primary'
+          >Explore our services</a
+        >
+        <a
+          href='/en/contacto'
+          class='btn btn--outline'
+          >Contact us</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <section
+    id='proposito'
+    class='proposito'
+  >
+    <div class='proposito__container'>
+      <span class='proposito__subtitle trigger-reveal'>OUR PURPOSE</span>
+      <h2 class='proposito__text trigger-reveal'>
+        Connecting the field to the world, <br />
+        <span class='proposito__dynamic'>
+          <span class='dynamic-word'>creating value for every grower.</span>
+        </span>
+      </h2>
+    </div>
+  </section>
+
+  <section
+    id='mision-vision'
+    class='mision-vision'
+  >
+    <div class='mision-vision__container'>
+      <div class='mision-vision__header trigger-reveal-mv'>
+        <h2 class='mision-vision__title'>Mission and Vision</h2>
+        <div class='mision-vision__tabs'>
+          <button
+            class='tab-btn is-active'
+            data-target='mision'
+            >Mission</button
+          >
+          <button
+            class='tab-btn'
+            data-target='vision'
+            >Vision</button
+          >
+        </div>
+      </div>
+
+      <div class='mision-vision__content trigger-reveal-mv'>
+        <div
+          class='mv-card is-active'
+          id='card-mision'
+        >
+          <div class='mv-card__text'>
+            <span class='mv-card__number'>01</span>
+            <h3 class='mv-card__title'>Mission</h3>
+            <p class='mv-card__description'>
+              We bring together markets, capital and technology across an
+              integrated value chain so growers can capture full value of their
+              work, buyers can rely on consistent supply, quality, and timely
+              delivery and investors can generate meaningful returns with
+              purpose.
+            </p>
+          </div>
+          <div class='mv-card__image-container'>
+            <div class='mv-card__overlay'></div>
+            <Image
+              src={mision}
+              alt='Agrovalue Mission'
+              class='mv-card__image'
+            />
+          </div>
+        </div>
+
+        <div
+          class='mv-card'
+          id='card-vision'
+        >
+          <div class='mv-card__text'>
+            <span class='mv-card__number'>02</span>
+            <h3 class='mv-card__title'>Vision</h3>
+            <p class='mv-card__description'>
+              To be the trusted partner and benchmark in Latin American
+              agroexport that growers, buyers, and investors choose to grow
+              together.
+            </p>
+          </div>
+          <div class='mv-card__image-container'>
+            <div class='mv-card__overlay'></div>
+            <Image
+              src={vision}
+              alt='Agrovalue Vision'
+              class='mv-card__image'
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id='valores'
+    class='valores'
+  >
+    <div class='valores__container'>
+      <div class='valores__header trigger-reveal-valores'>
+        <span class='valores__subtitle'>OUR VALUES</span>
+        <h2 class='valores__title'>
+          The principles that guide every decision.
+        </h2>
+        <p class='valores__instruction'>Tap each value to learn more.</p>
+      </div>
+
+      <div class='valores__grid'>
+        {
+          valoresData.map((valor, index) => (
+            <div
+              class={`valor-card trigger-reveal-valores ${index === 0 ? 'is-active' : ''}`}
+              data-index={index}
+            >
+              <Image
+                src={valor.image}
+                alt={valor.title}
+                class='valor-card__bg'
+              />
+              <div class='valor-card__overlay' />
+              <div class='valor-card__content'>
+                <div class='valor-card__title-wrapper'>
+                  <h3 class='valor-card__title'>{valor.title}</h3>
+                </div>
+                <div class='valor-card__body'>
+                  <p>{valor.description}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    id='equipo'
+    class='equipo'
+  >
+    <div class='equipo__container'>
+      <div class='equipo__header trigger-reveal-equipo'>
+        <span class='equipo__subtitle'>OUR TEAM</span>
+        <h2 class='equipo__title'>Who leads AgroValue.</h2>
+      </div>
+
+      <div class='equipo__grid-wrapper trigger-reveal-equipo'>
+        <div class='equipo__grid'>
+          {
+            equipoData.map((miembro) => (
+              <div class='equipo-clipped-card'>
+                {/* El fondo que recibirá el clip-path por JS */}
+                <div class='equipo-clipped-card__bg'>
+                  <Image
+                    src={miembro.image}
+                    alt={miembro.name}
+                    class='equipo-clipped-card__img'
+                  />
+                  <div class='equipo-clipped-card__overlay' />
+
+                  {/* Info que aparece en Hover */}
+                  <div class='equipo-clipped-card__info'>
+                    <h4>{miembro.name}</h4>
+                    <span>{miembro.role}</span>
+                    <p>{miembro.description}</p>
+                  </div>
+                </div>
+
+                {/* El botón encajado en el recorte */}
+                <button
+                  class='equipo-clipped-card__action'
+                  aria-label='View profile'
+                >
+                  <img
+                    src='../../Logo_Agrovalue.svg'
+                    alt=''
+                    height='40'
+                  />
+                </button>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    id='como-trabajamos'
+    class='etapas'
+  >
+    <div class='etapas__container'>
+      <div class='etapas__header trigger-reveal-etapas'>
+        <span class='etapas__subtitle'>HOW WE WORK</span>
+        <h2 class='etapas__title'>
+          From the field to the world, in four stages.
+        </h2>
+      </div>
+
+      <div class='etapas__grid'>
+        {
+          etapasData.map((etapa, index) => {
+            const Icon = etapa.icon;
+            return (
+              <div class='etapa-card trigger-reveal-etapas'>
+                <div class='etapa-card__icon-wrapper'>
+                  <div class='icon-circle'>
+                    <Icon
+                      size={38}
+                      stroke-width={1.4}
+                      color='#ffffff'
+                    />
+                  </div>
+                  <div class='etapa-card__number'>{etapa.number}</div>
+                  {index < 3 && <div class='etapa-line' />}
+                </div>
+                <h3 class='etapa-card__title'>{etapa.title}</h3>
+                <p class='etapa-card__description'>{etapa.description}</p>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </section>
+
+  <section
+    id='cta-nosotros'
+    class='cta-section'
+  >
+    <div class='cta-section__container trigger-reveal-cta'>
+      <div class='cta-card'>
+        <div class='cta-card-contain'>
+          <h2 class='cta-card-contain__title'>
+            Shall we talk about your next challenge?
+          </h2>
+          <p class='cta-card-contain__description'>
+            We route your inquiry to the right specialist on our team.
+          </p>
+        </div>
+        <!-- ✨ Enlace apuntando a /en/ -->
+        <a
+          href='/en/contacto'
+          class='btn-glow'
+          >Contact us</a
+        >
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    /**
+     * Animación Hero
+     */
+    const tlHero = gsap.timeline();
+    gsap.set('.hero-nosotros__subtitle', { autoAlpha: 0, y: 20 });
+    gsap.set('.hero-nosotros .word', { y: '100%' });
+    gsap.set('.hero-nosotros__description', { autoAlpha: 0, y: 20 });
+
+    tlHero
+      .to('.hero-nosotros__subtitle', {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power3.out',
+        delay: 0.3,
+      })
+      .to(
+        '.hero-nosotros .word',
+        { y: '0%', duration: 0.6, stagger: 0.05, ease: 'power3.out' },
+        '-=0.4',
+      )
+      .to(
+        '.hero-nosotros__description',
+        { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' },
+        '-=0.4',
+      );
+
+    /**
+     * Animación Propósito (ScrollTrigger)
+     */
+    const propositoSection = document.querySelector('.proposito');
+    if (propositoSection) {
+      gsap.from('.trigger-reveal', {
+        scrollTrigger: { trigger: propositoSection, start: 'top 80%' },
+        y: 30,
+        autoAlpha: 0,
+        duration: 1.5,
+        stagger: 0.2,
+        ease: 'power3.out',
+      });
+    }
+
+    /**
+     * Componente Misión y Visión (Tabs)
+     */
+    const misionVisionSection = document.querySelector('.mision-vision');
+    if (misionVisionSection) {
+      gsap.from('.trigger-reveal-mv', {
+        scrollTrigger: { trigger: misionVisionSection, start: 'top 80%' },
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out',
+      });
+
+      const tabBtns = document.querySelectorAll('.tab-btn');
+
+      gsap.set('.mv-card.is-active', { autoAlpha: 1, zIndex: 2 });
+      gsap.set('.mv-card:not(.is-active)', { autoAlpha: 0, zIndex: 1 });
+
+      tabBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          if (btn.classList.contains('is-active')) return;
+
+          tabBtns.forEach((b) => b.classList.remove('is-active'));
+          btn.classList.add('is-active');
+
+          const targetId = btn.getAttribute('data-target');
+          const currentCard = document.querySelector('.mv-card.is-active');
+          const newCard = document.getElementById(`card-${targetId}`);
+
+          if (currentCard && newCard) {
+            currentCard.classList.remove('is-active');
+            newCard.classList.add('is-active');
+
+            const textEl = newCard.querySelector('.mv-card__text');
+            const imgEl = newCard.querySelector('.mv-card__image-container');
+            const isVision = targetId === 'vision';
+
+            const tl = gsap.timeline();
+            tl.to(
+              currentCard,
+              { autoAlpha: 0, duration: 0.4, zIndex: 1, ease: 'power2.inOut' },
+              0,
+            );
+            tl.set(newCard, { zIndex: 2 }, 0);
+            tl.to(
+              newCard,
+              { autoAlpha: 1, duration: 0.4, ease: 'power2.inOut' },
+              0,
+            );
+            tl.fromTo(
+              textEl,
+              { x: -50, opacity: 0 },
+              { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
+              0.1,
+            );
+            tl.fromTo(
+              imgEl,
+              { x: isVision ? -50 : 50, opacity: 0 },
+              { x: 0, opacity: 1, duration: 0.6, ease: 'power3.out' },
+              0.1,
+            );
+          }
+        });
+      });
+    }
+
+    /**
+     * Componente Valores (Acordeón Horizontal)
+     */
+    const valoresSection = document.querySelector('.valores');
+    if (valoresSection) {
+      gsap.from('.trigger-reveal-valores', {
+        scrollTrigger: { trigger: valoresSection, start: 'top 80%' },
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out',
+      });
+
+      const valorCards = document.querySelectorAll('.valor-card');
+
+      function openCard(card) {
+        if (card.classList.contains('is-active')) return;
+
+        const activeCard = document.querySelector('.valor-card.is-active');
+        if (activeCard) {
+          activeCard.classList.remove('is-active');
+        }
+
+        card.classList.add('is-active');
+      }
+
+      valorCards.forEach((card) => {
+        card.addEventListener('click', () => openCard(card));
+        card.addEventListener('mouseenter', () => {
+          if (window.innerWidth >= 1024) openCard(card);
+        });
+      });
+    }
+
+    /**
+     * Componente Equipo (Grid Clip-Path)
+     */
+    const equipoSection = document.querySelector('.equipo');
+    if (equipoSection) {
+      // Reveal inicial
+      gsap.from('.trigger-reveal-equipo', {
+        scrollTrigger: { trigger: equipoSection, start: 'top 80%' },
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out',
+      });
+
+      // --- Lógica del Clip-Path Dinámico (ResizeObserver) ---
+      const clippedBgs = document.querySelectorAll('.equipo-clipped-card__bg');
+
+      const getDynamicPath = (w, h) => {
+        if (w === 0 || h === 0) return '';
+        const r = 16; // Radio principal
+        const nw = 65; // Ancho del recorte (del botón)
+        const nh = 65; // Alto del recorte (del botón)
+        const nr = 16; // Radio interno de las curvas
+
+        return `
+          M ${r} 0 
+          L ${w - r} 0 
+          A ${r} ${r} 0 0 1 ${w} ${r} 
+          L ${w} ${h - nh - nr} 
+          A ${nr} ${nr} 0 0 1 ${w - nr} ${h - nh} 
+          L ${w - nw + nr} ${h - nh} 
+          A ${nr} ${nr} 0 0 0 ${w - nw} ${h - nh + nr} 
+          L ${w - nw} ${h - r} 
+          A ${r} ${r} 0 0 1 ${w - nw - r} ${h} 
+          L ${r} ${h} 
+          A ${r} ${r} 0 0 1 0 ${h - r} 
+          L 0 ${r} 
+          A ${r} ${r} 0 0 1 ${r} 0 
+          Z
+        `
+          .replace(/\s+/g, ' ')
+          .trim();
+      };
+
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (let entry of entries) {
+          const { width, height } = entry.contentRect;
+          const dynamicClipPath = getDynamicPath(width, height);
+          entry.target.style.clipPath = `path('${dynamicClipPath}')`;
+        }
+      });
+
+      clippedBgs.forEach((bg) => {
+        resizeObserver.observe(bg);
+      });
+
+      // --- Lógica Click para Móviles ---
+      const cards = document.querySelectorAll('.equipo-clipped-card');
+      cards.forEach((card) => {
+        card.addEventListener('click', () => {
+          // Si tocamos una, cerramos las demás
+          cards.forEach((c) => {
+            if (c !== card) c.classList.remove('is-active');
+          });
+          card.classList.toggle('is-active');
+        });
+      });
+    }
+
+    /**
+     * Animación de Etapas y SVG Fluido
+     */
+    const etapasSection = document.querySelector('.etapas');
+    if (etapasSection) {
+      gsap.from('.trigger-reveal-etapas', {
+        scrollTrigger: { trigger: etapasSection, start: 'top 80%' },
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.8,
+        stagger: 0.2,
+        ease: 'power3.out',
+      });
+
+      const icons = gsap.utils.toArray('.icon-circle');
+      if (icons.length > 0) {
+        const glowTl = gsap.timeline({ repeat: -1, delay: 1 });
+
+        icons.forEach((icon, i) => {
+          glowTl
+            .to(
+              icon,
+              {
+                backgroundColor: '#86c46a',
+                boxShadow: '0 0 45px rgba(134, 196, 106, 0.9)',
+                scale: 1.05,
+                duration: 1,
+                ease: 'power2.out',
+              },
+              i * 1.5,
+            )
+            .to(
+              icon,
+              {
+                backgroundColor: '#569c33',
+                boxShadow: '0 0 15px rgba(86, 156, 51, 0.2)',
+                scale: 1,
+                duration: 1,
+                ease: 'power2.inOut',
+              },
+              i * 1.5 + 1,
+            );
+        });
+
+        const totalSeqTime = icons.length * 1.5;
+
+        glowTl
+          .to(
+            icons,
+            {
+              backgroundColor: '#86c46a',
+              boxShadow: '0 0 50px rgba(134, 196, 106, 0.9)',
+              scale: 1.05,
+              duration: 1.5,
+              ease: 'power2.out',
+            },
+            totalSeqTime + 0.5,
+          )
+          .to(
+            icons,
+            {
+              backgroundColor: '#569c33',
+              boxShadow: '0 0 15px rgba(86, 156, 51, 0.2)',
+              scale: 1,
+              duration: 1.5,
+              ease: 'power2.inOut',
+            },
+            totalSeqTime + 2,
+          );
+      }
+    }
+
+    /**
+     * Animación Call To Action Final
+     */
+    const ctaSection = document.querySelector('.cta-section');
+    if (ctaSection) {
+      gsap.from('.trigger-reveal-cta', {
+        scrollTrigger: { trigger: ctaSection, start: 'top 85%' },
+        y: 30,
+        scale: 0.95,
+        autoAlpha: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+      });
+    }
+  });
+</script>
