@@ -43,7 +43,7 @@ export const perfilesData = [
       {
         num: '03',
         title: 'Nos anticipamos, para que cumplas sin contratiempos.',
-        text: 'Iniciamos la preparación meses antes del arranque de campaña, verificando que el campo y la empresa cumplan con la documentación y certificaciones requeridas por cada mercado. Ejecutamos preauditorías que confirman el cumplimiento normativo y la condición de la fruta previa a la cosecha.',
+        text: 'Iniciamos la preparación meses antes del arranque de campaña, verificando que el campo y la empresa cumplan con la documentación y certificaciones requeridas por cada mercado. Ejecutamos preauditorias que confirman el cumplimiento normativo y la condición de la fruta previa a la cosecha.',
       },
       {
         num: '04',
@@ -105,7 +105,7 @@ export const perfilesData = [
     },
     solution: {
       subtitle: '— POR QUÉ AGROVALUE',
-      title: 'El productor nos abre la puerta. Tú recibes el beneficio.',
+      title: 'El productor nos abre la puerta. Tú recibes el beneficio. ',
       text: 'Nuestro equipo lleva años trabajando junto a productores peruanos: sabemos quién produce con calidad, quién cumple y quién está listo para exportar. Esa confianza no se compra, se construye campaña tras campaña, y la ponemos a tu servicio.',
     },
     image: imgServicios2,
@@ -157,7 +157,7 @@ export const perfilesData = [
       {
         num: '3',
         title: 'Supervisamos cada etapa.',
-        text: 'Cosecha, empaque, calidad y despacho con presencia de nuestro equipo en campo.',
+        text: 'Cosecha, empaque, calidad y despacho con presencia de nuestro equipo en campo',
       },
       {
         num: '4',
@@ -178,7 +178,7 @@ export const perfilesData = [
     subtitle: 'PROYECTOS ESPECIALES',
     title:
       'Estructuramos proyectos de inversión y crecimiento en el agro peruano, con el mismo rigor con el que operamos en el campo.',
-    text: 'Estructuramos, evaluamos y ejecutamos proyectos de inversión y asesoría estratégica para el sector agroexportador. Lo hacemos desde adentro: la misma organización que abastece fruta, supervisa la cosecha y el packing, inspecciona la calidad y sigue los embarques hasta destino es la que estructura y acompaña cada proyecto.',
+    text: 'Estructuramos, evaluamos y ejecutamos proyectos de inversión y asesoría estratégica para el sector agroexportador. Lo hacemos desde adentro: la misma organización que abastece fruta, supervisa la cosecha y el packing, inspecciona la calidad y sigue los embarques hasta destino es la que estructura y acompaña cada proyecto',
     problem: {
       subtitle: '— EL PROBLEMA',
       title: 'Invertir en el agro no debería significar ceder el control.',
