@@ -12,6 +12,8 @@ import logoBlanco from '../assets/Logo_Agrovalue_blanco.svg';
 
 const titleText =
   'Cada actor de la cadena tiene un reto distinto. Nosotros tenemos una respuesta para cada uno.';
+
+const currentData = perfilesData.es;
 ---
 
 <Layout title='Agrovalue - Servicios'>
@@ -78,7 +80,7 @@ const titleText =
 
   <section class='perfiles-wrapper'>
     {
-      perfilesData.map((perfil) => (
+      currentData.map((perfil) => (
         <section
           class='perfil-detail'
           id={perfil.id}
@@ -245,7 +247,7 @@ const titleText =
 
 <script>
   import { gsap } from 'gsap';
-  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
   gsap.registerPlugin(ScrollTrigger);
 
