@@ -57,7 +57,7 @@ import imgContacto from '../assets/contacto/contacto.webp';
             </li>
             <li>
               <a
-                href='https://linkedin.com/company/agrovalue'
+                href='https://www.linkedin.com/company/agrovalue-org/'
                 target='_blank'
                 rel='noopener noreferrer'
                 class='contact-list__icon'
@@ -82,7 +82,7 @@ import imgContacto from '../assets/contacto/contacto.webp';
               <div class='contact-list__text'>
                 <span class='label'>LINKEDIN</span>
                 <a
-                  href='https://linkedin.com/company/agrovalue'
+                  href='https://www.linkedin.com/company/agrovalue-org/'
                   target='_blank'
                   rel='noopener noreferrer'
                   class='value'
@@ -240,18 +240,19 @@ import imgContacto from '../assets/contacto/contacto.webp';
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener('DOMContentLoaded', () => {
-    
     //LÓGICA PARA AUTOSELECCIONAR EL RADIO BUTTON Y LIMPIAR LA URL
     const urlParams = new URLSearchParams(window.location.search);
-    const perfilDesdeURL = urlParams.get('perfil'); 
+    const perfilDesdeURL = urlParams.get('perfil');
 
     if (perfilDesdeURL) {
       // 1. Busca el radio button con ese "value" y lo marca
-      const radioButton = document.querySelector(`input[name="perfil"][value="${perfilDesdeURL}"]`) as HTMLInputElement;
+      const radioButton = document.querySelector(
+        `input[name="perfil"][value="${perfilDesdeURL}"]`,
+      ) as HTMLInputElement;
       if (radioButton) {
-        radioButton.checked = true; 
+        radioButton.checked = true;
       }
-      
+
       // 2. Limpia la barra de direcciones para que solo quede "/contacto"
       window.history.replaceState({}, document.title, window.location.pathname);
     }
