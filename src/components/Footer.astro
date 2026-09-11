@@ -5,6 +5,9 @@
  * Animaciones: GSAP ScrollTrigger activado al entrar en el viewport.
  */
 const currentYear = new Date().getFullYear();
+const pathname = Astro.url.pathname;
+const cleanPath =
+  pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname;
 
 //  Forzamos el tipado para que TypeScript sepa que solo puede ser 'es' o 'en'
 const lang = (Astro.currentLocale === 'en' ? 'en' : 'es') as 'es' | 'en';

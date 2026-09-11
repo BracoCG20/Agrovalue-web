@@ -3,6 +3,8 @@ import { Menu, X, ArrowRight } from '@lucide/astro';
 
 const currentYear = new Date().getFullYear();
 const pathname = Astro.url.pathname;
+const cleanPath =
+  pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname;
 
 // Forzar el tipado para que TypeScript sepa que solo puede ser 'es' o 'en'
 const lang = (Astro.currentLocale === 'en' ? 'en' : 'es') as 'es' | 'en';
@@ -25,7 +27,7 @@ const getRoute = (path: keyof typeof routeMap) => {
 // 2. Función para saber si un link está activo
 const isActive = (path: keyof typeof routeMap) => {
   const targetPath = getRoute(path);
-  return pathname === targetPath || pathname === targetPath + '/';
+  return cleanPath === targetPath || cleanPath === targetPath + '/';
 };
 
 // 3. Lógica del Botón Switcher (ES/EN)
@@ -33,10 +35,10 @@ const switchLangLabel = lang === 'es' ? 'EN' : 'ES';
 let switchUrl = '/';
 
 if (lang === 'es') {
-  const enPath = routeMap[pathname as keyof typeof routeMap] || pathname;
+  const enPath = routeMap[cleanPath as keyof typeof routeMap] || cleanPath;
   switchUrl = `/en${enPath === '/' ? '' : enPath}`;
 } else {
-  const currentPathWithoutEn = pathname.replace(/^\/en/, '') || '/';
+  const currentPathWithoutEn = cleanPath.replace(/^\/en/, '') || '/';
   const esKey = Object.keys(routeMap).find(
     (key) => routeMap[key as keyof typeof routeMap] === currentPathWithoutEn,
   );
