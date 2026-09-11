@@ -313,7 +313,7 @@ export const perfilesData = {
         {
           num: '04',
           title: 'Quality control that stays ahead.',
-          text: 'We carry out independent quality inspections on the production line and at destination, monitoring the food-safety and sustainability certifications each market demands.',
+          text: 'We carry out independent quality inspections on the production line and at destination, monitoring the food safety and sustainability certifications each market demands.',
         },
         {
           num: '05',
