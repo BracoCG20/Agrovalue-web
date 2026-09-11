@@ -5,14 +5,28 @@
  * Animaciones: GSAP ScrollTrigger activado al entrar en el viewport.
  */
 const currentYear = new Date().getFullYear();
-const lang = Astro.currentLocale || 'es';
 
-// ✨ Rutas dinámicas
-const getRoute = (path: string) =>
-  lang === 'es' ? path : `/en${path === '/' ? '' : path}`;
+//  Forzamos el tipado para que TypeScript sepa que solo puede ser 'es' o 'en'
+const lang = (Astro.currentLocale === 'en' ? 'en' : 'es') as 'es' | 'en';
 
-// ✨ Diccionario
-const t = {
+//  MAPA DE RUTAS
+const routeMap = {
+  '/': '/',
+  '/nosotros': '/about-us',
+  '/servicios': '/services',
+  '/contacto': '/contact',
+};
+
+// Rutas dinámicas inteligentes
+const getRoute = (path: keyof typeof routeMap) => {
+  if (lang === 'es') return path;
+
+  const englishPath = routeMap[path];
+  return `/en${englishPath === '/' ? '' : englishPath}`;
+};
+
+// Diccionario
+const translations = {
   es: {
     desc: 'Creamos soluciones tecnológicas y sostenibles para hacer crecer el campo, poniendo siempre en el centro a quienes lo trabajan día a día.',
     navTitle: 'NAVEGACIÓN',
@@ -24,7 +38,7 @@ const t = {
     derechos: 'Todos los derechos reservados.',
   },
   en: {
-    desc: 'We create sustainable technology solutions that drive agricultural growth while keeping the people who the land every day at the center of what we do.',
+    desc: 'We create sustainable technology solutions that drive agricultural growth while keeping the people who work the land every day at the center of what we do.',
     navTitle: 'NAVIGATION',
     socialTitle: 'FOLLOW US',
     inicio: 'Home',
@@ -33,7 +47,10 @@ const t = {
     contacto: 'Contact Us',
     derechos: 'All rights reserved.',
   },
-}[lang];
+};
+
+// Asignamos la traducción segura
+const t = translations[lang];
 ---
 
 <footer class='footer'>

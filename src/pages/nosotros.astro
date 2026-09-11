@@ -549,7 +549,7 @@ const etapasData = [
 
       const valorCards = document.querySelectorAll('.valor-card');
 
-      function openCard(card) {
+      function openCard(card: Element) {
         // <-- NOTA: Quité el tipado 'card: Element' si no usas un archivo .ts
         if (card.classList.contains('is-active')) return;
 
@@ -587,7 +587,7 @@ const etapasData = [
       // --- Lógica del Clip-Path Dinámico (ResizeObserver) ---
       const clippedBgs = document.querySelectorAll('.equipo-clipped-card__bg');
 
-      const getDynamicPath = (w, h) => {
+      const getDynamicPath = (w: number, h: number) => {
         if (w === 0 || h === 0) return '';
         const r = 16; // Radio principal
         const nw = 65; // Ancho del recorte (del botón)
@@ -618,7 +618,8 @@ const etapasData = [
         for (let entry of entries) {
           const { width, height } = entry.contentRect;
           const dynamicClipPath = getDynamicPath(width, height);
-          entry.target.style.clipPath = `path('${dynamicClipPath}')`;
+          (entry.target as HTMLElement).style.clipPath =
+            `path('${dynamicClipPath}')`;
         }
       });
 
@@ -654,7 +655,7 @@ const etapasData = [
         ease: 'power3.out',
       });
 
-      const icons = gsap.utils.toArray('.icon-circle');
+      const icons = gsap.utils.toArray('.icon-circle') as HTMLElement[];
       if (icons.length > 0) {
         const glowTl = gsap.timeline({ repeat: -1, delay: 1 });
 

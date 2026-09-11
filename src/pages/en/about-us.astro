@@ -164,12 +164,12 @@ const etapasData = [
       </p>
       <div class='hero-nosotros__actions'>
         <a
-          href='/en/servicios'
+          href='/en/services'
           class='btn btn--primary'
           >Explore our services</a
         >
         <a
-          href='/en/contacto'
+          href='/en/contact'
           class='btn btn--outline'
           >Contact us</a
         >
@@ -321,7 +321,6 @@ const etapasData = [
           {
             equipoData.map((miembro) => (
               <div class='equipo-clipped-card'>
-                {/* El fondo que recibirá el clip-path por JS */}
                 <div class='equipo-clipped-card__bg'>
                   <Image
                     src={miembro.image}
@@ -330,7 +329,6 @@ const etapasData = [
                   />
                   <div class='equipo-clipped-card__overlay' />
 
-                  {/* Info que aparece en Hover */}
                   <div class='equipo-clipped-card__info'>
                     <h4>{miembro.name}</h4>
                     <span>{miembro.role}</span>
@@ -338,7 +336,6 @@ const etapasData = [
                   </div>
                 </div>
 
-                {/* El botón encajado en el recorte */}
                 <button
                   class='equipo-clipped-card__action'
                   aria-label='View profile'
@@ -410,9 +407,8 @@ const etapasData = [
             We route your inquiry to the right specialist on our team.
           </p>
         </div>
-        <!-- ✨ Enlace apuntando a /en/ -->
         <a
-          href='/en/contacto'
+          href='/en/contact'
           class='btn-glow'
           >Contact us</a
         >
@@ -553,7 +549,8 @@ const etapasData = [
 
       const valorCards = document.querySelectorAll('.valor-card');
 
-      function openCard(card) {
+      // ✨ Tipado corregido para la función
+      function openCard(card: Element) {
         if (card.classList.contains('is-active')) return;
 
         const activeCard = document.querySelector('.valor-card.is-active');
@@ -577,7 +574,6 @@ const etapasData = [
      */
     const equipoSection = document.querySelector('.equipo');
     if (equipoSection) {
-      // Reveal inicial
       gsap.from('.trigger-reveal-equipo', {
         scrollTrigger: { trigger: equipoSection, start: 'top 80%' },
         y: 40,
@@ -587,15 +583,15 @@ const etapasData = [
         ease: 'power3.out',
       });
 
-      // --- Lógica del Clip-Path Dinámico (ResizeObserver) ---
       const clippedBgs = document.querySelectorAll('.equipo-clipped-card__bg');
 
-      const getDynamicPath = (w, h) => {
+      // ✨ Tipado corregido para la función (w y h ahora son números)
+      const getDynamicPath = (w: number, h: number) => {
         if (w === 0 || h === 0) return '';
-        const r = 16; // Radio principal
-        const nw = 65; // Ancho del recorte (del botón)
-        const nh = 65; // Alto del recorte (del botón)
-        const nr = 16; // Radio interno de las curvas
+        const r = 16;
+        const nw = 65;
+        const nh = 65;
+        const nr = 16;
 
         return `
           M ${r} 0 
@@ -621,7 +617,9 @@ const etapasData = [
         for (let entry of entries) {
           const { width, height } = entry.contentRect;
           const dynamicClipPath = getDynamicPath(width, height);
-          entry.target.style.clipPath = `path('${dynamicClipPath}')`;
+          // ✨ Casting para evitar error de propiedad style
+          (entry.target as HTMLElement).style.clipPath =
+            `path('${dynamicClipPath}')`;
         }
       });
 
@@ -629,11 +627,9 @@ const etapasData = [
         resizeObserver.observe(bg);
       });
 
-      // --- Lógica Click para Móviles ---
       const cards = document.querySelectorAll('.equipo-clipped-card');
       cards.forEach((card) => {
         card.addEventListener('click', () => {
-          // Si tocamos una, cerramos las demás
           cards.forEach((c) => {
             if (c !== card) c.classList.remove('is-active');
           });
@@ -656,7 +652,9 @@ const etapasData = [
         ease: 'power3.out',
       });
 
-      const icons = gsap.utils.toArray('.icon-circle');
+      // ✨ Tipado corregido explícitamente como HTMLElement[]
+      const icons = gsap.utils.toArray('.icon-circle') as HTMLElement[];
+
       if (icons.length > 0) {
         const glowTl = gsap.timeline({ repeat: -1, delay: 1 });
 

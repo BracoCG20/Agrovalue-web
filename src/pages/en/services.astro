@@ -13,7 +13,7 @@ import logoBlanco from '../../assets/Logo_Agrovalue_blanco.svg';
 const titleText =
   'Every actor in the chain has a different challenge. We have an answer for each one.';
 
-// ✨ Extraemos la data específica para inglés
+// Extraemos la data específica para inglés
 const currentData = perfilesData.en;
 ---
 
@@ -255,6 +255,21 @@ const currentData = perfilesData.en;
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener('DOMContentLoaded', () => {
+    // Lógica para limpiar URL si vienes desde otra página
+    if (window.location.hash) {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
+        setTimeout(() => {
+          target.scrollIntoView({ behavior: 'smooth' });
+          window.history.replaceState(
+            {},
+            document.title,
+            window.location.pathname,
+          );
+        }, 100);
+      }
+    }
+
     // Lógica para el botón "Volver Arriba"
     document.querySelectorAll('.pd-scroll-top').forEach((btn) => {
       btn.addEventListener('click', () => {

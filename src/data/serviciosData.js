@@ -6,7 +6,7 @@ import imgServicios3 from '../assets/servicios/proyectos_Especiales.webp';
 
 import logoBlanco from '../assets/Logo_Agrovalue_blanco.svg';
 
-// ✨ Ahora es un objeto que contiene dos arreglos: 'es' y 'en'
+//  Ahora es un objeto que contiene dos arreglos: 'es' y 'en'
 export const perfilesData = {
   es: [
     {
@@ -271,14 +271,14 @@ export const perfilesData = {
       },
     },
   ],
-  // AQUÍ EMPIEZA LA TRADUCCIÓN AL INGLÉS
+  // AQUÍ LA TRADUCCIÓN AL INGLÉS
   en: [
     {
       id: 'producer-exporter',
       number: '01',
       subtitle: 'GROWER / EXPORTER',
       title:
-        'Your fruit can reach the most competitive buyers, at the quality they demand.',
+        'Your fruit can reach the most competitive buyers at the quality they demand.',
       text: 'We connect you with markets, financing, and technology so every season captures its true value.',
       problem: {
         subtitle: '— THE PROBLEM',
@@ -352,11 +352,10 @@ export const perfilesData = {
       cta: {
         title: 'Take your next season further.',
         text: `Tell us what you grow, how much, and when, and we'll show you the commercial and financing opportunities available to you.`,
-        btnLink: '/en/contacto?perfil=productor', // Apunta a la página en inglés
+        btnLink: '/en/contact?perfil=productor', // Apunta a la página en inglés
         btnText: 'Contact us',
       },
     },
-    // Plantillas vacías para los otros dos perfiles en Inglés
     {
       id: 'importer-distributor',
       number: '02',
@@ -433,7 +432,7 @@ export const perfilesData = {
       cta: {
         title: 'Your next shipment from Peru, with total confidence.',
         text: `Tell us what service you need and we'll respond with concrete options: growers, volumes, and available windows.`,
-        btnLink: '/en/contacto?perfil=importador',
+        btnLink: '/en/contact?perfil=importador',
         btnText: 'Contact us',
       },
     },
@@ -530,7 +529,7 @@ export const perfilesData = {
       cta: {
         title: `Let's build your next project together.`,
         text: `Whether it's an investment, an expansion, or a strategic challenge, tell us your goal and we'll show you how we can structure it with you.`,
-        btnLink: '/en/contacto?perfil=inversionista',
+        btnLink: '/en/contact?perfil=inversionista',
         btnText: 'Contact us',
       },
     },

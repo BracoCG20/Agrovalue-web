@@ -3,27 +3,48 @@ import { Menu, X, ArrowRight } from '@lucide/astro';
 
 const currentYear = new Date().getFullYear();
 const pathname = Astro.url.pathname;
-const lang = Astro.currentLocale || 'es';
 
-// ✨ 1. Función para generar la URL correcta según el idioma
-const getRoute = (path: string) => {
-  return lang === 'es' ? path : `/en${path === '/' ? '' : path}`;
+// Forzar el tipado para que TypeScript sepa que solo puede ser 'es' o 'en'
+const lang = (Astro.currentLocale === 'en' ? 'en' : 'es') as 'es' | 'en';
+
+// MAPA DE RUTAS (Relaciona el nombre en español con el nombre del archivo en inglés)
+const routeMap = {
+  '/': '/',
+  '/nosotros': '/about-us',
+  '/servicios': '/services',
+  '/contacto': '/contact',
 };
 
-// ✨ 2. Función para saber si un link está activo tomando en cuenta el idioma
-const isActive = (path: string) => {
+// 1. Función para generar la URL correcta según el idioma y el mapa de rutas
+const getRoute = (path: keyof typeof routeMap) => {
+  if (lang === 'es') return path;
+  const englishPath = routeMap[path];
+  return `/en${englishPath === '/' ? '' : englishPath}`;
+};
+
+// 2. Función para saber si un link está activo
+const isActive = (path: keyof typeof routeMap) => {
   const targetPath = getRoute(path);
   return pathname === targetPath || pathname === targetPath + '/';
 };
 
-// ✨ 3. Lógica del Botón Switcher (ES/EN)
+// 3. Lógica del Botón Switcher (ES/EN)
 const switchLangLabel = lang === 'es' ? 'EN' : 'ES';
-// Si estamos en 'es', añade /en. Si estamos en 'en', quita el /en de la URL.
-const switchUrl =
-  lang === 'es' ? `/en${pathname}` : pathname.replace(/^\/en/, '') || '/';
+let switchUrl = '/';
 
-// ✨ 4. Diccionario de traducciones para el menú
-const t = {
+if (lang === 'es') {
+  const enPath = routeMap[pathname as keyof typeof routeMap] || pathname;
+  switchUrl = `/en${enPath === '/' ? '' : enPath}`;
+} else {
+  const currentPathWithoutEn = pathname.replace(/^\/en/, '') || '/';
+  const esKey = Object.keys(routeMap).find(
+    (key) => routeMap[key as keyof typeof routeMap] === currentPathWithoutEn,
+  );
+  switchUrl = esKey || '/';
+}
+
+// 4. Diccionarios de traducciones e IDs para el menú
+const translations = {
   es: {
     inicio: 'Inicio',
     nosotros: 'Nosotros',
@@ -38,11 +59,27 @@ const t = {
     nosotros: 'About Us',
     servicios: 'Services',
     contacto: 'Contact Us',
-    serv1: 'Growers & Exporters ',
-    serv2: 'Importers & Distributors ',
+    serv1: 'Growers & Exporters',
+    serv2: 'Importers & Distributors',
     serv3: 'Special Projects',
   },
-}[lang];
+};
+
+const hashes = {
+  es: {
+    h1: '#productor-exportador',
+    h2: '#importador-distribuidor',
+    h3: '#proyectos-especiales',
+  },
+  en: {
+    h1: '#producer-exporter',
+    h2: '#importer-distributor',
+    h3: '#special-projects',
+  },
+};
+
+const t = translations[lang];
+const h = hashes[lang];
 ---
 
 <header
@@ -81,16 +118,24 @@ const t = {
           >
           <ul class='sub-menu-desktop'>
             <li>
-              <a href={getRoute('/servicios#productor-exportador')}>{t.serv1}</a
+              <a
+                href={`${getRoute('/servicios')}${h.h1}`}
+                class='service-link'
+                >{t.serv1}</a
               >
             </li>
             <li>
-              <a href={getRoute('/servicios#importador-distribuidor')}
+              <a
+                href={`${getRoute('/servicios')}${h.h2}`}
+                class='service-link'
                 >{t.serv2}</a
               >
             </li>
             <li>
-              <a href={getRoute('/servicios#proyectos-especiales')}>{t.serv3}</a
+              <a
+                href={`${getRoute('/servicios')}${h.h3}`}
+                class='service-link'
+                >{t.serv3}</a
               >
             </li>
           </ul>
@@ -103,7 +148,6 @@ const t = {
           class='btn-glow'
           >{t.contacto}</a
         >
-        <!-- ✨ Botón Switcher Idioma -->
         <a
           href={switchUrl}
           class='lang-switch'
@@ -170,17 +214,23 @@ const t = {
           >
           <ul class='sub-menu'>
             <li>
-              <a href={getRoute('/servicios#productor-exportador')}
+              <a
+                href={`${getRoute('/servicios')}${h.h1}`}
+                class='service-link'
                 >· {t.serv1}</a
               >
             </li>
             <li>
-              <a href={getRoute('/servicios#importador-distribuidor')}
+              <a
+                href={`${getRoute('/servicios')}${h.h2}`}
+                class='service-link'
                 >· {t.serv2}</a
               >
             </li>
             <li>
-              <a href={getRoute('/servicios#proyectos-especiales')}
+              <a
+                href={`${getRoute('/servicios')}${h.h3}`}
+                class='service-link'
                 >· {t.serv3}</a
               >
             </li>
@@ -194,7 +244,6 @@ const t = {
           class='btn-glow'
           >{t.contacto}</a
         >
-        <!-- ✨ Botón Switcher Idioma Móvil -->
         <a
           href={switchUrl}
           class='lang-switch'
@@ -237,7 +286,6 @@ const t = {
   import { gsap } from 'gsap';
 
   document.addEventListener('DOMContentLoaded', () => {
-    // Control de Header Fixed al Scroll
     const header = document.getElementById('main-header');
 
     const handleScroll = () => {
@@ -252,7 +300,6 @@ const t = {
     window.addEventListener('scroll', handleScroll);
     handleScroll();
 
-    // Animación de Menú Móvil con GSAP
     let mm = gsap.matchMedia();
 
     mm.add('(max-width: 1023px)', () => {
@@ -306,12 +353,58 @@ const t = {
 
       toggleBtn.addEventListener('click', clickHandler);
 
+      // Limpieza de URL cuando damos click en el submenu desde la misma página
+      const serviceLinks = document.querySelectorAll('.service-link');
+      serviceLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          if (!href) return;
+
+          const [path, hash] = href.split('#');
+          const currentPath = window.location.pathname.replace(/\/$/, '');
+          const targetPath = path.replace(/\/$/, '');
+
+          if (currentPath === targetPath && hash) {
+            e.preventDefault();
+            const targetElement = document.getElementById(hash);
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+            if (header.classList.contains('is-open')) {
+              clickHandler();
+            }
+          }
+        });
+      });
+
       return () => {
         toggleBtn.removeEventListener('click', clickHandler);
         header.classList.remove('is-open');
         document.body.style.overflow = '';
         document.documentElement.style.overflow = '';
       };
+    });
+
+    // Para Desktop: Limpieza de URL al clickear en submenu en la misma página
+    mm.add('(min-width: 1024px)', () => {
+      const serviceLinks = document.querySelectorAll('.service-link');
+      serviceLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const href = link.getAttribute('href');
+          if (!href) return;
+          const [path, hash] = href.split('#');
+          const currentPath = window.location.pathname.replace(/\/$/, '');
+          const targetPath = path.replace(/\/$/, '');
+
+          if (currentPath === targetPath && hash) {
+            e.preventDefault();
+            const targetElement = document.getElementById(hash);
+            if (targetElement) {
+              targetElement.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
     });
   });
 </script>
