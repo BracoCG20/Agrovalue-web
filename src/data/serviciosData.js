@@ -415,7 +415,7 @@ export const perfilesData = {
         },
         {
           num: '2',
-          title: 'We tap into our network of buyers.',
+          title: 'We tap into our network of growers.',
           text: 'We select the right growers for your program and negotiate the best terms.',
         },
         {
