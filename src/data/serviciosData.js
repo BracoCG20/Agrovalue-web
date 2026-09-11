@@ -179,7 +179,7 @@ export const perfilesData = {
       subtitle: 'PROYECTOS ESPECIALES',
       title:
         'Estructuramos proyectos de inversión y crecimiento en el agro peruano, con el mismo rigor con el que operamos en el campo.',
-      text: 'Estructuramos, evaluamos y ejecutamos proyectos de inversión y asesoría estratégica para el sector agroexportador. Lo hacemos desde adentro: la misma organización que abastece fruta, supervisa la cosecha y el packing, inspecciona la calidad y sigue los embarques hasta destino es la que estructura y acompaña cada proyecto',
+      text: 'Estructuramos, evaluamos y ejecutamos proyectos de inversión y asesoría estratégica para el sector agroexportador. Lo hacemos desde adentro: la misma organización que abastece fruta, supervisa la cosecha y el packing, inspecciona la calidad y sigue los embarques hasta destino es también la que estructura y acompaña cada proyecto.',
       problem: {
         subtitle: '— EL PROBLEMA',
         title: 'Invertir en el agro no debería significar ceder el control.',
