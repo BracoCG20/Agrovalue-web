@@ -234,9 +234,11 @@ const currentData = perfilesData.es;
                 {perfil.cta.btnText} <ArrowRight size={18} />
               </a>
             </div>
-            
-            <!-- ✨ Botón flotante para subir -->
-            <button class="pd-scroll-top" aria-label="Volver arriba">
+
+            <button
+              class='pd-scroll-top'
+              aria-label='Volver arriba'
+            >
               <ChevronUp size={20} />
             </button>
           </div>
@@ -248,7 +250,7 @@ const currentData = perfilesData.es;
 
 <script>
   import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -259,13 +261,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
       if (target) {
         setTimeout(() => {
           target.scrollIntoView({ behavior: 'smooth' });
-          window.history.replaceState({}, document.title, window.location.pathname);
+          window.history.replaceState(
+            {},
+            document.title,
+            window.location.pathname,
+          );
         }, 100);
       }
     }
 
     // Lógica para el botón "Volver Arriba"
-    document.querySelectorAll('.pd-scroll-top').forEach(btn => {
+    document.querySelectorAll('.pd-scroll-top').forEach((btn) => {
       btn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
@@ -291,60 +297,123 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
     gsap.set('.hero-servicios__actions', { autoAlpha: 0, y: 20 });
 
     tlHero
-      .to('.hero-servicios__subtitle', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: 0.3 })
-      .to('.hero-servicios .word', { y: '0%', duration: 0.6, stagger: 0.03, ease: 'power3.out' }, '-=0.4')
-      .to('.hero-servicios__actions', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.2');
+      .to('.hero-servicios__subtitle', {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power3.out',
+        delay: 0.3,
+      })
+      .to(
+        '.hero-servicios .word',
+        { y: '0%', duration: 0.6, stagger: 0.03, ease: 'power3.out' },
+        '-=0.4',
+      )
+      .to(
+        '.hero-servicios__actions',
+        { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' },
+        '-=0.2',
+      );
 
     const perfiles = document.querySelectorAll('.perfil-detail');
 
     perfiles.forEach((perfil) => {
-      const introElements = perfil.querySelectorAll('.pd-intro-content-container1__number, .pd-intro-content-container2 > *');
+      const introElements = perfil.querySelectorAll(
+        '.pd-intro-content-container1__number, .pd-intro-content-container2 > *',
+      );
       gsap.from(introElements, {
-        scrollTrigger: { trigger: perfil.querySelector('.pd-intro'), start: 'top 85%' },
-        y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: perfil.querySelector('.pd-intro'),
+          start: 'top 85%',
+        },
+        y: 40,
+        autoAlpha: 0,
+        duration: 0.8,
+        stagger: 0.15,
+        ease: 'power3.out',
       });
 
-      const compBoxes = perfil.querySelectorAll('.pd-comparison-container__box');
+      const compBoxes = perfil.querySelectorAll(
+        '.pd-comparison-container__box',
+      );
       const compIcon = perfil.querySelector('.pd-comparison-container__icon');
 
       const tlComp = gsap.timeline({
-        scrollTrigger: { trigger: perfil.querySelector('.pd-comparison'), start: 'top 80%' },
+        scrollTrigger: {
+          trigger: perfil.querySelector('.pd-comparison'),
+          start: 'top 80%',
+        },
       });
 
       tlComp
-        .from(compBoxes, { y: 50, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out' })
-        .from(compIcon, { scale: 0, autoAlpha: 0, duration: 0.6, ease: 'back.out(1.5)' }, '-=0.4');
+        .from(compBoxes, {
+          y: 50,
+          autoAlpha: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power3.out',
+        })
+        .from(
+          compIcon,
+          { scale: 0, autoAlpha: 0, duration: 0.6, ease: 'back.out(1.5)' },
+          '-=0.4',
+        );
 
       const image = perfil.querySelector('.pd-image__img');
       gsap.from(image, {
-        scrollTrigger: { trigger: perfil.querySelector('.pd-image'), start: 'top 85%' },
-        y: 30, autoAlpha: 0, scale: 0.97, duration: 1, ease: 'power3.out',
+        scrollTrigger: {
+          trigger: perfil.querySelector('.pd-image'),
+          start: 'top 85%',
+        },
+        y: 30,
+        autoAlpha: 0,
+        scale: 0.97,
+        duration: 1,
+        ease: 'power3.out',
       });
 
       const servicesSection = perfil.querySelector('.pd-services');
       if (servicesSection) {
-        const servicesItems = servicesSection.querySelectorAll('.pd-section-subtitle, .pd-service-group__title, .pd-list__item');
+        const servicesItems = servicesSection.querySelectorAll(
+          '.pd-section-subtitle, .pd-service-group__title, .pd-list__item',
+        );
         gsap.from(servicesItems, {
           scrollTrigger: { trigger: servicesSection, start: 'top 85%' },
-          y: 30, autoAlpha: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out',
+          y: 30,
+          autoAlpha: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'power3.out',
         });
       }
 
       const processSection = perfil.querySelector('.pd-process');
       if (processSection) {
-        const processItems = processSection.querySelectorAll('.pd-section-subtitle, .pd-process-list__item');
+        const processItems = processSection.querySelectorAll(
+          '.pd-section-subtitle, .pd-process-list__item',
+        );
         gsap.from(processItems, {
           scrollTrigger: { trigger: processSection, start: 'top 85%' },
-          y: 30, autoAlpha: 0, duration: 0.6, stagger: 0.1, ease: 'power3.out',
+          y: 30,
+          autoAlpha: 0,
+          duration: 0.6,
+          stagger: 0.1,
+          ease: 'power3.out',
         });
       }
 
       const ctaSection = perfil.querySelector('.pd-cta');
       if (ctaSection) {
-        const ctaElements = ctaSection.querySelectorAll('.pd-cta-container__title, .pd-cta-container__text');
+        const ctaElements = ctaSection.querySelectorAll(
+          '.pd-cta-container__title, .pd-cta-container__text',
+        );
         gsap.from(ctaElements, {
           scrollTrigger: { trigger: ctaSection, start: 'top 85%' },
-          y: 30, autoAlpha: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out',
+          y: 30,
+          autoAlpha: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out',
         });
       }
     });

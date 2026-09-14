@@ -550,7 +550,7 @@ const etapasData = [
 
       const valorCards = document.querySelectorAll('.valor-card');
 
-      // ✨ Tipado corregido para la función
+      // Tipado corregido para la función
       function openCard(card: Element) {
         if (card.classList.contains('is-active')) return;
 
@@ -586,7 +586,7 @@ const etapasData = [
 
       const clippedBgs = document.querySelectorAll('.equipo-clipped-card__bg');
 
-      // ✨ Tipado corregido para la función (w y h ahora son números)
+      // Tipado corregido para la función (w y h ahora son números)
       const getDynamicPath = (w: number, h: number) => {
         if (w === 0 || h === 0) return '';
         const r = 16;
@@ -618,7 +618,7 @@ const etapasData = [
         for (let entry of entries) {
           const { width, height } = entry.contentRect;
           const dynamicClipPath = getDynamicPath(width, height);
-          // ✨ Casting para evitar error de propiedad style
+          // Casting para evitar error de propiedad style
           (entry.target as HTMLElement).style.clipPath =
             `path('${dynamicClipPath}')`;
         }
@@ -653,7 +653,7 @@ const etapasData = [
         ease: 'power3.out',
       });
 
-      // ✨ Tipado corregido explícitamente como HTMLElement[]
+      // Tipado corregido explícitamente como HTMLElement[]
       const icons = gsap.utils.toArray('.icon-circle') as HTMLElement[];
 
       if (icons.length > 0) {

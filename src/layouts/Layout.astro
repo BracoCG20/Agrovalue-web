@@ -25,7 +25,7 @@ const {
   hideFooter = false,
 } = Astro.props;
 
-// ✨ Obtenemos el idioma actual automáticamente (Astro se encarga de saber si estamos en / o en /en/)
+// Obtenemos el idioma actual automáticamente (Astro se encarga de saber si estamos en / o en /en/)
 const lang = Astro.currentLocale || 'es';
 
 const canonicalURL = new URL(
@@ -36,7 +36,7 @@ const imageUrl = new URL(image, canonicalURL);
 ---
 
 <!doctype html>
-<!-- ✨ Asignamos el idioma al HTML -->
+<!-- Asignamos el idioma al HTML -->
 <html lang={lang}>
   <head>
     <meta charset='UTF-8' />

@@ -760,7 +760,7 @@
     background-color: #184c2f;
     padding: 3rem 2rem;
     color: #ffffff;
-    position: relative; // ✨ Necesario para anclar el botón flotante
+    position: relative;
 
     @include tablet {
       padding: 3rem;
@@ -857,7 +857,7 @@
       }
     }
 
-    // ✨ Botón Flotante
+    // Botón Flotante
     .pd-scroll-top {
       position: absolute;
       bottom: 0;
