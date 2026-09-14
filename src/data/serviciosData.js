@@ -318,7 +318,7 @@ export const perfilesData = {
         {
           num: '05',
           title: 'A partner invested in the sustainability of your business.',
-          text: `We advise you on implementing technologies and processes that improve your productivity, quality, and competitiveness — because we don't just help you export your fruit, we help make next season better.`,
+          text: `We advise you on implementing technologies and processes that improve your productivity, quality, and competitiveness, because we don't just help you export your fruit — we help make next season better.`,
         },
         {
           num: '06',
@@ -389,7 +389,7 @@ export const perfilesData = {
         {
           num: '03',
           title: 'Independent quality oversight.',
-          text: ' We verify compliance with your specifications, current regulations, and international food-safety standards on the production line and at destination. We also monitor the quality and sustainability certifications your market requires before the fruit leaves Peru.',
+          text: ' We verify compliance with your specifications, current regulations, and international food safety standards on the production line and at destination. We also monitor the quality and sustainability certifications your market requires before the fruit leaves Peru.',
         },
         {
           num: '04',
@@ -479,7 +479,7 @@ export const perfilesData = {
             {
               num: '04',
               title: 'We monitor performance with real visibility.',
-              text: 'With proprietary technology, we bring together grower, production, quality, export-program, logistics, and commercial information in one place. You follow your project with the same data we use to run it — not a report assembled for the meeting.',
+              text: 'With proprietary technology, we bring together grower, production, quality, export program, logistics, and commercial information in one place. You follow your project with the same data we use to run it — not a report assembled for the meeting.',
             },
           ],
         },
@@ -494,7 +494,7 @@ export const perfilesData = {
             {
               num: '02',
               title: 'We structure the capital for your next stage.',
-              text: 'We model the investment your growth requires and facilitate access to the capital to finance it, so cash flow doesn’t limit how far you can grow.',
+              text: `We model the investment your growth requires and facilitate access to the capital to finance it, so cash flow doesn't limit how far you can grow.`,
             },
             {
               num: '03',
@@ -523,7 +523,7 @@ export const perfilesData = {
         {
           num: '4',
           title: 'We report with transparency.',
-          text: 'Results, variances and next steps, on a regular basis.',
+          text: 'Results, variances, and next steps, on a regular basis.',
         },
       ],
       cta: {
