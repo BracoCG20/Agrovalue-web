@@ -368,7 +368,7 @@
     margin-top: 2rem;
     display: flex;
     align-items: center;
-    gap: 1.5rem; // Más separación para que no se pegue al botón
+    gap: 1.5rem;
 
     .btn-glow {
       flex-grow: 1;
@@ -400,7 +400,7 @@
       font-size: 16px;
       text-decoration: none;
       padding-bottom: 2px;
-      border-bottom: 2px solid $green-500; // Línea debajo
+      border-bottom: 2px solid $green-500;
       transition:
         color 0.3s ease,
         border-color 0.3s ease;

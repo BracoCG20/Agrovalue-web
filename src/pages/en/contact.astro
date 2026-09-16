@@ -34,7 +34,6 @@ import imgContacto from '../../assets/contacto/contacto.webp';
           <p class='contact-card__desc'>
             Write to us and we'll connect you with the right person.
           </p>
-
           <ul class='contact-list'>
             <li>
               <a
@@ -112,7 +111,7 @@ import imgContacto from '../../assets/contacto/contacto.webp';
             id='agrovalue-contact-form'
             class='contact-form'
           >
-            <!-- Honeypot (Trampa para bots) - Oculto para humanos -->
+            <!-- Honeypot  Oculto -->
             <div
               style='display:none; position:absolute; left:-9999px;'
               aria-hidden='true'
@@ -139,7 +138,6 @@ import imgContacto from '../../assets/contacto/contacto.webp';
               <span class='form-label'>I am:</span>
               <div class='radio-pill-group'>
                 <label class='radio-pill'>
-                  <!-- NOTA: El value se mantiene igual para que la lógica de la URL (perfil=productor) siga funcionando -->
                   <input
                     type='radio'
                     name='perfil'
@@ -312,7 +310,7 @@ import imgContacto from '../../assets/contacto/contacto.webp';
         event.preventDefault();
 
         const originalBtnText = submitBtn.innerText;
-        submitBtn.innerText = 'Sending...'; // Traducción
+        submitBtn.innerText = 'Sending...';
         submitBtn.disabled = true;
 
         // Aquí captura exactamente lo que el usuario dejó marcado al final
@@ -327,21 +325,22 @@ import imgContacto from '../../assets/contacto/contacto.webp';
         };
 
         try {
-          // const response = await fetch('/enviar.php', { ... });
-          await new Promise((resolve) => setTimeout(resolve, 2000));
-          const response = { ok: true };
+          const response = await fetch('/enviar.php', {
+            method: 'POST',
+            body: formData,
+          });
 
           if (response.ok) {
-            submitBtn.innerText = 'Message Sent!'; // Traducción
+            submitBtn.innerText = 'Message Sent!';
             submitBtn.style.backgroundColor = '#1a422a';
             contactForm.reset();
             timeField.value = Date.now().toString();
           } else {
-            throw new Error('Server error or bot detected'); // Traducción
+            throw new Error('Server error or bot detected');
           }
         } catch (error) {
           console.error('Error:', error);
-          submitBtn.innerText = 'Error sending'; // Traducción
+          submitBtn.innerText = 'Error sending';
           submitBtn.style.backgroundColor = '#d32f2f';
         } finally {
           setTimeout(() => {

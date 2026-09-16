@@ -1,5 +1,4 @@
 ---
-//src/pages/contacto.astro
 /**
  * Página: Contacto
  * Descripción: Contiene la información de contacto de la empresa y el formulario
@@ -112,7 +111,7 @@ import imgContacto from '../assets/contacto/contacto.webp';
             id='agrovalue-contact-form'
             class='contact-form'
           >
-            <!-- Honeypot (Trampa para bots) - Oculto para humanos -->
+            <!-- Honeypot  -->
             <div
               style='display:none; position:absolute; left:-9999px;'
               aria-hidden='true'
@@ -312,21 +311,13 @@ import imgContacto from '../assets/contacto/contacto.webp';
         submitBtn.innerText = 'Enviando...';
         submitBtn.disabled = true;
 
-        // Aquí captura exactamente lo que el usuario dejó marcado al final
         const formData = new FormData(contactForm);
-        const data = {
-          perfil: formData.get('perfil'),
-          nombre: formData.get('nombre'),
-          email: formData.get('email'),
-          mensaje: formData.get('mensaje'),
-          bot_field: formData.get('bot_field'),
-          form_time: formData.get('form_time'),
-        };
 
         try {
-          // const response = await fetch('/enviar.php', { ... });
-          await new Promise((resolve) => setTimeout(resolve, 2000));
-          const response = { ok: true };
+          const response = await fetch('/enviar.php', {
+            method: 'POST',
+            body: formData,
+          });
 
           if (response.ok) {
             submitBtn.innerText = '¡Mensaje Enviado!';

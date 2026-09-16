@@ -11,9 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Capturamos el JSON que envía Astro
+// Capturamos los datos dependiendo del formato en que lleguen
 $data = json_decode(file_get_contents("php://input"), true);
-
+if (empty($data)) {
+    $data = $_POST;
+}
 // Protecciones Anti-Spam (Honeypot)
 if (!empty($data['bot_field'])) {
     http_response_code(400);
@@ -26,7 +28,7 @@ $nombre = htmlspecialchars(strip_tags($data['nombre']));
 $email = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
 $perfil = htmlspecialchars(strip_tags($data['perfil']));
 $mensaje = htmlspecialchars(strip_tags($data['mensaje']));
-$mensaje_br = nl2br($mensaje); // Respeta los saltos de línea
+$mensaje_br = nl2br($mensaje);
 
 // Validaciones básicas
 if (empty($nombre) || empty($email) || empty($mensaje) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -36,9 +38,9 @@ if (empty($nombre) || empty($email) || empty($mensaje) || !filter_var($email, FI
 }
 
 // --- CONFIGURACIÓN DEL CORREO ---
-$destinatario = "cbraco@gruposp.pe"; // REEMPLAZA ESTO CON EL CORREO DEL CLIENTE
-$asunto = "Nuevo contacto web: " . $nombre;
-$logoUrl = "https://agrovalue.es/Logo_Agrovalue.png";
+$destinatario = "cbraco@gruposp.pe"; 
+$asunto = "Nuevo contacto: " . $nombre;
+$logoUrl = "https://agrovalue.org/Logo_Agrovalue.png";
 
 // Plantilla HTML (Tu diseño exacto)
 $htmlTemplate = "
@@ -86,7 +88,7 @@ $htmlTemplate = "
 $headers = "MIME-Version: 1.0" . "\r\n";
 $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 // El remitente debe ser un correo del mismo dominio (IONOS) para no caer en spam
-$headers .= "From: Web Agrovalue <noreply@agrovalue.es>" . "\r\n"; 
+$headers .= "From: Web Agrovalue <noreply@agrovalue.org>" . "\r\n"; 
 $headers .= "Reply-To: {$email}" . "\r\n";
 
 // Enviar el correo usando la función nativa de PHP
