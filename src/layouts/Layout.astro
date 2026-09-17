@@ -30,7 +30,7 @@ const lang = Astro.currentLocale || 'es';
 
 const canonicalURL = new URL(
   Astro.url.pathname,
-  Astro.site || 'https://agrovalue.es',
+  Astro.site || 'https://agrovalue.org',
 );
 const imageUrl = new URL(image, canonicalURL);
 ---
@@ -46,12 +46,21 @@ const imageUrl = new URL(image, canonicalURL);
     />
     <link
       rel='icon'
-      type='image/svg+xml'
-      href='/Logo_AgrovalueV.png'
+      href='./Logo_AgrovalueV.ico'
     />
     <meta
       name='generator'
       content={Astro.generator}
+    />
+    <link
+      rel='icon'
+      href='./Logo_Agrovalue192.png'
+      type='image/png'
+      sizes='192x192'
+    />
+    <link
+      rel='apple-touch-icon'
+      href='./apple-icon.png'
     />
 
     <!-- SEO Básico -->
@@ -151,16 +160,16 @@ const imageUrl = new URL(image, canonicalURL);
         "@context": "https://schema.org",
         "@type": "Organization",
         "name": "Agrovalue",
-        "url": "https://www.agrovalue.es",
-        "logo": "https://www.agrovalue.es/Logo_Agrovalue.png",
+        "url": "https://www.agrovalue.org",
+        "logo": "https://www.agrovalue.org/Logo_Agrovalue.png",
         "description": "Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.",
         "contactPoint": {
           "@type": "ContactPoint",
-          "email": "contacto@agrovalue.es",
+          "email": "comercial@agrovalue.org",
           "contactType": "customer support",
           "availableLanguage": ["es", "en"]
         },
-        "sameAs": ["https://www.linkedin.com/company/agrovalue"]
+        "sameAs": ["https://www.linkedin.com/company/agrovalue-org"]
       }
     </script>
   </head>

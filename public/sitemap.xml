@@ -3,30 +3,74 @@
   
   <!-- Página de Inicio -->
   <url>
-    <loc>https://agrovalue.es/</loc>
+    <loc>https://agrovalue.org/</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://agrovalue.org/en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://agrovalue.org/"/>
+  </url>
+  <url>
+    <loc>https://agrovalue.org/en</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://agrovalue.org/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://agrovalue.org/en"/>
   </url>
 
   <!-- Página de Servicios -->
   <url>
-    <loc>https://agrovalue.es/servicios</loc>
+    <loc>https://agrovalue.org/servicios</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://agrovalue.org/en/services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://agrovalue.org/servicios"/>
+  </url>
+  <url>
+    <loc>https://agrovalue.org/en/services</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://agrovalue.org/servicios"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://agrovalue.org/en/services"/>
   </url>
 
   <!-- Página de Nosotros -->
   <url>
-    <loc>https://agrovalue.es/nosotros</loc>
+    <loc>https://agrovalue.org/nosotros</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://agrovalue.org/en"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://agrovalue.org/"/>
+  </url>
+  <url>
+    <loc>https://agrovalue.org/en/about-us</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://agrovalue.org/nosotros"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://agrovalue.org/en/about-us"/>
   </url>
 
   <!-- Página de Contacto -->
   <url>
-    <loc>https://agrovalue.es/contacto</loc>
+    <loc>https://agrovalue.org/contacto</loc>
+    <lastmod>2026-09-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://agrovalue.org/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://agrovalue.org/contacto"/>
+  </url>
+   <url>
+    <loc>https://agrovalue.org/en/contact</loc>
+    <lastmod>2026-09-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="es" href="https://agrovalue.org/contacto"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://agrovalue.org/en/contact"/>
   </url>
 
 </urlset>
