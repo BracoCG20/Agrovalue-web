@@ -1,102 +1,115 @@
 <?php
-// Permitir recibir JSON desde el JavaScript
-header("Access-Control-Allow-Origin: *");
+session_start();
+
+// ========================================================================
+// 1. CONFIGURACIÓN UNIVERSAL DEL HOSTING
+// ========================================================================
+$config = [
+    // Cambia 'localhost' por 'smtp.tudominio.com' si tu hosting lo requiere
+    'smtp_host' => 'localhost', 
+    'smtp_user' => 'noreply@agrovalue.org',
+    'smtp_pass' => 'TU_CONTRASEÑA_AQUI',
+    'smtp_port' => 587, // Intenta 587, 465 o 25 dependiendo del plan
+    'destinatario'=> 'cbraco@gruposp.pe',
+    'allowed_origins' => ['https://agrovalue.org', 'https://www.agrovalue.org', 'http://localhost:4321']
+];
+// ========================================================================
+
+$origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+if (in_array($origin, $config['allowed_origins'])) {
+    header("Access-Control-Allow-Origin: $origin");
+} else {
+    header("Access-Control-Allow-Origin: https://agrovalue.org");
+}
+
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Allow-Headers: Content-Type");
 
-// Solo aceptamos peticiones POST
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200); exit;
+}
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(["error" => "Método no permitido"]);
-    exit;
+    http_response_code(405); echo json_encode(["error" => "Método no permitido"]); exit;
 }
 
-// Capturamos los datos dependiendo del formato en que lleguen
-$data = json_decode(file_get_contents("php://input"), true);
-if (empty($data)) {
-    $data = $_POST;
+// Rate Limiting
+if (isset($_SESSION['last_submit_time']) && (time() - $_SESSION['last_submit_time'] < 30)) {
+    http_response_code(429); echo json_encode(["error" => "Espera 30 segundos."]); exit;
 }
-// Protecciones Anti-Spam (Honeypot)
+
+$data = json_decode(file_get_contents("php://input"), true) ?: $_POST;
+
+// Honeypot
 if (!empty($data['bot_field'])) {
-    http_response_code(400);
-    echo json_encode(["error" => "Spam detectado"]);
-    exit;
+    http_response_code(400); echo json_encode(["error" => "Rechazado."]); exit;
 }
 
-// Sanitización de variables (Anti-XSS)
-$nombre = htmlspecialchars(strip_tags($data['nombre']));
-$email = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
-$perfil = htmlspecialchars(strip_tags($data['perfil']));
-$mensaje = htmlspecialchars(strip_tags($data['mensaje']));
+// Sanitización
+$nombre = htmlspecialchars(strip_tags(trim($data['nombre'] ?? '')));
+$email = filter_var(trim($data['email'] ?? ''), FILTER_SANITIZE_EMAIL);
+$perfil = htmlspecialchars(strip_tags(trim($data['perfil'] ?? '')));
+$mensaje = htmlspecialchars(strip_tags(trim($data['mensaje'] ?? '')));
 $mensaje_br = nl2br($mensaje);
 
-// Validaciones básicas
 if (empty($nombre) || empty($email) || empty($mensaje) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    http_response_code(400);
-    echo json_encode(["error" => "Datos inválidos"]);
-    exit;
+    http_response_code(400); echo json_encode(["error" => "Datos inválidos"]); exit;
 }
 
-// --- CONFIGURACIÓN DEL CORREO ---
-$destinatario = "cbraco@gruposp.pe"; 
-$asunto = "Nuevo contacto: " . $nombre;
-$logoUrl = "https://agrovalue.org/Logo_Agrovalue.png";
+$_SESSION['last_submit_time'] = time();
 
-// Plantilla HTML (Tu diseño exacto)
-$htmlTemplate = "
-<div style='font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 20px auto; background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; color: #0f172a; box-shadow: 0 1px 2px 0 rgba(0,0,0,0.05);'>
+// --- CARGA MANUAL DE PHPMAILER (Compatible con cualquier hosting sin Composer) ---
+require 'PHPMailer/Exception.php';
+require 'PHPMailer/PHPMailer.php';
+require 'PHPMailer/SMTP.php';
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+$mail = new PHPMailer(true);
+
+try {
+    $mail->isSMTP();
+    $mail->Host       = $config['smtp_host'];
+    $mail->SMTPAuth   = true; // Ponlo en false si usas el puerto 25 localmente en un hosting muy restrictivo
+    $mail->Username   = $config['smtp_user'];
+    $mail->Password   = $config['smtp_pass'];
+    $mail->SMTPSecure = ($config['smtp_port'] == 465) ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port       = $config['smtp_port'];
+
+    // Si tu hosting tiene certificados SSL autofirmados (común en planes muy básicos)
+    $mail->SMTPOptions = [
+        'ssl' => [
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        ]
+    ];
+
+    $mail->setFrom($config['smtp_user'], 'Web Agrovalue');
+    $mail->addAddress($config['destinatario']); 
+    $mail->addReplyTo($email, $nombre);
+
+    $mail->isHTML(true);
+    $mail->CharSet = 'UTF-8';
+    $mail->Subject = 'Nuevo contacto: ' . $nombre;
     
-    <div style='padding: 32px 32px 24px 32px; border-bottom: 1px solid #e2e8f0; text-align: center;'>
-        <img src='{$logoUrl}' alt='Agrovalue Logo' style='height: 48px; margin-bottom: 16px; object-fit: contain;' />
-        <h1 style='margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.5px;'>Nuevo contacto recibido</h1>
-        <p style='margin: 8px 0 0 0; font-size: 14px; color: #64748b;'>Tienes un nuevo mensaje desde el formulario web.</p>
-    </div>
+    // Plantilla
+    $logoUrl = "https://agrovalue.org/Logo_Agrovalue.svg";
+    $mail->Body = "
+    <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; border: 1px solid #e2e8f0; border-radius: 8px; padding: 32px; color: #0f172a;'>
+        <h1 style='font-size: 20px; color: #184c2f;'>Nuevo contacto recibido</h1>
+        <p><strong>Perfil:</strong> {$perfil}</p>
+        <p><strong>Nombre:</strong> {$nombre}</p>
+        <p><strong>Email:</strong> {$email}</p>
+        <p><strong>Mensaje:</strong><br/>{$mensaje_br}</p>
+    </div>";
 
-    <div style='padding: 32px;'>
-        <table style='width: 100%; border-collapse: collapse; text-align: left; font-size: 14px;'>
-        <tr>
-            <td style='padding: 14px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-weight: 500; width: 30%;'>Perfil</td>
-            <td style='padding: 14px 0; border-bottom: 1px solid #f1f5f9; color: #0f172a; font-weight: 500;'>{$perfil}</td>
-        </tr>
-        <tr>
-            <td style='padding: 14px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-weight: 500;'>Nombre</td>
-            <td style='padding: 14px 0; border-bottom: 1px solid #f1f5f9; color: #0f172a;'>{$nombre}</td>
-        </tr>
-        <tr>
-            <td style='padding: 14px 0; border-bottom: 1px solid #f1f5f9; color: #64748b; font-weight: 500;'>Email</td>
-            <td style='padding: 14px 0; border-bottom: 1px solid #f1f5f9; color: #0f172a;'>
-            <a href='mailto:{$email}' style='color: #16a34a; text-decoration: none; font-weight: 500;'>{$email}</a>
-            </td>
-        </tr>
-        <tr>
-            <td style='padding: 14px 0; color: #64748b; font-weight: 500; vertical-align: top;'>Mensaje</td>
-            <td style='padding: 14px 0; color: #0f172a; line-height: 1.6;'>{$mensaje_br}</td>
-        </tr>
-        </table>
-    </div>
+    $mail->send();
+    http_response_code(200); echo json_encode(["success" => true]);
 
-    <div style='padding: 16px 32px; background-color: #f8fafc; border-top: 1px solid #e2e8f0; text-align: center;'>
-        <p style='margin: 0; font-size: 12px; color: #64748b;'>
-        Este es un correo automático generado por el sistema de Agrovalue.
-        </p>
-    </div>
-
-</div>
-";
-
-// Cabeceras necesarias para enviar HTML
-$headers = "MIME-Version: 1.0" . "\r\n";
-$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-// El remitente debe ser un correo del mismo dominio (IONOS) para no caer en spam
-$headers .= "From: Web Agrovalue <noreply@agrovalue.org>" . "\r\n"; 
-$headers .= "Reply-To: {$email}" . "\r\n";
-
-// Enviar el correo usando la función nativa de PHP
-if (mail($destinatario, $asunto, $htmlTemplate, $headers)) {
-    http_response_code(200);
-    echo json_encode(["success" => true]);
-} else {
+} catch (Exception $e) {
     http_response_code(500);
-    echo json_encode(["error" => "Error interno del servidor de correo"]);
+    echo json_encode(["error" => "Error interno. Contacta al administrador."]);
 }
 ?>
