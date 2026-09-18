@@ -1,285 +1,105 @@
 ---
-//src/components/Header.astro
 import { Menu, X, ArrowRight } from '@lucide/astro';
+import { routes, hashes } from '../i18n/ui';
+import { useTranslations, getTranslatedRoute, type Lang } from '../i18n/utils';
 
-const currentYear = new Date().getFullYear();
+const lang = (Astro.currentLocale || 'es') as Lang;
+const t = useTranslations(lang);
+const h = hashes[lang];
+
 const pathname = Astro.url.pathname;
-const cleanPath =
-  pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname;
+const cleanPath = pathname.endsWith('/') && pathname !== '/' ? pathname.slice(0, -1) : pathname;
 
-// Forzar el tipado para que TypeScript sepa que solo puede ser 'es' o 'en'
-const lang = (Astro.currentLocale === 'en' ? 'en' : 'es') as 'es' | 'en';
-
-// MAPA DE RUTAS (Relaciona el nombre en español con el nombre del archivo en inglés)
-const routeMap = {
-  '/': '/',
-  '/nosotros': '/about-us',
-  '/servicios': '/services',
-  '/contacto': '/contact',
-};
-
-// 1. Función para generar la URL correcta según el idioma y el mapa de rutas
-const getRoute = (path: keyof typeof routeMap) => {
-  if (lang === 'es') return path;
-  const englishPath = routeMap[path];
-  return `/en${englishPath === '/' ? '' : englishPath}`;
-};
-
-// 2. Función para saber si un link está activo
-const isActive = (path: keyof typeof routeMap) => {
-  const targetPath = getRoute(path);
+// Función para verificar ruta activa
+const isActive = (basePath: keyof typeof routes) => {
+  const targetPath = getTranslatedRoute(basePath, lang);
   return cleanPath === targetPath || cleanPath === targetPath + '/';
 };
 
-// 3. Lógica del Botón Switcher (ES/EN)
+// Lógica de Switcher (ES/EN)
 const switchLangLabel = lang === 'es' ? 'EN' : 'ES';
 let switchUrl = '/';
 
 if (lang === 'es') {
-  const enPath = routeMap[cleanPath as keyof typeof routeMap] || cleanPath;
+  const enPath = routes[cleanPath as keyof typeof routes] || cleanPath;
   switchUrl = `/en${enPath === '/' ? '' : enPath}`;
 } else {
   const currentPathWithoutEn = cleanPath.replace(/^\/en/, '') || '/';
-  const esKey = Object.keys(routeMap).find(
-    (key) => routeMap[key as keyof typeof routeMap] === currentPathWithoutEn,
-  );
+  const esKey = Object.keys(routes).find(key => routes[key as keyof typeof routes] === currentPathWithoutEn);
   switchUrl = esKey || '/';
 }
-
-// 4. Diccionarios de traducciones e IDs para el menú
-const translations = {
-  es: {
-    inicio: 'Inicio',
-    nosotros: 'Nosotros',
-    servicios: 'Servicios',
-    contacto: 'Contáctanos',
-    serv1: 'Productores y exportadores',
-    serv2: 'Importadores y distribuidores',
-    serv3: 'Proyectos especiales',
-  },
-  en: {
-    inicio: 'Home',
-    nosotros: 'About Us',
-    servicios: 'Services',
-    contacto: 'Contact Us',
-    serv1: 'Growers & Exporters',
-    serv2: 'Importers & Distributors',
-    serv3: 'Special Projects',
-  },
-};
-
-const hashes = {
-  es: {
-    h1: '#productor-exportador',
-    h2: '#importador-distribuidor',
-    h3: '#proyectos-especiales',
-  },
-  en: {
-    h1: '#producer-exporter',
-    h2: '#importer-distributor',
-    h3: '#special-projects',
-  },
-};
-
-const t = translations[lang];
-const h = hashes[lang];
 ---
 
-<header
-  class='header'
-  id='main-header'
->
+<header class='header' id='main-header'>
   <div class='header__container'>
-    <a
-      href={getRoute('/')}
-      class='header__logo'
-    >
-      <img
-        src='/Logo_AgrovalueHB.png'
-        alt='Logo Agrovalue'
-      />
+    <a href={getTranslatedRoute('/', lang)} class='header__logo'>
+      <img src='/Logo_AgrovalueHB.png' alt='Logo Agrovalue' />
     </a>
 
     <!-- Navegación Desktop -->
     <nav class='header__nav-desktop'>
       <ul class='nav-list-desktop'>
-        <li
-          class={`nav-list-desktop__item ${isActive('/') ? 'is-active' : ''}`}
-        >
-          <a href={getRoute('/')}>{t.inicio}</a>
+        <li class={`nav-list-desktop__item ${isActive('/') ? 'is-active' : ''}`}>
+          <a href={getTranslatedRoute('/', lang)}>{t('nav.inicio')}</a>
         </li>
-        <li
-          class={`nav-list-desktop__item ${isActive('/nosotros') ? 'is-active' : ''}`}
-        >
-          <a href={getRoute('/nosotros')}>{t.nosotros}</a>
+        <li class={`nav-list-desktop__item ${isActive('/nosotros') ? 'is-active' : ''}`}>
+          <a href={getTranslatedRoute('/nosotros', lang)}>{t('nav.nosotros')}</a>
         </li>
-        <li
-          class={`nav-list-desktop__item has-sub ${isActive('/servicios') ? 'is-active' : ''}`}
-        >
-          <a href={getRoute('/servicios')}
-            >{t.servicios} <span class='dropdown-icon'>▾</span></a
-          >
+        <li class={`nav-list-desktop__item has-sub ${isActive('/servicios') ? 'is-active' : ''}`}>
+          <a href={getTranslatedRoute('/servicios', lang)}>
+            {t('nav.servicios')} <span class='dropdown-icon'>▾</span>
+          </a>
           <ul class='sub-menu-desktop'>
-            <li>
-              <a
-                href={`${getRoute('/servicios')}${h.h1}`}
-                class='service-link'
-                >{t.serv1}</a
-              >
-            </li>
-            <li>
-              <a
-                href={`${getRoute('/servicios')}${h.h2}`}
-                class='service-link'
-                >{t.serv2}</a
-              >
-            </li>
-            <li>
-              <a
-                href={`${getRoute('/servicios')}${h.h3}`}
-                class='service-link'
-                >{t.serv3}</a
-              >
-            </li>
+            <li><a href={`${getTranslatedRoute('/servicios', lang)}${h.h1}`} class='service-link'>{t('nav.serv1')}</a></li>
+            <li><a href={`${getTranslatedRoute('/servicios', lang)}${h.h2}`} class='service-link'>{t('nav.serv2')}</a></li>
+            <li><a href={`${getTranslatedRoute('/servicios', lang)}${h.h3}`} class='service-link'>{t('nav.serv3')}</a></li>
           </ul>
         </li>
       </ul>
 
       <div class='header__action-desktop'>
-        <a
-          href={getRoute('/contacto')}
-          class='btn-glow'
-          >{t.contacto}</a
-        >
-        <a
-          href={switchUrl}
-          class='lang-switch'
-          aria-label={`Change language to ${switchLangLabel}`}
-          >{switchLangLabel}</a
-        >
+        <a href={getTranslatedRoute('/contacto', lang)} class='btn-glow'>{t('nav.contacto')}</a>
+        <a href={switchUrl} class='lang-switch' aria-label={`Change language to ${switchLangLabel}`}>{switchLangLabel}</a>
       </div>
     </nav>
 
-    <!-- Botón Toggle Menú Móvil -->
-    <button
-      class='header__toggle'
-      id='menu-toggle'
-      aria-label='Alternar menú'
-      aria-expanded='false'
-    >
-      <Menu
-        class='icon-menu'
-        size={28}
-      />
-      <X
-        class='icon-close'
-        size={20}
-      />
+    <!-- Botón Toggle Móvil -->
+    <button class='header__toggle' id='menu-toggle' aria-label='Alternar menú' aria-expanded='false'>
+      <Menu class='icon-menu' size={28} />
+      <X class='icon-close' size={20} />
     </button>
   </div>
 
   <!-- Navegación Móvil -->
-  <nav
-    class='header__nav'
-    id='main-nav'
-  >
+  <nav class='header__nav' id='main-nav'>
     <div class='header__nav-content'>
       <ul class='nav-list'>
         <li class={`nav-list__item ${isActive('/') ? 'is-active' : ''}`}>
-          <a href={getRoute('/')}
-            >{t.inicio}
-            <ArrowRight
-              size={18}
-              color='#86C46A'
-            /></a
-          >
+          <a href={getTranslatedRoute('/', lang)}>{t('nav.inicio')} <ArrowRight size={18} color='#86C46A' /></a>
         </li>
-        <li
-          class={`nav-list__item ${isActive('/nosotros') ? 'is-active' : ''}`}
-        >
-          <a href={getRoute('/nosotros')}
-            >{t.nosotros}
-            <ArrowRight
-              size={18}
-              color='#86C46A'
-            /></a
-          >
+        <li class={`nav-list__item ${isActive('/nosotros') ? 'is-active' : ''}`}>
+          <a href={getTranslatedRoute('/nosotros', lang)}>{t('nav.nosotros')} <ArrowRight size={18} color='#86C46A' /></a>
         </li>
-        <li
-          class={`nav-list__item has-sub ${isActive('/servicios') ? 'is-active' : ''}`}
-        >
-          <a href={getRoute('/servicios')}
-            >{t.servicios}
-            <ArrowRight
-              size={18}
-              color='#86C46A'
-            /></a
-          >
+        <li class={`nav-list__item has-sub ${isActive('/servicios') ? 'is-active' : ''}`}>
+          <a href={getTranslatedRoute('/servicios', lang)}>{t('nav.servicios')} <ArrowRight size={18} color='#86C46A' /></a>
           <ul class='sub-menu'>
-            <li>
-              <a
-                href={`${getRoute('/servicios')}${h.h1}`}
-                class='service-link'
-                >· {t.serv1}</a
-              >
-            </li>
-            <li>
-              <a
-                href={`${getRoute('/servicios')}${h.h2}`}
-                class='service-link'
-                >· {t.serv2}</a
-              >
-            </li>
-            <li>
-              <a
-                href={`${getRoute('/servicios')}${h.h3}`}
-                class='service-link'
-                >· {t.serv3}</a
-              >
-            </li>
+            <li><a href={`${getTranslatedRoute('/servicios', lang)}${h.h1}`} class='service-link'>· {t('nav.serv1')}</a></li>
+            <li><a href={`${getTranslatedRoute('/servicios', lang)}${h.h2}`} class='service-link'>· {t('nav.serv2')}</a></li>
+            <li><a href={`${getTranslatedRoute('/servicios', lang)}${h.h3}`} class='service-link'>· {t('nav.serv3')}</a></li>
           </ul>
         </li>
       </ul>
 
       <div class='header__action'>
-        <a
-          href={getRoute('/contacto')}
-          class='btn-glow'
-          >{t.contacto}</a
-        >
-        <a
-          href={switchUrl}
-          class='lang-switch'
-          aria-label={`Change language to ${switchLangLabel}`}
-          >{switchLangLabel}</a
-        >
+        <a href={getTranslatedRoute('/contacto', lang)} class='btn-glow'>{t('nav.contacto')}</a>
+        <a href={switchUrl} class='lang-switch'>{switchLangLabel}</a>
       </div>
 
       <div class='header__footer'>
-        <a
-          href='https://www.linkedin.com/company/agrovalue-org/'
-          target='_blank'
-          rel='noopener noreferrer'
-          class='social-btn'
-          aria-label='LinkedIn'
-        >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            width='20'
-            height='20'
-            viewBox='0 0 24 24'
-          >
-            <path
-              d='M0 0h24v24H0z'
-              fill='none'
-            ></path>
-            <path
-              fill='currentColor'
-              d='M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z'
-            ></path>
-          </svg>
+        <a href='https://www.linkedin.com/company/agrovalue-org/' target='_blank' rel='noopener noreferrer' class='social-btn' aria-label='LinkedIn'>
+          <svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24'><path d='M0 0h24v24H0z' fill='none'></path><path fill='currentColor' d='M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z'></path></svg>
         </a>
-        <span class='copyright'>&copy; {currentYear} Agrovalue</span>
+        <span class='copyright'>&copy; {new Date().getFullYear()} Agrovalue</span>
       </div>
     </div>
   </nav>
@@ -287,10 +107,9 @@ const h = hashes[lang];
 
 <script>
   import { gsap } from 'gsap';
-
+  // ... EL RESTO DE TU SCRIPT SE MANTIENE EXACTAMENTE IGUAL ...
   document.addEventListener('DOMContentLoaded', () => {
     const header = document.getElementById('main-header');
-
     const handleScroll = () => {
       if (!header) return;
       if (window.scrollY > 50) {
@@ -321,20 +140,14 @@ const h = hashes[lang];
         .fromTo(
           navItems,
           { y: 20, autoAlpha: 0 },
-          {
-            y: 0,
-            autoAlpha: 1,
-            duration: 0.4,
-            stagger: 0.05,
-            ease: 'power3.out',
-          },
-          '-=0.2',
+          { y: 0, autoAlpha: 1, duration: 0.4, stagger: 0.05, ease: 'power3.out' },
+          '-=0.2'
         )
         .fromTo(
           [actionBtn, footer],
           { y: 20, autoAlpha: 0 },
           { y: 0, autoAlpha: 1, duration: 0.4, ease: 'power3.out' },
-          '-=0.2',
+          '-=0.2'
         );
 
       const clickHandler = () => {
@@ -356,7 +169,6 @@ const h = hashes[lang];
 
       toggleBtn.addEventListener('click', clickHandler);
 
-      // Limpieza de URL cuando damos click en el submenu desde la misma página
       const serviceLinks = document.querySelectorAll('.service-link');
       serviceLinks.forEach((link) => {
         link.addEventListener('click', (e) => {
@@ -388,7 +200,6 @@ const h = hashes[lang];
       };
     });
 
-    // Para Desktop: Limpieza de URL al clickear en submenu en la misma página
     mm.add('(min-width: 1024px)', () => {
       const serviceLinks = document.querySelectorAll('.service-link');
       serviceLinks.forEach((link) => {

@@ -1,12 +1,7 @@
 ---
-//src/layouts/Layout.astro
-/**
- * Componente: Layout Principal
- * Descripción: Define la estructura base del documento HTML, metadatos SEO,
- * precarga de fuentes web y la disposición de componentes globales.
- */
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
+import { useTranslations, type Lang } from '../i18n/utils';
 import '../styles/main.scss';
 
 export interface Props {
@@ -17,161 +12,76 @@ export interface Props {
   hideFooter?: boolean;
 }
 
+const lang = (Astro.currentLocale || 'es') as Lang;
+const t = useTranslations(lang);
+
 const {
   title,
-  description = 'Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.',
+  description = t('seo.description'),
   image = '/Logo_Agrovalue.png',
   keywords = 'agroexportación, agricultura, comercialización agrícola, inversión agrícola, trazabilidad, fruta fresca, logística internacional, Agrovalue',
   hideFooter = false,
 } = Astro.props;
 
-// Obtenemos el idioma actual automáticamente (Astro se encarga de saber si estamos en / o en /en/)
-const lang = Astro.currentLocale || 'es';
-
-const canonicalURL = new URL(
-  Astro.url.pathname,
-  Astro.site || 'https://agrovalue.org',
-);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || 'https://agrovalue.org');
 const imageUrl = new URL(image, canonicalURL);
 ---
 
 <!doctype html>
-<!-- Asignamos el idioma al HTML -->
 <html lang={lang}>
   <head>
     <meta charset='UTF-8' />
-    <meta
-      name='viewport'
-      content='width=device-width, initial-scale=1.0'
-    />
-    <link
-      rel='icon'
-      href='/Logo_AgrovalueV.ico'
-    />
-    <meta
-      name='generator'
-      content={Astro.generator}
-    />
-    <link
-      rel='icon'
-      href='/Logo_Agrovalue192.png'
-      type='image/png'
-      sizes='192x192'
-    />
-    <link
-      rel='apple-touch-icon'
-      href='/apple-icon.png'
-    />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <link rel='icon' href='/Logo_AgrovalueV.ico' />
+    <meta name='generator' content={Astro.generator} />
+    <link rel='icon' href='/Logo_Agrovalue192.png' type='image/png' sizes='192x192' />
+    <link rel='apple-touch-icon' href='/apple-icon.png' />
 
     <!-- SEO Básico -->
     <title>{title}</title>
-    <meta
-      name='description'
-      content={description}
-    />
-    <meta
-      name='author'
-      content='Cristian Braco'
-    />
-    <meta
-      name='keywords'
-      content={keywords}
-    />
-    <meta
-      name='robots'
-      content='index, follow'
-    />
-    <link
-      rel='canonical'
-      href={canonicalURL}
-    />
+    <meta name='description' content={description} />
+    <meta name='author' content='Cristian Braco' />
+    <meta name='keywords' content={keywords} />
+    <meta name='robots' content='index, follow' />
+    <link rel='canonical' href={canonicalURL} />
 
     <!-- Open Graph / Facebook / LinkedIn -->
-    <meta
-      property='og:type'
-      content='website'
-    />
-    <meta
-      property='og:url'
-      content={canonicalURL}
-    />
-    <meta
-      property='og:title'
-      content={title}
-    />
-    <meta
-      property='og:description'
-      content={description}
-    />
-    <meta
-      property='og:image'
-      content={imageUrl}
-    />
-    <meta
-      property='og:site_name'
-      content='Agrovalue'
-    />
-    <!--  Se adapto el locale para SEO -->
-    <meta
-      property='og:locale'
-      content={lang === 'es' ? 'es_ES' : 'en_US'}
-    />
+    <meta property='og:type' content='website' />
+    <meta property='og:url' content={canonicalURL} />
+    <meta property='og:title' content={title} />
+    <meta property='og:description' content={description} />
+    <meta property='og:image' content={imageUrl} />
+    <meta property='og:site_name' content='Agrovalue' />
+    <meta property='og:locale' content={lang === 'es' ? 'es_ES' : 'en_US'} />
 
     <!-- Twitter -->
-    <meta
-      property='twitter:card'
-      content='summary_large_image'
-    />
-    <meta
-      property='twitter:url'
-      content={canonicalURL}
-    />
-    <meta
-      property='twitter:title'
-      content={title}
-    />
-    <meta
-      property='twitter:description'
-      content={description}
-    />
-    <meta
-      property='twitter:image'
-      content={imageUrl}
-    />
+    <meta property='twitter:card' content='summary_large_image' />
+    <meta property='twitter:url' content={canonicalURL} />
+    <meta property='twitter:title' content={title} />
+    <meta property='twitter:description' content={description} />
+    <meta property='twitter:image' content={imageUrl} />
 
     <!-- Fuentes Google -->
-    <link
-      rel='preconnect'
-      href='https://fonts.googleapis.com'
-    />
-    <link
-      rel='preconnect'
-      href='https://fonts.gstatic.com'
-      crossorigin
-    />
-    <link
-      href='https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap'
-      rel='stylesheet'
-    />
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link href='https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Space+Grotesk:wght@300..700&display=swap' rel='stylesheet' />
 
     <!-- JSON-LD SEO -->
-    <script type='application/ld+json'>
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Agrovalue",
-        "url": "https://www.agrovalue.org",
-        "logo": "https://www.agrovalue.org/Logo_Agrovalue.png",
-        "description": "Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.",
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "email": "comercial@agrovalue.org",
-          "contactType": "customer support",
-          "availableLanguage": ["es", "en"]
-        },
-        "sameAs": ["https://www.linkedin.com/company/agrovalue-org"]
-      }
-    </script>
+    <script type='application/ld+json' set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Agrovalue",
+      "url": "https://www.agrovalue.org",
+      "logo": "https://www.agrovalue.org/Logo_Agrovalue.png",
+      "description": description,
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "comercial@agrovalue.org",
+        "contactType": "customer support",
+        "availableLanguage": ["es", "en"]
+      },
+      "sameAs": ["https://www.linkedin.com/company/agrovalue-org"]
+    })} />
   </head>
   <body>
     <div class='app-container'>

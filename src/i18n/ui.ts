@@ -1,0 +1,198 @@
+// src/i18n/ui.ts
+export const defaultLang = "es";
+
+export const routes = {
+	"/": "/",
+	"/nosotros": "/about-us",
+	"/servicios": "/services",
+	"/contacto": "/contact",
+} as const;
+
+export const hashes = {
+	es: {
+		h1: "#productor-exportador",
+		h2: "#importador-distribuidor",
+		h3: "#proyectos-especiales",
+	},
+	en: {
+		h1: "#producer-exporter",
+		h2: "#importer-distributor",
+		h3: "#special-projects",
+	},
+} as const;
+
+export const ui = {
+	es: {
+		"nav.inicio": "Inicio",
+		"nav.nosotros": "Nosotros",
+		"nav.servicios": "Servicios",
+		"nav.contacto": "Contáctanos",
+		"nav.footer.contacto": "Contacto",
+		"nav.serv1": "Productores y exportadores",
+		"nav.serv2": "Importadores y distribuidores",
+		"nav.serv3": "Proyectos especiales",
+		"footer.desc":
+			"Creamos soluciones tecnológicas y sostenibles para hacer crecer el campo, poniendo siempre en el centro a quienes lo trabajan día a día.",
+		"footer.navTitle": "NAVEGACIÓN",
+		"footer.socialTitle": "SÍGUENOS",
+		"footer.derechos": "Todos los derechos reservados.",
+		"seo.description":
+			"Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.",
+		"home.title":
+			"Conectamos el campo con el mundo, generando valor para cada productor.",
+		"home.desc":
+			"Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.",
+		"home.btn.services": "Conoce nuestros servicios",
+		"home.btn.contact": "Contáctanos",
+		"home.footer": "Todos los derechos reservados.",
+		"about.hero.subtitle": "NOSOTROS",
+		"about.hero.title": "Impulsando el agro hacia el mercado global.",
+		"about.hero.desc":
+			"Integramos mercados, capital y tecnología para que productores, compradores e inversionistas crezcan con confianza.",
+		"about.hero.btn.services": "Conoce nuestros servicios",
+		"about.hero.btn.contact": "Contáctanos",
+		"about.purpose.subtitle": "NUESTRO PROPÓSITO",
+		"about.purpose.title1": "Conectamos el campo con el mundo,",
+		"about.purpose.title2": "generando valor para cada productor.",
+		"about.mv.title": "Misión y Visión",
+		"about.mv.tab.mission": "Misión",
+		"about.mv.tab.vision": "Visión",
+		"about.mv.mission.desc":
+			"Integramos mercados, capital y tecnología en una sola cadena para que el productor capture el valor de su trabajo; el comprador reciba un abastecimiento confiable en volumen, calidad y tiempo; y el inversionista obtenga retorno con propósito.",
+		"about.mv.vision.desc":
+			"Ser el socio de confianza y el referente en la agroexportación latinoamericana que productores, compradores e inversionistas eligen para crecer juntos.",
+		"about.values.subtitle": "NUESTROS VALORES",
+		"about.values.title": "Los principios que guían cada decisión.",
+		"about.values.instruction": "Toca cada valor para conocerlo.",
+		"about.team.subtitle": "NUESTRO EQUIPO",
+		"about.team.title": "Quienes lideran AgroValue.",
+		"about.steps.subtitle": "CÓMO TRABAJAMOS",
+		"about.steps.title": "Del campo al mundo, en cuatro etapas.",
+		"about.cta.title": "¿Conversamos sobre tu próximo desafío?",
+		"about.cta.desc":
+			"Derivamos tu consulta al especialista indicado del equipo.",
+		"about.cta.btn": "Contáctanos",
+		"services.hero.subtitle": "SERVICIOS",
+		"services.hero.title":
+			"Cada actor de la cadena tiene un reto distinto. Nosotros tenemos una respuesta para cada uno.",
+		"services.hero.btn1": "Productor / Exportador",
+		"services.hero.btn2": "Importador / Distribuidor",
+		"services.hero.btn3": "Proyectos especiales",
+		"services.section.whatwedo": "QUÉ HACEMOS POR TI",
+		"services.section.howwework": "CÓMO TRABAJAMOS",
+		"services.btn.backtotop": "Volver arriba",
+		"contact.hero.subtitle": "CONTACTO",
+		"contact.hero.title": "Conversemos sobre tu próximo desafío.",
+		"contact.hero.desc":
+			"Cuéntanos tu perfil y el servicio que necesitas. Dirigiremos tu consulta directamente con la persona indicada del equipo.",
+		"contact.info.title": "Datos de contacto",
+		"contact.info.desc":
+			"Escríbenos y te pondremos en contacto con la persona indicada.",
+		"contact.info.email": "CORREO",
+		"contact.info.linkedin": "LINKEDIN",
+		"contact.image.overlay": "Del campo al mundo, con un solo aliado.",
+		"contact.form.honeypot": "No llenes esto si eres humano",
+		"contact.form.iam": "Soy:",
+		"contact.form.profile1": "Productor / exportador",
+		"contact.form.profile2": "Importador / distribuidor",
+		"contact.form.profile3": "Inversionista",
+		"contact.form.profile4": "Otro",
+		"contact.form.name.label": "Nombre",
+		"contact.form.name.placeholder": "Tu nombre",
+		"contact.form.email.label": "Email",
+		"contact.form.email.placeholder": "tu@correo.com",
+		"contact.form.message.label": "Mensaje",
+		"contact.form.message.placeholder": "Cuéntanos brevemente tu necesidad...",
+		"contact.form.submit": "Enviar consulta",
+		"contact.form.msg.sending": "Enviando...",
+		"contact.form.msg.success": "¡Mensaje Enviado!",
+		"contact.form.msg.error": "Error al enviar",
+	},
+	en: {
+		"nav.inicio": "Home",
+		"nav.nosotros": "About Us",
+		"nav.servicios": "Services",
+		"nav.contacto": "Contact Us",
+		"nav.footer.contacto": "Contact Us",
+		"nav.serv1": "Growers & Exporters",
+		"nav.serv2": "Importers & Distributors",
+		"nav.serv3": "Special Projects",
+		"footer.desc":
+			"We create sustainable technology solutions that drive agricultural growth while keeping the people who work the land every day at the center of what we do.",
+		"footer.navTitle": "NAVIGATION",
+		"footer.socialTitle": "FOLLOW US",
+		"footer.derechos": "All rights reserved.",
+		"seo.description":
+			"We connect growers, buyers, and investors across the agricultural supply chain, combining market access, capital, and technology.",
+		"home.title":
+			"Connecting the field to the world, creating value for every grower.",
+		"home.desc":
+			"We connect growers, buyers, and investors across the agricultural supply chain, combining market access, capital, and technology to create sustainable opportunities for growth.",
+		"home.btn.services": "Explore our services",
+		"home.btn.contact": "Contact us",
+		"home.footer": "All rights reserved.",
+		"about.hero.subtitle": "ABOUT US",
+		"about.hero.title": "Connecting agriculture to global markets.",
+		"about.hero.desc":
+			"We connect growers, buyers, and investors across the agricultural supply chain, combining market access, capital, and technology to create sustainable opportunities for growth.",
+		"about.hero.btn.services": "Explore our services",
+		"about.hero.btn.contact": "Contact us",
+		"about.purpose.subtitle": "OUR PURPOSE",
+		"about.purpose.title1": "Connecting the field to the world,",
+		"about.purpose.title2": "creating value for every grower.",
+		"about.mv.title": "Mission and Vision",
+		"about.mv.tab.mission": "Mission",
+		"about.mv.tab.vision": "Vision",
+		"about.mv.mission.desc":
+			"We bring together markets, capital, and technology across an integrated value chain so growers can capture full value of their work, buyers can rely on consistent supply, quality, and timely delivery, and investors can generate meaningful returns with purpose.",
+		"about.mv.vision.desc":
+			"To be the trusted partner and benchmark in Latin American agroexport that growers, buyers, and investors choose to grow together.",
+		"about.values.subtitle": "OUR VALUES",
+		"about.values.title": "The principles that guide every decision.",
+		"about.values.instruction": "Tap each value to learn more.",
+		"about.team.subtitle": "OUR TEAM",
+		"about.team.title": "Who leads AgroValue.",
+		"about.steps.subtitle": "HOW WE WORK",
+		"about.steps.title": "From the field to the world, in four stages.",
+		"about.cta.title": "Shall we talk about your next challenge?",
+		"about.cta.desc":
+			"We route your inquiry to the right specialist on our team.",
+		"about.cta.btn": "Contact us",
+		"services.hero.subtitle": "SERVICES",
+		"services.hero.title":
+			"Every actor in the chain has a different challenge. We have an answer for each one.",
+		"services.hero.btn1": "Grower / Exporter",
+		"services.hero.btn2": "Importer / Distributor",
+		"services.hero.btn3": "Special Projects",
+		"services.section.whatwedo": "WHAT WE DO FOR YOU",
+		"services.section.howwework": "HOW WE WORK",
+		"services.btn.backtotop": "Back to top",
+		"contact.hero.subtitle": "CONTACT US",
+		"contact.hero.title": "Let's talk about your next challenge.",
+		"contact.hero.desc":
+			"Tell us about your business and the service you need. We'll route your inquiry directly to the right person on our team.",
+		"contact.info.title": "Contact details",
+		"contact.info.desc":
+			"Write to us and we'll connect you with the right person.",
+		"contact.info.email": "EMAIL",
+		"contact.info.linkedin": "LINKEDIN",
+		"contact.image.overlay":
+			"From the field to the world, with a single partner.",
+		"contact.form.honeypot": "Do not fill this out if you are human",
+		"contact.form.iam": "I am:",
+		"contact.form.profile1": "Grower / Exporter",
+		"contact.form.profile2": "Importer / Distributor",
+		"contact.form.profile3": "Investor",
+		"contact.form.profile4": "Other",
+		"contact.form.name.label": "Name",
+		"contact.form.name.placeholder": "Your name",
+		"contact.form.email.label": "Email",
+		"contact.form.email.placeholder": "you@email.com",
+		"contact.form.message.label": "Message",
+		"contact.form.message.placeholder": "Briefly tell us what you need...",
+		"contact.form.submit": "Send inquiry",
+		"contact.form.msg.sending": "Sending...",
+		"contact.form.msg.success": "Message Sent!",
+		"contact.form.msg.error": "Error sending",
+	},
+} as const;
