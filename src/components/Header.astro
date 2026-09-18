@@ -107,9 +107,10 @@ if (lang === 'es') {
 
 <script>
   import { gsap } from 'gsap';
-  // ... EL RESTO DE TU SCRIPT SE MANTIENE EXACTAMENTE IGUAL ...
-  document.addEventListener('DOMContentLoaded', () => {
+
+  document.addEventListener('astro:page-load', () => {
     const header = document.getElementById('main-header');
+    
     const handleScroll = () => {
       if (!header) return;
       if (window.scrollY > 50) {
@@ -122,103 +123,112 @@ if (lang === 'es') {
     window.addEventListener('scroll', handleScroll);
     handleScroll();
 
-    let mm = gsap.matchMedia();
+    let ctx = gsap.context(() => {
+      let mm = gsap.matchMedia();
 
-    mm.add('(max-width: 1023px)', () => {
-      const toggleBtn = document.getElementById('menu-toggle');
-      const nav = document.getElementById('main-nav');
-      const navItems = document.querySelectorAll('.nav-list__item');
-      const actionBtn = document.querySelector('.header__action');
-      const footer = document.querySelector('.header__footer');
+      mm.add('(max-width: 1023px)', () => {
+        const toggleBtn = document.getElementById('menu-toggle');
+        const nav = document.getElementById('main-nav');
+        const navItems = document.querySelectorAll('.nav-list__item');
+        const actionBtn = document.querySelector('.header__action');
+        const footer = document.querySelector('.header__footer');
 
-      if (!header || !toggleBtn || !nav) return;
+        if (!header || !toggleBtn || !nav) return;
 
-      const menuTl = gsap.timeline({ paused: true, reversed: true });
+        const menuTl = gsap.timeline({ paused: true, reversed: true });
 
-      menuTl
-        .to(nav, { autoAlpha: 1, y: 0, duration: 0.4, ease: 'power3.inOut' })
-        .fromTo(
-          navItems,
-          { y: 20, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 0.4, stagger: 0.05, ease: 'power3.out' },
-          '-=0.2'
-        )
-        .fromTo(
-          [actionBtn, footer],
-          { y: 20, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 0.4, ease: 'power3.out' },
-          '-=0.2'
-        );
+        menuTl
+          .to(nav, { autoAlpha: 1, y: 0, duration: 0.4, ease: 'power3.inOut' })
+          .fromTo(
+            navItems,
+            { y: 20, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.4, stagger: 0.05, ease: 'power3.out' },
+            '-=0.2'
+          )
+          .fromTo(
+            [actionBtn, footer],
+            { y: 20, autoAlpha: 0 },
+            { y: 0, autoAlpha: 1, duration: 0.4, ease: 'power3.out' },
+            '-=0.2'
+          );
 
-      const clickHandler = () => {
-        const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-        toggleBtn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
+        const clickHandler = () => {
+          const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+          toggleBtn.setAttribute('aria-expanded', isExpanded ? 'false' : 'true');
 
-        header.classList.toggle('is-open');
+          header.classList.toggle('is-open');
 
-        if (!isExpanded) {
-          document.body.style.overflow = 'hidden';
-          document.documentElement.style.overflow = 'hidden';
-        } else {
+          if (!isExpanded) {
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
+          } else {
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+          }
+
+          menuTl.reversed() ? menuTl.play() : menuTl.reverse();
+        };
+
+        toggleBtn.addEventListener('click', clickHandler);
+
+        const serviceLinks = document.querySelectorAll('.service-link');
+        serviceLinks.forEach((link) => {
+          link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (!href) return;
+
+            const [path, hash] = href.split('#');
+            const currentPath = window.location.pathname.replace(/\/$/, '');
+            const targetPath = path.replace(/\/$/, '');
+
+            if (currentPath === targetPath && hash) {
+              e.preventDefault();
+              const targetElement = document.getElementById(hash);
+              if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+              }
+              if (header.classList.contains('is-open')) {
+                clickHandler();
+              }
+            }
+          });
+        });
+
+        // Esta función de retorno es manejada automáticamente por gsap.matchMedia al destruirse
+        return () => {
+          toggleBtn.removeEventListener('click', clickHandler);
+          header.classList.remove('is-open');
           document.body.style.overflow = '';
           document.documentElement.style.overflow = '';
-        }
-
-        menuTl.reversed() ? menuTl.play() : menuTl.reverse();
-      };
-
-      toggleBtn.addEventListener('click', clickHandler);
-
-      const serviceLinks = document.querySelectorAll('.service-link');
-      serviceLinks.forEach((link) => {
-        link.addEventListener('click', (e) => {
-          const href = link.getAttribute('href');
-          if (!href) return;
-
-          const [path, hash] = href.split('#');
-          const currentPath = window.location.pathname.replace(/\/$/, '');
-          const targetPath = path.replace(/\/$/, '');
-
-          if (currentPath === targetPath && hash) {
-            e.preventDefault();
-            const targetElement = document.getElementById(hash);
-            if (targetElement) {
-              targetElement.scrollIntoView({ behavior: 'smooth' });
-            }
-            if (header.classList.contains('is-open')) {
-              clickHandler();
-            }
-          }
-        });
+        };
       });
 
-      return () => {
-        toggleBtn.removeEventListener('click', clickHandler);
-        header.classList.remove('is-open');
-        document.body.style.overflow = '';
-        document.documentElement.style.overflow = '';
-      };
-    });
+      mm.add('(min-width: 1024px)', () => {
+        const serviceLinks = document.querySelectorAll('.service-link');
+        serviceLinks.forEach((link) => {
+          link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (!href) return;
+            const [path, hash] = href.split('#');
+            const currentPath = window.location.pathname.replace(/\/$/, '');
+            const targetPath = path.replace(/\/$/, '');
 
-    mm.add('(min-width: 1024px)', () => {
-      const serviceLinks = document.querySelectorAll('.service-link');
-      serviceLinks.forEach((link) => {
-        link.addEventListener('click', (e) => {
-          const href = link.getAttribute('href');
-          if (!href) return;
-          const [path, hash] = href.split('#');
-          const currentPath = window.location.pathname.replace(/\/$/, '');
-          const targetPath = path.replace(/\/$/, '');
-
-          if (currentPath === targetPath && hash) {
-            e.preventDefault();
-            const targetElement = document.getElementById(hash);
-            if (targetElement) {
-              targetElement.scrollIntoView({ behavior: 'smooth' });
+            if (currentPath === targetPath && hash) {
+              e.preventDefault();
+              const targetElement = document.getElementById(hash);
+              if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+              }
             }
-          }
+          });
         });
       });
     });
+
+    document.addEventListener('astro:before-preparation', () => {
+      ctx.revert();
+      window.removeEventListener('scroll', handleScroll); // IMPORTANTE: Desconecta el listener de la ventana
+    }, { once: true });
+
   });
 </script>

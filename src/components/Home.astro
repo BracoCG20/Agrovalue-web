@@ -82,94 +82,102 @@ const titleWords = t('home.title').split(' ');
 <script>
   import { gsap } from 'gsap';
 
-  document.addEventListener('DOMContentLoaded', () => {
-    const slides = document.querySelectorAll('.hero__slide');
-    const dots = document.querySelectorAll('.dot');
-    const progressBar = document.getElementById('progress-bar') as HTMLElement;
-    const btnNext = document.getElementById('next-slide');
-    const btnPrev = document.getElementById('prev-slide');
+  document.addEventListener('astro:page-load', () => {
+    
+    let ctx = gsap.context(() => {
+      const slides = document.querySelectorAll('.hero__slide');
+      const dots = document.querySelectorAll('.dot');
+      const progressBar = document.getElementById('progress-bar') as HTMLElement;
+      const btnNext = document.getElementById('next-slide');
+      const btnPrev = document.getElementById('prev-slide');
 
-    let currentIndex = 0;
-    let isAnimating = false;
-    const totalSlides = slides.length;
-    const slideDuration = 4;
-    let timerTimeline: gsap.core.Tween | null = null;
+      let currentIndex = 0;
+      let isAnimating = false;
+      const totalSlides = slides.length;
+      const slideDuration = 4;
+      let timerTimeline: gsap.core.Tween | null = null;
 
-    if (slides.length > 0) {
-      gsap.set(slides, { autoAlpha: 0, zIndex: 1 });
-      gsap.set(slides[0], { autoAlpha: 1, zIndex: 2 });
+      if (slides.length > 0) {
+        gsap.set(slides, { autoAlpha: 0, zIndex: 1 });
+        gsap.set(slides[0], { autoAlpha: 1, zIndex: 2 });
 
-      const words = document.querySelectorAll('.hero__content .word');
-      const reveals = document.querySelectorAll('.hero__content .text-reveal');
+        const words = document.querySelectorAll('.hero__content .word');
+        const reveals = document.querySelectorAll('.hero__content .text-reveal');
 
-      const tlInit = gsap.timeline({ onComplete: initTimer });
-      gsap.set(reveals, { autoAlpha: 0, y: 20 });
-      gsap.set(words, { y: '100%' });
+        const tlInit = gsap.timeline({ onComplete: initTimer });
+        gsap.set(reveals, { autoAlpha: 0, y: 20 });
+        gsap.set(words, { y: '100%' });
 
-      tlInit
-        .to(reveals[0], { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: 0.2 })
-        .to(words, { y: '0%', duration: 0.6, stagger: 0.03, ease: 'power3.out' }, '-=0.4')
-        .to(reveals[1], { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-        .to(reveals[2], { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4');
-    }
+        tlInit
+          .to(reveals[0], { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: 0.2 })
+          .to(words, { y: '0%', duration: 0.6, stagger: 0.03, ease: 'power3.out' }, '-=0.4')
+          .to(reveals[1], { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+          .to(reveals[2], { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4');
+      }
 
-    function initTimer() {
-      if (!progressBar) return;
-      if (timerTimeline) timerTimeline.kill();
-      timerTimeline = gsap.fromTo(
-        progressBar,
-        { scaleX: 0 },
-        { scaleX: 1, duration: slideDuration, ease: 'none', transformOrigin: 'left center', onComplete: () => goToSlide(currentIndex + 1) }
-      );
-    }
-
-    function goToSlide(index: number) {
-      if (isAnimating) return;
-
-      let nextIndex = index;
-      if (nextIndex >= totalSlides) nextIndex = 0;
-      if (nextIndex < 0) nextIndex = totalSlides - 1;
-      if (nextIndex === currentIndex) return;
-
-      isAnimating = true;
-
-      const currentSlide = slides[currentIndex];
-      const nextSlide = slides[nextIndex];
-
-      gsap.set(nextSlide, { autoAlpha: 0, zIndex: 2 });
-      gsap.set(currentSlide, { zIndex: 1 });
-
-      gsap.to(nextSlide, {
-        autoAlpha: 1,
-        duration: 1.2,
-        ease: 'power2.inOut',
-        onComplete: () => {
-          gsap.set(currentSlide, { autoAlpha: 0 });
-          currentIndex = nextIndex;
-          isAnimating = false;
-          initTimer();
-        },
-      });
-
-      dots.forEach((dot) => dot.classList.remove('dot--active'));
-      if (dots[nextIndex]) dots[nextIndex].classList.add('dot--active');
-    }
-
-    btnNext?.addEventListener('click', () => {
-      if (timerTimeline) timerTimeline.kill();
-      goToSlide(currentIndex + 1);
-    });
-
-    btnPrev?.addEventListener('click', () => {
-      if (timerTimeline) timerTimeline.kill();
-      goToSlide(currentIndex - 1);
-    });
-
-    dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => {
+      function initTimer() {
+        if (!progressBar) return;
         if (timerTimeline) timerTimeline.kill();
-        goToSlide(index);
+        timerTimeline = gsap.fromTo(
+          progressBar,
+          { scaleX: 0 },
+          { scaleX: 1, duration: slideDuration, ease: 'none', transformOrigin: 'left center', onComplete: () => goToSlide(currentIndex + 1) }
+        );
+      }
+
+      function goToSlide(index: number) {
+        if (isAnimating) return;
+
+        let nextIndex = index;
+        if (nextIndex >= totalSlides) nextIndex = 0;
+        if (nextIndex < 0) nextIndex = totalSlides - 1;
+        if (nextIndex === currentIndex) return;
+
+        isAnimating = true;
+
+        const currentSlide = slides[currentIndex];
+        const nextSlide = slides[nextIndex];
+
+        gsap.set(nextSlide, { autoAlpha: 0, zIndex: 2 });
+        gsap.set(currentSlide, { zIndex: 1 });
+
+        gsap.to(nextSlide, {
+          autoAlpha: 1,
+          duration: 1.2,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            gsap.set(currentSlide, { autoAlpha: 0 });
+            currentIndex = nextIndex;
+            isAnimating = false;
+            initTimer();
+          },
+        });
+
+        dots.forEach((dot) => dot.classList.remove('dot--active'));
+        if (dots[nextIndex]) dots[nextIndex].classList.add('dot--active');
+      }
+
+      btnNext?.addEventListener('click', () => {
+        if (timerTimeline) timerTimeline.kill();
+        goToSlide(currentIndex + 1);
+      });
+
+      btnPrev?.addEventListener('click', () => {
+        if (timerTimeline) timerTimeline.kill();
+        goToSlide(currentIndex - 1);
+      });
+
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          if (timerTimeline) timerTimeline.kill();
+          goToSlide(index);
+        });
       });
     });
+
+    document.addEventListener('astro:before-preparation', () => {
+      ctx.revert();
+    }, { once: true });
+
   });
 </script>

@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from 'astro:transitions';
+
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { useTranslations, type Lang } from '../i18n/utils';
@@ -45,6 +47,11 @@ const imageUrl = new URL(image, canonicalURL);
     <meta name='robots' content='index, follow' />
     <link rel='canonical' href={canonicalURL} />
 
+    <!-- SEO Internacional: Enrutamiento de Idiomas para Google -->
+    <link rel="alternate" hreflang="es" href={new URL(canonicalURL.pathname.replace(/^\/en/, ''), Astro.site)} />
+    <link rel="alternate" hreflang="en" href={new URL('/en' + canonicalURL.pathname.replace(/^\/en/, ''), Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(canonicalURL.pathname.replace(/^\/en/, ''), Astro.site)} />
+
     <!-- Open Graph / Facebook / LinkedIn -->
     <meta property='og:type' content='website' />
     <meta property='og:url' content={canonicalURL} />
@@ -82,6 +89,7 @@ const imageUrl = new URL(image, canonicalURL);
       },
       "sameAs": ["https://www.linkedin.com/company/agrovalue-org"]
     })} />
+    <ClientRouter/>
   </head>
   <body>
     <div class='app-container'>

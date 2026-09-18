@@ -185,69 +185,79 @@ const titleWords = t('services.hero.title').split(' ');
 
   gsap.registerPlugin(ScrollTrigger);
 
-  document.addEventListener('DOMContentLoaded', () => {
-    // Scroll Suave en carga inicial con hash
-    if (window.location.hash) {
-      const target = document.querySelector(window.location.hash);
-      if (target) {
-        setTimeout(() => {
-          target.scrollIntoView({ behavior: 'smooth' });
-          window.history.replaceState({}, document.title, window.location.pathname);
-        }, 100);
+  document.addEventListener('astro:page-load', () => {
+    
+    let ctx = gsap.context(() => {
+      
+      // Scroll Suave en carga inicial con hash
+      if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          setTimeout(() => {
+            target.scrollIntoView({ behavior: 'smooth' });
+            window.history.replaceState({}, document.title, window.location.pathname);
+          }, 100);
+        }
       }
-    }
 
-    // Botón "Volver Arriba"
-    document.querySelectorAll('.pd-scroll-top').forEach((btn) => {
-      btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    });
-
-    // Scroll Suave botones Hero
-    document.querySelectorAll('.btn-profile').forEach((anchor) => {
-      anchor.addEventListener('click', (e) => {
-        const href = anchor.getAttribute('href');
-        if (href && href.startsWith('#')) {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) target.scrollIntoView({ behavior: 'smooth' });
-        }
+      // Botón "Volver Arriba"
+      document.querySelectorAll('.pd-scroll-top').forEach((btn) => {
+        btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
       });
-    });
 
-    // Animación Hero
-    const tlHero = gsap.timeline();
-    gsap.set('.hero-servicios__subtitle', { autoAlpha: 0, y: 20 });
-    gsap.set('.hero-servicios .word', { y: '100%' });
-    gsap.set('.hero-servicios__actions', { autoAlpha: 0, y: 20 });
-
-    tlHero
-      .to('.hero-servicios__subtitle', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: 0.3 })
-      .to('.hero-servicios .word', { y: '0%', duration: 0.6, stagger: 0.03, ease: 'power3.out' }, '-=0.4')
-      .to('.hero-servicios__actions', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.2');
-
-    // Animación Perfiles
-    const perfiles = document.querySelectorAll('.perfil-detail');
-    perfiles.forEach((perfil) => {
-      const introElements = perfil.querySelectorAll('.pd-intro-content-container1__number, .pd-intro-content-container2 > *');
-      gsap.from(introElements, { scrollTrigger: { trigger: perfil.querySelector('.pd-intro'), start: 'top 85%' }, y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' });
-
-      const compBoxes = perfil.querySelectorAll('.pd-comparison-container__box');
-      const compIcon = perfil.querySelector('.pd-comparison-container__icon');
-      const tlComp = gsap.timeline({ scrollTrigger: { trigger: perfil.querySelector('.pd-comparison'), start: 'top 80%' } });
-      tlComp
-        .from(compBoxes, { y: 50, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out' })
-        .from(compIcon, { scale: 0, autoAlpha: 0, duration: 0.6, ease: 'back.out(1.5)' }, '-=0.4');
-
-      const image = perfil.querySelector('.pd-image__img');
-      if (image) gsap.from(image, { scrollTrigger: { trigger: perfil.querySelector('.pd-image'), start: 'top 85%' }, y: 30, autoAlpha: 0, scale: 0.97, duration: 1, ease: 'power3.out' });
-
-      ['.pd-services', '.pd-process', '.pd-cta'].forEach((selector) => {
-        const section = perfil.querySelector(selector);
-        if (section) {
-          const items = section.querySelectorAll(selector === '.pd-cta' ? '.pd-cta-container__title, .pd-cta-container__text' : '.pd-section-subtitle, .pd-service-group__title, .pd-list__item, .pd-process-list__item');
-          gsap.from(items, { scrollTrigger: { trigger: section, start: 'top 85%' }, y: 30, autoAlpha: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' });
-        }
+      // Scroll Suave botones Hero
+      document.querySelectorAll('.btn-profile').forEach((anchor) => {
+        anchor.addEventListener('click', (e) => {
+          const href = anchor.getAttribute('href');
+          if (href && href.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
       });
+
+      // Animación Hero
+      const tlHero = gsap.timeline();
+      gsap.set('.hero-servicios__subtitle', { autoAlpha: 0, y: 20 });
+      gsap.set('.hero-servicios .word', { y: '100%' });
+      gsap.set('.hero-servicios__actions', { autoAlpha: 0, y: 20 });
+
+      tlHero
+        .to('.hero-servicios__subtitle', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: 0.3 })
+        .to('.hero-servicios .word', { y: '0%', duration: 0.6, stagger: 0.03, ease: 'power3.out' }, '-=0.4')
+        .to('.hero-servicios__actions', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.2');
+
+      // Animación Perfiles
+      const perfiles = document.querySelectorAll('.perfil-detail');
+      perfiles.forEach((perfil) => {
+        const introElements = perfil.querySelectorAll('.pd-intro-content-container1__number, .pd-intro-content-container2 > *');
+        gsap.from(introElements, { scrollTrigger: { trigger: perfil.querySelector('.pd-intro'), start: 'top 85%' }, y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' });
+
+        const compBoxes = perfil.querySelectorAll('.pd-comparison-container__box');
+        const compIcon = perfil.querySelector('.pd-comparison-container__icon');
+        const tlComp = gsap.timeline({ scrollTrigger: { trigger: perfil.querySelector('.pd-comparison'), start: 'top 80%' } });
+        tlComp
+          .from(compBoxes, { y: 50, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out' })
+          .from(compIcon, { scale: 0, autoAlpha: 0, duration: 0.6, ease: 'back.out(1.5)' }, '-=0.4');
+
+        const image = perfil.querySelector('.pd-image__img');
+        if (image) gsap.from(image, { scrollTrigger: { trigger: perfil.querySelector('.pd-image'), start: 'top 85%' }, y: 30, autoAlpha: 0, scale: 0.97, duration: 1, ease: 'power3.out' });
+
+        ['.pd-services', '.pd-process', '.pd-cta'].forEach((selector) => {
+          const section = perfil.querySelector(selector);
+          if (section) {
+            const items = section.querySelectorAll(selector === '.pd-cta' ? '.pd-cta-container__title, .pd-cta-container__text' : '.pd-section-subtitle, .pd-service-group__title, .pd-list__item, .pd-process-list__item');
+            gsap.from(items, { scrollTrigger: { trigger: section, start: 'top 85%' }, y: 30, autoAlpha: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out' });
+          }
+        });
+      });
+
     });
+
+    document.addEventListener('astro:before-preparation', () => {
+      ctx.revert();
+    }, { once: true });
+
   });
 </script>

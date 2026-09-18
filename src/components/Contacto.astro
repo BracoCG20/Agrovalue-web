@@ -126,76 +126,80 @@ const t = useTranslations(lang);
 
   gsap.registerPlugin(ScrollTrigger);
 
-  document.addEventListener('DOMContentLoaded', () => {
-    // Autoselección de radio button por URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const perfilDesdeURL = urlParams.get('perfil');
+  document.addEventListener('astro:page-load', () => {
+  
+    let ctx = gsap.context(() => {
+      
+      const urlParams = new URLSearchParams(window.location.search);
+      const perfilDesdeURL = urlParams.get('perfil');
 
-    if (perfilDesdeURL) {
-      const radioButton = document.querySelector(`input[name="perfil"][value="${perfilDesdeURL}"]`) as HTMLInputElement;
-      if (radioButton) radioButton.checked = true;
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
+      if (perfilDesdeURL) {
+        const radioButton = document.querySelector(`input[name="perfil"][value="${perfilDesdeURL}"]`) as HTMLInputElement;
+        if (radioButton) radioButton.checked = true;
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
 
-    // Animaciones del Hero
-    const tlHero = gsap.timeline();
-    gsap.set('.text-reveal', { autoAlpha: 0, y: 20 });
-    tlHero
-      .to('.hero-contacto__subtitle', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: 0.2 })
-      .to('.hero-contacto__title', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
-      .to('.hero-contacto__description', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4');
+      const tlHero = gsap.timeline();
+      gsap.set('.text-reveal', { autoAlpha: 0, y: 20 });
+      tlHero
+        .to('.hero-contacto__subtitle', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out', delay: 0.2 })
+        .to('.hero-contacto__title', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4')
+        .to('.hero-contacto__description', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4');
 
-    // Animación de la sección
-    const contactSection = document.querySelector('.contacto-content');
-    if (contactSection) {
-      gsap.from('.trigger-reveal-contact', { scrollTrigger: { trigger: contactSection, start: 'top 85%' }, y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out' });
-    }
+      const contactSection = document.querySelector('.contacto-content');
+      if (contactSection) {
+        gsap.from('.trigger-reveal-contact', { scrollTrigger: { trigger: contactSection, start: 'top 85%' }, y: 40, autoAlpha: 0, duration: 0.8, stagger: 0.2, ease: 'power3.out' });
+      }
 
-    // Lógica del Formulario
-    const contactForm = document.getElementById('agrovalue-contact-form') as HTMLFormElement;
-    const submitBtn = contactForm?.querySelector('.btn-submit') as HTMLButtonElement;
-    const timeField = document.getElementById('form_time') as HTMLInputElement;
+      const contactForm = document.getElementById('agrovalue-contact-form') as HTMLFormElement;
+      const submitBtn = contactForm?.querySelector('.btn-submit') as HTMLButtonElement;
+      const timeField = document.getElementById('form_time') as HTMLInputElement;
 
-    if (contactForm && timeField && submitBtn) {
-      timeField.value = Date.now().toString();
+      if (contactForm && timeField && submitBtn) {
+        timeField.value = Date.now().toString();
 
-      // Extraemos los mensajes traducidos de los data attributes
-      const msgSending = contactForm.dataset.msgSending || 'Enviando...';
-      const msgSuccess = contactForm.dataset.msgSuccess || '¡Enviado!';
-      const msgError = contactForm.dataset.msgError || 'Error';
+        const msgSending = contactForm.dataset.msgSending || 'Enviando...';
+        const msgSuccess = contactForm.dataset.msgSuccess || '¡Enviado!';
+        const msgError = contactForm.dataset.msgError || 'Error';
 
-      contactForm.addEventListener('submit', async function (event) {
-        event.preventDefault();
+        contactForm.addEventListener('submit', async function (event) {
+          event.preventDefault();
 
-        const originalBtnText = submitBtn.innerText;
-        submitBtn.innerText = msgSending;
-        submitBtn.disabled = true;
+          const originalBtnText = submitBtn.innerText;
+          submitBtn.innerText = msgSending;
+          submitBtn.disabled = true;
 
-        const formData = new FormData(contactForm);
+          const formData = new FormData(contactForm);
 
-        try {
-          const response = await fetch('/enviar.php', { method: 'POST', body: formData });
+          try {
+            const response = await fetch('/enviar.php', { method: 'POST', body: formData });
 
-          if (response.ok) {
-            submitBtn.innerText = msgSuccess;
-            submitBtn.style.backgroundColor = '#1a422a';
-            contactForm.reset();
-            timeField.value = Date.now().toString();
-          } else {
-            throw new Error('Fallo en el servidor o detectado como bot');
+            if (response.ok) {
+              submitBtn.innerText = msgSuccess;
+              submitBtn.style.backgroundColor = '#1a422a';
+              contactForm.reset();
+              timeField.value = Date.now().toString();
+            } else {
+              throw new Error('Fallo en el servidor o detectado como bot');
+            }
+          } catch (error) {
+            console.error('Error:', error);
+            submitBtn.innerText = msgError;
+            submitBtn.style.backgroundColor = '#d32f2f';
+          } finally {
+            setTimeout(() => {
+              submitBtn.innerText = originalBtnText;
+              submitBtn.style.backgroundColor = '';
+              submitBtn.disabled = false;
+            }, 3500);
           }
-        } catch (error) {
-          console.error('Error:', error);
-          submitBtn.innerText = msgError;
-          submitBtn.style.backgroundColor = '#d32f2f';
-        } finally {
-          setTimeout(() => {
-            submitBtn.innerText = originalBtnText;
-            submitBtn.style.backgroundColor = '';
-            submitBtn.disabled = false;
-          }, 3500);
-        }
-      });
-    }
+        });
+      }
+    });
+
+    document.addEventListener('astro:before-preparation', () => {
+      ctx.revert();
+    }, { once: true });
+
   });
 </script>
