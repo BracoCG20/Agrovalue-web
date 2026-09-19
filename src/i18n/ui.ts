@@ -107,6 +107,9 @@ export const ui = {
 		"contact.form.msg.sending": "Enviando...",
 		"contact.form.msg.success": "¡Mensaje Enviado!",
 		"contact.form.msg.error": "Error al enviar",
+		"404.title": "Parece que te perdiste en el campo.",
+		"404.text": "La página que buscas no existe o ha sido movida.",
+		"404.btn": "Volver al inicio",
 	},
 	en: {
 		"nav.inicio": "Home",
@@ -194,5 +197,9 @@ export const ui = {
 		"contact.form.msg.sending": "Sending...",
 		"contact.form.msg.success": "Message Sent!",
 		"contact.form.msg.error": "Error sending",
+		"404.title": "It looks like you got lost in the field.",
+		"404.text":
+			"The page you are looking for does not exist or has been moved.",
+		"404.btn": "Back to home",
 	},
 } as const;

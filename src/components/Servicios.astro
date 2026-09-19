@@ -186,6 +186,8 @@ const titleWords = t('services.hero.title').split(' ');
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener('astro:page-load', () => {
+
+    if (!document.querySelector('.hero-servicios')) return;
     
     let ctx = gsap.context(() => {
       

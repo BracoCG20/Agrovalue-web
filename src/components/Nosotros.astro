@@ -260,6 +260,8 @@ const currentEtapas = etapasData[lang];
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener('astro:page-load', () => {
+
+    if (!document.querySelector('.hero-nosotros')) return;
     
     let resizeObserver: ResizeObserver | null = null;
     

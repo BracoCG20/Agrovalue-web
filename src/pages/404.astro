@@ -1,0 +1,176 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { TreeDeciduous } from '@lucide/astro';
+import { useTranslations } from '../i18n/utils';
+
+// El 404 estático compila por defecto en español
+const t = useTranslations('es');
+---
+
+<Layout title='404 - Página no encontrada' hideFooter={true}>
+  <section class='error-page'>
+    <div class='error-page__container'>
+      
+      <div class='error-page__visual gs-reveal'>
+        <span class='number'>4</span>
+        <div class='icon-wrapper'>
+          <TreeDeciduous class='tree-icon' stroke-width={1.2} />
+        </div>
+        <span class='number'>4</span>
+      </div>
+
+      <div class='error-page__content gs-reveal'>
+        <h1 id='error-title' class='error-page__title'>{t('404.title')}</h1>
+        <p id='error-text' class='error-page__text'>{t('404.text')}</p>
+        <a id='error-btn' href='/' class='error-btn'>{t('404.btn')}</a>
+      </div>
+      
+    </div>
+  </section>
+</Layout>
+
+<style lang='scss'>
+  .error-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Fondo degradado oscuro para resaltar el Navbar blanco */
+    background: linear-gradient(135deg, #0a1f12 0%, #1a422a 100%);
+    padding: 2rem;
+    overflow: hidden;
+
+    &__container {
+      text-align: center;
+      max-width: 800px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    &__visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      
+      .number {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(8rem, 25vw, 18rem);
+        font-weight: 700;
+        line-height: 1;
+        /* Verde translúcido para que se funda con el fondo oscuro */
+        color: rgba(134, 196, 106, 0.15);
+        user-select: none;
+      }
+
+      .icon-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #86c46a; /* Verde brillante de Agrovalue */
+        
+        .tree-icon {
+          width: clamp(100px, 20vw, 220px);
+          height: clamp(100px, 20vw, 220px);
+        }
+      }
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 2;
+      margin-top: -2rem; 
+    }
+
+    &__title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      color: #ffffff; /* Texto blanco */
+      margin: 0;
+    }
+
+    &__text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.1rem;
+      color: #cbd5e1; /* Gris claro */
+      max-width: 500px;
+      margin: 0 0 1rem 0;
+    }
+
+    /* Estilo específico para el botón del 404 */
+    .error-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.8rem 2.5rem;
+      background-color: #86C46A;
+      color: #ffffff;
+      text-decoration: none;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(134, 196, 106, 0.3);
+
+      &:hover {
+        background-color: #569c33;
+        box-shadow: 0 6px 20px rgba(134, 196, 106, 0.4);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .error-page__visual {
+      gap: 0.5rem;
+    }
+    .error-page__content {
+      margin-top: 0;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+
+  document.addEventListener('astro:page-load', () => {
+    // Cláusula de guardia: Si no es la página 404, no ejecuta el script
+    if (!document.querySelector('.error-page')) return;
+
+    let ctx = gsap.context(() => {
+      // 1. Detección inteligente de idioma basada en la URL rota
+      const pathname = window.location.pathname;
+      const isEnglish = pathname.startsWith('/en/');
+
+      if (isEnglish) {
+        const titleEl = document.getElementById('error-title');
+        const textEl = document.getElementById('error-text');
+        const btnEl = document.getElementById('error-btn') as HTMLAnchorElement;
+
+        if (titleEl) titleEl.innerText = 'It looks like you got lost in the field.';
+        if (textEl) textEl.innerText = 'The page you are looking for does not exist or has been moved.';
+        if (btnEl) {
+          btnEl.innerText = 'Back to home';
+          btnEl.href = '/en';
+        }
+      }
+
+      // 2. Animación de entrada suave
+      gsap.fromTo(
+        '.gs-reveal',
+        { y: 40, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 1, stagger: 0.2, ease: 'power3.out', delay: 0.2 }
+      );
+    });
+
+    document.addEventListener('astro:before-preparation', () => {
+      ctx.revert();
+    }, { once: true });
+  });
+</script>

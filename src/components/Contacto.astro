@@ -127,6 +127,8 @@ const t = useTranslations(lang);
   gsap.registerPlugin(ScrollTrigger);
 
   document.addEventListener('astro:page-load', () => {
+
+    if (!document.querySelector('.hero-contacto')) return;
   
     let ctx = gsap.context(() => {
       

@@ -83,6 +83,8 @@ const titleWords = t('home.title').split(' ');
   import { gsap } from 'gsap';
 
   document.addEventListener('astro:page-load', () => {
+
+    if (!document.querySelector('.hero__slides-container')) return;
     
     let ctx = gsap.context(() => {
       const slides = document.querySelectorAll('.hero__slide');
