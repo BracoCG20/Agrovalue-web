@@ -1,5 +1,7 @@
 # Agrovalue - Corporate Website
 
+[![Astro CI Pipeline](https://github.com/BracoCG20/Agrovalue-web/actions/workflows/deploy.yml/badge.svg?branch=main)](https://github.com/BracoCG20/Agrovalue-web/actions/workflows/deploy.yml)
+
 Sitio web corporativo de alto rendimiento desarrollado con **Astro**. Diseñado bajo principios de arquitectura DRY, cuenta con internacionalización nativa (i18n), navegación fluida tipo SPA (ViewTransitions) con animaciones de GSAP, y un backend seguro en PHP integrado para el formulario de contacto.
 
 ## Características Principales
